@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react'
 // import RandomWordSelector from './RandomWordSelector'
-import { Slider, InputNumber } from 'antd'
+import { Slider } from 'antd'
 
 export default function LettersFilterLength({
    wordArray,
@@ -40,7 +40,7 @@ export default function LettersFilterLength({
    const [maxLength, setMaxLength] = useState(0)
    const [lengths, setLengths] = useState([])
 
-   const [newFiltered, setNewFiltered] = useState(filteredWords)
+   // const [newFiltered, setNewFiltered] = useState(filteredWords)
    const [lowerValue, setLowerValue] = useState(minLength)
    const [upperValue, setUpperValue] = useState(maxLength)
    const wordLengthRef = useRef(wordLengthConfirmed)
@@ -60,20 +60,7 @@ export default function LettersFilterLength({
       setMaxLength(max)
       setLowerValue(min)
       setUpperValue(max)
-   }, [wordArray])
-
-   // useEffect(() => {
-   //    if (parseInt(lengths[0]) == parseInt(lengths[1])) {
-   //       setWordLengthConfirmed(true)
-   //    } else {
-   //       setWordLengthConfirmed(false)
-   //    }
-   //    console.log('LETTERS FILTER LENGTH CALLED: ')
-   // }, [wordArray])
-
-   // console.log('LENGTHS STATE: ', lengths)
-   // console.log('minL', minLength)
-   // console.log('maxL', maxLength)
+   }, [wordArray, setWordLengthConfirmed])
 
    const handleWordLengthSlider = (sliderArray) => {
       let lower = sliderArray[0]
@@ -88,7 +75,7 @@ export default function LettersFilterLength({
          (word) => word.length >= lower && word.length <= upper
       )
       console.log('NEW FILTERED', newlyFiltered)
-      setNewFiltered(newlyFiltered)
+      // setNewFiltered(newlyFiltered)
       setTempFilteredWords(newlyFiltered)
    }
 
