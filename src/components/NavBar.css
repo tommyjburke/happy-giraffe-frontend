@@ -1,0 +1,167 @@
+.navBarContainer {
+   /* height: 100px; */
+   /* background-color: blueviolet;
+   width: 100%;
+   width: 100vw; */
+   /* flex-shrink: 0;
+   flex-grow: 2;
+   width: 100%; */
+
+   display: flex;
+   justify-content: center;
+   background-color: transparent;
+   width: 100%;
+   position: fixed;
+   top: 0;
+}
+
+.navBa5 {
+   position: fixed;
+   top: 0;
+   left: 0;
+   right: 0;
+   display: flex;
+   direction: row;
+   flex-shrink: 1;
+   justify-content: space-around;
+   align-items: center;
+   color: var(--myYellow);
+   text-decoration: none;
+
+   text-align: center;
+   background-color: var(--myOrange);
+   background-color: var(--myBrown);
+   height: 40px;
+   width: 100%;
+   padding: 12px;
+   /* flex-shrink: 0; */
+   opacity: 0.9;
+   /* position: fixed; */
+   width: 1000px;
+}
+
+.navBar {
+   position: fixed;
+   top: 0;
+   left: 50%;
+   transform: translateX(-50%);
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+   align-items: center;
+   color: var(--myYellow);
+   text-decoration: none;
+   text-align: center;
+   background-color: var(--myBrown);
+   height: 40px;
+   max-width: 1000px;
+   width: 100%;
+   padding: 12px;
+   opacity: 0.9;
+}
+
+.activeLink {
+   color: white;
+   text-decoration: none;
+   font-family: 'Permanent Marker';
+   font-size: 1.5rem;
+   text-decoration: underline;
+   line-height: 95%;
+   animation: glowingGold 3s infinite;
+
+   text-shadow: 0 0 20px #ffefc0;
+   transition: color 2s, text-shadow 2s;
+
+   font-family: 'Agbalumo', system-ui;
+   font-family: 'Judson', serif;
+   font-family: 'Madimi One', sans-serif;
+   font-weight: 400;
+   font-style: normal;
+   @media (max-width: 768px) {
+      font-size: 0.9rem;
+   }
+}
+
+.inactiveLink {
+   font-size: 1.5rem;
+   /* color: var(--myBrown);
+   color: orange; */
+   color: var(--myWhite);
+   text-decoration: none;
+   font-family: 'Permanent Marker';
+   line-height: 75%;
+   font-family: 'Agbalumo', system-ui;
+   font-family: 'Judson', serif;
+   font-family: 'Madimi One', sans-serif;
+   font-weight: 400;
+   font-style: normal;
+   @media (max-width: 768px) {
+      font-size: 1.1rem;
+   }
+}
+
+.inactiveLink:hover {
+   color: #b8860b;
+   text-shadow: 0 0 1px #d9d93d, 0 0 1px #f2ff00;
+   transition: color 0.7s, text-shadow 4.4s;
+}
+
+.navLink {
+   /* padding: 0 3px 0 3px; */
+}
+
+.animate-color {
+   font-size: 2rem;
+   font-weight: bold;
+   animation: colorChange 3s infinite;
+}
+
+@keyframes colorChange {
+   0% {
+      color: rgb(145, 255, 0);
+   }
+   25% {
+      color: orange;
+   }
+   50% {
+      color: yellow;
+   }
+   75% {
+      color: rgb(196, 196, 5);
+   }
+   100% {
+      color: rgb(255, 187, 0);
+   }
+}
+
+@keyframes glow {
+   from {
+      text-shadow: 0 0 20px #ecffbd;
+   }
+   to {
+      text-shadow: 0 0 50px #d9d93d, 0 0 30px #f2ff00;
+   }
+}
+
+@keyframes glowingGold {
+   0% {
+      color: #ffd700;
+      text-shadow: 0 0 1px #ffefc0;
+   }
+   25% {
+      color: #ffbf00;
+      text-shadow: 0 0 2px #ffda99;
+   }
+   50% {
+      color: #b8860b;
+      text-shadow: 0 0 3px #d9d93d, 0 0 1px #f2ff00;
+   }
+   75% {
+      color: #ffbf00;
+      text-shadow: 0 0 2px #ffda99;
+   }
+   100% {
+      color: #ffd700;
+      text-shadow: 0 0 1px #ffefc0;
+   }
+}

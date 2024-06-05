@@ -1,0 +1,128 @@
+/* #e5771f; ORANGE */
+/* #f4a226; YELLOW */
+
+input[type='range'] {
+   height: 38px;
+   -webkit-appearance: none;
+   margin: 0px 0;
+   width: 100%;
+}
+input[type='range']:focus {
+   outline: none;
+}
+input[type='range']::-webkit-slider-runnable-track {
+   /* width: 100%; */
+   height: 10px;
+   cursor: pointer;
+   animate: 0.2s;
+   /* box-shadow: 1px 1px 1px #000000; */
+   background: grey;
+   border-radius: 5px;
+   border: 0px;
+}
+input[type='range']::-webkit-slider-thumb {
+   box-shadow: 1px 0px 0px #000000;
+   border: 1px solid #000000;
+   height: 30px;
+   width: 15px;
+   border-radius: 5px;
+   background: #e5771f;
+   cursor: pointer;
+   -webkit-appearance: none;
+   margin-top: -11px;
+}
+input[type='range']:focus::-webkit-slider-runnable-track {
+   background: grey;
+}
+input[type='range']::-moz-range-track {
+   /* width: 100%; */
+   height: 10px;
+   cursor: pointer;
+   animate: 0.2s;
+   box-shadow: 1px 1px 1px #000000;
+   /* background: #cad900; */
+   border-radius: 5px;
+   border: 1px solid #000000;
+}
+input[type='range']::-moz-range-thumb {
+   box-shadow: 1px 1px 1px #000000;
+   border: 1px solid #000000;
+   height: 30px;
+   width: 15px;
+   border-radius: 5px;
+   /* background: #ffffff; */
+   cursor: pointer;
+}
+input[type='range']::-ms-track {
+   width: 100%;
+   height: 10px;
+   cursor: pointer;
+   animate: 0.2s;
+   background: transparent;
+   border-color: transparent;
+   color: transparent;
+}
+input[type='range']::-ms-fill-lower {
+   background: #f2ff3a;
+   border: 1px solid #000000;
+   border-radius: 10px;
+   box-shadow: 1px 1px 1px #000000;
+}
+input[type='range']::-ms-fill-upper {
+   background: #cad900;
+   border: 1px solid #000000;
+   border-radius: 10px;
+   box-shadow: 1px 1px 1px #000000;
+}
+input[type='range']::-ms-thumb {
+   margin-top: 1px;
+   box-shadow: 1px 1px 1px #000000;
+   border: 1px solid #000000;
+   height: 30px;
+   width: 15px;
+   border-radius: 5px;
+   /* background: #ffffff; */
+   cursor: pointer;
+}
+input[type='range']:focus::-ms-fill-lower {
+   background: grey;
+}
+input[type='range']:focus::-ms-fill-upper {
+   background: yellow;
+}
+
+.slider-container {
+   display: flex; /* Use flexbox layout */
+   align-items: center; /* Vertically center items */
+   width: 180px;
+}
+
+.slider {
+   flex: 1; /* Take up remaining space */
+   margin-right: 10px; /* Add spacing between slider and label */
+}
+
+.slider-value {
+   font-size: 14px; /* Example styling for the label */
+}
+
+.slider-label {
+   /* width: 20px; */
+   font-family: 'Roboto';
+   font-size: 1rem;
+   padding-left: 0px;
+}
+
+.rate-control {
+   /* width: 10px; */
+   display: flex;
+   align-items: left;
+   justify-content: center;
+   padding-right: 10px;
+   gap: 0rem;
+   margin: 0 auto;
+   background-color: transparent;
+}
+
+/* #e5771f; ORANGE */
+/* #f4a226; YELLOW */
