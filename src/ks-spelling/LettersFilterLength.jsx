@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react'
 // import RandomWordSelector from './RandomWordSelector'
 import { Slider, InputNumber } from 'antd'
-import { set } from 'mongoose'
 
 export default function LettersFilterLength({
    wordArray,
