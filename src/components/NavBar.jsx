@@ -1,5 +1,5 @@
 import { NavLink, Link, Outlet } from 'react-router-dom'
-import Footer from '../components/Footer'
+
 import './NavBar.css'
 import { LoadingProvider } from './LoadingContext'
 import Loading from './Loading'

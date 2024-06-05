@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from 'react'
 import { LoadingContext } from './LoadingContext'
 // import { createPortal } from 'react-dom'
 import Modal from 'antd/es/modal/Modal'
-import { ModalProps } from 'antd'
 
 const customStyles = {
    header: {

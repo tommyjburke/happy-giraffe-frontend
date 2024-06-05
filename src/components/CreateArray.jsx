@@ -4,7 +4,7 @@ export const CreateArray = () => {
    const [input, setInput] = useState('')
    const [wordArray, setWordArray] = useState([])
 
-   const arrayStringRef = React.useRef(null)
+   const arrayStringRef = useRef(null)
 
    const handleInputChange = (e) => {
       setInput(e.target.value)

@@ -1,14 +1,14 @@
 import { useEffect, useRef, useState } from 'react'
 
 // import { playHumanSpeech } from '../jsFunctions/humanSpeech.js'
-import { InboxOutlined, SoundOutlined } from '@ant-design/icons'
-import TableHeader from '../diy-spelling/TableHeader.jsx'
+import { SoundOutlined } from '@ant-design/icons'
+
 import WordQuestion from './WordQuestion.jsx'
 import ScoreBoard from './ScoreBoard.jsx'
 import useSound from 'use-sound'
 import correctSound from '../media/correct.mp3'
 import wrongSound from '../media/wrong.mp3'
-import achievement from '../media/achievement.mp3'
+
 // import { Modal } from 'antd'
 import ResultsModal from './ResultsModal.jsx'
 import Slider1 from './Slider1.jsx'
@@ -19,19 +19,19 @@ export default function PlaySpellingGame({
    buildGameWordObjects,
 }) {
    const [speechSpeed, setSpeechSpeed] = useState(0.6)
-   const [userAttempts, setUserAttempts] = useState(0)
+   // const [userAttempts, setUserAttempts] = useState(0)
    //    const [percentage, setPercentage] = useState(0)
    const [correct, setCorrect] = useState(0)
    const [incorrect, setIncorrect] = useState(0)
    const [activeQuestion, setActiveQuestion] = useState(0)
    const [isModalOpen, setIsModalOpen] = useState(false)
-   const [questionsCompleted, setQuestionsCompleted] =
-      useState(false)
+   // const [questionsCompleted, setQuestionsCompleted] =
+   //    useState(false)
    const [mounted, setMounted] = useState(false)
 
    const [playCorrectSound] = useSound(correctSound)
    const [playWrongSound] = useSound(wrongSound)
-   const [playAchievementSound] = useSound(achievement)
+   // const [playAchievementSound] = useSound(achievement)
 
    const topRef = useRef(null)
 
@@ -129,6 +129,9 @@ export default function PlaySpellingGame({
    const inputRefs = useRef([])
 
    const handleRowClick = (index) => {
+      if (index === words.length) {
+         return
+      }
       inputRefs.current[index].focus()
       setActiveQuestion(index)
    }
@@ -140,7 +143,7 @@ export default function PlaySpellingGame({
       newWords[index].userGuess = guess
       // console.log('guess: ', guess)
 
-      setUserAttempts(newWords)
+      // setUserAttempts(newWords)
       // console.log('userAttempts: ', userAttempts)
    }
 
@@ -168,31 +171,31 @@ export default function PlaySpellingGame({
       handleRowClick(index + 1)
       // console.log('CONCLUDING word: ', word)
       // console.log('updated words: ', words)
-      const numCorrect = words.filter(
-         (word) => word.verdict === '✅'
-      ).length
-      const numCorrectState = correct
+      // const numCorrect = words.filter(
+      //    (word) => word.verdict === '✅'
+      // ).length
+      // const numCorrectState = correct
       // console.log('NUM CORRECT STATE', numCorrectState)
-      const numIncorrect = words.filter(
-         (word) => word.verdict === '❌'
-      ).length
+      // const numIncorrect = words.filter(
+      //    (word) => word.verdict === '❌'
+      // ).length
+
       // console.log('answered: ', correct + incorrect)
       // console.log('word length', words.length)
 
-      if (words.length === numCorrect + numIncorrect) {
-         // console.log('QUESTIONS DONE')
-         setQuestionsCompleted(true)
-      }
+      // if (words.length === numCorrect + numIncorrect) {
+      //    // console.log('QUESTIONS DONE')
+      //    setQuestionsCompleted(true)
+      // }
       // console.log('Correct', correct, 'Incorrect:', incorrect)
    }
 
-   useEffect(() => {
-      console.log('words: ', words)
-      console.log('userAttempts: ', userAttempts)
-      console.log('words.length: ', words.length)
+   // useEffect(() => {
+   //    console.log('words: ', words)
+   //    console.log('userAttempts: ', userAttempts)
+   //    console.log('words.length: ', words.length)
 
-      return () => {}
-   }, [])
+   // }, [])
 
    const renderGameData = () => {
       return (
@@ -327,25 +330,24 @@ export default function PlaySpellingGame({
          {contextHolder}
          {/* <h3>PLAY SPELLING GAME COMPONENT</h3>
          <button onClick={resetRewards}>REWARDS</button> */}
-         {(correct > 0 || incorrect > 0) && (
-            <div
-               style={{
-                  position: 'sticky',
-                  top: '0px',
-                  width: '100%',
-                  opacity: '0.9',
-               }}
-            >
-               <ScoreBoard
-                  rewardsRef={rewardsRef}
-                  resetRewards={resetRewards}
-                  percentage={percentage}
-                  numQuestions={words.length}
-                  correct={correct}
-                  incorrect={incorrect}
-               />
-            </div>
-         )}
+
+         <div
+            style={{
+               position: 'sticky',
+               top: '0px',
+               width: '100%',
+               opacity: '0.9',
+            }}
+         >
+            <ScoreBoard
+               rewardsRef={rewardsRef}
+               resetRewards={resetRewards}
+               percentage={percentage}
+               numQuestions={words.length}
+               correct={correct}
+               incorrect={incorrect}
+            />
+         </div>
 
          <div> {renderGameData()}</div>
          <div className='center'>
