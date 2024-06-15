@@ -141,8 +141,8 @@ export default function DiySpellingConfigForm({
             <div className='africanFont'>
                <span
                   style={{
-                     fontSize: '3rem',
-                     backgroundColor: 'var(--myBrown)',
+                     fontSize: '4rem',
+                     // backgroundColor: 'var(--myBrown)',
                      borderRadius: '50px',
                   }}
                >

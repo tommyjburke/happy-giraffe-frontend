@@ -74,7 +74,7 @@ export default function KsDefaultPage() {
             >
                {' '}
                <h2>KeyStage Primary</h2>
-               <h2>Create Spelling Quiz</h2>
+               <h2>Create a K.S. Spelling Quiz</h2>
             </div>
 
             <div
@@ -87,9 +87,9 @@ export default function KsDefaultPage() {
                   color: 'green',
                }}
             >
-               <span style={{ fontSize: '2.6rem' }}>☝️</span>
+               <span style={{ fontSize: '4rem' }}>☝️</span>
                <TypewriterEffect
-                  text='Click Green button to begin....'
+                  text='Choose a GREEN button to begin....'
                   myFontSize='1.4rem'
                   isLooping
                />
@@ -109,7 +109,7 @@ export default function KsDefaultPage() {
                      style={{
                         backgroundColor: 'var(--myOrange)',
                         padding: '',
-                        outline: '5px ridge var(--myBrown)',
+                        outline: '5px ridge var(--myWhite)',
                         marginBottom: '10px',
                         animation: 'moveInLeft 600ms ease-out',
                         // borderRadius: '20px',
@@ -131,7 +131,7 @@ export default function KsDefaultPage() {
                      style={{
                         backgroundColor: 'var(--myOrange)',
                         padding: '',
-                        outline: '5px ridge var(--myBrown)',
+                        outline: '5px ridge var(--myWhite)',
                         animation: 'moveInLeft 600ms ease-out',
                         // borderRadius: '20px',
                      }}

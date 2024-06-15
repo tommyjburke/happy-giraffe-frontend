@@ -61,14 +61,14 @@ export default function NavBar() {
 
          <div className='footer'>
             <div
-               className='content'
+               className='content unselectable'
                style={{ fontFamily: 'Schoolbell' }}
             >
-               {' '}
+               <span className='chineseFont'>快乐的长颈鹿</span>{' '}
+               HappyGiraffe.co.uk
                <Link to='/create-array'>
                   {' '}
-                  HappyGiraffe.co.uk © T.J. Burke{' '}
-                  {new Date().getFullYear()}
+                  © T.J. Burke {new Date().getFullYear()}
                </Link>
             </div>
          </div>

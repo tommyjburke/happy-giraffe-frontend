@@ -55,7 +55,7 @@ label {
 }
 
 .backButtonStyle {
-   background-color: var(--myWhite);
+   background-color: white;
    color: black;
    border: 1px solid black;
 }
