@@ -1,8 +1,8 @@
 import { Slider, Switch } from 'antd'
-import RandomWordSelector from './RandomWordSelector'
-import WordFilterLength from './LettersFilterLength'
+// import RandomWordSelector from './RandomWordSelector'
+// import WordFilterLength from './LettersFilterLength'
 import { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 function convertSecondsToMinutes(seconds) {
    const minutes = Math.floor(seconds / 60)
@@ -33,7 +33,7 @@ export default function KsSpellingConfigForm({
       .toLocaleDateString('zh-UK')
       .toString()
 
-   const [hasTimer, setHasTimer] = useState(false)
+   const [useTimer, setUseTimer] = useState(false)
    const [timerSeconds, setTimerSeconds] = useState(60)
    const [customTitle, setCustomTitle] = useState(todaysDate)
    const [newUri, setNewUri] = useState('')
@@ -70,6 +70,7 @@ export default function KsSpellingConfigForm({
       const queryParams = new URLSearchParams({
          customTitle: customTitle,
          timerSeconds: timerSeconds,
+         useTimer: useTimer,
          encodedWordArray: encodedWordArray,
          description: lesson.description,
          lessonName: lesson.name,
@@ -81,11 +82,27 @@ export default function KsSpellingConfigForm({
 
       let uriString = queryParams.toString()
 
-      console.log('uriString: ', uriString)
-
       setNewUri(uriString)
 
+      console.log('uriString: ', uriString)
+
+      // const localHost = 'http://localhost:3000'
+
+      // setQrCode(localHost + '/ks/?' + uriString)
+      // setHasQrCode(true)
+
       navigate(`ks/?${queryParams.toString()}`)
+      // navigate(`/?${queryParams.toString()}`)
+   }
+
+   // useEffect(() => {
+   //    setHasQrCode(false)
+   // })
+
+   const handleTimerSwitch = (checked) => {
+      console.log('checked: ', checked)
+      setUseTimer(checked)
+      console.log('useTimer: ', useTimer)
    }
 
    return (
@@ -140,9 +157,10 @@ export default function KsSpellingConfigForm({
                   <Switch
                      checkedChildren='on'
                      unCheckedChildren='off'
+                     onChange={handleTimerSwitch}
                   />
+                  {useTimer ? 'Timer On' : 'Timer Off'}
                   <label>Timer (seconds): </label>
-
                   <div
                      style={{
                         display: 'flex',
@@ -162,6 +180,7 @@ export default function KsSpellingConfigForm({
                         trackStyle={{
                            backgroundColor: 'lightgreen',
                         }}
+                        defaultValue={timerSeconds}
                         // railStyle={{ backgroundColor: 'grey' }}
                         onChange={(value) => {
                            console.log('VALUE: ', value)
@@ -172,7 +191,7 @@ export default function KsSpellingConfigForm({
                   </div>
                </div>
                <div>{children}</div>
-               <div>
+               <div style={{ marginBottom: '1rem' }}>
                   <span
                      style={{
                         backgroundColor: 'yellow',
@@ -188,34 +207,39 @@ export default function KsSpellingConfigForm({
                   </span>
                </div>
                <br />
-               <button
-                  className='cancelBtn'
-                  style={{
-                     position: 'relative',
-                     bottom: '5px',
-                     right: '-20px',
-                  }}
-                  onClick={() => {
-                     setHasTimer(false)
-                     setFilteredWords(wordArray)
-                     setTempFilteredWords(wordArray)
-                     setWordLengthConfirmed(false)
-                  }}
-               >
-                  Re-Load Words
-               </button>
-               <button
-                  onClick={() => {
-                     setFilteredWords(tempFilteredWords)
-                     compileData()
-                  }}
-                  style={{
-                     float: 'right',
-                     backgroundColor: 'green',
-                  }}
-               >
-                  Save
-               </button>
+               <div>
+                  <button
+                     className='cancelBtn'
+                     style={
+                        {
+                           // position: 'relative',
+                           // bottom: '5px',
+                           // float: 'right',
+                        }
+                     }
+                     onClick={() => {
+                        // setUseTimerTimer(false)
+                        setFilteredWords(wordArray)
+                        setTempFilteredWords(wordArray)
+                        setWordLengthConfirmed(false)
+                     }}
+                  >
+                     Re-Load Words
+                  </button>
+
+                  <button
+                     onClick={() => {
+                        setFilteredWords(tempFilteredWords)
+                        compileData()
+                     }}
+                     style={{
+                        float: 'right',
+                        backgroundColor: 'green',
+                     }}
+                  >
+                     Save
+                  </button>
+               </div>
                {/* {newUri && (
                <Link to={`/ks-test/${newUri}`}>
                   Go to Your Component

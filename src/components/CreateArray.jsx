@@ -26,56 +26,69 @@ export const CreateArray = () => {
       <div
          className='mainContainer hero'
          style={{
-            textAlign: 'center',
-            // display: 'flex',
+            // textAlign: 'center',
+            // alignContent: 'center',
+            display: 'flex',
+            flexDirection: 'column',
+            height: '94vh',
+            justifyContent: 'center',
             // justifyContent: 'flexStart',
             // alignItems: 'flexStart',
             // height: '100vh',
          }}
       >
-         <br />
-         <div style={{ textAlign: 'center' }}>
-            <textarea
-               type='text'
-               rows='20'
-               cols='60'
-               value={input}
-               onChange={handleInputChange}
-               placeholder='Enter words separated by spaces'
-            />
+         <div
+            style={{
+               flex: '1 ',
+               textAlign: 'center',
+               alignSelf: 'center',
+            }}
+         >
             <br />
-            <button onClick={createWordArray}>
-               Create Word Array
-            </button>
+            <div style={{ textAlign: 'center' }}>
+               <textarea
+                  type='text'
+                  rows='20'
+                  cols='50'
+                  value={input}
+                  onChange={handleInputChange}
+                  placeholder='Enter words ...'
+               />
+            </div>
+            <div>
+               <button onClick={createWordArray}>
+                  Create Word Array
+               </button>
+            </div>
          </div>
-         <br />
-         <br />
-         {/* <p
-            style={{
-               textAlign: 'center',
-               width: '300px',
-               border: '1px solid brown',
-               padding: '10px',
-            }}
-         >
-            {' '}
-            [{wordArray.join(', ')}]
-         </p> */}
 
-         <p
-            style={{
-               textAlign: 'center',
-               width: '300px',
-               border: '1px solid brown',
-               padding: '10px',
-            }}
-            ref={arrayStringRef}
-         >
-            [{wordArray.join(', ')}]
-         </p>
-         <button onClick={copyToClipboard}>
-            Copy to Clipboard
-         </button>
+         {wordArray.length > 0 && (
+            <div style={{ textAlign: 'center', flex: ' 1 ' }}>
+               <div
+                  style={{ backgroundColor: 'var(--myWhite)' }}
+               >
+                  <p
+                     style={{
+                        textAlign: 'center',
+                        width: '300px',
+                        border: '5px ridge brown',
+                        padding: '10px',
+                     }}
+                     ref={arrayStringRef}
+                  >
+                     [{wordArray.join(', ')}]
+                  </p>
+               </div>
+               <div>
+                  <button
+                     onClick={copyToClipboard}
+                     style={{ backgroundColor: 'blue' }}
+                  >
+                     Copy to Clipboard
+                  </button>
+               </div>
+            </div>
+         )}
       </div>
    )
 }

@@ -1,11 +1,10 @@
-import React, { useState } from 'react'
 import { FileUploader } from 'react-drag-drop-files'
 import { scrambleWord } from '../jsFunctions/jsFunctions.js'
 import { message } from 'antd'
 import { verifyHumanSpeech } from '../jsFunctions/humanSpeech.js'
 
 const fileTypes = ['TXT', 'CSV']
-const myStyle = { backgroundColor: 'black' }
+// const myStyle = { backgroundColor: 'black' }
 
 function DragDrop({
    children,
@@ -18,11 +17,11 @@ function DragDrop({
    // const [file, setFile] = useState(null)
    // const [words, setWords] = useState([])
 
-   function cleanWords(textContent) {
-      return textContent.map((word) =>
-         word.replace(/[^a-z]/g, '')
-      )
-   }
+   // function cleanWords(textContent) {
+   //    return textContent.map((word) =>
+   //       word.replace(/[^a-z]/g, '')
+   //    )
+   // }
 
    const [messageApi, contextHolder] = message.useMessage()
    const invalidFileMessage = () => {
@@ -38,18 +37,18 @@ function DragDrop({
       })
    }
 
-   const invalidSizeMessage = () => {
-      messageApi.open({
-         type: 'none',
-         content: '⛔️ File size too large',
-         className: 'custom-class',
-         style: {
-            marginTop: '10vh',
-            fontSize: '2rem',
-            fontFamily: 'Schoolbell',
-         },
-      })
-   }
+   // const invalidSizeMessage = () => {
+   //    messageApi.open({
+   //       type: 'none',
+   //       content: '⛔️ File size too large',
+   //       className: 'custom-class',
+   //       style: {
+   //          marginTop: '10vh',
+   //          fontSize: '2rem',
+   //          fontFamily: 'Schoolbell',
+   //       },
+   //    })
+   // }
 
    const handleChange = (file) => {
       //   setFile(file)
@@ -92,7 +91,7 @@ function DragDrop({
                continue
             }
 
-            const { hasHumanVoice, icon, synonyms } =
+            const { hasHumanVoice, synonyms } =
                await verifyHumanSpeech(spellingArray[i])
 
             // console.log('icon: ', icon)
@@ -145,7 +144,7 @@ function DragDrop({
       reader.readAsText(file)
    }
 
-   const smallFont = { fontSize: '0.6rem' }
+   // const smallFont = { fontSize: '0.6rem' }
 
    return (
       <>

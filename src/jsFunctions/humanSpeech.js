@@ -36,7 +36,7 @@ export const verifyHumanSpeech = async (word) => {
       // console.log('UPDATED SYNONYMS: ', synonyms)
 
       if (pronunciation) {
-         const audio = new Audio(pronunciation)
+         // const audio = new Audio(pronunciation)
          // console.log('audio: ', audio)
          // audio.play()
          return { hasHumanVoice: true, synonyms: synonyms }
@@ -113,76 +113,74 @@ export const playHumanSpeech = async (word) => {
    }
 }
 
-function testAudioFile(audioUrl) {
-   // Fetch the audio file
-   fetch(audioUrl)
-      .then((response) => {
-         // Check if the response is successful (status code 200)
-         if (response.ok) {
-            // Create a new Audio object
-            const audio = new Audio(audioUrl)
+// function testAudioFile(audioUrl) {
+//    // Fetch the audio file
+//    fetch(audioUrl)
+//       .then((response) => {
+//          // Check if the response is successful (status code 200)
+//          if (response.ok) {
+//             // Create a new Audio object
+//             const audio = new Audio(audioUrl)
 
-            // Add an event listener to check when the audio is loaded
-            audio.addEventListener('canplaythrough', () => {
-               console.log('Audio file is playable.')
-               // Here you can save the URL since the audio file is playable
-            })
+//             // Add an event listener to check when the audio is loaded
+//             audio.addEventListener('canplaythrough', () => {
+//                console.log('Audio file is playable.')
+//                // Here you can save the URL since the audio file is playable
+//             })
 
-            // Add an event listener to handle loading errors
-            audio.addEventListener('error', () => {
-               console.error('Failed to load audio file.')
-               // Handle the error accordingly (e.g., show an error message)
-            })
+//             // Add an event listener to handle loading errors
+//             audio.addEventListener('error', () => {
+//                console.error('Failed to load audio file.')
+//                // Handle the error accordingly (e.g., show an error message)
+//             })
 
-            // Start loading the audio
-            audio.load()
-         } else {
-            console.error(
-               'Failed to fetch audio file. HTTP status:',
-               response.status
-            )
-            // Handle the error accordingly (e.g., show an error message)
-         }
-      })
-      .catch((error) => {
-         console.error('Error fetching audio file:', error)
-         // Handle the error accordingly (e.g., show an error message)
-      })
-}
+//             // Start loading the audio
+//             audio.load()
+//          } else {
+//             console.error(
+//                'Failed to fetch audio file. HTTP status:',
+//                response.status
+//             )
+//             // Handle the error accordingly (e.g., show an error message)
+//          }
+//       })
+//       .catch((error) => {
+//          console.error('Error fetching audio file:', error)
+//          // Handle the error accordingly (e.g., show an error message)
+//       })
+// }
 
-async function testAudioFile2(audioUrl) {
-   try {
-      const corsProxyUrl = 'https://cors-anywhere.herokuapp.com/'
-      const response = await fetch(corsProxyUrl + audioUrl)
+// async function testAudioFile2(audioUrl) {
+//    try {
+//       const corsProxyUrl = 'https://cors-anywhere.herokuapp.com/'
+//       const response = await fetch(corsProxyUrl + audioUrl)
 
-      if (response.ok) {
-         const audioBlob = await response.blob()
-         const audioUrlObject = URL.createObjectURL(audioBlob)
+//       if (response.ok) {
+//          const audioBlob = await response.blob()
+//          const audioUrlObject = URL.createObjectURL(audioBlob)
 
-         const audio = new Audio(audioUrlObject)
+//          const audio = new Audio(audioUrlObject)
 
-         audio.addEventListener('canplaythrough', () => {
-            console.log('Audio file is playable.')
-            // Here you can save the URL since the audio file is playable
-         })
+//          audio.addEventListener('canplaythrough', () => {
+//             console.log('Audio file is playable.')
+//             // Here you can save the URL since the audio file is playable
+//          })
 
-         audio.addEventListener('error', () => {
-            console.error('Failed to load audio file.')
-            // Handle the error accordingly (e.g., show an error message)
-         })
+//          audio.addEventListener('error', () => {
+//             console.error('Failed to load audio file.')
+//             // Handle the error accordingly (e.g., show an error message)
+//          })
 
-         audio.load()
-      } else {
-         console.error(
-            'Failed to fetch audio file. HTTP status:',
-            response.status
-         )
-         // Handle the error accordingly (e.g., show an error message)
-      }
-   } catch (error) {
-      console.error('Error fetching audio file:', error)
-      // Handle the error accordingly (e.g., show an error message)
-   }
-}
-
-// Call the function with the audio URL
+//          audio.load()
+//       } else {
+//          console.error(
+//             'Failed to fetch audio file. HTTP status:',
+//             response.status
+//          )
+//          // Handle the error accordingly (e.g., show an error message)
+//       }
+//    } catch (error) {
+//       console.error('Error fetching audio file:', error)
+//       // Handle the error accordingly (e.g., show an error message)
+//    }
+// }

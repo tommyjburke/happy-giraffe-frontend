@@ -1,0 +1,170 @@
+import { Popover } from 'antd'
+import TypewriterEffect from '../components/TypewriterEffect'
+import background5 from '../media/background5.png'
+import useSound from 'use-sound'
+import soundTestGirl from '../media/happyGiraffeSoundTest.mp3'
+import { LoadingOutlined } from '@ant-design/icons'
+import { useState, useCallback } from 'react'
+
+const readWord = (text) => {
+   // robotMessage()
+   const synth = window.speechSynthesis
+   const utterThis = new SpeechSynthesisUtterance(text)
+   utterThis.rate = 0.8
+   synth.speak(utterThis)
+}
+
+const soundTestContent = (
+   <div
+      style={{
+         width: '320px',
+         textAlign: 'center',
+         fontFamily: 'Indie Flower',
+         fontSize: '1.0rem',
+         color: 'red',
+      }}
+   >
+      Some sounds may not be heard if your device is set to mute.
+      <br />
+      It may be necessary to click this button before playing the
+      game. <b>Check</b> if the robot can be heard. Different
+      browsers may use different robot voices.
+   </div>
+)
+
+export default function KsDefaultPage() {
+   const [soundTest] = useSound(soundTestGirl)
+   const [humanLoading, setHumanLoading] = useState(false)
+   const [robotLoading, setRobotLoading] = useState(false)
+
+   const startHumanLoading = useCallback(() => {
+      setHumanLoading(true)
+      setTimeout(() => {
+         setHumanLoading(false)
+      }, 1500)
+   }, [])
+
+   const startRobotLoading = useCallback(() => {
+      setRobotLoading(true)
+      setTimeout(() => {
+         setRobotLoading(false)
+      }, 1500)
+   })
+
+   return (
+      <div>
+         <div
+            style={{
+               textAlign: 'center',
+               width: '100%',
+               //    height: '90vh',
+               display: 'flex',
+               flexDirection: 'column',
+               justifyContent: 'space-between',
+               overflow: 'auto',
+               marginBottom: '50px',
+            }}
+         >
+            <br />
+            <div
+               style={{
+                  textAlign: 'center',
+                  flex: '1 1 0',
+               }}
+            >
+               {' '}
+               <h2>NO WORDS YET...</h2>
+            </div>
+
+            <div
+               style={{
+                  fontFamily: 'Indie Flower',
+                  fontWeight: '800',
+                  // fontSize: '2.8rem',
+                  flex: '1 1 0',
+               }}
+            >
+               <span style={{ fontSize: '2.6rem' }}>☝️</span>
+               <TypewriterEffect
+                  text='Select KeyStage Level.........'
+                  myFontSize='1.4rem'
+                  isLooping
+               />
+            </div>
+            <br />
+            <div style={{ flex: '1 1 0' }}>
+               <Popover
+                  content={soundTestContent}
+                  title='Sound Test'
+               >
+                  <button
+                     onClick={() => {
+                        startHumanLoading()
+                        soundTest()
+                     }}
+                     title='Sound Test. Checks if sounds are working'
+                     style={{
+                        backgroundColor: 'var(--myOrange)',
+                        padding: '',
+                        outline: '5px ridge var(--myBrown)',
+                        marginBottom: '10px',
+                        animation: 'moveInLeft 600ms ease-out',
+                        // borderRadius: '20px',
+                     }}
+                  >
+                     {humanLoading ? (
+                        <>
+                           {' '}
+                           <LoadingOutlined />
+                           Sound Test
+                        </>
+                     ) : (
+                        '👧 Sound Test '
+                     )}
+                  </button>
+                  <br />
+                  <button
+                     title='Sound Test. Checks if sounds are working'
+                     style={{
+                        backgroundColor: 'var(--myOrange)',
+                        padding: '',
+                        outline: '5px ridge var(--myBrown)',
+                        animation: 'moveInLeft 600ms ease-out',
+                        // borderRadius: '20px',
+                     }}
+                     onClick={() => {
+                        startRobotLoading()
+                        readWord(
+                           'this is a sound test for happy giraffe'
+                        )
+                     }}
+                  >
+                     {robotLoading ? (
+                        <>
+                           {' '}
+                           <LoadingOutlined />
+                           Sound Test
+                        </>
+                     ) : (
+                        '🤖 Sound Test '
+                     )}
+                  </button>
+               </Popover>
+            </div>
+            <br />
+            <div
+               style={{
+                  margin: '15px',
+                  flex: '2 1 70%',
+               }}
+            >
+               <img
+                  src={background5}
+                  alt='Happy Giraffe'
+                  width='60%'
+               />
+            </div>
+         </div>
+      </div>
+   )
+}

@@ -2,38 +2,94 @@ import { useEffect, useRef, useState } from 'react'
 
 // import { playHumanSpeech } from '../jsFunctions/humanSpeech.js'
 import { SoundOutlined } from '@ant-design/icons'
-
 import WordQuestion from './WordQuestion.jsx'
 import ScoreBoard from './ScoreBoard.jsx'
 import useSound from 'use-sound'
-import correctSound from '../media/correct.mp3'
+// import correctSound from '../media/correct.mp3'
+// import correctSound1 from '../media/correct1.mp3'
+// import correctSound2 from '../media/correct2.mp3'
+import correctSound3 from '../media/correct3.mp3'
 import wrongSound from '../media/wrong.mp3'
-
-// import { Modal } from 'antd'
+// import achievement from '../media/achievement.mp3'
 import ResultsModal from './ResultsModal.jsx'
 import Slider1 from './Slider1.jsx'
-import { Popover, message } from 'antd'
+import { Popover, message, QRCode } from 'antd'
+import Rewards from './Rewards.jsx'
+import background5 from '../media/background5.png'
 
 export default function PlaySpellingGame({
    words,
    buildGameWordObjects,
+   useTimer,
+   duration,
 }) {
+   console.log('PLAY SPELLING GAME TIMER: ', useTimer)
    const [speechSpeed, setSpeechSpeed] = useState(0.6)
-   // const [userAttempts, setUserAttempts] = useState(0)
+   const [userAttempts, setUserAttempts] = useState(0)
    //    const [percentage, setPercentage] = useState(0)
    const [correct, setCorrect] = useState(0)
    const [incorrect, setIncorrect] = useState(0)
    const [activeQuestion, setActiveQuestion] = useState(0)
-   const [isModalOpen, setIsModalOpen] = useState(false)
-   // const [questionsCompleted, setQuestionsCompleted] =
-   //    useState(false)
+   const [showResultsModal, setShowResultsModal] =
+      useState(false)
+   const [questionsCompleted, setQuestionsCompleted] =
+      useState(false)
    const [mounted, setMounted] = useState(false)
+   const [tempDuration, setTempDuration] = useState(duration)
+   const [useTimerTemp, setUseTimerTemp] = useState(useTimer)
 
-   const [playCorrectSound] = useSound(correctSound)
+   // const [useTimer, setUseTimer] = useState(false)
+   // const [duration, setDuration] = useState()
+
+   const [disableAllInputs, setDisableAllInputs] =
+      useState(false)
+
+   // const [playSound1] = useSound(correctSound1)
+   // const [playSound2] = useSound(correctSound2)
+   // const [playSound3] = useSound(correctSound3)
+
+   // const [playSound4] = useSound(correctSound4)
+   // const [playSound5] = useSound(correctSound)
+
+   // const sounds = [
+   //    playSound1,
+   //    playSound2,
+   //    playSound3,
+   //    playSound4,
+   //    playSound5,
+   // ]
+
+   // const playCorrectSound = () => {
+   //    const randomIndex = Math.floor(
+   //       Math.random() * sounds.length
+   //    )
+   //    sounds[randomIndex]()
+   // }
+
+   const [playCorrectSound] = useSound(correctSound3)
    const [playWrongSound] = useSound(wrongSound)
-   // const [playAchievementSound] = useSound(achievement)
 
+   // const handleGenerateReward = () => {
+   //    console.log('rewardsRef.current: ', rewardsRef.current)
+   //    rewardsRef.current.generateReward()
+   // }
    const topRef = useRef(null)
+   const rewardsRef = useRef(null)
+   const inputRefs = useRef([])
+   const handleGenerateReward = () => {
+      if (rewardsRef.current) {
+         console.log('rewardsRef.current: ', rewardsRef.current)
+         rewardsRef.current.generateReward()
+      } else {
+         console.error('rewardsRef.current is null')
+      }
+   }
+
+   // useEffect(() => {
+   //    console.log('rewardsRef after mount:', rewardsRef.current)
+   //    const currentURL = window.location.href
+   //    console.log('~~~~~~PlaySpellingGame URL: ', currentURL)
+   // }, [])
 
    const [messageApi, contextHolder] = message.useMessage()
    const robotMessage = () => {
@@ -114,22 +170,14 @@ export default function PlaySpellingGame({
       }
    }
 
-   const rewardsRef = useRef(null)
-
-   const handleGenerateReward = () => {
-      rewardsRef.current.generateReward()
-   }
-
    const resetRewards = () => {
       if (rewardsRef.current) {
          rewardsRef.current.clearRewards()
       }
    }
 
-   const inputRefs = useRef([])
-
    const handleRowClick = (index) => {
-      if (index === words.length) {
+      if (index >= words.length) {
          return
       }
       inputRefs.current[index].focus()
@@ -143,7 +191,7 @@ export default function PlaySpellingGame({
       newWords[index].userGuess = guess
       // console.log('guess: ', guess)
 
-      // setUserAttempts(newWords)
+      setUserAttempts(newWords)
       // console.log('userAttempts: ', userAttempts)
    }
 
@@ -171,22 +219,21 @@ export default function PlaySpellingGame({
       handleRowClick(index + 1)
       // console.log('CONCLUDING word: ', word)
       // console.log('updated words: ', words)
-      // const numCorrect = words.filter(
-      //    (word) => word.verdict === '✅'
-      // ).length
+      const numCorrect = words.filter(
+         (word) => word.verdict === '✅'
+      ).length
       // const numCorrectState = correct
       // console.log('NUM CORRECT STATE', numCorrectState)
-      // const numIncorrect = words.filter(
-      //    (word) => word.verdict === '❌'
-      // ).length
-
+      const numIncorrect = words.filter(
+         (word) => word.verdict === '❌'
+      ).length
       // console.log('answered: ', correct + incorrect)
       // console.log('word length', words.length)
 
-      // if (words.length === numCorrect + numIncorrect) {
-      //    // console.log('QUESTIONS DONE')
-      //    setQuestionsCompleted(true)
-      // }
+      if (words.length === numCorrect + numIncorrect) {
+         // console.log('QUESTIONS DONE')
+         setQuestionsCompleted(true)
+      }
       // console.log('Correct', correct, 'Incorrect:', incorrect)
    }
 
@@ -195,97 +242,163 @@ export default function PlaySpellingGame({
    //    console.log('userAttempts: ', userAttempts)
    //    console.log('words.length: ', words.length)
 
+   //    return () => {}
    // }, [])
 
    const renderGameData = () => {
       return (
          <div
-            className='newTableContainer '
+            className='newTableContainer hero'
             style={{ marginTop: '10px' }}
          >
             <div ref={topRef}></div>
-            <table className='responsive-table'>
-               <thead>
-                  <tr style={{}}>
-                     <th
-                        style={{
-                           textAlign: 'center',
-                           width: '100%',
-                           padding: '0px 10px 0px 10px',
-                           backgroundColor: 'var(--myYellow)',
-                           color: 'var(--myBrown)',
-                           fontSize: '1.8rem',
-                        }}
-                     >
-                        <div>
-                           {/* Robot Speed: */}
-                           <Slider1
-                              value={speechSpeed}
-                              onChange={setSpeechSpeed}
-                           />
-                        </div>
-                     </th>
-                  </tr>
-
-                  <tr style={{ padding: '0px 0px 0px 0px' }}>
-                     <th className='g1' title='question number'>
-                        *
-                     </th>
-                     <th className='g23' title='robot voice'>
-                        <SoundOutlined />
-                     </th>
-                     <th
-                        className='g4h'
-                        title='Scrambled version'
-                     >
-                        Scrambled
-                     </th>
-                     <th className='g5'>Your Guess</th>
-                     <Popover
-                        content={
-                           'Number of letters in each word'
-                        }
-                     >
+            <div className='spelling-table-container'>
+               <table className='responsive-table'>
+                  <thead>
+                     <tr style={{}}>
                         <th
-                           className='g6'
-                           title='Number of letters in each word'
+                           style={{
+                              textAlign: 'center',
+                              width: '80%',
+                              padding: '0px 10px 0px 10px',
+                              backgroundColor: 'var(--myYellow)',
+                              color: 'var(--myBrown)',
+                              fontSize: '1.8rem',
+                           }}
                         >
-                           #
+                           <div>
+                              {/* Robot Speed: */}
+                              <Slider1
+                                 value={speechSpeed}
+                                 onChange={setSpeechSpeed}
+                              />
+                           </div>
                         </th>
-                     </Popover>
-                     <th className='g7'>CHECK</th>
-                  </tr>
-               </thead>
-               <tbody>
-                  {words.map((wordObject, index) => (
-                     <WordQuestion
-                        wordObject={wordObject}
-                        key={index}
-                        index={index}
-                        id={index}
-                        playHumanSpeech={playHumanSpeech}
-                        readWord={readWord}
-                        // hasHumanVoice={hasHumanVoice}
-                        handleGuess={handleGuess}
-                        handleRowClick={handleRowClick}
-                        inputRefs={inputRefs}
-                        checkGuess={checkGuess}
-                        activeQuestion={activeQuestion}
-                        numQuestions={words.length}
-                        words={words}
-                     />
-                  ))}
-               </tbody>
-            </table>
+                        <th
+                           style={{
+                              textAlign: 'center',
+                              width: '20%',
+                              padding: '0px 10px 0px 10px',
+                              backgroundColor: 'var(--myYellow)',
+                              color: 'var(--myBrown)',
+                              fontSize: '1.8rem',
+                           }}
+                        >
+                           {words.length <= 100 ? (
+                              <Popover
+                                 overlayInnerStyle={{
+                                    padding: 0,
+                                 }}
+                                 content={
+                                    <QRCode
+                                       errorLevel='M'
+                                       value={
+                                          window.location.href
+                                       }
+                                       bordered={false}
+                                       icon={background5}
+                                       size={280}
+                                    />
+                                    // </div>
+                                 }
+                              >
+                                 <button
+                                    onClick={() => {
+                                       console.log(
+                                          'URL length:',
+                                          window.location.href
+                                             .length
+                                       )
+                                    }}
+                                    style={{
+                                       float: 'right',
+                                       backgroundColor:
+                                          'var(--myOrange)',
+                                       outline: '1px solid lime',
+                                       // marginRight: '-0.2rem',
+                                    }}
+                                 >
+                                    Share QR Code
+                                 </button>
+                              </Popover>
+                           ) : (
+                              <p
+                                 style={{
+                                    fontSize: '1.0rem',
+                                    float: 'right',
+                                 }}
+                              >
+                                 Too many words <br />
+                                 for QR Code
+                              </p>
+                           )}
+                        </th>
+                     </tr>
+
+                     <tr style={{ padding: '0px 0px 0px 0px' }}>
+                        <th
+                           className='g1'
+                           title='question number'
+                        >
+                           *
+                        </th>
+                        <th className='g23' title='robot voice'>
+                           <SoundOutlined />
+                        </th>
+                        <th
+                           className='g4h'
+                           title='Scrambled version'
+                        >
+                           Scrambled
+                        </th>
+                        <th className='g5'>Your Guess</th>
+                        <Popover
+                           content={
+                              'Number of letters in each word'
+                           }
+                        >
+                           <th
+                              className='g6'
+                              title='Number of letters in each word'
+                           >
+                              #
+                           </th>
+                        </Popover>
+                        <th className='g7'>CHECK</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     {words.map((wordObject, index) => (
+                        <WordQuestion
+                           disableAllInputs={disableAllInputs}
+                           wordObject={wordObject}
+                           key={index}
+                           index={index}
+                           id={index}
+                           playHumanSpeech={playHumanSpeech}
+                           readWord={readWord}
+                           // hasHumanVoice={hasHumanVoice}
+                           handleGuess={handleGuess}
+                           handleRowClick={handleRowClick}
+                           inputRefs={inputRefs}
+                           checkGuess={checkGuess}
+                           activeQuestion={activeQuestion}
+                           numQuestions={words.length}
+                           words={words}
+                        />
+                     ))}
+                  </tbody>
+               </table>
+            </div>
          </div>
       )
    }
 
    const percentage = (correct / words.length) * 100
 
-   function showModal() {
-      setIsModalOpen(true)
-   }
+   // function showModal() {
+   //    setShowResultsModal(true)
+   // }
 
    useEffect(() => {
       // console.log('USE EFFECT CALLED')
@@ -293,16 +406,17 @@ export default function PlaySpellingGame({
       // console.log('NumQuestions:', numQuestions)
       const answered = correct + incorrect
       if (
-         mounted &&
+         // mounted &&
          answered === numQuestions &&
          numQuestions > 0
       ) {
          // console.log('answered same as length')
-         showModal()
+         setShowResultsModal(true)
+         setUseTimerTemp(false)
       } else {
-         setMounted(true)
+         // setMounted(true)
       }
-   }, [correct, incorrect, words, mounted])
+   }, [correct, incorrect, words])
 
    useEffect(() => {
       if (inputRefs.current[0]) {
@@ -318,15 +432,28 @@ export default function PlaySpellingGame({
             behavior: 'smooth',
          })
       }
-      setIsModalOpen(false)
+      setShowResultsModal(false)
       buildGameWordObjects()
       setCorrect(0)
       setIncorrect(0)
       resetRewards()
+      setDisableAllInputs(false)
+      setUseTimerTemp(useTimer)
+      setTempDuration(duration)
+   }
+
+   const handleTimeUp = () => {
+      setUseTimerTemp(false)
+      setDisableAllInputs(true)
+      setShowResultsModal(true)
+      console.log('TIME UP')
+      // setTimeUp(true)
+      // displayResults()
+      // setDisableInputs(true)
    }
 
    return (
-      <div className='' style={{ marginBottom: '100px' }}>
+      <div>
          {contextHolder}
          {/* <h3>PLAY SPELLING GAME COMPONENT</h3>
          <button onClick={resetRewards}>REWARDS</button> */}
@@ -339,7 +466,11 @@ export default function PlaySpellingGame({
                opacity: '0.9',
             }}
          >
+            {/* <Rewards ref={rewardsRef} /> */}
             <ScoreBoard
+               duration={tempDuration}
+               useTimer={useTimerTemp}
+               onTimeUp={handleTimeUp}
                rewardsRef={rewardsRef}
                resetRewards={resetRewards}
                percentage={percentage}
@@ -351,23 +482,26 @@ export default function PlaySpellingGame({
 
          <div> {renderGameData()}</div>
          <div className='center'>
-            <button
-               style={{
-                  backgroundColor: 'black',
-                  opacity: '1.5',
-                  margin: '0px',
-               }}
-               onClick={() => {
-                  rebuildGame()
-               }}
-            >
-               🥵 START AGAIN 😫
-            </button>
+            {!useTimerTemp && (
+               <button
+                  style={{
+                     backgroundColor: 'black',
+                     opacity: '1.5',
+                     margin: '15px 0px 15px 0px',
+                     outline: '5px ridge red',
+                  }}
+                  onClick={() => {
+                     rebuildGame()
+                  }}
+               >
+                  🥵 START AGAIN 😫
+               </button>
+            )}
          </div>
-         {/* <button onClick={() => setIsModalOpen(true)}>
+         {/* <button onClick={() => setShowResultsModal(true)}>
             SHOW Modal
          </button> */}
-         {isModalOpen && (
+         {showResultsModal && (
             <ResultsModal
                words={words}
                rewardsRef={rewardsRef}
@@ -376,19 +510,19 @@ export default function PlaySpellingGame({
                numQuestions={words.length}
                correct={correct}
                incorrect={incorrect}
-               setIsModalOpen={setIsModalOpen}
+               setShowResultsModal={setShowResultsModal}
                title=''
                rebuildGame={rebuildGame}
-               width={1000}
-               open={isModalOpen}
+               // width={1000}
+               open={showResultsModal}
                // onOk={handleOk}
                // onCancel={handleCancel}
                footer={null}
                keyboard={true}
                style={{ padding: '0' }}
-               //    onCancel={() =>  { setIsModalOpen(false)  }
+               //    onCancel={() =>  { setShowResultsModal(false)  }
                onCancel={() => {
-                  setIsModalOpen(false)
+                  setShowResultsModal(false)
                }}
                // style={{ border: 'var(--myBrown) 20px solid' }}
             />

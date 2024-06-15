@@ -1,21 +1,18 @@
-import { useState, useEffect, useContext, useRef } from 'react'
-import { getHumanSpeech } from '../jsFunctions/humanSpeech.js'
+import { useState, useEffect } from 'react'
+// import { getHumanSpeech } from '../jsFunctions/humanSpeech.js'
 import { verifyHumanSpeech } from '../jsFunctions/humanSpeech.js'
 import DragDrop from './DragDrop.jsx'
-import UploadLogo from './UploadLogo.jsx'
-import txtIcon from '../media/text-icon.png'
+
 import { Popover } from 'antd'
-import styled from 'styled-components'
+
 import {
-   InboxOutlined,
    LoadingOutlined,
-   SyncOutlined,
    FileAddOutlined,
    DeleteOutlined,
 } from '@ant-design/icons'
 // import { LoadingContext } from '../components/LoadingContext'
 // import Loading from '../components/Loading.jsx'
-import { Spin, message } from 'antd'
+// import { message } from 'antd'
 
 export default function Form({
    handleAddWord,
@@ -27,18 +24,18 @@ export default function Form({
    duplicatesError,
    setIsProcessing,
 }) {
-   const [messageApi, contextHolder] = message.useMessage()
+   // const [messageApi, contextHolder] = message.useMessage()
    // const { isLoading, toggleLoading, wordData, updateWordData } =
    //    useContext(LoadingContext)
    const [spelling, setSpelling] = useState('')
    const [showWarning, setShowWarning] = useState('')
-   const [loading, setLoading] = useState(false)
-   const [error, setError] = useState(null)
+   // const [loading, setLoading] = useState(false)
+   // const [error, setError] = useState(null)
 
    // const [duplicates, setDuplicates] = useState()
    const [transcript, setTranscript] = useState('')
    const [isListening, setIsListening] = useState(false)
-
+   console.log(transcript)
    // function handleSliderChange(event) {
    //    setSpeechSpeed(parseFloat(event.target.value))
    // }
@@ -152,7 +149,7 @@ export default function Form({
             continue
          }
 
-         const { hasHumanVoice, icon, synonyms } =
+         const { hasHumanVoice, synonyms } =
             await verifyHumanSpeech(spellingArray[i])
 
          // console.log('icon: ', icon)
@@ -250,7 +247,7 @@ export default function Form({
 
    return (
       <div>
-         {contextHolder}
+         {/* {contextHolder} */}
 
          {/* <div className='formBar'>
             <FormContainer>
@@ -273,8 +270,8 @@ export default function Form({
                <Button>D</Button>
             </FormContainer>
          </div> */}
-         {loading && <p>Loading...</p>}
-         {error && <p>{error}</p>}
+         {/* {loading && <p>Loading...</p>}
+         {error && <p>{error}</p>} */}
          <div className='formBar'>
             <form
                className='form-container'
@@ -283,7 +280,11 @@ export default function Form({
                <Popover content={spelling}>
                   <div style={{ flexBasis: '' }}>
                      <input
-                        style={{ flex: 1, width: '240px' }}
+                        style={{
+                           flex: '1 2 0',
+                           width: '240px',
+                           marginLeft: '1.5rem',
+                        }}
                         type='text'
                         placeholder='add word(s) here...'
                         value={spelling}
@@ -322,7 +323,7 @@ export default function Form({
                      onClick={handleListening}
                      style={{
                         height: '2.4rem',
-                        marginLeft: -20,
+                        marginLeft: -16,
                         backgroundColor: SpeechRecognition
                            ? 'var(--myBrown)'
                            : 'lightgray',
@@ -417,60 +418,6 @@ export default function Form({
       </div>
    )
 }
-
-/*
-
-
-*/
-
-const FormContainer = styled.div`
-   display: flex;
-   flex-wrap: wrap;
-   align-items: center;
-   justify-content: center;
-   padding: 1rem 2rem 1rem 2rem;
-`
-
-const InputButtonsRow = styled.div`
-   display: flex;
-   align-items: center;
-   flex-wrap: wrap;
-   width: 100%;
-
-   @media (max-width: 768px) {
-      flex-direction: column;
-      align-items: stretch;
-   }
-`
-
-const Input = styled.input`
-   flex: 1;
-   padding: 0.5rem;
-   font-size: 1.2rem;
-   border: 1px solid #ccc;
-   border-radius: 4px;
-
-   @media (max-width: 768px) {
-      font-size: 1rem;
-   }
-`
-
-const Button = styled.button`
-   padding: 0.5rem 1rem;
-   font-size: 1.2rem;
-   background-color: var(--myBrown);
-   color: #fff;
-   border: none;
-   border-radius: 4px;
-   margin-left: 0.5rem;
-   cursor: pointer;
-
-   @media (max-width: 768px) {
-      font-size: 1rem;
-      margin-left: 0;
-      margin-top: 0.5rem;
-   }
-`
 
 const addWordsContent = (
    <div

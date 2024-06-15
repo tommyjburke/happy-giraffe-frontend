@@ -1,8 +1,8 @@
-import { Flex, Progress } from 'antd'
+import { Progress } from 'antd'
 
 function ProgressBar({ percentage }) {
    return (
-      <div style={{ margin: '0', padding: '0' }}>
+      <div style={{ margin: '0', padding: '0px' }}>
          <Progress
             showInfo={false}
             percent={percentage}
@@ -12,12 +12,15 @@ function ProgressBar({ percentage }) {
             size={['90%', 28]}
             strokeColor={{
                '0%': 'red',
-               // '25%': 'purple',
-               // '30%': 'blue',
-               '50%': 'yellow',
-               // '70%': 'yellow',
+               '15%': 'orange',
+               '30%': 'yellow',
+               '40%': 'green',
+               '50%': 'blue',
+               '60%': 'indigo',
+               '70%': 'violet',
+               '80%': 'rgb(205, 127, 50)',
 
-               '100%': 'green',
+               '100%': 'gold',
             }}
          />
       </div>

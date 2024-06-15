@@ -58,23 +58,23 @@ export default function DiySpellingConsole() {
       setWords((words) => words.filter((word) => word.id !== id))
    }
 
-   function handleToggleWord(id) {
-      setWords((words) =>
-         words.map((word) =>
-            word.id === id
-               ? { ...word, packed: !word.packed }
-               : word
-         )
-      )
-   }
+   // function handleToggleWord(id) {
+   //    setWords((words) =>
+   //       words.map((word) =>
+   //          word.id === id
+   //             ? { ...word, packed: !word.packed }
+   //             : word
+   //       )
+   //    )
+   // }
 
-   function handleClearList() {
-      const confirmed = window.confirm(
-         'Are you sure you want to delete all words?'
-      )
+   // function handleClearList() {
+   //    const confirmed = window.confirm(
+   //       'Are you sure you want to delete all words?'
+   //    )
 
-      if (confirmed) setWords([])
-   }
+   //    if (confirmed) setWords([])
+   // }
 
    const duplicatesContent = (words) => {
       return (
@@ -152,7 +152,10 @@ export default function DiySpellingConsole() {
                   setSpeechSpeed={setSpeechSpeed}
                /> */}
 
-            <div className='main5ContentContainer'>
+            <div
+               className='main5ContentContainer'
+               style={{ opacity: '0.8' }}
+            >
                <DiySpellingConfigForm
                   words={words}
                   setWords={setWords}
@@ -166,6 +169,11 @@ export default function DiySpellingConsole() {
                   setIsProcessing={setIsProcessing}
                />
             </div>
+            <br />
+
+            <br />
+
+            <br />
          </div>
       </>
    )

@@ -29,11 +29,11 @@ export default function DiySpellingConfigForm({
 }) {
    const navigate = useNavigate()
 
-   const [score, setScore] = useState(0)
-   const [isTimer, setIsTimer] = useState(false)
-   const [timerSeconds, setTimerSeconds] = useState(60)
+   // const [score, setScore] = useState(0)
+   const [useTimer, setUseTimer] = useState(false)
+   const [duration, setDuration] = useState(60)
    const [title, setTitle] = useState('')
-   const [newUri, setNewUri] = useState('')
+   // const [newUri, setNewUri] = useState('')
    // console.log('userAnswers: ', userAnswers)
 
    // const pattern = /^[A-Za-z']*$/
@@ -42,9 +42,9 @@ export default function DiySpellingConfigForm({
 
    const [playScramble] = useSound(scramble)
 
-   const handleDivClick = (index) => {
-      inputRefs.current[index].focus()
-   }
+   // const handleDivClick = (index) => {
+   //    inputRefs.current[index].focus()
+   // }
 
    const [messageApi, contextHolder] = message.useMessage()
    const robotMessage = () => {
@@ -100,15 +100,16 @@ export default function DiySpellingConfigForm({
 
       const queryParams = new URLSearchParams({
          title: title,
-         timerSeconds: timerSeconds,
+         useTimer: useTimer,
+         duration: duration,
          wordObjects: encodedWordObjects,
       })
 
       // const url = `http://localhost:3000/spelling-diy?${queryParams.toString()}`
 
-      let uriString = queryParams.toString()
+      // let uriString = queryParams.toString()
 
-      setNewUri(uriString)
+      // setNewUri(uriString)
 
       navigate(`diy/?${queryParams.toString()}`)
    }
@@ -121,24 +122,26 @@ export default function DiySpellingConfigForm({
       // console.log('deleted all')
    }
 
-   const confirm = (e) => {
-      console.log(e)
-      message.success('Click on Yes')
-   }
-   const cancel = (e) => {
-      console.log(e)
-      message.error('Click on No')
-   }
+   // const confirm = (e) => {
+   //    console.log(e)
+   //    message.success('Click on Yes')
+   // }
+   // const cancel = (e) => {
+   //    console.log(e)
+   //    message.error('Click on No')
+   // }
 
    if (words.length < 1) {
       return (
-         <div className='table-container list2'>
-            <br />
+         <div
+            className='table-container list2'
+            style={{ overflowY: 'auto', overflowX: 'hidden' }}
+         >
             {/* <TypewriterEffect
                text='Filtering........'
                isLooping
             /> */}
-
+            <br />
             <div style={{ fontFamily: 'Indie Flower' }}>
                <span style={{ fontSize: '2rem' }}>☝️</span>
                <TypewriterEffect
@@ -148,7 +151,6 @@ export default function DiySpellingConfigForm({
                />
             </div>
 
-            <br />
             <DragDrop
                handleAddWord={handleAddWord}
                setIsProcessing={setIsProcessing}
@@ -163,8 +165,9 @@ export default function DiySpellingConfigForm({
                      backgroundColor: 'lightgray',
                      color: 'black',
                      border: 'dashed 2px darkgray',
-                     width: '250px',
-                     height: '150px',
+                     width: '200px',
+                     height: '100px',
+                     borderRadius: '10px',
                   }}
                >
                   <InboxOutlined /> + Drop txt/csv file
@@ -303,10 +306,11 @@ export default function DiySpellingConfigForm({
                   {/* <th className='c3' title='human voice'>
                      👩‍🦲
                   </th> */}
-                  <th className='c4'>Word</th>
+
                   <th className='c5' title='Scrambled version'>
                      Scrambled
                   </th>
+                  <th className='c4'>Word</th>
                   {/* <th>Your Guess</th> */}
                   <th
                      className='c6'
@@ -323,7 +327,7 @@ export default function DiySpellingConfigForm({
                   <tr
                      key={word.id}
                      onClick={() => {
-                        console.log('index', index)
+                        // console.log('index', index)
                         // handleDivClick(index)
                      }}
                   >
@@ -368,14 +372,32 @@ export default function DiySpellingConfigForm({
                            </span>
                         </Popover>
                      </td>
-                     <td className='c4'>{word.spelling}</td>
+
                      <td className='c5'>
                         <Popover
                            content={
                               'SYNONYMS:  ' + word.synonyms
                            }
                         >
-                           {word.scrambled}
+                           {word.scrambled
+                              .split('')
+                              .map((letter, i) => (
+                                 <span
+                                    key={i}
+                                    className='letterBox'
+                                    style={{
+                                       // display: 'inline-block',
+                                       // width: '20px',
+                                       textAlign: 'right',
+                                       border: 'dashed gray 1px',
+                                       borderRadius: '3px',
+                                       padding: '0 2px 0 2px',
+                                       // letterSpacing: '6px',
+                                    }}
+                                 >
+                                    {letter}
+                                 </span>
+                              ))}
                         </Popover>
                         <Popover
                            content={'Re-Scramble this word'}
@@ -391,7 +413,7 @@ export default function DiySpellingConfigForm({
                            </span>
                         </Popover>
                      </td>
-
+                     <td className='c4'>{word.spelling}</td>
                      <td
                         title='No.letters in this word'
                         className='c6'
@@ -445,114 +467,119 @@ export default function DiySpellingConfigForm({
                margin: 'px 0 10px 0',
             }}
          >
-            <tr
-               style={{
-                  padding: '5px 0 5px 0',
-                  borderRadius: '15px',
-                  // border: '2px solid var(--myBrown)',
-                  backgroundColor: 'var(--myYellow)',
-               }}
-            >
-               <th
+            <tbody>
+               <tr
                   style={{
-                     textAlign: 'left',
-                     justifyContent: 'flexStart',
-                     alignItems: 'left',
-                     flex: '1',
-                     flexGrow: '1',
-                     flexBasis: '50%',
-                     flexShrink: '1',
-                     border: 'none',
-                     backgroundColor: 'transparent',
-                     color: 'var(--myBrown)',
+                     padding: '5px 0 5px 0',
+                     borderRadius: '15px',
+                     // border: '2px solid var(--myBrown)',
+                     backgroundColor: 'var(--myYellow)',
                   }}
                >
-                  <div className='left'>
-                     Timer:{' '}
-                     <Switch
-                        checkedChildren='on'
-                        unCheckedChildren='off'
-                        size='large'
-                        onChange={(checked) => {
-                           setIsTimer(!isTimer)
-                           console.log(checked)
-                        }}
-                        // defaultChecked
-                     />
-                     <Slider
-                        disabled={!isTimer}
-                        step={30}
-                        min={30}
-                        max={300}
-                        onChange={setTimerSeconds}
-                     />
-                  </div>
-                  {isTimer && (
-                     <div
-                        className='left'
-                        style={{ fontSize: '1.8rem' }}
-                     >
-                        {timerSeconds}s
+                  <th
+                     style={{
+                        textAlign: 'left',
+                        justifyContent: 'flexStart',
+                        alignItems: 'left',
+                        flex: '1',
+                        flexGrow: '1',
+                        flexBasis: '50%',
+                        flexShrink: '1',
+                        border: 'none',
+                        backgroundColor: 'transparent',
+                        color: 'var(--myBrown)',
+                     }}
+                  >
+                     <div className='left'>
+                        Timer:{' '}
+                        <Switch
+                           checkedChildren='on'
+                           unCheckedChildren='off'
+                           size='large'
+                           onChange={(checked) => {
+                              setUseTimer(checked)
+                              console.log(checked)
+                           }}
+                           // defaultChecked
+                        />
+                        <Slider
+                           disabled={!useTimer}
+                           step={30}
+                           min={30}
+                           max={300}
+                           onChange={setDuration}
+                           defaultValue={duration}
+                        />
                      </div>
-                  )}
-               </th>
+                     {useTimer && (
+                        <div
+                           className='left'
+                           style={{ fontSize: '1.8rem' }}
+                        >
+                           {convertSecondsToMinutes(duration)}
+                        </div>
+                     )}
+                  </th>
 
-               <th
-                  style={{
-                     // textAlign: 'center',
-                     // justifyContent: 'center',
-                     // alignItems: 'center',
-                     flex: '1',
-                     flexGrow: '3',
-                     flexBasis: '35%',
-                     flexShrink: '1',
-                     border: 'none',
-                     backgroundColor: 'transparent',
-                  }}
-               >
-                  <div className='right'>
-                     <input
-                        placeholder='optional title...'
-                        // autoFocus
-                        width='1000px'
-                        title='Your title'
-                        // pattern='[a-zA-Z]*'
-                        maxLength={20}
-                        // className='centred'
-                        type='text'
-                        value={title}
-                        onChange={(e) =>
-                           setTitle(
-                              e.target.value.replace(
-                                 /[^a-zA-Z' ]/g,
-                                 ''
+                  <th
+                     style={{
+                        // textAlign: 'center',
+                        // justifyContent: 'center',
+                        // alignItems: 'center',
+                        flex: '1',
+                        flexGrow: '3',
+                        flexBasis: '35%',
+                        flexShrink: '1',
+                        border: 'none',
+                        backgroundColor: 'transparent',
+                     }}
+                  >
+                     <div className='right'>
+                        <input
+                           placeholder='optional title...'
+                           // autoFocus
+                           width='1000px'
+                           title='Your title'
+                           // pattern='[a-zA-Z]*'
+                           maxLength={20}
+                           // className='centred'
+                           type='text'
+                           value={title}
+                           onChange={(e) =>
+                              setTitle(
+                                 e.target.value.replace(
+                                    /[^a-zA-Z' ]/g,
+                                    ''
+                                 )
                               )
-                           )
-                        }
-                     />
-                  </div>
-               </th>
-               <th
-                  style={{
-                     // textAlign: 'right',
-                     // justifyContent: 'right',
-                     // alignItems: 'right',
-                     flex: '1',
-                     flexGrow: '1',
-                     flexShrink: '1',
-                     flexBasis: '15%',
-                     border: 'none',
-                     // alignSelf: 'flexEnd',
-                     backgroundColor: 'transparent',
-                  }}
-               >
-                  <div className='right'>
-                     <button onClick={() => compileData(words)}>
-                        Save
-                     </button>
-                  </div>
-               </th>
-            </tr>
+                           }
+                        />
+                     </div>
+                  </th>
+                  <th
+                     style={{
+                        // textAlign: 'right',
+                        // justifyContent: 'right',
+                        // alignItems: 'right',
+                        flex: '1',
+                        flexGrow: '1',
+                        flexShrink: '1',
+                        flexBasis: '15%',
+                        border: 'none',
+                        // alignSelf: 'flexEnd',
+                        backgroundColor: 'transparent',
+                     }}
+                  >
+                     <div className='right'>
+                        <button
+                           onClick={() => compileData(words)}
+                        >
+                           Save
+                        </button>
+                     </div>
+                  </th>
+               </tr>
+            </tbody>
          </table>
 
          {/* <button onClick={() => console.log(words)}>
@@ -560,4 +587,12 @@ export default function DiySpellingConfigForm({
          </button> */}
       </div>
    )
+}
+
+function convertSecondsToMinutes(seconds) {
+   const minutes = Math.floor(seconds / 60)
+   const remainingSeconds = seconds % 60
+   return `${minutes}:${
+      remainingSeconds < 10 ? '0' : ''
+   }${remainingSeconds}`
 }

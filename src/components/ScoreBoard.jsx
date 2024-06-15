@@ -1,7 +1,7 @@
 import React from 'react'
 import ProgressBar from './ProgressBar'
 import Rewards from './Rewards'
-import { Space } from 'antd'
+import CountdownTimer from './CountdownTimer'
 
 export default function ScoreBoard({
    rewardsRef,
@@ -9,11 +9,15 @@ export default function ScoreBoard({
    numQuestions,
    correct,
    incorrect,
+   useTimer,
+   duration = 60,
+   onTimeUp,
 }) {
+   console.log('SCOREBOARD useTIMER: ', useTimer)
    percentage = Math.round(percentage)
    return (
       <div
-         className=''
+         className='unselectable'
          style={{
             // outline: '3px dotted var(--myOrange)',
             border: '4px dotted white',
@@ -36,8 +40,16 @@ export default function ScoreBoard({
                   opacity: '0.7',
                }}
             >
+               {/* Add the logical AND operator to the condition */}
+               {useTimer ? (
+                  <div>
+                     <CountdownTimer
+                        duration={duration}
+                        onTimeUp={onTimeUp}
+                     />
+                  </div>
+               ) : null}
                <div
-                  className='gameFont'
                   style={{
                      padding: '1px',
 
@@ -48,7 +60,7 @@ export default function ScoreBoard({
                   <div
                      className=''
                      style={{
-                        fontSize: '1.6rem',
+                        fontSize: '1.4rem',
                         fontFamily: 'Orbitron',
                         textAlign: 'center',
                         letterSpacing: '0.3rem',
@@ -80,7 +92,15 @@ export default function ScoreBoard({
                >
                   <ProgressBar percentage={percentage} />
                </div>
-               <h2 className=''>{percentage}%</h2>
+               <h3
+                  className='computerFont'
+                  style={{
+                     color: 'white',
+                     paddingRight: '2rem',
+                  }}
+               >
+                  {percentage}%
+               </h3>
             </div>
          </div>
          <div>

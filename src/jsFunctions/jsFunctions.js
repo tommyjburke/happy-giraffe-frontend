@@ -32,7 +32,7 @@ export const cleanWords = (wordArray) => {
                word
                   .toLowerCase()
                   .trim()
-                  .replace(/[^a-z]/g, '') // Remove non-alphabetic characters
+                  .replace(/[^a-z']/g, '') // Remove non-alphabetic characters
          )
          .filter((word) => word !== '')
    )

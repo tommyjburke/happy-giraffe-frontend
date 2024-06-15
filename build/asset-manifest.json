@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.dc259056.css",
-    "main.js": "/static/js/main.b935afa8.js",
+    "main.css": "/static/css/main.583ac9ee.css",
+    "main.js": "/static/js/main.06dbb310.js",
     "static/js/885.81f3c6b2.chunk.js": "/static/js/885.81f3c6b2.chunk.js",
     "static/media/background5.png": "/static/media/background5.1c53f867d71b09e7600f.png",
     "static/media/14 2.gif": "/static/media/14 2.b14eb727ce38bd449187.gif",
@@ -32,6 +32,7 @@
     "static/media/15.gif": "/static/media/15.9ce25a92c693095d7297.gif",
     "static/media/16 2.gif": "/static/media/16 2.2b49ccd3836b8cf0e944.gif",
     "static/media/16.gif": "/static/media/16.2b49ccd3836b8cf0e944.gif",
+    "static/media/resultsGiraffeHappy.gif": "/static/media/resultsGiraffeHappy.416824696df264054639.gif",
     "static/media/17 2.gif": "/static/media/17 2.4dc921abf8e8cb9c7cd2.gif",
     "static/media/17.gif": "/static/media/17.4dc921abf8e8cb9c7cd2.gif",
     "static/media/18 2.gif": "/static/media/18 2.30e7bd0eabd8494c051e.gif",
@@ -76,6 +77,7 @@
     "static/media/37.gif": "/static/media/37.325179e48ad7f1f4c6d1.gif",
     "static/media/38 2.gif": "/static/media/38 2.8e4cd49f3ac370d40a46.gif",
     "static/media/38.gif": "/static/media/38.8e4cd49f3ac370d40a46.gif",
+    "static/media/resultsGiraffeSad.gif": "/static/media/resultsGiraffeSad.b5e2507fc49419f0b50c.gif",
     "static/media/39 2.gif": "/static/media/39 2.dc0cd01a6811f17f36f9.gif",
     "static/media/39.gif": "/static/media/39.dc0cd01a6811f17f36f9.gif",
     "static/media/40 2.gif": "/static/media/40 2.4a61def32f2598ba8dfc.gif",
@@ -99,28 +101,31 @@
     "static/media/49 2.gif": "/static/media/49 2.109346787e4fb8e09d72.gif",
     "static/media/49.gif": "/static/media/49.109346787e4fb8e09d72.gif",
     "static/media/achievement.mp3": "/static/media/achievement.8dc7f0a30c5c83920df2.mp3",
-    "static/media/correct.mp3": "/static/media/correct.c0702f65642f04080921.mp3",
     "static/media/50 2.gif": "/static/media/50 2.273dc2730bcad20d8812.gif",
     "static/media/50.gif": "/static/media/50.273dc2730bcad20d8812.gif",
     "static/media/8 2.gif": "/static/media/8 2.7e54c957164a4c5da1cb.gif",
     "static/media/8.gif": "/static/media/8.7e54c957164a4c5da1cb.gif",
     "static/media/51 2.gif": "/static/media/51 2.2a4d585a9c2083ad925e.gif",
     "static/media/51.gif": "/static/media/51.2a4d585a9c2083ad925e.gif",
+    "static/media/countdown2.mp3": "/static/media/countdown2.e64083f8b28199e68bc2.mp3",
+    "static/media/happyGiraffeSoundTest.mp3": "/static/media/happyGiraffeSoundTest.284c8c4e9d7e682eef01.mp3",
     "static/media/52 2.gif": "/static/media/52 2.901ab6bcfab2d4e5a10e.gif",
     "static/media/52.gif": "/static/media/52.901ab6bcfab2d4e5a10e.gif",
     "static/media/53 2.gif": "/static/media/53 2.5be5ebcde933c871f02c.gif",
     "static/media/53.gif": "/static/media/53.5be5ebcde933c871f02c.gif",
+    "static/media/correct3.mp3": "/static/media/correct3.17dae07855dcacc5e635.mp3",
     "static/media/scramble.mp3": "/static/media/scramble.413ebcb2983eb5f004e2.mp3",
     "static/media/ding1.mp3": "/static/media/ding1.c0504a57a2dc3ed5287a.mp3",
+    "static/media/tick.mp3": "/static/media/tick.d3fbd010396f028ca253.mp3",
     "static/media/wrong.mp3": "/static/media/wrong.24632601a5779f4d45ec.mp3",
     "static/media/gunshot.mp3": "/static/media/gunshot.7157799bda71e00921e7.mp3",
     "index.html": "/index.html",
-    "main.dc259056.css.map": "/static/css/main.dc259056.css.map",
-    "main.b935afa8.js.map": "/static/js/main.b935afa8.js.map",
+    "main.583ac9ee.css.map": "/static/css/main.583ac9ee.css.map",
+    "main.06dbb310.js.map": "/static/js/main.06dbb310.js.map",
     "885.81f3c6b2.chunk.js.map": "/static/js/885.81f3c6b2.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.dc259056.css",
-    "static/js/main.b935afa8.js"
+    "static/css/main.583ac9ee.css",
+    "static/js/main.06dbb310.js"
   ]
 }

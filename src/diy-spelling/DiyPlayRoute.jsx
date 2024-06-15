@@ -17,16 +17,18 @@ function useQuery() {
 // ]
 
 export default function DiyPlayRoute() {
-   const [isLoading, setIsLoading] = useState(false)
+   // const [isLoading, setIsLoading] = useState(false)
    const [gameWords, setGameWords] = useState([])
    const [isProcessing, setIsProcessing] = useState(false)
    const query = useQuery()
-   console.log('query', query)
+   // console.log('query', query)
    const title = query.get('title')
-   console.log(title)
-   const timerSeconds = parseInt(query.get('timerSeconds'), 10)
+   // console.log(title)
+   // const timerSeconds = parseInt(query.get('timerSeconds'), 10)
 
    const encodedWordObjects = query.get('wordObjects')
+   const useTimer = query.get('useTimer') === 'true'
+   const duration = parseInt(query.get('duration'), 10)
    const wordObjects = JSON.parse(atob(encodedWordObjects))
    const buildGameWordObjects = async () => {
       console.log('BUILDING GAME OBJECTS COMMENCING...')
@@ -73,6 +75,8 @@ export default function DiyPlayRoute() {
          <h1>{title ? title : 'DIY Spelling Game'}</h1>
 
          <PlaySpellingGame
+            useTimer={useTimer}
+            duration={duration}
             words={gameWords}
             buildGameWordObjects={buildGameWordObjects}
          />

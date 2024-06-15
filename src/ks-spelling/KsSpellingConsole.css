@@ -39,6 +39,10 @@ label {
    /* margin: 0.5rem; */
    border-radius: 0.5rem;
    /* border: 1px ridge var(--myBrown); */
+   @media screen and (min-width: 768px) {
+      font-size: 1.3rem;
+      padding: 5px 10px 5px 10px;
+   }
 }
 
 .buttonsContainer {
@@ -77,7 +81,7 @@ label {
    flex-grow: 2;
    flex-shrink: 2;
    flex-basis: 0;
-   margin-bottom: 100px;
+   margin-bottom: 50px;
 }
 
 fieldset {
@@ -107,6 +111,24 @@ fieldset {
    animation: flashBorder 0.5s infinite;
 }
 
+.wordCountOrig {
+   color: red;
+   font-weight: 200;
+   background: var(--myWhite);
+   padding: 0 0.5rem 0 0.5rem;
+
+   /* position: absolute; */
+   margin: 0.2rem;
+   /* left: 1rem;
+   top: 0; */
+   opacity: 0.9;
+   border-radius: 1rem;
+   /* font-size: 1.3rem; */
+   font-family: 'VT323';
+   border: 2px solid orange;
+   /* animation: flashBorder 0.5s infinite; */
+}
+
 .filteringTypeWriter {
    color: red;
    background-color: var(--myWhite);
@@ -130,7 +152,7 @@ fieldset {
    /* border: 1px dashed lightgray; */
    align-content: flex-start;
    padding: 0rem;
-   margin-bottom: 10rem;
+   /* margin-bottom: 1rem; */
 }
 
 .configBox {

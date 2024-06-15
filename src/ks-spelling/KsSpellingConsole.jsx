@@ -2,8 +2,8 @@ import {
    useState,
    useRef,
    useEffect,
-   useContext,
-   createContext,
+   // useContext,
+   // createContext,
 } from 'react'
 import ksData2 from '../data/ksData2.json'
 import KsSpellingConfigForm from './KsSpellingConfigForm'
@@ -15,6 +15,10 @@ import RandomWordSelector from './RandomWordSelector'
 import TypewriterEffect from '../components/TypewriterEffect'
 import { cleanWords } from '../jsFunctions/jsFunctions.js'
 import { Helmet } from 'react-helmet-async'
+import { Popover } from 'antd'
+
+import happyGiraffeLogo from '../media/background5.png'
+import KsDefaultPage from './KsDefaultPage.jsx'
 
 export default function KsSpellingConsole({ children }) {
    const [shoot] = useSound(gunshot)
@@ -107,7 +111,7 @@ export default function KsSpellingConsole({ children }) {
                className='backButtonStyle'
                onClick={handleGoBack}
             >
-               ⏎ Go Back
+               🔙
             </button>
          </div>
       )
@@ -148,10 +152,11 @@ export default function KsSpellingConsole({ children }) {
          </Helmet>
          <div
             className='  mainContainer hero'
-            style={{
-               marginBottom: '100px',
-               // paddingBottom: '100px',
-            }}
+            style={
+               {
+                  // marginBottom: '100px',
+               }
+            }
          >
             <h1>KS Spelling Console </h1>
             <div
@@ -169,33 +174,13 @@ export default function KsSpellingConsole({ children }) {
                {selectedYear && renderLessonButtons()}
             </div>
 
+            {wordArray < 1 && <KsDefaultPage />}
+
             <div
                className='doubleContainer'
                // style={{ border: '2px dotted pink' }}
-               style={{ marginBottom: '100px' }}
+               style={{ marginBottom: '30px' }}
             >
-               {wordArray < 1 && (
-                  <div
-                     style={{
-                        textAlign: 'center',
-                        width: '100%',
-                     }}
-                  >
-                     <br />
-                     <h2>NO WORDS YET...</h2>
-                     {/* <h2>☝️ Select KeyStage level.</h2> */}
-                     <div style={{ fontFamily: 'Indie Flower' }}>
-                        <span style={{ fontSize: '2rem' }}>
-                           ☝️
-                        </span>
-                        <TypewriterEffect
-                           text='Select KeyStage Level.........'
-                           myFontSize='1.4rem'
-                           isLooping
-                        />
-                     </div>
-                  </div>
-               )}
                <div className='leftFormBox'>
                   {wordArray?.length > 0 && (
                      <div>
@@ -266,10 +251,10 @@ export default function KsSpellingConsole({ children }) {
                   <div className='rightWordListBox'>
                      <div className='wordList'>
                         <h4
+                           className='africanFont'
                            style={{
                               textDecoration: 'underline',
                               color: 'var(--myYellow)',
-                              fontFamily: 'Permanent Marker',
                            }}
                         >
                            {selectedLesson.name} WORDS:{' '}
@@ -303,7 +288,7 @@ export default function KsSpellingConsole({ children }) {
                                  )
                               )}
                               <br />
-                              <span className='wordCount'>
+                              <span className='wordCountOrig'>
                                  {filteredWords.length} words
                               </span>
                            </p>
@@ -351,9 +336,17 @@ export default function KsSpellingConsole({ children }) {
                            </p>
                         )}
                      </div>
+                     <br />
+                     <br />
                   </div>
                )}
+               <br />
+               <br />
             </div>
+            <br />
+            <br />
+
+            <br />
          </div>
       </>
    )

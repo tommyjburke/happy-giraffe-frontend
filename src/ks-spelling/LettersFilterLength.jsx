@@ -4,7 +4,6 @@ import { Slider } from 'antd'
 
 export default function LettersFilterLength({
    wordArray,
-   setWordArray,
    filteredWords,
    setFilteredWords,
    tempFilteredWords,
@@ -132,6 +131,7 @@ export default function LettersFilterLength({
                      setLowerValue(value[0])
                      setUpperValue(value[1])
                      handleWordLengthSlider(value)
+
                      console.log(
                         'wordLengthConfirmed',
                         wordLengthConfirmed

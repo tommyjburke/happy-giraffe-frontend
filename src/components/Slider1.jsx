@@ -7,22 +7,22 @@ export default function Slider1({ value, onChange }) {
    }
 
    return (
-      <div
-         className='slider-container '
-         style={{
-            alignSelf: 'self-start',
-            padding: '0 0px 0 0px',
-         }}
+      <Popover
+         content='change speed of robot voice'
+         title='SPEED'
       >
-         <label>
-            {' '}
-            <span style={{ margin: '0 5px' }}>🤖</span>{' '}
-         </label>
-
-         <Popover
-            content='change speed of robot voice'
-            title='SPEED'
+         <div
+            className='slider-container '
+            style={{
+               alignSelf: 'self-start',
+               padding: '0 0px 0 0px',
+            }}
          >
+            <label>
+               {' '}
+               <span style={{ margin: '0 5px' }}>🤖</span>{' '}
+            </label>
+
             <input
                style={{ width: '5rem' }}
                type='range'
@@ -37,10 +37,11 @@ export default function Slider1({ value, onChange }) {
                // }}
                // className='slider'
             />
-         </Popover>
-         <span className='slider-label'>
-            <span>{(value * 100).toFixed(0)}%</span>
-         </span>
-      </div>
+
+            <span className='slider-label'>
+               <span>{(value * 100).toFixed(0)}%</span>
+            </span>
+         </div>
+      </Popover>
    )
 }

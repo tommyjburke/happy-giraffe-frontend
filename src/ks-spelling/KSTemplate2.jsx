@@ -15,18 +15,18 @@ export default function KSTemplate2() {
       return <Error404 />
    }
 
-   function shuffle(array) {
-      for (let i = array.length - 1; i > 0; i--) {
-         // Generate a random index between 0 and i
-         const j = Math.floor(Math.random() * (i + 1))
+   // function shuffle(array) {
+   //    for (let i = array.length - 1; i > 0; i--) {
+   //       // Generate a random index between 0 and i
+   //       const j = Math.floor(Math.random() * (i + 1))
 
-         // Swap elements at indices i and j
-         const temp = array[i]
-         array[i] = array[j]
-         array[j] = temp
-      }
-      return array
-   }
+   //       // Swap elements at indices i and j
+   //       const temp = array[i]
+   //       array[i] = array[j]
+   //       array[j] = temp
+   //    }
+   //    return array
+   // }
 
    let myStringedArray = ksWords[id]
       ? ksWords[id].toString()
@@ -34,7 +34,7 @@ export default function KSTemplate2() {
 
    console.log(myStringedArray)
 
-   let shuffled = array ? shuffle(array) : 'INVALID'
+   // let shuffled = array ? shuffle(array) : 'INVALID'
 
    return (
       <div className='main-page'>

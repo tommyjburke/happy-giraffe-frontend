@@ -1,23 +1,20 @@
-import { useState } from 'react'
 import {
    createBrowserRouter,
    RouterProvider,
 } from 'react-router-dom'
 import { ConfigProvider } from 'antd'
-
 import DiySpellingConsole from '../diy-spelling/DiySpellingConsole'
 import Maths from './Maths'
 import Error404 from './Error404'
-import KSTemplate from '../ks-spelling/KSTemplate'
 import KSTemplate2 from '../ks-spelling/KSTemplate2'
 import SpellingPractice from './SpellingPractice'
 import KsSpellingConsole from '../ks-spelling/KsSpellingConsole'
 import Home from './Home'
-import KsTest from '../ks-spelling/KsTest'
 import DiyPlayRoute from '../diy-spelling/DiyPlayRoute'
-import Welcome from './Welcome'
 import KsPlayRoute from '../ks-spelling/KsPlayRoute'
 import { CreateArray } from './CreateArray'
+import MathsConsole from '../maths/MathsConsole'
+import MathsPlayRoute from '../maths/MathsPlayRoute'
 
 const router = createBrowserRouter([
    {
@@ -68,7 +65,11 @@ const router = createBrowserRouter([
          // },
          {
             path: '/maths',
-            element: <Maths />,
+            element: <MathsConsole />,
+         },
+         {
+            path: '/maths/:data',
+            element: <MathsPlayRoute />,
          },
          {
             path: 'create-array',
@@ -95,10 +96,10 @@ export default function App() {
             },
             components: {
                Switch: {
-                  colorPrimary: '#654321',
+                  colorPrimary: 'green',
                   colorPrimaryBorder: 'var(--myOrange)',
-                  colorPrimaryActive: 'var(--myOrange)',
-                  colorPrimaryHover: 'var(--myOrange)',
+                  colorPrimaryActive: 'var(--myBrown)',
+                  colorPrimaryHover: 'var(--myBrown)',
                },
                Button: {
                   // colorBgContainer: 'var(--myBrown)',
@@ -115,6 +116,12 @@ export default function App() {
                   railStyle: {
                      backgroundColor: 'orange',
                   },
+               },
+               Checkbox: {
+                  colorPrimary: 'var(--myOrange)',
+                  colorPrimaryBorder: 'var(--myYellow)',
+                  colorPrimaryActive: 'var(--mYellow)',
+                  colorPrimaryHover: 'var(--myYellow)',
                },
                Slider: {
                   handleColor: 'var(--myOrange)',

@@ -1,8 +1,9 @@
-import React, { useRef, useEffect } from 'react'
+// import React, { useRef, useEffect } from 'react'
 import { Popover } from 'antd'
 import useSound from 'use-sound'
 import zeroSound from '../media/ding1.mp3'
 import '../diy-spelling/SpellingDIY.css'
+import { useState } from 'react'
 
 export default function WordQuestion(props) {
    const {
@@ -15,8 +16,8 @@ export default function WordQuestion(props) {
       handleGuess,
       checkGuess,
       activeQuestion,
-      numQuestions,
       words,
+      disableAllInputs,
    } = props
 
    const [playZeroSound] = useSound(zeroSound)
@@ -26,27 +27,6 @@ export default function WordQuestion(props) {
       outline: '3px ridge lime',
       borderRadius: '8px',
    }
-
-   // const inputRef = useRef(null)
-
-   // useEffect(() => {
-   //    if (activeQuestion === index && inputRef.current) {
-   //       inputRef.current.focus()
-   //    }
-   // }, [activeQuestion, index])
-
-   // const handleKeyDown = (event) => {
-   //    if (event.key === 'ArrowUp' && index > 0) {
-   //       console.log('~~~~ArrowUp')
-   //       handleRowClick(index - 1)
-   //    } else if (
-   //       event.key === 'ArrowDown' &&
-   //       index < numQuestions - 1
-   //    ) {
-   //       console.log('~~~~ArrowDown')
-   //       handleRowClick(index + 1)
-   //    }
-   // }
 
    const handleKeyDown = (event) => {
       if (event.key === 'ArrowUp') {
@@ -108,74 +88,61 @@ export default function WordQuestion(props) {
                   </Popover>
                </span>
                <br />
-               <span
-                  className='largeIcon'
-                  onClick={() =>
-                     playHumanSpeech(wordObject.spelling)
-                  }
-               >
-                  <Popover
-                     content={'Listen to human prounciation'}
+               {wordObject.hasHumanVoice ? (
+                  <span
+                     className='largeIcon'
+                     onClick={() =>
+                        playHumanSpeech(wordObject.spelling)
+                     }
                   >
-                     {wordObject.hasHumanVoice ? '👩‍🦲' : ' '}
-                  </Popover>
-               </span>
+                     <Popover
+                        content={'Listen to human prounciation'}
+                     >
+                        👩‍🦲
+                     </Popover>
+                  </span>
+               ) : (
+                  <span> </span>
+               )}
             </div>
          </td>
-         {/* <td className='g3'></td> */}
+
          <Popover
             title='SYNONYMS:'
             content={wordObject.synonyms}
          >
-            <td className='g4'>{wordObject.scrambled}</td>
+            <td className='g4'>
+               {wordObject.scrambled
+                  .split('')
+                  .map((letter, i) => (
+                     <span
+                        key={i}
+                        className='letterBox'
+                        style={{
+                           paddingLeft: '2px',
+                           border: 'dashed gray 1px',
+                           borderRadius: '3px',
+                        }}
+                     >
+                        {letter}
+                     </span>
+                  ))}
+            </td>
          </Popover>
          <td className='g5'>
-            {/* <input
-               style={{
-                  height: '3.5rem',
-                  width: '90%',
-                  fontSize: '2rem',
-                  fontColor: 'green',
-                  letterSpacing: '1px',
-               }}
-               placeholder='write here'
-               ref={inputRef}
-               title='your guess'
-               maxLength={16}
-               className='centred'
-               type='text'
-               value={wordObject.userGuess
-                  .toLowerCase()
-                  .replace(/[^a-zA-Z']/g, '')}
-               onChange={(e) =>
-                  handleGuess(
-                     index,
-                     e.target.value.replace(/[^a-zA-Z']/g, '')
-                  )
-               }
-               disabled={
-                  wordObject.verdict === '✅' ||
-                  wordObject.verdict === '❌'
-               }
-               onKeyUp={(e) => {
-                  if (
-                     e.code === 'Enter' ||
-                     e.code === 'NumpadEnter'
-                  ) {
-                     checkGuess(index)
-                  }
-               }}
-            /> */}
-
             <input
                style={{
-                  height: '3.5rem',
+                  height: '3.0rem',
                   width: '90%',
                   fontSize: '2rem',
                   fontColor: 'green',
-                  letterSpacing: '1px',
+                  letterSpacing: '1.8px',
                }}
-               placeholder='write here'
+               placeholder={
+                  !disableAllInputs
+                     ? 'your guess'
+                     : wordObject.spelling
+               }
                ref={(ref) => (inputRefs.current[index] = ref)}
                title='your guess'
                maxLength={16}
@@ -192,7 +159,8 @@ export default function WordQuestion(props) {
                }
                disabled={
                   wordObject.verdict === '✅' ||
-                  wordObject.verdict === '❌'
+                  wordObject.verdict === '❌' ||
+                  disableAllInputs
                }
                onKeyUp={(e) => {
                   if (
@@ -244,10 +212,11 @@ export default function WordQuestion(props) {
             </Popover>
          </td>
          <td className='g7'>
-            {wordObject.showButton && (
+            {wordObject.showButton && !disableAllInputs && (
                <button
                   className='goButton'
                   onClick={() => checkGuess(index)}
+                  disabled={disableAllInputs}
                >
                   GO
                </button>
@@ -260,6 +229,9 @@ export default function WordQuestion(props) {
                <span className='correction'>
                   {wordObject.spelling}
                </span>
+            )}
+            {wordObject.verdict === '' && disableAllInputs && (
+               <p>🥵</p>
             )}
          </td>
       </tr>

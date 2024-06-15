@@ -1,0 +1,189 @@
+/* General container styling */
+.maths-table-container {
+   width: 100%;
+   max-width: 800px; /* Maximum width of the table container */
+   margin: 0 auto;
+   padding: 1rem;
+   box-sizing: border-box;
+}
+
+/* General table styling */
+.maths-table {
+   display: flex;
+   flex-wrap: wrap;
+   flex: 1 1 100%;
+   opacity: 0.1;
+   align-content: center;
+   justify-content: center;
+   width: 100%;
+   opacity: 0.7;
+   background-color: var(--myWhite);
+   color: var(--myBrown);
+   font-family: 'Schoolbell';
+   outline: 12px ridge var(--myOrange);
+   border-radius: 20px;
+   table-layout: fixed; /* Ensures the table fits within the container */
+}
+
+.maths-table thead {
+   flex-basis: 100%;
+}
+
+.maths-table tbody {
+   display: flex;
+   flex-wrap: wrap;
+   width: 100%;
+}
+
+.maths-table tr {
+   display: flex;
+   flex-basis: 100%;
+   flex-direction: row;
+}
+
+.maths-table th,
+.maths-table td {
+   padding: 3px;
+   border-left: none;
+   border-right: none;
+   border-top: none;
+   border-bottom: dashed 1px var(--myYellow);
+   text-align: center;
+   vertical-align: middle;
+   justify-content: center;
+   padding: 1rem 0;
+}
+
+.maths-index {
+   font-family: 'VT323', monospace;
+   font-size: 0.9rem;
+   padding: 0.3rem;
+   color: var(--myOrange);
+   text-align: center;
+   background-color: black;
+   flex: 0 0 7%;
+   align-content: center;
+   font-size: 1rem; /* Default font-size */
+}
+
+.m2 {
+   font-family: 'Schoolbell', cursive;
+   font-size: 2.4rem;
+   color: var(--myBrown);
+   align-content: center;
+   padding: 0.3rem;
+}
+
+.maths-a {
+   padding: 2rem;
+   flex: 1 1 18%;
+   margin-left: 0.4rem;
+}
+
+.maths-b {
+   flex: 1 1 18%;
+}
+
+.maths-op {
+   font-size: 1.5rem;
+   flex: 1 1 16%;
+}
+
+.maths-c {
+   flex: 1 1 18%;
+}
+
+.maths-equals {
+   font-size: 1.5rem;
+   flex: 1 1 12%;
+}
+
+.mathsInput {
+   font-family: 'Schoolbell', cursive;
+   font-size: 2rem;
+   height: auto;
+   padding: 0.2rem;
+   margin-bottom: 0.1rem;
+   margin-top: 0.1rem;
+   border-radius: 10px;
+   width: 4.6rem;
+   color: green;
+   font-weight: 600;
+   text-align: center;
+   border: 1px var(--myBrown) dotted;
+}
+
+.mButton {
+   text-align: right;
+   align-content: center;
+   flex: 1 1 14%;
+}
+
+.mathsRow {
+   border-radius: 30px;
+}
+
+/* Responsive table styling */
+.maths-table-container {
+   width: 100%;
+   padding: 1rem;
+   box-sizing: border-box;
+   max-width: 600px;
+}
+
+@media (max-width: 768px) {
+   .maths-table th,
+   .maths-a,
+   .maths-b,
+   .maths-c {
+      font-size: 2.4rem;
+   }
+   .maths-op {
+      font-size: 1.7rem;
+   }
+   .mathsInput {
+      font-size: 2rem;
+      width: 3.6rem;
+   }
+   .maths-index {
+      font-size: 1.2rem;
+   }
+   .mathsInput {
+      font-size: 2rem;
+      height: auto;
+      padding: 0.1rem;
+      margin-bottom: 0.1rem;
+      margin-top: 0.1rem;
+      width: 4.6rem;
+   }
+}
+
+@media (max-width: 480px) {
+   .maths-table th,
+   .maths-a,
+   .maths-b,
+   .maths-c {
+      font-size: 2rem;
+   }
+   .maths-op {
+      font-size: 1.2rem;
+   }
+   .maths-equals {
+      font-size: 1.2rem;
+   }
+   .mathsInput {
+      font-size: 1.6rem;
+      width: 2.8rem;
+   }
+   .maths-index {
+      font-size: 1.2rem;
+   }
+   .mathsInput {
+      font-size: 2rem;
+      height: auto;
+      padding: 0.1rem;
+      margin-bottom: 0.1rem;
+      margin-top: 0.1rem;
+      width: 4.6rem;
+   }
+}
