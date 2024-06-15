@@ -467,6 +467,10 @@ export default function PlaySpellingGame({
                top: '0px',
                width: '100%',
                opacity: '0.9',
+               zIndex: 2000,
+               overflowY: 'visible',
+               padding: '0px 30px 0px 1px',
+               marginRight: '3px',
             }}
          >
             {/* <Rewards ref={rewardsRef} /> */}
@@ -483,7 +487,9 @@ export default function PlaySpellingGame({
             />
          </div>
 
-         <div style={{ padding: '0px 3px 0px 3px' }}>
+         <div
+            style={{ padding: '0px 3px 0px 3px', zIndex: '-1' }}
+         >
             {' '}
             {renderGameData()}
          </div>
