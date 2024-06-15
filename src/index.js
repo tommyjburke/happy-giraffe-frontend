@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
+import SeoImage from './components/seoimage'
 
 import { ConfigProvider } from 'antd'
 import './index.css'
