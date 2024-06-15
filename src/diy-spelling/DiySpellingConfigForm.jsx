@@ -585,6 +585,17 @@ export default function DiySpellingConfigForm({
                </tr>
             </tbody>
          </table>
+         <br />
+
+         <br />
+
+         <br />
+
+         <br />
+
+         <br />
+
+         <br />
 
          {/* <button onClick={() => console.log(words)}>
             CL WORDS

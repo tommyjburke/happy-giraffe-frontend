@@ -483,7 +483,10 @@ export default function PlaySpellingGame({
             />
          </div>
 
-         <div> {renderGameData()}</div>
+         <div style={{ padding: '0px 3px 0px 3px' }}>
+            {' '}
+            {renderGameData()}
+         </div>
          <div className='center'>
             {!useTimerTemp && (
                <button
@@ -501,6 +504,11 @@ export default function PlaySpellingGame({
                </button>
             )}
          </div>
+         <br />
+         <br />
+         <br />
+         <br />
+         <br />
          {/* <button onClick={() => setShowResultsModal(true)}>
             SHOW Modal
          </button> */}
