@@ -14,27 +14,27 @@ import wrongSound from '../media/wrong.mp3'
 import ResultsModal from './ResultsModal.jsx'
 import Slider1 from './Slider1.jsx'
 import { Popover, message, QRCode } from 'antd'
-import Rewards from './Rewards.jsx'
 import background5 from '../media/background5.png'
 
 export default function PlaySpellingGame({
    words,
+   setWords,
    buildGameWordObjects,
    useTimer,
    duration,
 }) {
    console.log('PLAY SPELLING GAME TIMER: ', useTimer)
    const [speechSpeed, setSpeechSpeed] = useState(0.6)
-   const [userAttempts, setUserAttempts] = useState(0)
+   const [userAttempts, setUserAttempts] = useState(words)
    //    const [percentage, setPercentage] = useState(0)
    const [correct, setCorrect] = useState(0)
    const [incorrect, setIncorrect] = useState(0)
    const [activeQuestion, setActiveQuestion] = useState(0)
    const [showResultsModal, setShowResultsModal] =
       useState(false)
-   const [questionsCompleted, setQuestionsCompleted] =
-      useState(false)
-   const [mounted, setMounted] = useState(false)
+   // const [questionsCompleted, setQuestionsCompleted] =
+   //    useState(false)
+   // const [mounted, setMounted] = useState(false)
    const [tempDuration, setTempDuration] = useState(duration)
    const [useTimerTemp, setUseTimerTemp] = useState(useTimer)
 
@@ -192,7 +192,10 @@ export default function PlaySpellingGame({
       // console.log('guess: ', guess)
 
       setUserAttempts(newWords)
-      // console.log('userAttempts: ', userAttempts)
+      console.log('userAttempts: ', userAttempts)
+
+      setWords(newWords)
+      console.log('words: ', words)
    }
 
    const checkGuess = (index, verdict) => {

@@ -1,5 +1,3 @@
-// import { Link } from 'react-router-dom'
-// import { useParams } from 'react-router-dom'
 import { verifyHumanSpeech } from '../jsFunctions/humanSpeech'
 import { useLocation } from 'react-router-dom'
 import PlaySpellingGame from '../components/PlaySpellingGame'
@@ -135,6 +133,7 @@ export default function KsPlayRoute() {
          <div>
             <PlaySpellingGame
                words={gameWords}
+               setWords={setGameWords}
                buildGameWordObjects={buildGameWordObjects}
                duration={timerSeconds}
                useTimer={useTimer}

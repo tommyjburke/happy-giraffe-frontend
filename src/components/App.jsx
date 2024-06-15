@@ -4,7 +4,6 @@ import {
 } from 'react-router-dom'
 import { ConfigProvider } from 'antd'
 import DiySpellingConsole from '../diy-spelling/DiySpellingConsole'
-import Maths from './Maths'
 import Error404 from './Error404'
 import KSTemplate2 from '../ks-spelling/KSTemplate2'
 import SpellingPractice from './SpellingPractice'

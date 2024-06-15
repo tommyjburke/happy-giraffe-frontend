@@ -11,16 +11,15 @@ function ProgressBar({ percentage }) {
             // size={68}
             size={['90%', 28]}
             strokeColor={{
-               '0%': 'red',
-               '15%': 'orange',
-               '30%': 'yellow',
-               '40%': 'green',
-               '50%': 'blue',
-               '60%': 'indigo',
-               '70%': 'violet',
-               '80%': 'rgb(205, 127, 50)',
+               '0%': 'brown',
+               '5%': 'darkRed',
+               '20%': 'red',
 
-               '100%': 'gold',
+               '30%': 'orange',
+
+               '60%': 'yellow',
+
+               '100%': 'green',
             }}
          />
       </div>

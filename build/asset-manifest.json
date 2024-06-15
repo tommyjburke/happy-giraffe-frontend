@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.583ac9ee.css",
-    "main.js": "/static/js/main.06dbb310.js",
+    "main.css": "/static/css/main.4d6eba28.css",
+    "main.js": "/static/js/main.5cc9a007.js",
     "static/js/885.81f3c6b2.chunk.js": "/static/js/885.81f3c6b2.chunk.js",
     "static/media/background5.png": "/static/media/background5.1c53f867d71b09e7600f.png",
     "static/media/14 2.gif": "/static/media/14 2.b14eb727ce38bd449187.gif",
@@ -107,7 +107,6 @@
     "static/media/8.gif": "/static/media/8.7e54c957164a4c5da1cb.gif",
     "static/media/51 2.gif": "/static/media/51 2.2a4d585a9c2083ad925e.gif",
     "static/media/51.gif": "/static/media/51.2a4d585a9c2083ad925e.gif",
-    "static/media/countdown2.mp3": "/static/media/countdown2.e64083f8b28199e68bc2.mp3",
     "static/media/happyGiraffeSoundTest.mp3": "/static/media/happyGiraffeSoundTest.284c8c4e9d7e682eef01.mp3",
     "static/media/52 2.gif": "/static/media/52 2.901ab6bcfab2d4e5a10e.gif",
     "static/media/52.gif": "/static/media/52.901ab6bcfab2d4e5a10e.gif",
@@ -120,12 +119,12 @@
     "static/media/wrong.mp3": "/static/media/wrong.24632601a5779f4d45ec.mp3",
     "static/media/gunshot.mp3": "/static/media/gunshot.7157799bda71e00921e7.mp3",
     "index.html": "/index.html",
-    "main.583ac9ee.css.map": "/static/css/main.583ac9ee.css.map",
-    "main.06dbb310.js.map": "/static/js/main.06dbb310.js.map",
+    "main.4d6eba28.css.map": "/static/css/main.4d6eba28.css.map",
+    "main.5cc9a007.js.map": "/static/js/main.5cc9a007.js.map",
     "885.81f3c6b2.chunk.js.map": "/static/js/885.81f3c6b2.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.583ac9ee.css",
-    "static/js/main.06dbb310.js"
+    "static/css/main.4d6eba28.css",
+    "static/js/main.5cc9a007.js"
   ]
 }

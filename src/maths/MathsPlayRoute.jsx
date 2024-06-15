@@ -38,7 +38,7 @@ export default function MathsPlayRoute() {
    let bValues = query.get('bValues')
    bValues = bValues.split(',')
    let operators = query.get('operators')
-   console.log('operators: ', operators)
+   // console.log('operators: ', operators)
    if (!operators) {
       operators = '+,-,*,/'
    }
@@ -47,13 +47,14 @@ export default function MathsPlayRoute() {
    hiddenBoxTemp = hiddenBoxTemp.split(',')
    let useTimer = query.get('useTimer') === 'true'
    const duration = query.get('duration')
+   const useMinus = query.get('useMinus') === 'true'
 
    const [useTimerTemp, setUseTimerTemp] = useState(useTimer)
 
    let hiddenBox = ['c']
 
-   console.log('hiddenBoxTemp: ', hiddenBoxTemp)
-   console.log('MATHS useTimer: ', useTimer)
+   // console.log('hiddenBoxTemp: ', hiddenBoxTemp)
+   // console.log('MATHS useTimer: ', useTimer)
 
    if (hiddenBoxTemp < 1) {
       hiddenBox = ['c']
@@ -62,7 +63,7 @@ export default function MathsPlayRoute() {
    }
 
    const hiddenBoxTempLength = hiddenBoxTemp.length
-   console.log('hiddenBoxTempLength: ', hiddenBoxTempLength)
+   // console.log('hiddenBoxTempLength: ', hiddenBoxTempLength)
 
    // const topRef = useRef(null)
    const inputRefs = useRef([])
@@ -141,9 +142,10 @@ export default function MathsPlayRoute() {
             const tempA = parseInt(a) * parseInt(b)
             a = tempA
          }
-
-         if (operator === '-' && a < b) {
+         console.log('useMinus: ', useMinus)
+         if (!useMinus && operator === '-' && a < b) {
             let tempA = b
+            console.log('tempA: ', tempA)
             b = a
             a = tempA
          }

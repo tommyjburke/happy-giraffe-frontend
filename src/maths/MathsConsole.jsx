@@ -44,8 +44,7 @@ export default function MathsConsole() {
    const [operators, setOperators] = useState(['*'])
    const [useTimer, setUseTimer] = useState(false)
    const [duration, setDuration] = useState(60)
-   const [allowMinusNumbers, setAllowMinusNumbers] =
-      useState(false)
+   const [useMinus, setUseMinus] = useState(false)
    const navigate = useNavigate()
 
    function handleAdditionSwitch(checked) {
@@ -121,6 +120,11 @@ export default function MathsConsole() {
       }
    }
 
+   const handleMinusSwitch = (checked) => {
+      console.log('minus: ', checked)
+      setUseMinus(checked)
+   }
+
    const compileMathsParams = () => {
       console.log('hiddenBox: ', hiddenBox)
       console.log('hiddenBox.length: ', hiddenBox.length)
@@ -135,6 +139,7 @@ export default function MathsConsole() {
       // console.log('mathsData: ', mathsData)
       const queryParams = new URLSearchParams({
          useTimer: useTimer,
+         useMinus: useMinus,
          duration: duration,
          title: title,
          numQuestions: numQuestions,
@@ -568,7 +573,7 @@ export default function MathsConsole() {
                               defaultValue={[1, 12]}
                               onChange={(values) => {
                                  setBValues(values)
-                                 console.log(values)
+                                 // console.log(values)
                               }}
                            />
                         </div>
@@ -583,8 +588,7 @@ export default function MathsConsole() {
                               borderRadius: '5px',
                            }}
                         >
-                           {' '}
-                           {aValues[0]} to {aValues[1]}{' '}
+                           {aValues[0]} to {aValues[1]}
                         </span>
                         <span
                            style={{
@@ -595,10 +599,13 @@ export default function MathsConsole() {
                            }}
                         >
                            {operators.map((op) => (
-                              <span style={{ color: 'blue' }}>
+                              <span
+                                 key={op}
+                                 style={{ color: 'blue' }}
+                              >
                                  {replaceSymbols(op)}{' '}
                               </span>
-                           ))}{' '}
+                           ))}
                         </span>{' '}
                         <span
                            style={{
@@ -613,6 +620,17 @@ export default function MathsConsole() {
                         </span>
                      </div>
                   </div>
+                  {operators.includes('-') && (
+                     <div className='configBox'>
+                        <label> Allow minus numbers:</label>
+                        <Switch
+                           checkedChildren={<CheckOutlined />}
+                           unCheckedChildren={<CloseOutlined />}
+                           defaultChecked={useMinus}
+                           onChange={handleMinusSwitch}
+                        />
+                     </div>
+                  )}
                   <div>
                      <button
                         style={{ float: 'right' }}

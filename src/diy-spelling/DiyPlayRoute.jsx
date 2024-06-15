@@ -3,29 +3,16 @@ import { useLocation } from 'react-router-dom'
 import PlaySpellingGame from '../components/PlaySpellingGame'
 import { verifyHumanSpeech } from '../jsFunctions/humanSpeech'
 import { Spin } from 'antd'
-// import { Link } from 'react-router-dom'
-// import { useParams } from 'react-router-dom'
 
 function useQuery() {
    return new URLSearchParams(useLocation().search)
 }
 
-// const gameData = [
-//    { scrambled: 'yhapp', spelling: 'happy' },
-//    { scrambled: 'hello', spelling: 'hello' },
-//    { scrambled: 'yunnf', spelling: 'funny' },
-// ]
-
 export default function DiyPlayRoute() {
-   // const [isLoading, setIsLoading] = useState(false)
    const [gameWords, setGameWords] = useState([])
    const [isProcessing, setIsProcessing] = useState(false)
    const query = useQuery()
-   // console.log('query', query)
    const title = query.get('title')
-   // console.log(title)
-   // const timerSeconds = parseInt(query.get('timerSeconds'), 10)
-
    const encodedWordObjects = query.get('wordObjects')
    const useTimer = query.get('useTimer') === 'true'
    const duration = parseInt(query.get('duration'), 10)
@@ -78,6 +65,7 @@ export default function DiyPlayRoute() {
             useTimer={useTimer}
             duration={duration}
             words={gameWords}
+            setWords={setGameWords}
             buildGameWordObjects={buildGameWordObjects}
          />
       </div>

@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect } from 'react'
 import useSound from 'use-sound'
 // import click from './click.mp3'
 // import ding from './ding.mp3'
-import countdown2 from '../media/countdown2.mp3'
+// import countdown2 from '../media/countdown2.mp3'
 import tickSound from '../media/tick.mp3'
 
 function CountdownTimer({ duration, onTimeUp }) {
