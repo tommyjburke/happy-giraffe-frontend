@@ -205,12 +205,12 @@ export default function MathsConsole() {
                   verticalAlign: 'middle',
                }}
             >
-               <h2
+               <h4
                   className='africanFont'
                   style={{ color: 'green' }}
                >
                   Create Maths Game
-               </h2>
+               </h4>
                <fieldset>
                   <legend> Maths Config </legend>
                   <div className='configBox'>
@@ -648,6 +648,10 @@ export default function MathsConsole() {
                   </div>
                </fieldset>
 
+               <br />
+               <br />
+               <br />
+               <br />
                <br />
                <br />
             </div>

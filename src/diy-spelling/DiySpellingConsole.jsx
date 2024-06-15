@@ -138,15 +138,17 @@ export default function DiySpellingConsole() {
                   backgroundColor: 'var(--myOrange)',
                   width: '100%',
                   textAlign: 'center',
+                  marginBottom: '-8px',
+                  zIndex: 2,
                }}
             >
-               <h4
+               <h5
                   className='africanFont'
                   style={{ color: 'var(--myBrown)' }}
                >
                   Use your own words to create your own spelling
                   game.
-               </h4>
+               </h5>
             </div>
             <div style={{ marginTop: '0px' }}>
                <Form
