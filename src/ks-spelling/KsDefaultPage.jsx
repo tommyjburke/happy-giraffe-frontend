@@ -67,17 +67,6 @@ export default function KsDefaultPage() {
          >
             <br />
             <div
-               style={{
-                  textAlign: 'center',
-                  flex: '1 1 0',
-               }}
-            >
-               {' '}
-               <h2>KeyStage Primary</h2>
-               <h2>Create a K.S. Spelling Quiz</h2>
-            </div>
-
-            <div
                className='africanFont'
                style={{
                   // fontFamily: 'Indie Flower',
@@ -90,10 +79,26 @@ export default function KsDefaultPage() {
                <span style={{ fontSize: '4rem' }}>☝️</span>
                <TypewriterEffect
                   text='Choose a GREEN button to begin....'
-                  myFontSize='1.2rem'
+                  myFontSize='1.1rem'
                   isLooping
                />
             </div>
+            <div
+               style={{
+                  textAlign: 'center',
+                  flex: '1 1 0',
+               }}
+            >
+               {' '}
+               <div
+                  className='africanFont'
+                  style={{ color: 'var(--myBrown)' }}
+               >
+                  <h3>KeyStage Primary</h3>
+                  <h3>Create a K.S. Spelling Quiz</h3>
+               </div>
+            </div>
+
             <br />
             <div style={{ flex: '1 1 0' }}>
                <Popover
