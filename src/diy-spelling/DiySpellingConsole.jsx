@@ -133,14 +133,31 @@ export default function DiySpellingConsole() {
          <Spin spinning={isProcessing} size='large' fullscreen />
          <div className='mainContainer hero'>
             <h1>DIY Spelling Console</h1>
-            <Form
-               handleAddWord={handleAddword}
-               setWords={setWords}
-               words={words}
-               duplicatesError={duplicatesError}
-               longWordsError={longWordsError}
-               setIsProcessing={setIsProcessing}
-            />
+            <div
+               style={{
+                  backgroundColor: 'var(--myOrange)',
+                  width: '100%',
+                  textAlign: 'center',
+               }}
+            >
+               <h4
+                  className='africanFont'
+                  style={{ color: 'var(--myBrown)' }}
+               >
+                  Use your own words to create your own spelling
+                  game.
+               </h4>
+            </div>
+            <div style={{ marginTop: '0px' }}>
+               <Form
+                  handleAddWord={handleAddword}
+                  setWords={setWords}
+                  words={words}
+                  duplicatesError={duplicatesError}
+                  longWordsError={longWordsError}
+                  setIsProcessing={setIsProcessing}
+               />
+            </div>
 
             {/* <WordList
                   words={words}

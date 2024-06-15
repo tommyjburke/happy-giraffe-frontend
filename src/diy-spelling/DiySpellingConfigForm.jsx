@@ -137,16 +137,20 @@ export default function DiySpellingConfigForm({
             className='table-container list2'
             style={{ overflowY: 'auto', overflowX: 'hidden' }}
          >
-            {/* <TypewriterEffect
-               text='Filtering........'
-               isLooping
-            /> */}
             <br />
-            <div style={{ fontFamily: 'Indie Flower' }}>
-               <span style={{ fontSize: '2rem' }}>☝️</span>
+            <div className='africanFont'>
+               <span
+                  style={{
+                     fontSize: '3rem',
+                     backgroundColor: 'var(--myBrown)',
+                     borderRadius: '50px',
+                  }}
+               >
+                  ☝️
+               </span>
                <TypewriterEffect
-                  text='ENTER WORDS ABOVE........'
-                  myFontSize='1.4rem'
+                  text='Add YOUR words above........'
+                  myFontSize='1.2rem'
                   isLooping
                />
             </div>

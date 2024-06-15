@@ -55,7 +55,7 @@ label {
 }
 
 .backButtonStyle {
-   background-color: lightBlue;
+   background-color: var(--myWhite);
    color: black;
    border: 1px solid black;
 }
@@ -87,7 +87,7 @@ label {
 fieldset {
    border: 5px ridge var(--myBrown);
    padding: 1rem;
-   margin: 1rem;
+   margin: 0 0.4rem 0 0.4rem;
    border-radius: 1rem;
    /* background-color: var(--myBrown); */
    color: var(--myBrown);

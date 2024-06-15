@@ -73,20 +73,23 @@ export default function KsDefaultPage() {
                }}
             >
                {' '}
-               <h2>NO WORDS YET...</h2>
+               <h2>KeyStage Primary</h2>
+               <h2>Create Spelling Quiz</h2>
             </div>
 
             <div
+               className='africanFont'
                style={{
-                  fontFamily: 'Indie Flower',
+                  // fontFamily: 'Indie Flower',
                   fontWeight: '800',
                   // fontSize: '2.8rem',
                   flex: '1 1 0',
+                  color: 'green',
                }}
             >
                <span style={{ fontSize: '2.6rem' }}>☝️</span>
                <TypewriterEffect
-                  text='Select KeyStage Level.........'
+                  text='Click Green button to begin....'
                   myFontSize='1.4rem'
                   isLooping
                />

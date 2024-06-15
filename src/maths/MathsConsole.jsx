@@ -205,6 +205,12 @@ export default function MathsConsole() {
                   verticalAlign: 'middle',
                }}
             >
+               <h2
+                  className='africanFont'
+                  style={{ color: 'green' }}
+               >
+                  Create Maths Game
+               </h2>
                <fieldset>
                   <legend> Maths Config </legend>
                   <div className='configBox'>
@@ -584,7 +590,7 @@ export default function MathsConsole() {
                               color: 'green',
                               backgroundColor: 'var(--myWhite)',
                               margin: '4px',
-                              padding: '0 0px 0 7px',
+                              padding: '0 3px 0 7px',
                               borderRadius: '5px',
                            }}
                         >
@@ -596,6 +602,7 @@ export default function MathsConsole() {
                               borderRadius: '10px',
                               padding: '1px 1px 1px 5px',
                               marginRight: '2px',
+                              backgroundColor: 'var(--myWhite)',
                            }}
                         >
                            {operators.map((op) => (
