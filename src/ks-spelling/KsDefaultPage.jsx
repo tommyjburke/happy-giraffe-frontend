@@ -78,7 +78,7 @@ export default function KsDefaultPage() {
             >
                <span style={{ fontSize: '4rem' }}>☝️</span>
                <TypewriterEffect
-                  text='Choose a GREEN button to begin....'
+                  text='Click a GREEN button to begin....'
                   myFontSize='1.1rem'
                   isLooping
                />

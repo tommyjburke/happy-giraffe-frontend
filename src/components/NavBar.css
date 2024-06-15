@@ -50,7 +50,7 @@
    justify-content: space-between;
    align-items: center;
    color: var(--myYellow);
-   text-decoration: none;
+   /* text-decoration: none; */
    text-align: center;
    background-color: var(--myBrown);
 
@@ -104,32 +104,9 @@
 }
 
 .activeLink {
-   text-decoration: none;
-   font-family: 'Permanent Marker';
    font-size: 1.5rem;
-
-   line-height: 95%;
-   animation: glowingGold 1s infinite;
-
-   font-family: 'Madimi One', sans-serif;
-   font-weight: 400;
-   font-style: normal;
-   margin-left: 0.5rem;
-   margin-right: 0.5rem;
-   text-decoration: underline;
-   color: white;
-   @media (max-width: 420px) {
-      font-size: 0.9rem;
-   }
-}
-
-.inactiveLink {
-   font-size: 1.5rem;
-   /* color: var(--myBrown);
-   color: orange; */
    color: var(--myWhite);
    text-decoration: none;
-   font-family: 'Permanent Marker';
    line-height: 75%;
    font-family: 'Agbalumo', system-ui;
    font-family: 'Judson', serif;
@@ -138,6 +115,27 @@
    font-style: normal;
    margin-left: 0.5rem;
    margin-right: 0.5rem;
+   animation: glowingGold 1s infinite;
+   color: var(--myWhite);
+   @media (max-width: 420px) {
+      font-size: 0.9rem;
+   }
+   animation: glowingGold 1s infinite;
+}
+
+.inactiveLink {
+   font-size: 1.5rem;
+
+   text-decoration: none;
+   line-height: 75%;
+   font-family: 'Agbalumo', system-ui;
+   font-family: 'Judson', serif;
+   font-family: 'Madimi One', sans-serif;
+   font-weight: 400;
+   font-style: normal;
+   margin-left: 0.5rem;
+   margin-right: 0.5rem;
+   color: var(--myYellow);
    @media (max-width: 420px) {
       font-size: 0.9rem;
    }
@@ -147,10 +145,6 @@
    color: #b8860b;
    text-shadow: 0 0 1px #d9d93d, 0 0 1px #f2ff00;
    transition: color 0.7s, text-shadow 4.4s;
-}
-
-.navLink {
-   /* padding: 0 3px 0 3px; */
 }
 
 .animate-color {
@@ -190,12 +184,12 @@
    0% {
       color: var(--myWhite);
       text-decoration: underline;
-      /* text-shadow: 0 0 1px #ffefc0; */
    }
-   /* 25% {
-      color: #ffbf00;
-      text-shadow: 0 0 1px #ffda99;
-   } */
+   25% {
+      color: var(--myWhite);
+      text-decoration: underline;
+   }
+
    50% {
       color: var(--myWhite);
       text-decoration: underline;

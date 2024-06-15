@@ -28,7 +28,7 @@ export default function NavBar() {
       <div className='navBarContainer'>
          <div className='navBar'>
             {navigation.map((item) => (
-               <div key={item.name} className='navLink'>
+               <div key={item.name}>
                   <Space>
                      <NavLink
                         to={item.href}
