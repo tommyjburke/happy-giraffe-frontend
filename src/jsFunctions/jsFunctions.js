@@ -19,7 +19,7 @@ export const scrambleWord = (word) => {
 
 export const cleanWords = (wordArray) => {
    if (!Array.isArray(wordArray)) {
-      throw new Error('Input must be an array')
+      throw new Error('Data must be an array')
    }
 
    const cleanedWords = wordArray.flatMap((item) =>
