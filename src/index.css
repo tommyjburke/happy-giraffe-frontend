@@ -121,7 +121,7 @@ body {
    right: 0px;
    bottom: 0px;
    left: 0px;
-   opacity: 0.15;
+   opacity: 0.08;
    z-index: -1;
    /* margin-bottom: 30px; */
 }
@@ -198,7 +198,7 @@ a:visited {
 
 input {
    /* background-color: #ffebb3; */
-
+   font-size: 1.6rem;
    color: #5a3e2b;
    font-family: 'Schoolbell';
    border: none;
@@ -207,7 +207,7 @@ input {
    border-radius: 0.3rem;
    /* padding: 1rem 1rem; */
    font-weight: 300;
-   font-size: clamp(1rem, 1.2rem, 2.2rem);
+   /* font-size: 1.8rem; */
    height: 2.2rem;
    cursor: text;
    border-style: none;
@@ -215,10 +215,11 @@ input {
    text-align: center;
    animation: moveInLeft 600ms ease-out;
    @media (max-width: 768px) {
-      font-size: clamp(0.9rem, 1.2rem, 2.2rem);
+      font-size: 1.4rem;
+      height: 1.5rem;
    }
    @media (max-width: 400px) {
-      font-size: clamp(0.6rem, 1rem, 2rem);
+      font-size: clamp(0.9rem, 1.1rem, 1.4rem);
    }
 }
 
@@ -249,7 +250,7 @@ input::placeholder {
 
 input:disabled::placeholder {
    font-family: 'Schoolbell';
-   font-size: 1.2rem;
+   /* font-size: 1.2rem; */
    /* font-weight: bold; */
    opacity: 1;
    color: pink;

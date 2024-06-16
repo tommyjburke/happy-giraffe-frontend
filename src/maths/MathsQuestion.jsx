@@ -17,24 +17,7 @@ export default function MathsQuestion({
    disableAllInputs,
    handleRowClick,
    inputRefs,
-
-   // handleChange,
-
-   //    key = index,
 }) {
-   // console.log('~~~~ mathsObject', mathsObject)
-   // const checkButton = (
-   //    <button
-   //       onClick={(rowIndex, key) => {
-   //          // checkGuess(rowIndex)
-   //          console.log('checkButton', rowIndex.target)
-   //          console.log(key)
-   //       }}
-   //    >
-   //       Check
-   //    </button>
-   // )
-
    const handleKeyDown = (event) => {
       if (event.key === 'ArrowUp') {
          let prevIndex = rowIndex - 1
@@ -74,9 +57,6 @@ export default function MathsQuestion({
          tabIndex={0}
          rowIndex={rowIndex}
          onClick={() => {
-            // console.log('index', index)
-            // console.log('inputRefs', inputRefs)
-            // console.log('rowIndex', rowIndex)
             handleRowClick(rowIndex)
          }}
          style={
@@ -136,10 +116,6 @@ export default function MathsQuestion({
                      mathsObject.isDisabled || disableAllInputs
                   }
                   onClick={() => {
-                     console.log(
-                        'local disabled?: ',
-                        mathsObject.isDisabled
-                     )
                      checkGuess(rowIndex)
                   }}
                >

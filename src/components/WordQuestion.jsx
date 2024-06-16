@@ -64,7 +64,7 @@ export default function WordQuestion(props) {
          index={index}
          onClick={() => {
             // console.log('index', index)
-            console.log('inputRefs', inputRefs)
+            // console.log('inputRefs', inputRefs)
             handleRowClick(index)
          }}
          style={activeQuestion === index ? activeRowStyle : {}}
@@ -119,9 +119,9 @@ export default function WordQuestion(props) {
                         key={i}
                         className='letterBox'
                         style={{
-                           paddingLeft: '2px',
+                           paddingLeft: '0px',
                            border: 'dashed gray 1px',
-                           borderRadius: '3px',
+                           borderRadius: '2px',
                         }}
                      >
                         {letter}
@@ -134,9 +134,9 @@ export default function WordQuestion(props) {
                style={{
                   height: '3.0rem',
                   width: '90%',
-                  fontSize: '2rem',
+                  // fontSize: '2rem',
                   fontColor: 'green',
-                  letterSpacing: '1.8px',
+                  letterSpacing: '1px',
                }}
                placeholder={
                   !disableAllInputs
@@ -146,7 +146,7 @@ export default function WordQuestion(props) {
                ref={(ref) => (inputRefs.current[index] = ref)}
                title='your guess'
                maxLength={16}
-               className='centred'
+               // className='centred'
                type='text'
                value={wordObject.userGuess
                   .toLowerCase()

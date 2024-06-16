@@ -13,15 +13,14 @@ export default function ScoreBoard({
    duration = 60,
    onTimeUp,
 }) {
-   console.log('SCOREBOARD useTIMER: ', useTimer)
    percentage = Math.round(percentage)
    return (
       <div
          className='unselectable'
          style={{
             // outline: '3px dotted var(--myOrange)',
-            border: '4px dotted white',
-            borderRadius: '10px',
+            // border: '4px dotted white',
+            borderRadius: '5px',
             backgroundColor: 'black',
             color: 'white',
             width: '100%',

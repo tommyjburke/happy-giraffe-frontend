@@ -81,7 +81,6 @@ export default function DiySpellingConfigForm({
    }
 
    function filterObjects(objects) {
-      console.log('Filtering these objects: ', objects)
       return objects.map((obj) => ({
          scrambled: obj.scrambled,
          spelling: obj.spelling,
@@ -89,10 +88,7 @@ export default function DiySpellingConfigForm({
    }
 
    function compileData(originalData) {
-      console.log('SAVE QUIZ: ', originalData)
-
       const newWordObjects = filterObjects(originalData)
-      console.log('newWordObjects', newWordObjects)
 
       const encodedWordObjects = btoa(
          JSON.stringify(newWordObjects)
@@ -358,8 +354,9 @@ export default function DiySpellingConfigForm({
                               🤖
                            </span>
                         </Popover>
-                     </td>
-                     <td className='c3'>
+                        {/* <br /> */}
+                        {/* </td>
+                     <td className='c3'> */}
                         <Popover
                            content={
                               'Listen to human prounciation'
@@ -486,7 +483,7 @@ export default function DiySpellingConfigForm({
                         justifyContent: 'flexStart',
                         alignItems: 'left',
                         flex: '1',
-                        flexGrow: '1',
+                        flexGrow: '2',
                         flexBasis: '50%',
                         flexShrink: '1',
                         border: 'none',
@@ -502,7 +499,6 @@ export default function DiySpellingConfigForm({
                            size='large'
                            onChange={(checked) => {
                               setUseTimer(checked)
-                              console.log(checked)
                            }}
                            // defaultChecked
                         />
@@ -510,7 +506,7 @@ export default function DiySpellingConfigForm({
                            disabled={!useTimer}
                            step={30}
                            min={30}
-                           max={300}
+                           max={600}
                            onChange={setDuration}
                            defaultValue={duration}
                         />
@@ -542,7 +538,7 @@ export default function DiySpellingConfigForm({
                         <input
                            placeholder='optional title...'
                            // autoFocus
-                           width='1000px'
+                           // width='1000px'
                            title='Your title'
                            // pattern='[a-zA-Z]*'
                            maxLength={20}

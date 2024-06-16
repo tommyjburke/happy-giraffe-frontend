@@ -27,8 +27,7 @@ export default function LettersFilterLength({
             longest = wordLength
          }
       }
-      // console.log('LONGEST', longest)
-      // console.log('SHORTEST', shortest)
+
       setMinLength(shortest)
       setMaxLength(longest)
 
@@ -43,7 +42,6 @@ export default function LettersFilterLength({
    const [lowerValue, setLowerValue] = useState(minLength)
    const [upperValue, setUpperValue] = useState(maxLength)
    const wordLengthRef = useRef(wordLengthConfirmed)
-   console.log('wordLengthRef: ', wordLengthRef.current)
 
    useEffect(() => {
       const testLengths = analyzeWordLengths(wordArray)
@@ -51,7 +49,7 @@ export default function LettersFilterLength({
       const max = testLengths.longest
 
       const sameWordLength = min === max
-      console.log('sameWordLength: ', sameWordLength)
+
       setWordLengthConfirmed(sameWordLength)
 
       setLengths([min, max])
@@ -64,8 +62,7 @@ export default function LettersFilterLength({
    const handleWordLengthSlider = (sliderArray) => {
       let lower = sliderArray[0]
       let upper = sliderArray[1]
-      // console.log('handle slider', sliderArray)
-      // console.log('lower upper', lower, upper)
+
       filterWords(lower, upper)
    }
 
@@ -73,7 +70,7 @@ export default function LettersFilterLength({
       const newlyFiltered = filteredWords.filter(
          (word) => word.length >= lower && word.length <= upper
       )
-      console.log('NEW FILTERED', newlyFiltered)
+
       // setNewFiltered(newlyFiltered)
       setTempFilteredWords(newlyFiltered)
    }
@@ -83,17 +80,10 @@ export default function LettersFilterLength({
    }
 
    return (
-      <div
-         className='configBox'
-         onClick={() =>
-            console.log(
-               'wordLengthConfirmed',
-               wordLengthConfirmed
-            )
-         }
-      >
+      <div className='configBox'>
          <label>
-            Filter Word Length ({lowerValue} to {upperValue})
+            Filter length of word: <br />({lowerValue} to{' '}
+            {upperValue}) letters
          </label>
 
          <div>
@@ -127,15 +117,9 @@ export default function LettersFilterLength({
                   }}
                   // railStyle={{ backgroundColor: 'grey' }}
                   onChange={(value) => {
-                     // console.log('VALUE: ', value)
                      setLowerValue(value[0])
                      setUpperValue(value[1])
                      handleWordLengthSlider(value)
-
-                     console.log(
-                        'wordLengthConfirmed',
-                        wordLengthConfirmed
-                     )
                   }}
                />
 

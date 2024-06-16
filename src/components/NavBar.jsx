@@ -64,7 +64,7 @@ export default function NavBar() {
                className='content unselectable'
                style={{ fontFamily: 'Schoolbell' }}
             >
-               <span className='chineseFont'>快乐的长颈鹿</span>{' '}
+               {/* <span className='chineseFont'>快乐的长颈鹿</span>{' '} */}
                HappyGiraffe.co.uk
                <Link to='/create-array'>
                   {' '}

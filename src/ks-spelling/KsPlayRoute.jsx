@@ -32,7 +32,7 @@ function shuffleArray(array) {
 // }
 
 function useQuery() {
-   console.log('query', useLocation().search)
+   // console.log('query', useLocation().search)
    return new URLSearchParams(useLocation().search)
 }
 
@@ -47,7 +47,7 @@ export default function KsPlayRoute() {
    const timerSeconds = query.get('timerSeconds')
    const useTimer = query.get('useTimer') === 'true'
 
-   console.log('KS BUILD useTimer: ', useTimer)
+   // console.log('KS BUILD useTimer: ', useTimer)
    const encodedWordArray = query.get('encodedWordArray')
 
    const tempWordArray = JSON.parse(atob(encodedWordArray))

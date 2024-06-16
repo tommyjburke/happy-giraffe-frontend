@@ -38,7 +38,7 @@ export default function MathsPlayRoute() {
    let bValues = query.get('bValues')
    bValues = bValues.split(',')
    let operators = query.get('operators')
-   // console.log('operators: ', operators)
+
    if (!operators) {
       operators = '+,-,*,/'
    }
@@ -53,9 +53,6 @@ export default function MathsPlayRoute() {
 
    let hiddenBox = ['c']
 
-   // console.log('hiddenBoxTemp: ', hiddenBoxTemp)
-   // console.log('MATHS useTimer: ', useTimer)
-
    if (hiddenBoxTemp < 1) {
       hiddenBox = ['c']
    } else {
@@ -63,7 +60,6 @@ export default function MathsPlayRoute() {
    }
 
    const hiddenBoxTempLength = hiddenBoxTemp.length
-   // console.log('hiddenBoxTempLength: ', hiddenBoxTempLength)
 
    // const topRef = useRef(null)
    const inputRefs = useRef([])
@@ -71,7 +67,7 @@ export default function MathsPlayRoute() {
 
    const handleGenerateReward = () => {
       if (rewardsRef.current) {
-         console.log('rewardsRef.current: ', rewardsRef.current)
+         // console.log('rewardsRef.current: ', rewardsRef.current)
          rewardsRef.current.generateReward()
       } else {
          console.error('rewardsRef.current is null')
@@ -108,16 +104,14 @@ export default function MathsPlayRoute() {
    useEffect(() => {
       const mathsQuestionObjects = buildMathsQuestionObjects()
       setMathsObjects(mathsQuestionObjects)
-      console.log('mathsQuestionObjects: ', mathsQuestionObjects)
    }, [])
 
    const buildMathsQuestionObjects = () => {
       let mathsObjects = []
 
       const aRange = aValues[1] - aValues[0] + 1
-      console.log('aRange: ', aRange)
+
       const bRange = bValues[1] - bValues[0] + 1
-      console.log('bRange: ', bRange)
 
       for (let i = 0; i < numQuestions; i++) {
          let a =
@@ -142,10 +136,10 @@ export default function MathsPlayRoute() {
             const tempA = parseInt(a) * parseInt(b)
             a = tempA
          }
-         console.log('useMinus: ', useMinus)
+
          if (!useMinus && operator === '-' && a < b) {
             let tempA = b
-            console.log('tempA: ', tempA)
+
             b = a
             a = tempA
          }
@@ -190,8 +184,6 @@ export default function MathsPlayRoute() {
    }
 
    const handleUserInput = (event, rowIndex) => {
-      console.log('userInput: ', event.target.value)
-
       setMathsObjects((prevMathsObjects) => {
          const newMathsObjects = [...prevMathsObjects]
          newMathsObjects[rowIndex].userInput = event.target.value
@@ -237,7 +229,7 @@ export default function MathsPlayRoute() {
       setUseTimerTemp(false)
       setDisableAllInputs(true)
       setShowResultsModal(true)
-      console.log('TIME UP')
+
       // setTimeUp(true)
       setShowResultsModal(true)
    }
@@ -346,12 +338,6 @@ export default function MathsPlayRoute() {
                   }
                >
                   <button
-                     onClick={() => {
-                        console.log(
-                           'URL length:',
-                           window.location.href.length
-                        )
-                     }}
                      style={{
                         float: 'right',
                         backgroundColor: 'var(--myOrange)',

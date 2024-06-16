@@ -72,6 +72,13 @@
    /* margin: 0 auto; */
 }
 
+.spellingGameInput {
+   font-size: 1.5rem;
+   @media screen and (max-width: 400px) {
+      font-size: 0.9rem;
+   }
+}
+
 .contentDiv {
    background-color: green;
    padding: 10px;
@@ -160,7 +167,7 @@
    justify-content: center;
    align-items: center; */
    background-color: var(--myOrange);
-   padding: 0rem 0rem 0rem 0.1rem;
+   padding: 0rem 0rem 0rem 0rem;
    color: var(--myBrown);
 }
 
@@ -169,11 +176,14 @@
    display: flex;
    justify-content: center;
    align-items: center;
+
+   /* padding: 2px 0px 5px 0px; */
+   padding-bottom: 2px;
    background-color: var(--myOrange);
    color: var(--myBrown);
+   font-family: 'Schoolbell';
    font-family: 'Roboto';
-   padding: 2px 0px 5px 0px;
-   background-color: var(--myWhite);
+   font-weight: 800;
 }
 
 .form-container {
@@ -253,7 +263,7 @@ table {
    }
 
    @media (max-width: 768px) {
-      font-size: 1.4rem;
+      /* font-size: 1.4rem; */
       padding: 0;
       margin: 1px;
    }
@@ -304,10 +314,10 @@ td {
 th {
    font-family: 'Schoolbell';
    background-color: black;
-   padding: 3px;
+   padding: 1px;
    text-align: center !important;
    vertical-align: middle;
-   font-size: 1rem;
+   font-size: 0.9rem;
    color: green;
 }
 
@@ -426,7 +436,7 @@ th {
    }
 }
 .c2 {
-   flex-basis: 6%;
+   flex-basis: 12%;
    flex-shrink: 2;
    text-align: center;
    padding: 0;
@@ -552,11 +562,11 @@ th {
 
 .g4 {
    flex-basis: 32%;
-   flex-shrink: 1;
+   flex-shrink: 2;
    flex-grow: 1;
    text-align: center;
 
-   letter-spacing: 5px;
+   letter-spacing: 2px;
 
    color: 'var(--myWhite)';
    font-family: 'Poppins';
@@ -569,7 +579,7 @@ th {
    align-items: center;
    justify-content: center;
    @media (max-width: 768px) {
-      font-size: 1.2rem;
+      font-size: 0.9rem;
       vertical-align: middle;
       padding-top: 20px;
    }
@@ -588,7 +598,7 @@ th {
    align-items: center;
    justify-content: center;
    @media (max-width: 768px) {
-      font-size: 1.2rem;
+      font-size: 1rem;
       vertical-align: middle;
       padding-top: 20px;
    }
@@ -596,7 +606,7 @@ th {
 
 .g5 {
    flex-basis: 38%;
-   flex-shrink: 2;
+   flex-shrink: 1;
    flex-grow: 1;
    text-align: center;
    display: flex;

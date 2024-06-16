@@ -46,7 +46,6 @@ export default function KsSpellingConsole({ children }) {
    useEffect(() => {
       document.title = 'Happy Giraffe: KS Spelling 🦒'
       setWordLengthConfirmed(false)
-      // console.log('onload word array:', wordArray)
    }, [])
 
    const handleYearClick = (year) => {
@@ -60,7 +59,6 @@ export default function KsSpellingConsole({ children }) {
       setSelectedLesson(lesson)
       // const words = lesson.wordArray
       const cleaned = cleanWords(lesson.wordArray)
-      console.log('cleaned', cleaned)
 
       const words = [...new Set(cleaned)]
 
@@ -123,18 +121,16 @@ export default function KsSpellingConsole({ children }) {
       setSelectedLesson(null)
       setWordArray([])
       setWordLengthConfirmed(false)
-      console.log('worldLengthConfirmed: ', wordLengthConfirmed)
    }
 
    const shootWord = (index, word) => {
       if (filteredWords.length < 2) return
       shoot()
-      console.log(word, index)
+
       const tempArray = [...filteredWords]
       tempArray.splice(index, 1)
       setFilteredWords(tempArray)
       setTempFilteredWords(tempArray)
-      console.log('NEW ARRAY: ', filteredWords)
    }
 
    return (
@@ -242,7 +238,6 @@ export default function KsSpellingConsole({ children }) {
                               />
                            </div>
                         </KsSpellingConfigForm>
-                        <div></div>
                      </div>
                   )}
                </div>
@@ -294,12 +289,12 @@ export default function KsSpellingConsole({ children }) {
                            </p>
                         )}
                         {filteredWords !== tempFilteredWords && (
-                           <p>
+                           <div>
                               {' '}
                               <span className='wordCount '>
                                  {tempFilteredWords.length} words
                               </span>{' '}
-                              <div
+                              <span
                                  style={{
                                     fontFamily:
                                        'Permanent Marker',
@@ -315,7 +310,8 @@ export default function KsSpellingConsole({ children }) {
                                     text='Filtering........'
                                     isLooping
                                  />{' '}
-                              </div>
+                              </span>
+                              <br />
                               {tempFilteredWords.map(
                                  (word, index) => (
                                     <span
@@ -333,7 +329,7 @@ export default function KsSpellingConsole({ children }) {
                                  )
                               )}
                               <br />
-                           </p>
+                           </div>
                         )}
                      </div>
                      <br />

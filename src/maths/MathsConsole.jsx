@@ -121,14 +121,10 @@ export default function MathsConsole() {
    }
 
    const handleMinusSwitch = (checked) => {
-      console.log('minus: ', checked)
       setUseMinus(checked)
    }
 
    const compileMathsParams = () => {
-      console.log('hiddenBox: ', hiddenBox)
-      console.log('hiddenBox.length: ', hiddenBox.length)
-
       // let mathsData = {
       //    title: title,
       //    numQuestions: numQuestions,
@@ -154,18 +150,15 @@ export default function MathsConsole() {
       navigate(`./data?${queryParams.toString()}`)
    }
 
-   useEffect(() => {
-      console.log('operators state updated:', operators)
-   }, [operators])
+   // useEffect(() => {
+   //    console.log('operators state updated:', operators)
+   // }, [operators])
 
    const handleTimerSwitch = (checked) => {
-      console.log('checked: ', checked)
       setUseTimer(checked)
-      console.log('useTimer: ', useTimer)
    }
 
    const handleDurationChange = (value) => {
-      console.log('value: ', value)
       setDuration(value)
    }
 
@@ -229,10 +222,10 @@ export default function MathsConsole() {
                         <Col span={14}>
                            <Slider
                               min={1}
-                              max={30}
+                              max={50}
                               onChange={(value) => {
                                  setNumQuestions(value)
-                                 console.log(numQuestions)
+                                 // console.log(numQuestions)
                               }}
                               value={numQuestions}
                            />
@@ -240,7 +233,7 @@ export default function MathsConsole() {
                         <Col span={2}>
                            <InputNumber
                               min={1}
-                              max={30}
+                              max={50}
                               style={{
                                  margin: '0 16px',
                               }}
@@ -275,7 +268,7 @@ export default function MathsConsole() {
                            }}
                            step={30}
                            min={30}
-                           max={360}
+                           max={600}
                            // value={[lowerValue, upperValue]}
                            trackStyle={{
                               backgroundColor: 'lightgreen',
@@ -456,7 +449,7 @@ export default function MathsConsole() {
                            <Slider
                               autofocus={true}
                               vertical
-                              // dots={true}
+                              dots={true}
                               tooltip={{
                                  open: true,
                               }}
@@ -467,7 +460,7 @@ export default function MathsConsole() {
                               defaultValue={[1, 12]}
                               onChange={(values) => {
                                  setAValues(values)
-                                 console.log(values)
+                                 // console.log(values)
                               }}
                            />
                         </div>
@@ -568,7 +561,7 @@ export default function MathsConsole() {
                            <Slider
                               autofocus={true}
                               vertical
-                              // dots={true}
+                              dots={true}
                               tooltip={{
                                  open: true,
                               }}

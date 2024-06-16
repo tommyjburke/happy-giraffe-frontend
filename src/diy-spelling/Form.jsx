@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 // import { getHumanSpeech } from '../jsFunctions/humanSpeech.js'
 import { verifyHumanSpeech } from '../jsFunctions/humanSpeech.js'
 import DragDrop from './DragDrop.jsx'
+import { message } from 'antd'
 
 import { Popover } from 'antd'
 
@@ -24,6 +25,7 @@ export default function Form({
    duplicatesError,
    setIsProcessing,
 }) {
+   const [messageApi, contextHolder] = message.useMessage()
    // const [messageApi, contextHolder] = message.useMessage()
    // const { isLoading, toggleLoading, wordData, updateWordData } =
    //    useContext(LoadingContext)
@@ -35,7 +37,7 @@ export default function Form({
    // const [duplicates, setDuplicates] = useState()
    const [transcript, setTranscript] = useState('')
    const [isListening, setIsListening] = useState(false)
-   console.log(transcript)
+   // console.log(transcript)
    // function handleSliderChange(event) {
    //    setSpeechSpeed(parseFloat(event.target.value))
    // }
@@ -134,11 +136,27 @@ export default function Form({
 
       const spellingArray = cleanWords(userWords)
 
+      if (spellingArray.length > 40) {
+         messageApi.open({
+            type: 'none',
+            content:
+               '⛔️  Only the first 40 words will seek a human voice!',
+            className: 'custom-class',
+            style: {
+               marginTop: '10vh',
+               fontSize: '1.2rem',
+               fontFamily: 'Schoolbell',
+            },
+         })
+      }
+
       // console.log('spelling array', spellingArray)
 
       setIsProcessing(true)
 
       let duplicatesFound = []
+
+      let count = 0
 
       for (let i = 0; i < spellingArray.length; i++) {
          // console.log('now processing:', spellingArray[i])
@@ -149,8 +167,39 @@ export default function Form({
             continue
          }
 
-         const { hasHumanVoice, synonyms } =
-            await verifyHumanSpeech(spellingArray[i])
+         const doesWordExist = words.some(
+            (word) =>
+               word.spelling.toLowerCase() ===
+               spellingArray[i].toLowerCase()
+         )
+
+         if (doesWordExist) {
+            // console.log('DUPLICATE: ', spellingArray[i])
+            duplicatesFound.push(spellingArray[i])
+            // duplicatesError()
+            continue
+         }
+         count++
+         // console.log('COUNT: ', count)
+
+         let synonyms
+         let hasHumanVoice
+
+         // console.log('i: ', i, 'word: ', spellingArray[i])
+         if (count < 40) {
+            const {
+               hasHumanVoice: humanVoiceCheck,
+               synonyms: synonymsCheck,
+            } = await verifyHumanSpeech(spellingArray[i])
+            hasHumanVoice = humanVoiceCheck
+            synonyms = synonymsCheck
+         } else {
+            hasHumanVoice = false
+            synonyms = []
+         }
+
+         // const { hasHumanVoice, synonyms } =
+         //    await verifyHumanSpeech(spellingArray[i])
 
          // console.log('icon: ', icon)
          // console.log('hasHumanVoice: ', hasHumanVoice)
@@ -162,7 +211,7 @@ export default function Form({
             synonyms,
             hasHumanVoice,
             // icon,
-            id: Date.now(),
+            id: `${i}-${Date.now()}`,
             spelling: spellingArray[i],
             scrambled,
             // quantity,
@@ -171,20 +220,23 @@ export default function Form({
             verdict: null,
             showButton: true,
          }
+         // console.log('newWord id: ', newWord.id)
 
          // handleAddWord(newWord)
-         const isWordExists = words.some(
-            (word) =>
-               word.spelling.toLowerCase() ===
-               newWord.spelling.toLowerCase()
-         )
+         // const isWordExists = words.some(
+         //    (word) =>
+         //       word.spelling.toLowerCase() ===
+         //       newWord.spelling.toLowerCase()
+         // )
 
-         if (!isWordExists) {
-            handleAddWord(newWord)
-         } else {
-            duplicatesFound.push(newWord.spelling)
-            // console.log(`${newWord.spelling} is a duplicate`)
-         }
+         // if (!isWordExists) {
+         //    handleAddWord(newWord)
+         // } else {
+         //    duplicatesFound.push(newWord.spelling)
+         //    // console.log(`${newWord.spelling} is a duplicate`)
+         // }
+
+         handleAddWord(newWord)
       }
 
       let allDuplicates = duplicatesFound.join(', ')
@@ -247,7 +299,7 @@ export default function Form({
 
    return (
       <div>
-         {/* {contextHolder} */}
+         {contextHolder}
 
          {/* <div className='formBar'>
             <FormContainer>

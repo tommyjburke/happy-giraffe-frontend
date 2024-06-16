@@ -80,19 +80,61 @@ function DragDrop({
 
          const spellingArray = cleanedWords
 
+         if (!spellingArray) return
+
+         if (spellingArray.length > 40) {
+            messageApi.open({
+               type: 'none',
+               content:
+                  '⛔️  Only the first 40 words will seek a human voice!',
+               className: 'custom-class',
+               style: {
+                  marginTop: '10vh',
+                  fontSize: '1.2rem',
+                  fontFamily: 'Schoolbell',
+               },
+            })
+         }
+
          let duplicatesFound = []
-
+         let count = 0
          for (let i = 0; i < spellingArray.length; i++) {
-            // console.log('now processing:', spellingArray[i])
-
             if (spellingArray[i].length > 12) {
-               console.log('TOO LONG: ', spellingArray[i])
+               // console.log('TOO LONG: ', spellingArray[i])
                longWordsError()
                continue
             }
 
-            const { hasHumanVoice, synonyms } =
-               await verifyHumanSpeech(spellingArray[i])
+            const doesWordExist = words.some(
+               (word) =>
+                  word.spelling.toLowerCase() ===
+                  spellingArray[i].toLowerCase()
+            )
+
+            if (doesWordExist) {
+               // console.log('DUPLICATE: ', spellingArray[i])
+               duplicatesFound.push(spellingArray[i])
+               // duplicatesError()
+               continue
+            }
+            count++
+            // console.log('COUNT: ', count)
+
+            let synonyms
+            let hasHumanVoice
+
+            // console.log('i: ', i, 'word: ', spellingArray[i])
+            if (count < 40) {
+               const {
+                  hasHumanVoice: humanVoiceCheck,
+                  synonyms: synonymsCheck,
+               } = await verifyHumanSpeech(spellingArray[i])
+               hasHumanVoice = humanVoiceCheck
+               synonyms = synonymsCheck
+            } else {
+               hasHumanVoice = false
+               synonyms = []
+            }
 
             // console.log('icon: ', icon)
             // console.log('hasHumanVoice: ', hasHumanVoice)
@@ -104,7 +146,7 @@ function DragDrop({
                synonyms,
                hasHumanVoice,
                // icon,
-               id: Date.now(),
+               id: `${Date.now()}+${i}`,
                spelling: spellingArray[i],
                scrambled,
                // quantity,
@@ -115,18 +157,20 @@ function DragDrop({
             }
 
             // handleAddWord(newWord)
-            const isWordExists = words.some(
-               (word) =>
-                  word.spelling.toLowerCase() ===
-                  newWord.spelling.toLowerCase()
-            )
+            // const isWordExists = words.some(
+            //    (word) =>
+            //       word.spelling.toLowerCase() ===
+            //       newWord.spelling.toLowerCase()
+            // )
 
-            if (!isWordExists) {
-               handleAddWord(newWord)
-            } else {
-               duplicatesFound.push(newWord.spelling)
-               // console.log(`${newWord.spelling} is a duplicate`)
-            }
+            // if (!isWordExists) {
+            //    handleAddWord(newWord)
+            // } else {
+            //    duplicatesFound.push(newWord.spelling)
+            //    // console.log(`${newWord.spelling} is a duplicate`)
+            // }
+
+            handleAddWord(newWord)
          }
 
          let allDuplicates = duplicatesFound.join(', ')

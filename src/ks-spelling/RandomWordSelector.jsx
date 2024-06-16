@@ -11,7 +11,6 @@ const RandomWordSelector = ({
    filteredWordsLength,
    wordLengthConfirmed,
 }) => {
-   // console.log('RANDOM STARTING', wordArray)
    const [selectedWords, setSelectedWords] = useState([])
    const [userNumber, setUserNumber] = useState()
 
@@ -23,11 +22,6 @@ const RandomWordSelector = ({
       setUserNumber(filteredWords.length)
    }, [filteredWords])
 
-   console.log(
-      'RandomWordSelector length: ',
-      filteredWords.length
-   )
-   console.log('UserNumber: ', userNumber)
    const [randomWordsMax, setRandomWordsMax] = useState()
 
    // useEffect(() => {
@@ -68,8 +62,6 @@ const RandomWordSelector = ({
          // filteredWords.splice(randomIndex, 1)
       }
 
-      console.log('randomWords: ', randomWords)
-
       // const shuffledWords = filteredWords.sort(
       //    () => Math.random() - 0.5
       // )
@@ -80,7 +72,6 @@ const RandomWordSelector = ({
 
       setSelectedWords(randomWords)
       setTempFilteredWords(randomWords)
-      console.log('tempFilteredWords: ', tempFilteredWords)
    }
 
    // useEffect(() => {
@@ -93,10 +84,6 @@ const RandomWordSelector = ({
    // }, [filteredWords])
 
    useEffect(() => {
-      console.log(
-         'filteredWords.length in RANDOM: ',
-         filteredWords.length
-      )
       setUserNumber(filteredWords.length)
    }, [filteredWords.length])
 
@@ -127,7 +114,7 @@ const RandomWordSelector = ({
                // horizontal
                // range
                disabled={!wordLengthConfirmed}
-               dots={true}
+               // dots={true}
                step={1}
                min={1}
                max={filteredWords.length}
@@ -138,7 +125,6 @@ const RandomWordSelector = ({
                // }}
                // railStyle={{ backgroundColor: 'grey' }}
                onChange={(value) => {
-                  console.log('VALUE: ', value)
                   selectRandomWords(value)
                   handleNumberChange(value)
                }}
@@ -157,24 +143,6 @@ const RandomWordSelector = ({
                </button>
             )}
          </div>
-         {/* <button
-            onClick={() => {
-               console.log('filteredWORDS: ', filteredWords)
-               console.log(
-                  'tempFilteredWords: ',
-                  tempFilteredWords
-               )
-            }}
-         ></button> */}
-         {/* {selectedWords !== filteredWords && (
-            <button>CONFIRM</button>
-         )} */}
-         {/* <h2>Selected Words:</h2> */}
-         {/* <ul>
-            {selectedWords.map((word, index) => (
-               <li key={index}>{word}</li>
-            ))}
-         </ul> */}
       </div>
    )
 }

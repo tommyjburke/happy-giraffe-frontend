@@ -23,7 +23,7 @@ export default function PlaySpellingGame({
    useTimer,
    duration,
 }) {
-   console.log('PLAY SPELLING GAME TIMER: ', useTimer)
+   // console.log('PLAY SPELLING GAME TIMER: ', useTimer)
    const [speechSpeed, setSpeechSpeed] = useState(0.6)
    const [userAttempts, setUserAttempts] = useState(words)
    //    const [percentage, setPercentage] = useState(0)
@@ -78,7 +78,7 @@ export default function PlaySpellingGame({
    const inputRefs = useRef([])
    const handleGenerateReward = () => {
       if (rewardsRef.current) {
-         console.log('rewardsRef.current: ', rewardsRef.current)
+         // console.log('rewardsRef.current: ', rewardsRef.current)
          rewardsRef.current.generateReward()
       } else {
          console.error('rewardsRef.current is null')
@@ -191,11 +191,11 @@ export default function PlaySpellingGame({
       newWords[index].userGuess = guess
       // console.log('guess: ', guess)
 
-      setUserAttempts(newWords)
-      console.log('userAttempts: ', userAttempts)
+      // setUserAttempts(newWords)
+      // console.log('userAttempts: ', userAttempts)
 
       setWords(newWords)
-      console.log('words: ', words)
+      // console.log('words: ', words)
    }
 
    const checkGuess = (index, verdict) => {
@@ -306,13 +306,13 @@ export default function PlaySpellingGame({
                                  }
                               >
                                  <button
-                                    onClick={() => {
-                                       console.log(
-                                          'URL length:',
-                                          window.location.href
-                                             .length
-                                       )
-                                    }}
+                                    // onClick={() => {
+                                    //    console.log(
+                                    //       'URL length:',
+                                    //       window.location.href
+                                    //          .length
+                                    //    )
+                                    // }}
                                     style={{
                                        float: 'right',
                                        backgroundColor:
@@ -367,7 +367,7 @@ export default function PlaySpellingGame({
                               #
                            </th>
                         </Popover>
-                        <th className='g7'>CHECK</th>
+                        <th className='g7'>✅</th>
                      </tr>
                   </thead>
                   <tbody>
@@ -449,7 +449,7 @@ export default function PlaySpellingGame({
       setUseTimerTemp(false)
       setDisableAllInputs(true)
       setShowResultsModal(true)
-      console.log('TIME UP')
+      // console.log('TIME UP')
       // setTimeUp(true)
       // displayResults()
       // setDisableInputs(true)
@@ -469,8 +469,8 @@ export default function PlaySpellingGame({
                opacity: '0.9',
                zIndex: 2000,
                overflowY: 'visible',
-               padding: '0px 30px 0px 1px',
-               marginRight: '3px',
+               // padding: '0px 30px 0px 1px',
+               // marginRight: '3px',
             }}
          >
             {/* <Rewards ref={rewardsRef} /> */}

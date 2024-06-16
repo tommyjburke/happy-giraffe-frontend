@@ -1,8 +1,9 @@
-import { Slider, Switch } from 'antd'
+import { Slider, Space, Switch, Popconfirm, Popover } from 'antd'
 // import RandomWordSelector from './RandomWordSelector'
 // import WordFilterLength from './LettersFilterLength'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { WarningOutlined } from '@ant-design/icons'
 
 function convertSecondsToMinutes(seconds) {
    const minutes = Math.floor(seconds / 60)
@@ -27,7 +28,7 @@ export default function KsSpellingConfigForm({
    setWordLengthConfirmed,
 }) {
    const navigate = useNavigate()
-   // console.log('LESSON TO FORM: ', lesson)
+
    const currentDate = new Date()
    let todaysDate = currentDate
       .toLocaleDateString('zh-UK')
@@ -35,7 +36,9 @@ export default function KsSpellingConfigForm({
 
    const [useTimer, setUseTimer] = useState(false)
    const [timerSeconds, setTimerSeconds] = useState(60)
-   const [customTitle, setCustomTitle] = useState(todaysDate)
+   const [customTitle, setCustomTitle] = useState(
+      `KS ${todaysDate}`
+   )
    const [newUri, setNewUri] = useState('')
 
    const handleChange = (e) => {
@@ -52,7 +55,7 @@ export default function KsSpellingConfigForm({
 
    const compileData = (e) => {
       // e.preventDefault()
-      console.log('SUBMITTED')
+
       const gameDataObjects = {
          timerSeconds: timerSeconds,
          lessonName: lesson.name,
@@ -64,8 +67,6 @@ export default function KsSpellingConfigForm({
       const encodedWordArray = btoa(
          JSON.stringify(filteredWords)
       )
-
-      // console.log('gameDataObjects: ', gameDataObjects)
 
       const queryParams = new URLSearchParams({
          customTitle: customTitle,
@@ -84,8 +85,6 @@ export default function KsSpellingConfigForm({
 
       setNewUri(uriString)
 
-      console.log('uriString: ', uriString)
-
       // const localHost = 'http://localhost:3000'
 
       // setQrCode(localHost + '/ks/?' + uriString)
@@ -95,14 +94,29 @@ export default function KsSpellingConfigForm({
       // navigate(`/?${queryParams.toString()}`)
    }
 
+   const saveButton = () => {
+      setFilteredWords(tempFilteredWords)
+      compileData()
+   }
+
+   const tooManyWords = (
+      <span
+         style={{
+            fontFamily: 'Permanent Marker',
+            fontSize: '1.0rem',
+         }}
+      >
+         Too many words (over 40) may provide unreliable
+         retrieval of (human) voice samples
+      </span>
+   )
+
    // useEffect(() => {
    //    setHasQrCode(false)
    // })
 
    const handleTimerSwitch = (checked) => {
-      console.log('checked: ', checked)
       setUseTimer(checked)
-      console.log('useTimer: ', useTimer)
    }
 
    return (
@@ -159,7 +173,7 @@ export default function KsSpellingConfigForm({
                      unCheckedChildren='off'
                      onChange={handleTimerSwitch}
                   />
-                  {useTimer ? 'Timer On' : 'Timer Off'}
+                  {/* {useTimer ? 'Timer On' : 'Timer Off'} */}
                   <label>Timer (seconds): </label>
                   <div
                      style={{
@@ -175,7 +189,7 @@ export default function KsSpellingConfigForm({
                         }}
                         step={30}
                         min={30}
-                        max={360}
+                        max={600}
                         // value={[lowerValue, upperValue]}
                         trackStyle={{
                            backgroundColor: 'lightgreen',
@@ -183,7 +197,6 @@ export default function KsSpellingConfigForm({
                         defaultValue={timerSeconds}
                         // railStyle={{ backgroundColor: 'grey' }}
                         onChange={(value) => {
-                           console.log('VALUE: ', value)
                            setTimerSeconds(value)
                         }}
                      />
@@ -208,37 +221,76 @@ export default function KsSpellingConfigForm({
                </div>
                <br />
                <div>
-                  <button
-                     className='cancelBtn'
-                     style={
-                        {
-                           // position: 'relative',
-                           // bottom: '5px',
-                           // float: 'right',
+                  <Space>
+                     <button
+                        className='cancelBtn'
+                        style={
+                           {
+                              // position: 'relative',
+                              // bottom: '5px',
+                              // float: 'right',
+                           }
                         }
-                     }
-                     onClick={() => {
-                        // setUseTimerTimer(false)
-                        setFilteredWords(wordArray)
-                        setTempFilteredWords(wordArray)
-                        setWordLengthConfirmed(false)
-                     }}
-                  >
-                     Re-Load Words
-                  </button>
+                        onClick={() => {
+                           // setUseTimerTimer(false)
+                           setFilteredWords(wordArray)
+                           setTempFilteredWords(wordArray)
+                           setWordLengthConfirmed(false)
+                        }}
+                     >
+                        Re-Load Words
+                     </button>
 
-                  <button
-                     onClick={() => {
-                        setFilteredWords(tempFilteredWords)
-                        compileData()
-                     }}
-                     style={{
-                        float: 'right',
-                        backgroundColor: 'green',
-                     }}
-                  >
-                     Save
-                  </button>
+                     {filteredWords.length > 40 ? (
+                        <Popover content={tooManyWords}>
+                           <Popconfirm
+                              title='WARNING'
+                              description={tooManyWords}
+                              onConfirm={saveButton}
+                              // onCancel={cancel}
+                              okText='Continue'
+                              cancelText='Back'
+                           >
+                              <button
+                                 // onClick={() => {
+                                 //    setFilteredWords(tempFilteredWords)
+                                 //    compileData()
+                                 // }}
+                                 style={{
+                                    float: 'right',
+                                    backgroundColor: 'green',
+                                 }}
+                              >
+                                 Save{' '}
+                                 <span style={{ color: 'red' }}>
+                                    <WarningOutlined />
+                                 </span>
+                              </button>
+                           </Popconfirm>
+                        </Popover>
+                     ) : (
+                        <button
+                           onClick={() => {
+                              setFilteredWords(tempFilteredWords)
+                              compileData()
+                           }}
+                           style={{
+                              float: 'right',
+                              backgroundColor: 'green',
+                           }}
+                        >
+                           Save{' '}
+                           <span style={{ color: 'red' }}></span>
+                        </button>
+                     )}
+                     <span
+                        style={{
+                           float: 'right',
+                           fontSize: '2rem',
+                           color: 'red',
+                        }}
+                     ></span>
+                  </Space>
                </div>
                {/* {newUri && (
                <Link to={`/ks-test/${newUri}`}>
