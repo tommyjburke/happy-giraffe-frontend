@@ -207,7 +207,7 @@ export default function ResultsModal({
                            </td>
                            <td className=' r1b gold-background'>
                               A: 85-100{' '}
-                              <span className='resultsIcon'>
+                              <span className='resultsIcon result-a'>
                                  🤩
                               </span>
                            </td>
@@ -220,7 +220,7 @@ export default function ResultsModal({
                            </td>
                            <td className=' r1b silver-background'>
                               B: 70-85{' '}
-                              <span className='resultsIcon'>
+                              <span className='resultsIcon result-b'>
                                  😇
                               </span>
                            </td>
@@ -231,9 +231,9 @@ export default function ResultsModal({
                                  percentage < 70 &&
                                  you}
                            </td>
-                           <td className=' r1b bronze-background'>
+                           <td className=' r1b bronze-background '>
                               C: 50-70{' '}
-                              <span className='resultsIcon'>
+                              <span className='resultsIcon result-c'>
                                  🧐
                               </span>
                            </td>
@@ -244,9 +244,9 @@ export default function ResultsModal({
                                  percentage < 50 &&
                                  you}
                            </td>
-                           <td className=' r1b rainbow-background'>
+                           <td className=' r1b rainbow-background '>
                               D: 20-50{' '}
-                              <span className='resultsIcon'>
+                              <span className='resultsIcon result-d'>
                                  🤡
                               </span>
                            </td>
@@ -269,7 +269,7 @@ export default function ResultsModal({
                               }}
                            >
                               E: 0-20{' '}
-                              <span className='resultsIcon'>
+                              <span className='resultsIcon result-e'>
                                  😩
                               </span>
                            </td>

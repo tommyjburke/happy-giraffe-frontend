@@ -487,7 +487,25 @@
 
 .resultsIcon {
    font-size: 1.5rem;
-   animation: rotate 1s infinite;
+}
+.result-a {
+   animation: rotate 0.5s infinite ease-in-out;
+}
+
+.result-b {
+   animation: rotate 1s infinite ease-in-out;
+}
+
+.result-c {
+   animation: rotate 1.5s infinite ease-in-out;
+}
+
+.result-d {
+   animation: rotate 2.5s infinite ease-in-out;
+}
+
+.result-e {
+   animation: rotate 4.5s infinite ease-in-out;
 }
 
 .image-cell {
