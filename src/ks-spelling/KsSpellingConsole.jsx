@@ -94,16 +94,22 @@ export default function KsSpellingConsole({ children }) {
       return (
          <div className='yearButtons buttonsContainer'>
             {lessons.map((lesson) => (
-               <button
-                  className='menuButton'
-                  key={lesson.name}
-                  onClick={() => {
-                     setWordLengthConfirmed(false)
-                     handleLessonClick(lesson)
-                  }}
+               <Popover
+                  content={`${lesson.name} : ${lesson.description} : ${lesson.wordArray.length} words`}
+                  // title={lesson.name}
+                  // style={{ fontFamily: 'Permanent Marker' }}
                >
-                  {lesson.name}
-               </button>
+                  <button
+                     className='menuButton'
+                     key={lesson.name}
+                     onClick={() => {
+                        setWordLengthConfirmed(false)
+                        handleLessonClick(lesson)
+                     }}
+                  >
+                     {lesson.name}
+                  </button>
+               </Popover>
             ))}
             <button
                className='backButtonStyle'

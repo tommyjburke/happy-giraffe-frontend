@@ -146,6 +146,10 @@ export default function KsSpellingConfigForm({
                         value={lesson?.name}
                         onChange={handleChange}
                         disabled={true}
+                        style={{
+                           fontFamily: 'Permanent Marker',
+                           color: 'var(--myBrown)',
+                        }}
                      />
                   </label>
                </div>
@@ -161,7 +165,8 @@ export default function KsSpellingConfigForm({
                         style={{
                            // fontColor: 'var(--myBrown)',
                            fontSize: '1rem',
-                           fontColor: 'red !important',
+                           fontFamily: 'Permanent Marker',
+                           color: 'var(--myBrown)',
                         }}
                      />
                   </label>

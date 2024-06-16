@@ -13,10 +13,12 @@ const RandomWordSelector = ({
 }) => {
    const [selectedWords, setSelectedWords] = useState([])
    const [userNumber, setUserNumber] = useState()
+   // const [tempFilteredWords, setTempFilteredWords] =
+   //    useState(filteredWords)
 
-   useState(() => {
-      setTempFilteredWords(filteredWords)
-   })
+   // useState(() => {
+   //    setTempFilteredWords(filteredWords)
+   // })
 
    useEffect(() => {
       setUserNumber(filteredWords.length)
@@ -49,26 +51,18 @@ const RandomWordSelector = ({
 
    const selectRandomWords = (userNumber) => {
       const randomWords = []
-      // const wordCount = Math.min(
-      //    userNumber,
-      //    filteredWords.length
-      // )
 
+      const selectedIndices = []
       for (let i = 0; i < userNumber; i++) {
-         const randomIndex = Math.floor(
-            Math.random() * filteredWords.length
-         )
+         let randomIndex
+         do {
+            randomIndex = Math.floor(
+               Math.random() * filteredWords.length
+            )
+         } while (selectedIndices.includes(randomIndex))
+         selectedIndices.push(randomIndex)
          randomWords.push(filteredWords[randomIndex])
-         // filteredWords.splice(randomIndex, 1)
       }
-
-      // const shuffledWords = filteredWords.sort(
-      //    () => Math.random() - 0.5
-      // )
-
-      // for (let i = 0; i < userNumber; i++) {
-      //    randomWords.push(shuffledWords[i])
-      // }
 
       setSelectedWords(randomWords)
       setTempFilteredWords(randomWords)
