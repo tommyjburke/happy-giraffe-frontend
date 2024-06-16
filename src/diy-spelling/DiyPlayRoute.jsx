@@ -70,18 +70,16 @@ export default function DiyPlayRoute() {
             }}
          >
             <h3>
+               <span className='numQuestionsHeaderSpan'>
+                  {gameWords.length}{' '}
+                  {gameWords.length > 1 ? 'words' : 'word'}
+               </span>
                <span className='timerHeaderSpan'>
                   {' '}
                   Timer:{' '}
                   {useTimer ? `${duration} seconds` : 'off'}
                </span>
             </h3>
-            <p>
-               <span className='numQuestionsHeaderSpan'>
-                  {gameWords.length}{' '}
-                  {gameWords.length > 1 ? 'words' : 'word'}
-               </span>
-            </p>
          </div>
 
          <PlaySpellingGame

@@ -413,7 +413,7 @@ th {
    border-left: none;
    border-right: none;
    border-top: none;
-   border-bottom: dashed 1px var(--myYellow);
+   /* border-bottom: dashed 1px var(--myYellow); */
    text-align: center;
    vertical-align: middle;
    justify-content: center;

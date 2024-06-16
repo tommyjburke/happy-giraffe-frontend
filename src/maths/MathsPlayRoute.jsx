@@ -215,31 +215,47 @@ export default function MathsPlayRoute() {
 
       let nextIndex = rowIndex + 1
       const totalQuestions = mathsObjects.length
-      const firstNonCompletedIndex = mathsObjects.findIndex(
-         (mathsObject) => mathsObject.verdict === ''
-      )
-      if (nextIndex >= totalQuestions) {
-         nextIndex =
-            firstNonCompletedIndex === -1
-               ? 0
-               : mathsObjects.findIndex(
-                    (mathsObject) => mathsObject.verdict === '',
-                    0
-                 )
+
+      // Function to find the next index with verdict = ''
+      function findNextAvailableIndex(startIndex) {
+         for (let i = startIndex; i < totalQuestions; i++) {
+            if (mathsObjects[i].verdict === '') {
+               return i
+            }
+         }
+         return -1 // Return -1 if not found
       }
-      while (
-         nextIndex < totalQuestions &&
-         mathsObjects[nextIndex] &&
-         mathsObjects[nextIndex].verdict !== ''
-      ) {
-         nextIndex++
+
+      // Find the next index from current position
+      nextIndex = findNextAvailableIndex(nextIndex)
+
+      // If not found, wrap around and start from the beginning
+      if (nextIndex === -1) {
+         nextIndex = findNextAvailableIndex(0)
       }
-      if (
-         nextIndex < totalQuestions &&
-         mathsObjects[nextIndex]
-      ) {
+
+      // If still not found, then all are completed, do nothing
+      if (nextIndex !== -1) {
          handleRowClick(nextIndex)
+
+         setTimeout(() => {
+            if (
+               inputRefs.current &&
+               inputRefs.current[nextIndex]
+            ) {
+               inputRefs.current[nextIndex].scrollIntoView({
+                  behavior: 'smooth',
+                  block: 'center',
+               })
+            }
+         }, 100)
       }
+
+      // if (inputRefs.current && inputRefs.current[rowIndex]) {
+      //    inputRefs.current[rowIndex].scrollIntoView({
+      //       behavior: 'smooth',
+      //    })
+      // }
 
       setMathsObjects((prevMathsObjects) => {
          const newMathsObjects = [...prevMathsObjects]

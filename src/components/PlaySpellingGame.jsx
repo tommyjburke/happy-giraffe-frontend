@@ -46,35 +46,9 @@ export default function PlaySpellingGame({
    const [disableAllInputs, setDisableAllInputs] =
       useState(false)
 
-   // const [playSound1] = useSound(correctSound1)
-   // const [playSound2] = useSound(correctSound2)
-   // const [playSound3] = useSound(correctSound3)
-
-   // const [playSound4] = useSound(correctSound4)
-   // const [playSound5] = useSound(correctSound)
-
-   // const sounds = [
-   //    playSound1,
-   //    playSound2,
-   //    playSound3,
-   //    playSound4,
-   //    playSound5,
-   // ]
-
-   // const playCorrectSound = () => {
-   //    const randomIndex = Math.floor(
-   //       Math.random() * sounds.length
-   //    )
-   //    sounds[randomIndex]()
-   // }
-
    const [playCorrectSound] = useSound(correctSound3)
    const [playWrongSound] = useSound(wrongSound)
 
-   // const handleGenerateReward = () => {
-   //    console.log('rewardsRef.current: ', rewardsRef.current)
-   //    rewardsRef.current.generateReward()
-   // }
    const topRef = useRef(null)
    const rewardsRef = useRef(null)
    const inputRefs = useRef([])
@@ -86,12 +60,6 @@ export default function PlaySpellingGame({
          console.error('rewardsRef.current is null')
       }
    }
-
-   // useEffect(() => {
-   //    console.log('rewardsRef after mount:', rewardsRef.current)
-   //    const currentURL = window.location.href
-   //    console.log('~~~~~~PlaySpellingGame URL: ', currentURL)
-   // }, [])
 
    const [messageApi, contextHolder] = message.useMessage()
    const robotMessage = () => {
@@ -238,26 +206,64 @@ export default function PlaySpellingGame({
 
       // handleRowClick(index + 1)
 
+      // let nextIndex = index + 1
+      // const totalQuestions = words.length
+      // const firstNonCompletedIndex = words.findIndex(
+      //    (word) => word.verdict === ''
+      // )
+      // if (nextIndex >= totalQuestions) {
+      //    nextIndex =
+      //       firstNonCompletedIndex === -1
+      //          ? 0
+      //          : words.findIndex((word) => word.verdict === '')
+      // }
+      // while (
+      //    nextIndex < totalQuestions &&
+      //    words[nextIndex] &&
+      //    words[nextIndex].verdict !== ''
+      // ) {
+      //    nextIndex++
+      // }
+      // if (nextIndex < totalQuestions && words[nextIndex]) {
+      //    handleRowClick(nextIndex)
+      // }
+
       let nextIndex = index + 1
       const totalQuestions = words.length
-      const firstNonCompletedIndex = words.findIndex(
-         (word) => word.verdict === ''
-      )
-      if (nextIndex >= totalQuestions) {
-         nextIndex =
-            firstNonCompletedIndex === -1
-               ? 0
-               : words.findIndex((word) => word.verdict === '')
+
+      // Function to find the next index with verdict = ''
+      function findNextAvailableIndex(startIndex) {
+         for (let i = startIndex; i < totalQuestions; i++) {
+            if (words[i].verdict === '') {
+               return i
+            }
+         }
+         return -1 // Return -1 if not found
       }
-      while (
-         nextIndex < totalQuestions &&
-         words[nextIndex] &&
-         words[nextIndex].verdict !== ''
-      ) {
-         nextIndex++
+
+      // Find the next index from current position
+      nextIndex = findNextAvailableIndex(nextIndex)
+
+      // If not found, wrap around and start from the beginning
+      if (nextIndex === -1) {
+         nextIndex = findNextAvailableIndex(0)
       }
-      if (nextIndex < totalQuestions && words[nextIndex]) {
+
+      // If still not found, then all are completed, do nothing
+      if (nextIndex !== -1) {
          handleRowClick(nextIndex)
+
+         setTimeout(() => {
+            if (
+               inputRefs.current &&
+               inputRefs.current[nextIndex]
+            ) {
+               inputRefs.current[nextIndex].scrollIntoView({
+                  behavior: 'smooth',
+                  block: 'center',
+               })
+            }
+         }, 100)
       }
 
       const numCorrect = words.filter(
