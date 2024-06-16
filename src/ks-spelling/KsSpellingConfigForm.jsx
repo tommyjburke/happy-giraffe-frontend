@@ -4,6 +4,8 @@ import { Slider, Space, Switch, Popconfirm, Popover } from 'antd'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { WarningOutlined } from '@ant-design/icons'
+import useSound from 'use-sound'
+import switchSound from '../media/switch.mp3'
 
 function convertSecondsToMinutes(seconds) {
    const minutes = Math.floor(seconds / 60)
@@ -40,6 +42,8 @@ export default function KsSpellingConfigForm({
       `KS ${todaysDate}`
    )
    const [newUri, setNewUri] = useState('')
+
+   const [playSwitch] = useSound(switchSound)
 
    const handleChange = (e) => {
       const { name, value, type, checked } = e.target
@@ -116,6 +120,7 @@ export default function KsSpellingConfigForm({
    // })
 
    const handleTimerSwitch = (checked) => {
+      playSwitch()
       setUseTimer(checked)
    }
 
@@ -148,7 +153,8 @@ export default function KsSpellingConfigForm({
                         disabled={true}
                         style={{
                            fontFamily: 'Permanent Marker',
-                           color: 'var(--myBrown)',
+                           color: 'brown',
+                           fontSize: '1rem',
                         }}
                      />
                   </label>

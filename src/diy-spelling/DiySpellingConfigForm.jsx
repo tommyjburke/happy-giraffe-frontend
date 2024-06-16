@@ -12,6 +12,7 @@ import useSound from 'use-sound'
 import scramble from '../media/scramble.mp3'
 // import { CheckOutlined, CloseOutlined } from '@ant-design/icons'
 import { Switch, Slider } from 'antd'
+import switchSound from '../media/switch.mp3'
 
 export default function DiySpellingConfigForm({
    words,
@@ -41,6 +42,7 @@ export default function DiySpellingConfigForm({
    const inputRefs = useRef([])
 
    const [playScramble] = useSound(scramble)
+   const [playSwitch] = useSound(switchSound)
 
    // const handleDivClick = (index) => {
    //    inputRefs.current[index].focus()
@@ -507,6 +509,7 @@ export default function DiySpellingConfigForm({
                            unCheckedChildren='off'
                            size='large'
                            onChange={(checked) => {
+                              playSwitch()
                               setUseTimer(checked)
                            }}
                            // defaultChecked

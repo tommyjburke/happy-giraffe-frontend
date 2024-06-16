@@ -122,6 +122,9 @@ export default function App() {
                   colorPrimaryActive: 'var(--mYellow)',
                   colorPrimaryHover: 'var(--myYellow)',
                },
+               InputNumber: {
+                  controlWidth: 42,
+               },
                Slider: {
                   handleColor: 'var(--myOrange)',
                   dotActiveBorderColor: 'brown',
@@ -129,6 +132,8 @@ export default function App() {
                   railBg: 'darkgray',
                   trackBg: 'var(--myBrown)',
                   trackHoverBg: 'brown',
+                  handleSize: 20,
+                  railSize: 6,
 
                   // handleStyle: {
                   //    color: 'brown',

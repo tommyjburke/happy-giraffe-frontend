@@ -12,6 +12,9 @@ import {
    Checkbox,
 } from 'antd'
 import { CheckOutlined, CloseOutlined } from '@ant-design/icons'
+import useSound from 'use-sound'
+import switchSound from '../media/switch.mp3'
+import magicSound from '../media/magic.mp3'
 
 const replaceSymbols = (expression) => {
    const symbolMap = {
@@ -47,7 +50,10 @@ export default function MathsConsole() {
    const [useMinus, setUseMinus] = useState(false)
    const navigate = useNavigate()
 
+   const [playSwitch] = useSound(switchSound)
+   const [playMagic] = useSound(magicSound)
    function handleAdditionSwitch(checked) {
+      playSwitch()
       if (!checked) {
          setOperators(operators.filter((op) => op !== '+'))
       } else if (checked) {
@@ -56,6 +62,7 @@ export default function MathsConsole() {
    }
 
    function handleSubtractionSwitch(checked) {
+      playSwitch()
       if (!checked) {
          setOperators(operators.filter((op) => op !== '-'))
       } else if (checked) {
@@ -63,6 +70,7 @@ export default function MathsConsole() {
       }
    }
    function handleMultiplicationSwitch(checked) {
+      playSwitch()
       if (!checked) {
          setOperators(operators.filter((op) => op !== '*'))
       } else if (checked) {
@@ -70,6 +78,7 @@ export default function MathsConsole() {
       }
    }
    function handleDivisionSwitch(checked) {
+      playSwitch()
       if (!checked) {
          setOperators(operators.filter((op) => op !== '/'))
       } else if (checked) {
@@ -121,6 +130,7 @@ export default function MathsConsole() {
    }
 
    const handleMinusSwitch = (checked) => {
+      playSwitch()
       setUseMinus(checked)
    }
 
@@ -155,6 +165,7 @@ export default function MathsConsole() {
    // }, [operators])
 
    const handleTimerSwitch = (checked) => {
+      playSwitch()
       setUseTimer(checked)
    }
 
@@ -219,7 +230,7 @@ export default function MathsConsole() {
                   <div className='configBox'>
                      <label> No. of questions:</label>
                      <Row>
-                        <Col span={14}>
+                        <Col span={18}>
                            <Slider
                               min={1}
                               max={50}
@@ -230,8 +241,11 @@ export default function MathsConsole() {
                               value={numQuestions}
                            />
                         </Col>
-                        <Col span={2}>
+                        <Col span={1}>
                            <InputNumber
+                              controlWidth='20'
+                              handleWidth={1}
+                              readOnly={true}
                               min={1}
                               max={50}
                               style={{
@@ -271,7 +285,7 @@ export default function MathsConsole() {
                            max={600}
                            // value={[lowerValue, upperValue]}
                            trackStyle={{
-                              backgroundColor: 'lightgreen',
+                              backgroundColor: 'brown',
                            }}
                            defaultValue={duration}
                            // railStyle={{ backgroundColor: 'grey' }}
@@ -634,7 +648,10 @@ export default function MathsConsole() {
                   <div>
                      <button
                         style={{ float: 'right' }}
-                        onClick={() => compileMathsParams()}
+                        onClick={() => {
+                           playMagic()
+                           compileMathsParams()
+                        }}
                      >
                         Save
                      </button>

@@ -399,7 +399,7 @@ export default function MathsPlayRoute() {
                   ))}
                </tbody>
             </table>
-            {disableAllInputs && (
+            {(!useTimerTemp || disableAllInputs) && (
                <div style={{ textAlign: 'center' }}>
                   <br />
                   <button
