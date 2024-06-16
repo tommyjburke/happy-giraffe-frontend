@@ -6,8 +6,11 @@ import ProgressBar from './ProgressBar'
 
 import useSound from 'use-sound'
 import achievement from '../media/achievement.mp3'
-import resultsGiraffeHappy from '../media/resultsGiraffeHappy.gif'
-import resultsGiraffeSad from '../media/resultsGiraffeSad.gif'
+import giraffeA from '../media/giraffe-a.gif'
+import giraffeB from '../media/giraffe-b.gif'
+import giraffeC from '../media/giraffe-c.gif'
+import giraffeD from '../media/giraffe-d.gif'
+import giraffeE from '../media/giraffe-e.gif'
 
 export default function ResultsModal({
    open,
@@ -19,22 +22,16 @@ export default function ResultsModal({
    numQuestions,
 }) {
    const giraffeImage = (percentage) => {
-      if (percentage >= 50) {
-         return (
-            <img
-               src={resultsGiraffeHappy}
-               height='40px'
-               alt='resultsGiraffeHappy'
-            />
-         )
+      if (percentage >= 85) {
+         return <img src={giraffeA} height='40px' alt='A' />
+      } else if (percentage >= 70) {
+         return <img src={giraffeB} height='40px' alt='B' />
+      } else if (percentage >= 50) {
+         return <img src={giraffeC} height='40px' alt='C' />
+      } else if (percentage >= 20) {
+         return <img src={giraffeD} height='40px' alt='D' />
       } else {
-         return (
-            <img
-               src={resultsGiraffeSad}
-               height='40px'
-               alt='resultsGiraffeSad'
-            />
-         )
+         return <img src={giraffeE} height='40px' alt='E' />
       }
    }
 
@@ -176,11 +173,11 @@ export default function ResultsModal({
                   // className='modal-table-container'
                   // style={{ backgroundColor: 'var(--myOrange)' }}
                >
-                  <img
+                  {/* <img
                      src={resultsGiraffeHappy}
                      alt=''
                      className='image-cell'
-                  />
+                  /> */}
                   <table
                      className='modal-table africanFont '
                      style={{

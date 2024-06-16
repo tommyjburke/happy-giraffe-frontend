@@ -19,7 +19,7 @@ export default function MathsQuestion({
    inputRefs,
 }) {
    const handleKeyDown = (event) => {
-      if (event.key === 'ArrowUp') {
+      if (event.key === 'ArrowLeft') {
          let prevIndex = rowIndex - 1
          while (
             prevIndex >= 0 &&
@@ -31,7 +31,7 @@ export default function MathsQuestion({
          if (prevIndex >= 0 && mathsObjects[prevIndex]) {
             handleRowClick(prevIndex)
          }
-      } else if (event.key === 'ArrowDown') {
+      } else if (event.key === 'ArrowRight') {
          let nextIndex = rowIndex + 1
          const totalQuestions = mathsObjects.length
          while (
@@ -55,7 +55,7 @@ export default function MathsQuestion({
          key={rowIndex}
          onKeyDown={handleKeyDown}
          tabIndex={0}
-         rowIndex={rowIndex}
+         // rowIndex={rowIndex}
          onClick={() => {
             handleRowClick(rowIndex)
          }}

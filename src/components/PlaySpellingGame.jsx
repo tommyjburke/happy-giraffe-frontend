@@ -188,67 +188,88 @@ export default function PlaySpellingGame({
 
    const handleGuess = (index, guess) => {
       const newWords = [...words]
-      // console.log('newWords: ', newWords)
-
       newWords[index].userGuess = guess
-      // console.log('guess: ', guess)
-
-      // setUserAttempts(newWords)
-      // console.log('userAttempts: ', userAttempts)
-
       setWords(newWords)
-      // console.log('words: ', words)
    }
+
+   // const handleKeyDown = (index, word) => {
+   //    if (event.key === 'ArrowUp') {
+   //       let prevIndex = index - 1
+   //       while (
+   //          prevIndex >= 0 &&
+   //          words[prevIndex] &&
+   //          words[prevIndex].verdict !== ''
+   //       ) {
+   //          prevIndex--
+   //       }
+   //       if (prevIndex >= 0 && words[prevIndex]) {
+   //          handleRowClick(prevIndex)
+   //       }
+   //    } else if (event.key === 'ArrowDown') {
+   //       let nextIndex = index + 1
+   //       const totalQuestions = words.length
+   //       while (
+   //          nextIndex < totalQuestions &&
+   //          words[nextIndex] &&
+   //          words[nextIndex].verdict !== ''
+   //       ) {
+   //          nextIndex++
+   //       }
+   //       if (nextIndex < totalQuestions && words[nextIndex]) {
+   //          handleRowClick(nextIndex)
+   //       }
+   //    }
+   // }
 
    const checkGuess = (index, verdict) => {
       const word = words[index]
-      // console.log('CHECKING word: ', word)
+
       word.showButton = false
       if (word.userGuess.toLowerCase() === word.spelling) {
          playCorrectSound()
-         //  alert('Correct!')
          word.verdict = '✅'
-         //  word.showButton = false
-         // console.log('word: ', word)
-         // console.log('CORRECTv1:', correct)
          setCorrect((prevCorrect) => prevCorrect + 1)
-         // console.log('CORREECT v2:', correct)
-         // console.log('correct', correct)
          handleGenerateReward()
       } else {
          playWrongSound()
          setIncorrect((prevIncorrect) => prevIncorrect + 1)
          word.verdict = '❌'
-         // console.log(words[index].spelling)
       }
-      handleRowClick(index + 1)
-      // console.log('CONCLUDING word: ', word)
-      // console.log('updated words: ', words)
+
+      // handleRowClick(index + 1)
+
+      let nextIndex = index + 1
+      const totalQuestions = words.length
+      const firstNonCompletedIndex = words.findIndex(
+         (word) => word.verdict === ''
+      )
+      if (nextIndex >= totalQuestions) {
+         nextIndex =
+            firstNonCompletedIndex === -1
+               ? 0
+               : words.findIndex((word) => word.verdict === '')
+      }
+      while (
+         nextIndex < totalQuestions &&
+         words[nextIndex] &&
+         words[nextIndex].verdict !== ''
+      ) {
+         nextIndex++
+      }
+      if (nextIndex < totalQuestions && words[nextIndex]) {
+         handleRowClick(nextIndex)
+      }
+
       const numCorrect = words.filter(
          (word) => word.verdict === '✅'
       ).length
-      // const numCorrectState = correct
-      // console.log('NUM CORRECT STATE', numCorrectState)
       const numIncorrect = words.filter(
          (word) => word.verdict === '❌'
       ).length
-      // console.log('answered: ', correct + incorrect)
-      // console.log('word length', words.length)
-
       if (words.length === numCorrect + numIncorrect) {
-         // console.log('QUESTIONS DONE')
          setQuestionsCompleted(true)
       }
-      // console.log('Correct', correct, 'Incorrect:', incorrect)
    }
-
-   // useEffect(() => {
-   //    console.log('words: ', words)
-   //    console.log('userAttempts: ', userAttempts)
-   //    console.log('words.length: ', words.length)
-
-   //    return () => {}
-   // }, [])
 
    const renderGameData = () => {
       return (
@@ -264,7 +285,7 @@ export default function PlaySpellingGame({
                         <th
                            style={{
                               textAlign: 'center',
-                              width: '80%',
+                              width: '40%',
                               padding: '0px 10px 0px 10px',
                               backgroundColor: 'var(--myYellow)',
                               color: 'var(--myBrown)',
@@ -286,10 +307,32 @@ export default function PlaySpellingGame({
                               padding: '0px 10px 0px 10px',
                               backgroundColor: 'var(--myYellow)',
                               color: 'var(--myBrown)',
+                              fontSize: '1.6rem',
+                              fontFamily: 'Indie Flower',
+                           }}
+                        >
+                           <Popover
+                              content={
+                                 <p>
+                                    Use ⬆️⬇️ keyboard keys to
+                                    navigate
+                                 </p>
+                              }
+                           >
+                              ⌨️⬇️⬆️
+                           </Popover>
+                        </th>
+                        <th
+                           style={{
+                              textAlign: 'center',
+                              width: '40%',
+                              padding: '0px 10px 0px 10px',
+                              backgroundColor: 'var(--myYellow)',
+                              color: 'var(--myBrown)',
                               fontSize: '1.8rem',
                            }}
                         >
-                           {words.length <= 100 ? (
+                           {words.length <= 80 ? (
                               <Popover
                                  overlayInnerStyle={{
                                     padding: 0,
@@ -308,13 +351,6 @@ export default function PlaySpellingGame({
                                  }
                               >
                                  <button
-                                    // onClick={() => {
-                                    //    console.log(
-                                    //       'URL length:',
-                                    //       window.location.href
-                                    //          .length
-                                    //    )
-                                    // }}
                                     style={{
                                        float: 'right',
                                        backgroundColor:
@@ -375,6 +411,9 @@ export default function PlaySpellingGame({
                   <tbody>
                      {words.map((wordObject, index) => (
                         <WordQuestion
+                           // handleKeyDown={() =>
+                           //    handleKeyDown(index, wordObject)
+                           // }
                            disableAllInputs={disableAllInputs}
                            wordObject={wordObject}
                            key={index}
@@ -400,10 +439,6 @@ export default function PlaySpellingGame({
    }
 
    const percentage = (correct / words.length) * 100
-
-   // function showModal() {
-   //    setShowResultsModal(true)
-   // }
 
    useEffect(() => {
       // console.log('USE EFFECT CALLED')
@@ -460,8 +495,6 @@ export default function PlaySpellingGame({
    return (
       <div>
          {contextHolder}
-         {/* <h3>PLAY SPELLING GAME COMPONENT</h3>
-         <button onClick={resetRewards}>REWARDS</button> */}
 
          <div
             style={{

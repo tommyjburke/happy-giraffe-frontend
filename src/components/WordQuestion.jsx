@@ -18,6 +18,7 @@ export default function WordQuestion(props) {
       activeQuestion,
       words,
       disableAllInputs,
+      // handleKeyDown,
    } = props
 
    const [playZeroSound] = useSound(zeroSound)

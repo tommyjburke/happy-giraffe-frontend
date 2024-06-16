@@ -99,6 +99,8 @@ export default function App() {
                   colorPrimaryBorder: 'var(--myOrange)',
                   colorPrimaryActive: 'var(--myBrown)',
                   colorPrimaryHover: 'var(--myBrown)',
+                  // trackHeight: 32,
+                  // handleSize: 26,
                },
                Button: {
                   // colorBgContainer: 'var(--myBrown)',

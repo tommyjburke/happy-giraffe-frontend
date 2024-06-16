@@ -211,7 +211,35 @@ export default function MathsPlayRoute() {
          verdict = '❌'
          setIncorrect((prevIncorrect) => prevIncorrect + 1)
       }
-      handleRowClick(rowIndex + 1)
+      // handleRowClick(rowIndex + 1)
+
+      let nextIndex = rowIndex + 1
+      const totalQuestions = mathsObjects.length
+      const firstNonCompletedIndex = mathsObjects.findIndex(
+         (mathsObject) => mathsObject.verdict === ''
+      )
+      if (nextIndex >= totalQuestions) {
+         nextIndex =
+            firstNonCompletedIndex === -1
+               ? 0
+               : mathsObjects.findIndex(
+                    (mathsObject) => mathsObject.verdict === '',
+                    0
+                 )
+      }
+      while (
+         nextIndex < totalQuestions &&
+         mathsObjects[nextIndex] &&
+         mathsObjects[nextIndex].verdict !== ''
+      ) {
+         nextIndex++
+      }
+      if (
+         nextIndex < totalQuestions &&
+         mathsObjects[nextIndex]
+      ) {
+         handleRowClick(nextIndex)
+      }
 
       setMathsObjects((prevMathsObjects) => {
          const newMathsObjects = [...prevMathsObjects]
@@ -293,7 +321,9 @@ export default function MathsPlayRoute() {
             <Space>
                <p className='mathsDetailsHeaderSpan'>
                   {aValues[0]} to {aValues[1]}{' '}
-                  {operators.map((op) => replaceSymbols(op))}{' '}
+                  <span style={{ fontSize: '0.9rem' }}>
+                     {operators.map((op) => replaceSymbols(op))}{' '}
+                  </span>
                   {bValues[0]} to {bValues[1]}
                </p>
             </Space>
@@ -331,6 +361,22 @@ export default function MathsPlayRoute() {
                   }
                }
             >
+               {' '}
+               <Popover
+                  content={'Use ⬅️➡️ keyboard keys to navigate'}
+               >
+                  <span
+                     style={{
+                        marginLeft: '1rem',
+                        fontSize: '1.6rem',
+                        float: 'left',
+                        marginBottom: '1rem',
+                        // marginRight: '-0.2rem',
+                     }}
+                  >
+                     ⌨️⬅️➡️
+                  </span>
+               </Popover>
                <Popover
                   overlayInnerStyle={{
                      padding: 0,
