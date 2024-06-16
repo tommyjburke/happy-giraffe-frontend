@@ -263,26 +263,35 @@ export default function MathsPlayRoute() {
                textAlign: 'center',
             }}
          >
-            <h3>
-               <>
-                  {numQuestions} questions
-                  <span
-                     style={{
-                        backgroundColor: 'var(--myWhite)',
-                        color: 'red',
-                        marginLeft: '10px',
-                        borderRadius: '5px',
-                        padding: ' 0 5px 0 5px',
-                     }}
-                  >
-                     {' '}
-                     Timer:{' '}
-                     {useTimer ? `${duration} seconds` : 'off'}
-                  </span>
-               </>
-            </h3>
+            <div>
+               <h3>
+                  <>
+                     <span className='numQuestionsHeaderSpan'>
+                        {numQuestions}{' '}
+                        {numQuestions > 1
+                           ? 'Questions'
+                           : 'Question'}
+                     </span>
+                     <span
+                        style={{
+                           backgroundColor: 'var(--myWhite)',
+                           color: 'red',
+                           marginLeft: '10px',
+                           borderRadius: '5px',
+                           padding: ' 0 5px 0 5px',
+                        }}
+                     >
+                        {' '}
+                        Timer:{' '}
+                        {useTimer
+                           ? `${duration} seconds`
+                           : 'off'}
+                     </span>
+                  </>
+               </h3>
+            </div>
             <Space>
-               <p style={{ color: 'var(--myWhite)' }}>
+               <p className='mathsDetailsHeaderSpan'>
                   {aValues[0]} to {aValues[1]}{' '}
                   {operators.map((op) => replaceSymbols(op))}{' '}
                   {bValues[0]} to {bValues[1]}

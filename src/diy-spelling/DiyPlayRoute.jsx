@@ -60,6 +60,29 @@ export default function DiyPlayRoute() {
       <div className='mainContainer hero'>
          <Spin spinning={isProcessing} size='large' fullscreen />
          <h1>{title ? title : 'DIY Spelling Game'}</h1>
+         <div
+            className='africanFont'
+            style={{
+               backgroundColor: 'var(--myOrange)',
+               color: 'green',
+               width: '100%',
+               textAlign: 'center',
+            }}
+         >
+            <h3>
+               <span className='timerHeaderSpan'>
+                  {' '}
+                  Timer:{' '}
+                  {useTimer ? `${duration} seconds` : 'off'}
+               </span>
+            </h3>
+            <p>
+               <span className='numQuestionsHeaderSpan'>
+                  {gameWords.length}{' '}
+                  {gameWords.length > 1 ? 'words' : 'word'}
+               </span>
+            </p>
+         </div>
 
          <PlaySpellingGame
             useTimer={useTimer}

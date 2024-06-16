@@ -37,6 +37,8 @@ export default function PlaySpellingGame({
    // const [mounted, setMounted] = useState(false)
    const [tempDuration, setTempDuration] = useState(duration)
    const [useTimerTemp, setUseTimerTemp] = useState(useTimer)
+   const [questionsCompleted, setQuestionsCompleted] =
+      useState(false)
 
    // const [useTimer, setUseTimer] = useState(false)
    // const [duration, setDuration] = useState()

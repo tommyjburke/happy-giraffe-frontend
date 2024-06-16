@@ -132,7 +132,8 @@ export default function DiySpellingConsole() {
          </Helmet>
          <Spin spinning={isProcessing} size='large' fullscreen />
          <div className='mainContainer hero'>
-            <h1>DIY Spelling Console</h1>
+            <h1 style={{ zIndex: '2' }}>DIY Spelling Console</h1>
+
             <div
                style={{
                   backgroundColor: 'var(--myOrange)',
@@ -141,15 +142,7 @@ export default function DiySpellingConsole() {
                   marginBottom: '-8px',
                   zIndex: 2,
                }}
-            >
-               <h5
-                  className='africanFont'
-                  style={{ color: 'var(--myBrown)' }}
-               >
-                  Use your own words to create your own spelling
-                  game.
-               </h5>
-            </div>
+            ></div>
             <div style={{ marginTop: '0px' }}>
                <Form
                   handleAddWord={handleAddword}

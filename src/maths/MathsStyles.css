@@ -187,3 +187,39 @@
       width: 4.6rem;
    }
 }
+
+.timerHeaderSpan {
+   background-color: var(--myWhite);
+   color: red;
+   margin: 1px 5px;
+   border-radius: 5px;
+   padding: 0 5px;
+}
+
+.numQuestionsHeaderSpan {
+   background-color: var(--myWhite);
+   color: green;
+   margin: 1px 5px;
+   border-radius: 5px;
+   padding: 0 5px;
+}
+
+.mathsDetailsHeaderSpan {
+   background-color: var(--myWhite);
+   color: var(--myOrange);
+   margin: 1px 5px;
+   border-radius: 5px;
+   padding: 0 5px;
+}
+
+.descriptionHeaderSpan {
+   background-color: var(--myWhite);
+   color: var(--myBrown);
+   margin: 1px 5px 2px 5px;
+   border-radius: 5px;
+   padding: 0 5px;
+}
+
+.greenFont {
+   color: green;
+}

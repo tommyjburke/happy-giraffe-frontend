@@ -36,7 +36,7 @@ function convertSecondsToMinutes(seconds) {
 }
 
 export default function MathsConsole() {
-   const [title, setTitle] = useState('Maths Quiz')
+   const [title, setTitle] = useState('My Maths Game')
    const [aValues, setAValues] = useState([1, 12])
    const [bValues, setBValues] = useState([1, 12])
    const [numQuestions, setNumQuestions] = useState(10)

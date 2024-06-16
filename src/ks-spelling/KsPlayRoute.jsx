@@ -95,7 +95,10 @@ export default function KsPlayRoute() {
    return (
       <div className='mainContainer hero'>
          <Spin spinning={isProcessing} size='large' fullscreen />
-         <h1>{lessonName} KeyStage Spelling</h1>
+         <h1>
+            <span className='greenFont'>{lessonName}</span>{' '}
+            KeyStage Spelling
+         </h1>
          <div
             className='africanFont'
             style={{
@@ -106,27 +109,23 @@ export default function KsPlayRoute() {
             }}
          >
             <h3>
-               <>
+               <span className='mathsDetailsHeaderSpan'>
                   {customTitle}
-                  <span
-                     style={{
-                        backgroundColor: 'var(--myWhite)',
-                        color: 'red',
-                        marginLeft: '10px',
-                        borderRadius: '5px',
-                        padding: ' 0 5px 0 5px',
-                     }}
-                  >
-                     {' '}
-                     Timer:{' '}
-                     {useTimer
-                        ? `${timerSeconds} seconds`
-                        : 'off'}
-                  </span>
-               </>
+               </span>
+               <span className='timerHeaderSpan'>
+                  {' '}
+                  Timer:{' '}
+                  {useTimer ? `${timerSeconds} seconds` : 'off'}
+               </span>
             </h3>
-            <p style={{ color: 'var(--myWhite)' }}>
-               {description} | ({gameWords.length} questions)
+            <p>
+               <span className='descriptionHeaderSpan'>
+                  {description}
+               </span>
+               <span className='numQuestionsHeaderSpan'>
+                  {gameWords.length}{' '}
+                  {gameWords.length > 1 ? 'words' : 'word'}
+               </span>
             </p>
          </div>
 

@@ -32,7 +32,7 @@ export default function DiySpellingConfigForm({
    // const [score, setScore] = useState(0)
    const [useTimer, setUseTimer] = useState(false)
    const [duration, setDuration] = useState(60)
-   const [title, setTitle] = useState('')
+   const [title, setTitle] = useState('my spelling game')
    // const [newUri, setNewUri] = useState('')
    // console.log('userAnswers: ', userAnswers)
 
@@ -149,6 +149,15 @@ export default function DiySpellingConfigForm({
                   myFontSize='1.2rem'
                   isLooping
                />
+            </div>
+            <div>
+               <h5
+                  className='africanFont'
+                  style={{ color: 'var(--myBrown)' }}
+               >
+                  Use your own words to create your own spelling
+                  game.
+               </h5>
             </div>
 
             <DragDrop
@@ -535,7 +544,12 @@ export default function DiySpellingConfigForm({
                      }}
                   >
                      <div className='right'>
+                        <label>Title:</label>
                         <input
+                           style={{
+                              color: 'var(--myOrange)',
+                              // fontFamily: 'Permanent Marker',
+                           }}
                            placeholder='optional title...'
                            // autoFocus
                            // width='1000px'
