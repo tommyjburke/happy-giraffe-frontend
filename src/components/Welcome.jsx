@@ -6,7 +6,7 @@ export default function Welcome() {
    return (
       <>
          <div className='mainContainer'>
-            <h1>WELCOME TO HAPPY GIRAFFE</h1>
+            <h1>HAPPY GIRAFFE</h1>
             <div className='welcomeTitle'>
                <h2>
                   Automated Rote Learning, Save Time, Effortless
