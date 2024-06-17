@@ -39,8 +39,9 @@
 
 html {
    height: -webkit-fill-available;
-   overflow-y: hidden;
+   overflow-y: auto;
    overflow-x: hidden;
+   overscroll-behavior: none;
    /* overflow-y: hidden; */
    /* box-sizing: border-box; */
 }
@@ -52,7 +53,7 @@ body {
    /* height: 100vh; */
    /* text-align: center; */
    /* height: 100vh; */
-   overflow-y: hidden;
+   overflow-y: auto;
    overflow-x: hidden;
    width: 100vw;
    height: 100vh;

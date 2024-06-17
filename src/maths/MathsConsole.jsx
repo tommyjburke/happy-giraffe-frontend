@@ -389,7 +389,7 @@ export default function MathsConsole() {
                               >
                                  {hiddenBox.includes('a')
                                     ? '❓'
-                                    : '2'}
+                                    : aValues[1]}
                               </td>
                               <td
                                  style={{
@@ -411,7 +411,7 @@ export default function MathsConsole() {
                               >
                                  {hiddenBox.includes('b')
                                     ? '❓'
-                                    : '2'}
+                                    : bValues[1]}
                               </td>
                               <td
                                  style={{
@@ -431,7 +431,7 @@ export default function MathsConsole() {
                               >
                                  {hiddenBox.includes('c')
                                     ? '❓'
-                                    : '4'}
+                                    : aValues[1] + bValues[1]}
                               </td>
                            </tr>
                         </tbody>
