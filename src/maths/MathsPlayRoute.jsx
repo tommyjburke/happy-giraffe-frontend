@@ -2,7 +2,7 @@ import { useLocation } from 'react-router-dom'
 import { useEffect, useState, useRef } from 'react'
 // import PlayMathsGame from './PlayMathsGame'
 import MathsQuestion from './MathsQuestion'
-import { QRCode, Popover, Space } from 'antd'
+import { QRCode, Popover, Space, message } from 'antd'
 import background5 from '../media/background5.png'
 import ScoreBoard from '../components/ScoreBoard'
 import ResultsModal from '../components/ResultsModal'
@@ -16,6 +16,7 @@ function useQuery() {
 }
 
 export default function MathsPlayRoute() {
+   const [messageApi, contextHolder] = message.useMessage()
    const [mathsObjects, setMathsObjects] = useState([])
    const [correct, setCorrect] = useState(0)
    const [incorrect, setIncorrect] = useState(0)
@@ -297,6 +298,7 @@ export default function MathsPlayRoute() {
 
    return (
       <div className='mainContainer hero'>
+         {contextHolder}
          <h1>{customTitle ? customTitle : 'Maths Play'}</h1>
          <div
             className='africanFont'
@@ -346,27 +348,39 @@ export default function MathsPlayRoute() {
          </div>
          <div
             style={{
-               position: 'sticky',
-               top: '0px',
+               display: 'flex',
+               justifyContent: 'center',
+               alignItems: 'center',
                width: '100%',
-               opacity: '0.9',
-               // marginTop: '-15px',
-               zIndex: '1000',
+               maxWidth: '800px',
             }}
          >
-            {/* <Rewards ref={rewardsRef} /> */}
-            <ScoreBoard
-               duration={duration}
-               useTimer={useTimerTemp}
-               onTimeUp={handleTimeUp}
-               rewardsRef={rewardsRef}
-               resetRewards={resetRewards}
-               percentage={(correct / mathsObjects.length) * 100}
-               numQuestions={mathsObjects.length}
-               correct={correct}
-               incorrect={incorrect}
-            />
-         </div>{' '}
+            <div
+               style={{
+                  position: 'sticky',
+                  top: '0px',
+                  width: '100%',
+                  // opacity: '0.9',
+                  // marginTop: '-15px',
+                  zIndex: '1000',
+               }}
+            >
+               {/* <Rewards ref={rewardsRef} /> */}
+               <ScoreBoard
+                  duration={duration}
+                  useTimer={useTimerTemp}
+                  onTimeUp={handleTimeUp}
+                  rewardsRef={rewardsRef}
+                  resetRewards={resetRewards}
+                  percentage={
+                     (correct / mathsObjects.length) * 100
+                  }
+                  numQuestions={mathsObjects.length}
+                  correct={correct}
+                  incorrect={incorrect}
+               />
+            </div>
+         </div>
          <div className='maths-table-container'>
             <div
                style={
@@ -378,21 +392,19 @@ export default function MathsPlayRoute() {
                }
             >
                {' '}
-               <Popover
-                  content={'Use ⬅️➡️ keyboard keys to navigate'}
+               <span
+                  style={{ cursor: 'help', fontSize: '1.5rem' }}
+                  onClick={() => {
+                     messageApi.info(
+                        <h3>
+                           Use keyboard keys to navigate up and
+                           down using the ⬅️ and ➡️ keys
+                        </h3>
+                     )
+                  }}
                >
-                  <span
-                     style={{
-                        marginLeft: '1rem',
-                        fontSize: '1.6rem',
-                        float: 'left',
-                        marginBottom: '1rem',
-                        // marginRight: '-0.2rem',
-                     }}
-                  >
-                     ⌨️⬅️➡️
-                  </span>
-               </Popover>
+                  ⌨️⬅️➡️
+               </span>
                <Popover
                   overlayInnerStyle={{
                      padding: 0,
@@ -413,11 +425,10 @@ export default function MathsPlayRoute() {
                         float: 'right',
                         backgroundColor: 'var(--myOrange)',
                         outline: '1px solid lime',
-                        marginBottom: '1rem',
+                        marginBottom: '1.3rem',
                         // marginRight: '-0.2rem',
                      }}
                   >
-                     {' '}
                      Share QR Code
                   </button>
                </Popover>
@@ -474,6 +485,9 @@ export default function MathsPlayRoute() {
                   >
                      RESTART
                   </button>
+                  <br />
+                  <br />
+                  <br />
                </div>
             )}
          </div>
@@ -503,6 +517,7 @@ export default function MathsPlayRoute() {
                // style={{ border: 'var(--myBrown) 20px solid' }}
             />
          )}
+         <br />
          <br />
          <br />
          <br />

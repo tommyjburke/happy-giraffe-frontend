@@ -61,8 +61,8 @@ export default function KsDefaultPage() {
                display: 'flex',
                flexDirection: 'column',
                justifyContent: 'space-between',
-               overflow: 'auto',
-               marginBottom: '50px',
+               overflowY: 'auto',
+               marginBottom: '30px',
             }}
          >
             <br />

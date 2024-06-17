@@ -24,6 +24,7 @@ export default function ScoreBoard({
             backgroundColor: 'black',
             color: 'white',
             width: '100%',
+            opacity: '0.9',
          }}
       >
          <div>
@@ -35,24 +36,38 @@ export default function ScoreBoard({
                   alignItems: 'center',
                   width: '100%',
                   // border: '4px dotted var(--myWhite)',
-                  padding: '0.5rem 1rem',
-                  opacity: '0.7',
+                  padding: '0.5rem 0.3rem',
                }}
             >
-               {useTimer ? (
-                  <div>
-                     <CountdownTimer
-                        duration={duration}
-                        onTimeUp={onTimeUp}
-                     />
-                  </div>
-               ) : null}
                <div
                   style={{
-                     padding: '1px',
-
-                     flex: '1 1 30%',
-                     // borderRight: 'dotted 1px var(--myWhite)',
+                     paddingLeft: '5px',
+                     flex: '1 1 20%',
+                  }}
+               >
+                  {useTimer ? (
+                     <div>
+                        <CountdownTimer
+                           duration={duration}
+                           onTimeUp={onTimeUp}
+                        />
+                     </div>
+                  ) : (
+                     <div
+                        style={{
+                           textDecoration: 'double-line-through',
+                           color: 'lightgray',
+                           opacity: '0.5',
+                        }}
+                     >
+                        Timer
+                     </div>
+                  )}
+               </div>
+               <div
+                  style={{
+                     padding: '0px',
+                     flex: '1 1 20%',
                   }}
                >
                   <div
@@ -83,22 +98,24 @@ export default function ScoreBoard({
                </div>
                <div
                   style={{
-                     flex: '1 2 70%',
-                     textAlign: 'center',
-                     alignContent: 'stretch',
+                     marginLeft: 'auto',
+                     flex: '3 3 60%',
+                     textAlign: 'right',
+                     alignContent: 'flex-end',
+                     alignSelf: 'flex-end',
                   }}
                >
                   <ProgressBar percentage={percentage} />
                </div>
-               <h3
+               <span
                   className='computerFont'
                   style={{
                      color: 'white',
-                     paddingRight: '2rem',
+                     padding: '2px 0.5rem 6px 0.5rem',
                   }}
                >
                   {percentage}%
-               </h3>
+               </span>
             </div>
          </div>
          <div>

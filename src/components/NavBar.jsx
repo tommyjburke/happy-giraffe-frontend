@@ -30,32 +30,34 @@ const navigation = [
 
 export default function NavBar() {
    return (
-      <div className='navBarContainer'>
-         <div className='navBar'>
-            {navigation.map((item) => (
-               <div key={item.name}>
-                  <Space>
-                     <NavLink
-                        to={item.href}
-                        className={({ isActive }) => {
-                           return isActive
-                              ? 'activeLink'
-                              : 'inactiveLink'
-                        }}
-                     >
-                        {item.background && (
-                           <img
-                              className='navLinkImg'
-                              height={'25px'}
-                              src={item.background}
-                              alt={item.name}
-                           />
-                        )}
-                        {item.name}
-                     </NavLink>
-                  </Space>
-               </div>
-            ))}
+      <div className='allContainer'>
+         <div className='navBarBackground'>
+            <div className='navBar'>
+               {navigation.map((item) => (
+                  <div key={item.name}>
+                     <Space>
+                        <NavLink
+                           to={item.href}
+                           className={({ isActive }) => {
+                              return isActive
+                                 ? 'activeLink'
+                                 : 'inactiveLink'
+                           }}
+                        >
+                           {item.background && (
+                              <img
+                                 className='navLinkImg'
+                                 height={'25px'}
+                                 src={item.background}
+                                 alt={item.name}
+                              />
+                           )}
+                           {item.name}
+                        </NavLink>
+                     </Space>
+                  </div>
+               ))}
+            </div>
          </div>
          <>
             <LoadingProvider>

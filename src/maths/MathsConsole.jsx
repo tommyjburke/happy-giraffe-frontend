@@ -449,7 +449,7 @@ export default function MathsConsole() {
                         style={{
                            display: 'flex',
                            paddingBottom: '20px',
-                           // border: '5px purple dashed',
+
                            // padding: '30px',
                         }}
                      >

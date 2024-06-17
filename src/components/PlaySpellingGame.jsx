@@ -309,7 +309,7 @@ export default function PlaySpellingGame({
                         <th
                            style={{
                               textAlign: 'center',
-                              width: '20%',
+                              width: '30%',
                               padding: '0px 10px 0px 10px',
                               backgroundColor: 'var(--myYellow)',
                               color: 'var(--myBrown)',
@@ -317,21 +317,25 @@ export default function PlaySpellingGame({
                               fontFamily: 'Indie Flower',
                            }}
                         >
-                           <Popover
-                              content={
-                                 <p>
-                                    Use ⬆️⬇️ keyboard keys to
-                                    navigate
-                                 </p>
-                              }
+                           <span
+                              style={{ cursor: 'help' }}
+                              onClick={() => {
+                                 messageApi.info(
+                                    <h3>
+                                       Use keyboard keys to
+                                       navigate up and down using
+                                       the up and down keys
+                                    </h3>
+                                 )
+                              }}
                            >
                               ⌨️⬇️⬆️
-                           </Popover>
+                           </span>
                         </th>
                         <th
                            style={{
                               textAlign: 'center',
-                              width: '40%',
+                              width: '30%',
                               padding: '0px 10px 0px 10px',
                               backgroundColor: 'var(--myYellow)',
                               color: 'var(--myBrown)',
@@ -507,7 +511,7 @@ export default function PlaySpellingGame({
                position: 'sticky',
                top: '0px',
                width: '100%',
-               opacity: '0.9',
+               // opacity: '0.9',
                zIndex: 2000,
                overflowY: 'visible',
                // padding: '0px 30px 0px 1px',

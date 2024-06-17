@@ -413,6 +413,7 @@ export default function Form({
                               border: 'dashed 2px darkgray',
                               fontSize: '0.8rem',
                               marginLeft: '-20px',
+                              animation: 'none',
                            }}
                         >
                            <FileAddOutlined />

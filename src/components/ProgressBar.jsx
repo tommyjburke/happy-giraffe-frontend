@@ -2,7 +2,12 @@ import { Progress } from 'antd'
 
 function ProgressBar({ percentage }) {
    return (
-      <div style={{ margin: '0', padding: '0px' }}>
+      <div
+         style={{
+            margin: '0px 0px -3px 0px',
+            padding: '0px  0px 0px 0px',
+         }}
+      >
          <Progress
             showInfo={false}
             percent={percentage}

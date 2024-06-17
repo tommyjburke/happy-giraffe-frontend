@@ -179,6 +179,7 @@ export default function DiySpellingConfigForm({
                      width: '200px',
                      height: '100px',
                      borderRadius: '10px',
+                     animation: 'none !important',
                   }}
                >
                   <InboxOutlined /> + Drop txt/csv file

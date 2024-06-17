@@ -5,19 +5,27 @@ import { Link } from 'react-router-dom'
 export default function Welcome() {
    return (
       <>
-         <div className='mainContainer'>
+         <div className='welcomeContainer'>
             <h1>HAPPY GIRAFFE</h1>
-            <div className='welcomeTitle'>
-               <h2>
-                  Automated Rote Learning, Save Time, Effortless
-                  Exercises
-               </h2>
+            <div style={{ textAlign: 'center' }}>
+               <span className='welcomeTitle africanFont'>
+                  Automated Rote Learning, Saving Time,
+                  Effortless Exercises
+               </span>
             </div>
 
-            <div
-               className='flexVerticalContainer'
-               style={{ backgroundColor: 'var(--myYellow)' }}
-            >
+            <div className='flexVerticalContainer'>
+               <div
+                  style={{
+                     textAlign: 'center',
+                  }}
+               >
+                  <img
+                     src={background5}
+                     width='160px'
+                     alt='happy giraffe'
+                  />
+               </div>
                <div className='welcomeParagraph'>
                   <label>Welcome to Happy Giraffe:</label>
                   <ul style={{ paddingLeft: '2rem' }}>
@@ -34,10 +42,10 @@ export default function Welcome() {
                      </li>
                      <li>
                         Supports all learners, including children
-                        with ADHD, by providing fun and
-                        interactive exercises that improve{' '}
-                        <u>focus</u> and make mastering basic
-                        academic skills more enjoyable.
+                        with ADHD, providing fun and interactive
+                        exercises that improve <u>focus</u> and
+                        make mastering basic academic skills more
+                        enjoyable.
                      </li>
                      <li>
                         Transforms the way young learners engage
@@ -64,24 +72,9 @@ export default function Welcome() {
                   <Link to='/maths'>
                      <button>Create Maths Game</button>
                   </Link>
-               </div>
-               <div>
-                  <img
-                     src={background5}
-                     height='300px'
-                     alt='happy giraffe'
-                  />
-               </div>
-               {/* <p>PAGE CONTAINER</p>
-               <div className='pageHeader'>PAGE HEADER</div>
-               <div className='scoreBoardTop'>SCORE BOARD</div>
-               <div className='mainContentContainer'>
-                  MAIN CONTENT CONTAINER
                   <br />
-                  <div className='contentDiv'>CONTENT DIV</div>
-                  <div className='contentDiv'>CONTENT DIV</div>
-                  <div className='contentDiv'>CONTENT DIV</div>
-               </div> */}
+                  <br />
+               </div>
             </div>
          </div>
       </>

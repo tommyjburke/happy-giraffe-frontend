@@ -117,6 +117,8 @@
    align-items: center;
    justify-content: center;
    gap: 0.8rem;
+   border: none;
+   animation: none !important;
 }
 
 .longString {
@@ -360,9 +362,6 @@ th {
    color: green;
    background-color: lightgray;
    border: 2px dotted green;
-}
-.dropBox {
-   border: none;
 }
 
 .tableTitleBar {
