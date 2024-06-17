@@ -117,7 +117,7 @@
    margin-right: 0.5rem;
    animation: glowingGold 1s infinite;
    color: var(--myWhite);
-   @media (max-width: 420px) {
+   @media (max-width: 620px) {
       font-size: 0.9rem;
    }
    animation: glowingGold 1s infinite;
@@ -136,7 +136,7 @@
    margin-left: 0.5rem;
    margin-right: 0.5rem;
    color: var(--myYellow);
-   @media (max-width: 420px) {
+   @media (max-width: 620px) {
       font-size: 0.9rem;
    }
 }

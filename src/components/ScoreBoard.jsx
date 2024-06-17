@@ -20,7 +20,7 @@ export default function ScoreBoard({
          style={{
             // outline: '3px dotted var(--myOrange)',
             // border: '4px dotted white',
-            borderRadius: '5px',
+            borderRadius: '0px 0px 10px 10px',
             backgroundColor: 'black',
             color: 'white',
             width: '100%',
@@ -39,7 +39,6 @@ export default function ScoreBoard({
                   opacity: '0.7',
                }}
             >
-               {/* Add the logical AND operator to the condition */}
                {useTimer ? (
                   <div>
                      <CountdownTimer

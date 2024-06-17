@@ -14,6 +14,7 @@ import KsPlayRoute from '../ks-spelling/KsPlayRoute'
 import { CreateArray } from './CreateArray'
 import MathsConsole from '../maths/MathsConsole'
 import MathsPlayRoute from '../maths/MathsPlayRoute'
+import Welcome from './Welcome'
 
 const router = createBrowserRouter([
    {
@@ -25,8 +26,8 @@ const router = createBrowserRouter([
       children: [
          {
             path: '/',
-            element: <KsSpellingConsole />,
-            // element: <Welcome />,
+            // element: <KsSpellingConsole />,
+            element: <Welcome />,
          },
          {
             path: '/spelling-diy',

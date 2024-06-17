@@ -216,7 +216,7 @@ input {
    animation: moveInLeft 600ms ease-out;
    @media (max-width: 768px) {
       font-size: 1.4rem;
-      height: 1.5rem;
+      /* height: 1.5rem; */
    }
    @media (max-width: 400px) {
       font-size: clamp(0.9rem, 1.1rem, 1.4rem);
@@ -500,4 +500,76 @@ button:active {
 .spelling-table-container {
    padding-left: 2px;
    padding-right: 2px;
+}
+
+.pokemons2 {
+   text-align: center !important;
+   align-items: center !important;
+   position: relative;
+
+   /* animation: mymove 0.6s; */
+   animation-delay: 0s;
+   animation-fill-mode: forwards;
+   opacity: 0.6;
+   animation: myMove 1200ms;
+}
+
+@keyframes enter-shake-rotate {
+   0% {
+      top: 3000px;
+      transform: rotate(0deg) scale(1);
+   }
+   20% {
+      transform: rotate(0deg) scale(1);
+   }
+   25% {
+      transform: rotate(15deg) scale(2);
+   }
+   30% {
+      transform: rotate(30deg) scale(2);
+   }
+   35% {
+      transform: rotate(60deg) scale(3);
+   }
+   40% {
+      transform: rotate(90deg) scale(4);
+   }
+   45% {
+      transform: rotate(120deg) scale(5);
+   }
+   55% {
+      transform: rotate(180deg) scale(4);
+   }
+   65% {
+      transform: rotate(270deg) scale(3);
+   }
+   75% {
+      transform: rotate(360deg) scale(2);
+   }
+   95% {
+      transform: rotate(180deg) scale(1);
+   }
+   100% {
+      top: 0px;
+      transform: rotate(0deg) scale(1);
+   }
+}
+
+@keyframes myMove {
+   0% {
+      top: 2000px;
+      transform: scale(26) rotate(359deg);
+   }
+   /* 50% {
+      top: 300px;
+      transform: scale(4) rotate(359deg);
+   }
+   75% {
+      top: 150px;
+      transform: scale(2) rotate(180deg);
+   } */
+   100% {
+      top: 0px;
+      transform: scale(1);
+   }
 }

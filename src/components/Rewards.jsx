@@ -25,7 +25,10 @@ const Rewards = forwardRef((props, ref) => {
                className='pokemons2'
                key={index2}
                src={reward}
-               height='45px'
+               style={{
+                  height:
+                     window.innerWidth <= 620 ? '25px' : '45px',
+               }}
                alt={`Pokemon ${index2}`}
             />
          ))}

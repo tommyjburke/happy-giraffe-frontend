@@ -7,9 +7,14 @@ import background5 from '../media/background5.png'
 
 const navigation = [
    {
+      name: '',
+      href: '/',
+      background: background5,
+   },
+   {
       name: 'KeyStage Words',
       href: '/ks',
-      background: background5,
+      // background: background5,
    },
    // {
    //    name: 'Background 5',
@@ -41,7 +46,7 @@ export default function NavBar() {
                         {item.background && (
                            <img
                               className='navLinkImg'
-                              height={'15px'}
+                              height={'25px'}
                               src={item.background}
                               alt={item.name}
                            />
