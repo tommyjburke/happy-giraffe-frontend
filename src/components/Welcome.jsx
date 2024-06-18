@@ -157,30 +157,23 @@ export default function Welcome() {
                   </Link>
                   <br />
                   <br />
-                  <div style={{ textAlign: 'center' }}>
-                     <div
-                        style={{
-                           textAlign: 'left',
-                           fontFamily: 'Schoolbell',
-                           fontSize: '1.2rem',
-                           color: 'var(--myBrown)',
-                           textAlign: 'center',
-                        }}
-                     >
-                        {' '}
-                        <p> Optimised for Chrome desktop.</p>
-                        <u>Detected:</u> {getOS()} {getBrowser()}{' '}
-                        {getDevice()}
-                        {/* <br />
+                  <div
+                     className=''
+                     style={{ textAlign: 'center' }}
+                  >
+                     {' '}
+                     <p> Optimised for Chrome desktop.</p>
+                     <u>Detected:</u> {getOS()} {getBrowser()}{' '}
+                     {getDevice()}
+                     {/* <br />
                         BROWSER
                         <br />
                         {getBrowser()}
                         <br />
                         OPERATING SYSTEM
                         <br /> */}
-                     </div>
                   </div>
-
+                  <br />
                   <br />
                   <br />
                </div>
