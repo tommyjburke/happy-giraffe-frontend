@@ -8,21 +8,82 @@ import {
    isBrowser,
    isAndroid,
    isIOS,
+   isWindows,
+   isMacOs,
+   isLinux,
+   isChrome,
+   isFirefox,
+   isSafari,
+   isOpera,
+   isIE,
+   isEdge,
+   isBrave,
 } from 'react-device-detect'
 
-const playAudioFile = () => {
-   const fileLocation =
-      'https://api.dictionaryapi.dev/media/pronunciations/en/clear-us.mp3'
-   const audio = new Audio(fileLocation)
-   audio.play()
-}
+// const playAudioFile = () => {
+//    const fileLocation =
+//       'https://api.dictionaryapi.dev/media/pronunciations/en/clear-us.mp3'
+//    const audio = new Audio(fileLocation)
+//    audio.play()
+// }
 
 export default function Welcome() {
+   const getBrowser = () => {
+      switch (true) {
+         case isChrome:
+            return 'Chrome'
+         case isFirefox:
+            return 'Firefox'
+         case isSafari:
+            return 'Safari'
+         case isOpera:
+            return 'Opera'
+         case isIE:
+            return 'Internet Explorer'
+         case isEdge:
+            return 'Edge'
+         // case isBrave:
+         //    return 'Brave'
+         default:
+            return 'Unknown'
+      }
+   }
+
+   const getDevice = () => {
+      switch (true) {
+         case isTablet:
+            return 'Tablet'
+         case isMobile:
+            return 'Mobile'
+         case isBrowser:
+            return 'Browser'
+         default:
+            return 'Desktop'
+      }
+   }
+
+   const getOS = () => {
+      switch (true) {
+         case isAndroid:
+            return 'Android'
+         case isIOS:
+            return 'iOS'
+         case isWindows:
+            return 'Windows'
+         case isMacOs:
+            return 'MacOS'
+         // case isLinux:
+         //    return 'Linux'
+         default:
+            return 'Unknown'
+      }
+   }
+
    return (
       <>
          <div
             className='mainContainer'
-            style={{ overflowY: 'scroll !important' }}
+            // style={{ overflowY: 'scroll !important' }}
          >
             <h1>HAPPY GIRAFFE</h1>
             <div style={{ textAlign: 'center' }}>
@@ -33,16 +94,18 @@ export default function Welcome() {
             </div>
 
             <div className='flexVerticalContainer'>
-               <div
-                  style={{
-                     textAlign: 'center',
-                  }}
-               >
-                  <img
-                     src={background5}
-                     width='160px'
-                     alt='happy giraffe'
-                  />
+               <div>
+                  <div
+                     style={{
+                        textAlign: 'center',
+                     }}
+                  >
+                     <img
+                        src={background5}
+                        width='160px'
+                        alt='happy giraffe'
+                     />
+                  </div>
                </div>
                <div className='welcomeParagraph'>
                   <label>Welcome to Happy Giraffe:</label>
@@ -69,6 +132,7 @@ export default function Welcome() {
                         Transforms the way young learners engage
                         with their education.
                      </li>
+                     <li>No logins, no cookies, no faff.</li>
                   </ul>
                </div>
 
@@ -76,6 +140,7 @@ export default function Welcome() {
                   className='welcomeParagraph'
                   style={{ textAlign: 'center' }}
                >
+                  <h2>What would you like to do?</h2>
                   <Link to='/ks'>
                      <button>
                         Create KeyStage Spelling Game
@@ -93,23 +158,29 @@ export default function Welcome() {
                   <br />
                   <br />
                   <div style={{ textAlign: 'center' }}>
-                     <u>Detected:</u>
-                     <br />
-                     {isMobile && 'Mobile '}
-                     {isTablet && 'Tablet '}
-                     {isBrowser && 'Internet Browser '}
-                     {isAndroid && 'Android '}
-                     {isIOS && 'iOS '}
-                     device
-                     <p>
+                     <div
+                        style={{
+                           textAlign: 'left',
+                           fontFamily: 'Schoolbell',
+                           fontSize: '1.2rem',
+                           color: 'var(--myBrown)',
+                           textAlign: 'center',
+                        }}
+                     >
                         {' '}
-                        This is optimised for desktop Chrome.
-                     </p>
+                        <p> Optimised for Chrome desktop.</p>
+                        <u>Detected:</u> {getOS()} {getBrowser()}{' '}
+                        {getDevice()}
+                        {/* <br />
+                        BROWSER
+                        <br />
+                        {getBrowser()}
+                        <br />
+                        OPERATING SYSTEM
+                        <br /> */}
+                     </div>
                   </div>
-                  <br />
-                  <br />
-                  <br />
-                  <br />
+
                   <br />
                   <br />
                </div>
