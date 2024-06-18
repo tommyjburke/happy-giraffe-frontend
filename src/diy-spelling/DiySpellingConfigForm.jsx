@@ -238,7 +238,7 @@ export default function DiySpellingConfigForm({
                   color: 'var(--myOrange)',
                   width: '140px',
                   fontSize: '1.2rem',
-                  // fontFamily: 'Permanent Marker',
+                  // fontFamily: 'Roboto',
                }}
                placeholder='optional title...'
                // autoFocus

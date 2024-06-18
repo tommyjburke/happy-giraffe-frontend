@@ -106,7 +106,7 @@ export default function KsSpellingConfigForm({
    const tooManyWords = (
       <span
          style={{
-            fontFamily: 'Permanent Marker',
+            fontFamily: 'Roboto',
             fontSize: '1.0rem',
          }}
       >
@@ -133,7 +133,8 @@ export default function KsSpellingConfigForm({
                // display: 'block',
                flexDirection: '',
                alignContent: '',
-               fontFamily: 'Permanent Marker',
+               fontFamily: 'Roboto',
+               fontWeight: '400',
                fontSize: '1.0rem',
                // width: '35rem',
                // margin: '0 0 1rem 0',
@@ -152,7 +153,7 @@ export default function KsSpellingConfigForm({
                         onChange={handleChange}
                         disabled={true}
                         style={{
-                           fontFamily: 'Permanent Marker',
+                           fontFamily: 'Roboto',
                            color: 'brown',
                            fontSize: '1rem',
                         }}
@@ -171,7 +172,7 @@ export default function KsSpellingConfigForm({
                         style={{
                            // fontColor: 'var(--myBrown)',
                            fontSize: '1rem',
-                           fontFamily: 'Permanent Marker',
+                           fontFamily: 'Roboto',
                            color: 'var(--myBrown)',
                         }}
                      />

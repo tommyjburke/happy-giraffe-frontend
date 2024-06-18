@@ -2,7 +2,8 @@
    display: flex;
    flex-direction: column;
    width: 100%;
-   background-color: var(--myYellow);
+   /* background-color: var(--myBrown);
+   color: var(--myYellow); */
    /* border: 5px dashed yellow; */
    min-height: 100%; /* This will make the container take up at least the full viewport height */
    /* overflow-y: scroll !important; */
@@ -20,10 +21,11 @@
 .welcomeParagraph {
    background-color: var(--myBrown);
    background-color: var(--myYellow);
+   color: var(--myBrown);
    padding: 10px;
-   font-family: 'Schoolbell', 'Indie Flower';
-   font-size: 1.4rem;
-   font-weight: 800;
+   font-family: 'Roboto';
+   font-size: 1.2rem;
+   font-weight: 600;
    width: 80%;
    /* overflow-y: scroll; */
 

@@ -98,7 +98,7 @@ export default function KsSpellingConsole({ children }) {
                   key={index}
                   content={`${lesson.name} : ${lesson.description} : ${lesson.wordArray.length} words`}
                   // title={lesson.name}
-                  // style={{ fontFamily: 'Permanent Marker' }}
+                  // style={{ fontFamily: 'Roboto' }}
                >
                   <button
                      className='menuButton'
@@ -303,8 +303,7 @@ export default function KsSpellingConsole({ children }) {
                               </span>{' '}
                               <span
                                  style={{
-                                    fontFamily:
-                                       'Permanent Marker',
+                                    fontFamily: 'Roboto',
                                     fontSize: '0.8rem',
                                  }}
                                  className='filteringTypewriter'

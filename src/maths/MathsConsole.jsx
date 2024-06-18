@@ -221,7 +221,7 @@ export default function MathsConsole() {
                   alignItems: 'center',
                   alignContent: 'center',
                   padding: '0.1rem',
-                  fontFamily: 'Permanent Marker',
+                  fontFamily: 'Roboto',
                   fontSize: '1.0rem',
                   textAlign: 'center',
                   width: '100%',

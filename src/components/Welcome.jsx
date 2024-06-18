@@ -1,4 +1,5 @@
 import './Welcome.css'
+import timesTablePresets from '../data/timesTablesPresets.json'
 import background5 from '../media/background5.png'
 import { Link } from 'react-router-dom'
 import React from 'react'
@@ -107,13 +108,23 @@ export default function Welcome() {
                      />
                   </div>
                </div>
-               <div className='welcomeParagraph'>
+               <div className='welcomeParagraph africanFont'>
                   <label>Welcome to Happy Giraffe:</label>
                   <ul style={{ paddingLeft: '2rem' }}>
                      <li>
                         A tool for teachers and parents to easily
                         create engaging exercises for
                         primary-aged children.
+                     </li>
+                     <li>
+                        Effortlessly configure spelling and math
+                        games for your children! Make learning
+                        fun!
+                     </li>
+
+                     <li>
+                        Edit and configure KeyStage templates to
+                        elevate spelling proficiency.
                      </li>
                      <li>
                         Simplifies the preparation and
@@ -128,10 +139,25 @@ export default function Welcome() {
                         make mastering basic academic skills more
                         enjoyable.
                      </li>
+
                      <li>
-                        Transforms the way young learners engage
-                        with their education.
+                        Use your <u>voice</u> or a{' '}
+                        <i>
+                           <b>
+                              <u>text</u>
+                           </b>
+                        </i>{' '}
+                        or{' '}
+                        <b>
+                           <u>csv</u>
+                        </b>{' '}
+                        file to make your own spelling game and
+                        share it with others.
                      </li>
+                     <li>
+                        Share your custom-made games via QR code.
+                     </li>
+
                      <li>No logins, no cookies, no faff.</li>
                   </ul>
                </div>
@@ -143,7 +169,7 @@ export default function Welcome() {
                   <h2>What would you like to do?</h2>
                   <Link to='/ks'>
                      <button>
-                        Create KeyStage Spelling Game
+                        Start/Edit KeyStage Spelling Game
                      </button>
                   </Link>
                   <Link to='/spelling-diy'>
@@ -172,6 +198,25 @@ export default function Welcome() {
                         <br />
                         OPERATING SYSTEM
                         <br /> */}
+                  </div>
+                  <br />
+                  <div>Times Table Presets:</div>
+                  <div>
+                     <div>
+                        {timesTablePresets.TimesTables.map(
+                           (button, index) => (
+                              <button
+                                 key={index}
+                                 onClick={() =>
+                                    (window.location.href =
+                                       button.url)
+                                 }
+                              >
+                                 {button.title}
+                              </button>
+                           )
+                        )}
+                     </div>
                   </div>
                   <br />
                   <br />
