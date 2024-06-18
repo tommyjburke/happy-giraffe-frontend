@@ -122,7 +122,7 @@ export default function ResultsModal({
 
                <h1
                   style={{
-                     width: '99.5%',
+                     width: '100%',
                      padding: '1px',
                      color: fontColor(percentage),
                   }}
