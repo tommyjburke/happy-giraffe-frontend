@@ -217,9 +217,10 @@ export default function MathsConsole() {
                   display: 'flex',
                   flexDirection: 'column',
                   justifyContent: 'center',
-                  padding: '0.1rem',
+
                   alignItems: 'center',
                   alignContent: 'center',
+                  padding: '0.1rem',
                   fontFamily: 'Permanent Marker',
                   fontSize: '1.0rem',
                   textAlign: 'center',

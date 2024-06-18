@@ -171,29 +171,45 @@ export default function DiySpellingConfigForm({
                </h5>
             </div>
 
-            <DragDrop
-               handleAddWord={handleAddWord}
-               setIsProcessing={setIsProcessing}
-               longWordsError={longWordsError}
-               duplicatesError={duplicatesError}
-               words={words}
+            <div
+               style={{
+                  flex: '2 1 0',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'center',
+
+                  alignItems: 'center',
+                  alignContent: 'center',
+                  // height: '100vh',
+                  // border: 'ridge 5px darkgray',
+               }}
             >
-               {/* <UploadLogo /> */}
-               <button
-                  className=''
-                  style={{
-                     backgroundColor: 'lightgray',
-                     color: 'black',
-                     border: 'dashed 2px darkgray',
-                     width: '200px',
-                     height: '100px',
-                     borderRadius: '10px',
-                     animation: 'none !important',
-                  }}
-               >
-                  <InboxOutlined /> + Drop txt/csv file
-               </button>
-            </DragDrop>
+               <div>
+                  <DragDrop
+                     handleAddWord={handleAddWord}
+                     setIsProcessing={setIsProcessing}
+                     longWordsError={longWordsError}
+                     duplicatesError={duplicatesError}
+                     words={words}
+                  >
+                     {/* <UploadLogo /> */}
+                     <button
+                        className=''
+                        style={{
+                           backgroundColor: 'lightgray',
+                           color: 'black',
+                           border: 'ridge 5px darkgray',
+                           width: '200px',
+                           height: '100px',
+                           borderRadius: '10px',
+                           animation: 'none !important',
+                        }}
+                     >
+                        <InboxOutlined /> + Drop txt/csv file
+                     </button>
+                  </DragDrop>
+               </div>
+            </div>
          </div>
       )
    }
