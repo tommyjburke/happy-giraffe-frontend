@@ -329,6 +329,7 @@ export default function MathsConsole() {
                                  fontSize: '0.9rem',
                               }}
                            >
+                              {' '}
                               Random
                            </span>
                         </span>
@@ -603,13 +604,14 @@ export default function MathsConsole() {
                            />
                         </div>
                      </div>
+                     <br />
                      <div style={{ marginTop: '5px' }}>
                         <span
                            style={{
                               color: 'green',
                               backgroundColor: 'var(--myWhite)',
                               margin: '4px',
-                              padding: '0 3px 0 7px',
+                              padding: '0 3px 0 3px',
                               borderRadius: '5px',
                            }}
                         >
@@ -618,12 +620,12 @@ export default function MathsConsole() {
                         {operators.length > 0 ? (
                            <span
                               style={{
-                                 border: '1px solid green',
-                                 borderRadius: '10px',
-                                 padding: '1px 1px 1px 5px',
+                                 // border: '1px solid green',
+                                 // borderRadius: '10px',
+                                 padding: '1px 3px 1px 3px',
                                  marginRight: '2px',
-                                 backgroundColor:
-                                    'var(--myWhite)',
+                                 // backgroundColor:
+                                 //    'var(--myWhite)',
                                  fontSize: '12px',
                               }}
                            >

@@ -183,24 +183,9 @@ export default function Welcome() {
                   </Link>
                   <br />
                   <br />
-                  <div
-                     className=''
-                     style={{ textAlign: 'center' }}
-                  >
-                     {' '}
-                     <p> Optimised for Chrome desktop.</p>
-                     <u>Detected:</u> {getOS()} {getBrowser()}{' '}
-                     {getDevice()}
-                     {/* <br />
-                        BROWSER
-                        <br />
-                        {getBrowser()}
-                        <br />
-                        OPERATING SYSTEM
-                        <br /> */}
-                  </div>
+
                   <br />
-                  <div>Times Table Presets:</div>
+                  <h2>Times Table Presets:</h2>
                   <div>
                      <div>
                         {timesTablePresets.TimesTables.map(
@@ -217,6 +202,26 @@ export default function Welcome() {
                            )
                         )}
                      </div>
+                  </div>
+                  <br />
+                  <div
+                     className='africanFont'
+                     style={{
+                        textAlign: 'center',
+                        color: 'green',
+                     }}
+                  >
+                     {' '}
+                     <p> Optimised for Chrome desktop.</p>
+                     <u>Detected:</u> {getOS()} {getBrowser()}{' '}
+                     {getDevice()}
+                     {/* <br />
+                        BROWSER
+                        <br />
+                        {getBrowser()}
+                        <br />
+                        OPERATING SYSTEM
+                        <br /> */}
                   </div>
                   <br />
                   <br />
