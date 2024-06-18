@@ -165,10 +165,10 @@ export default function WordQuestion(props) {
                   wordObject.verdict === '❌' ||
                   disableAllInputs
                }
-               onKeyUp={(e) => {
+               onKeyDown={(e) => {
                   if (
-                     e.code === 'Enter' ||
-                     e.code === 'NumpadEnter'
+                     e.key === 'Enter' ||
+                     e.key === 'NumpadEnter'
                   ) {
                      checkGuess(index)
                   }
