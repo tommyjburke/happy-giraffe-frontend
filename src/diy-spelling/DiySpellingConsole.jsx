@@ -81,7 +81,7 @@ export default function DiySpellingConsole() {
          <div
             style={{
                color: 'var(--myBrown',
-               fontFamily: 'Indie Flower',
+               fontFamily: 'Roboto',
                fontSize: '1.0rem',
             }}
          >
@@ -97,7 +97,7 @@ export default function DiySpellingConsole() {
       messageApi.open({
          type: 'warning',
          content: duplicatesContent(value),
-         duration: 8,
+         duration: 2,
       })
    }
 

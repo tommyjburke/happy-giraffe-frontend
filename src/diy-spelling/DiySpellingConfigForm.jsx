@@ -67,6 +67,14 @@ export default function DiySpellingConfigForm({
       })
    }
 
+   const playAudioFile = (audioUrl) => {
+      // const fileLocation =
+      //    'https://api.dictionaryapi.dev/media/pronunciations/en/clear-us.mp3'
+      const audio = new Audio(audioUrl)
+      audio.play()
+      humanMessage()
+   }
+
    // const handleGenerateReward = () => {
    //    rewardsRef.current.generateReward()
    // }
@@ -80,6 +88,7 @@ export default function DiySpellingConfigForm({
       const utterThis = new SpeechSynthesisUtterance(text)
       utterThis.rate = speechSpeed
       synth.speak(utterThis)
+      robotMessage()
    }
 
    function filterObjects(objects) {
@@ -132,7 +141,7 @@ export default function DiySpellingConfigForm({
    if (words.length < 1) {
       return (
          <div
-            className='table-container list2'
+            // className='table-container '
             style={{ overflowY: 'auto', overflowX: 'hidden' }}
          >
             <br />
@@ -192,7 +201,7 @@ export default function DiySpellingConfigForm({
    return (
       <div
          className='newTableContainer'
-         style={{ marginTop: '10px' }}
+         style={{ marginTop: '10px', overflowY: 'auto' }}
       >
          {contextHolder}
          <table
@@ -315,9 +324,6 @@ export default function DiySpellingConfigForm({
                   >
                      <SoundOutlined />
                   </th>
-                  {/* <th className='c3' title='human voice'>
-                     👩‍🦲
-                  </th> */}
 
                   <th className='c5' title='Scrambled version'>
                      Scrambled
@@ -359,7 +365,7 @@ export default function DiySpellingConfigForm({
                               // className='largeIcon'
                               title='LISTEN'
                               onClick={() => {
-                                 robotMessage()
+                                 // robotMessage()
                                  readWord(word.spelling)
                               }}
                            >
@@ -377,8 +383,10 @@ export default function DiySpellingConfigForm({
                            <span
                               // className='largeIcon'
                               onClick={() => {
-                                 humanMessage()
-                                 playHumanSpeech(word.spelling)
+                                 // humanMessage()
+                                 playAudioFile(word.audioLink)
+                                 console.log('word', word)
+                                 // playHumanSpeech(word.spelling)
                               }}
                            >
                               {word.hasHumanVoice ? '👩‍🦲' : ' '}

@@ -39,9 +39,10 @@
 
 html {
    height: -webkit-fill-available;
-   overflow-y: auto;
+
+   overflow-y: hidden;
    overflow-x: hidden;
-   overscroll-behavior: none;
+   /* overscroll-behavior: none; */
    /* overflow-y: hidden; */
    /* box-sizing: border-box; */
 }
@@ -53,14 +54,14 @@ body {
    /* height: 100vh; */
    /* text-align: center; */
    /* height: 100vh; */
-   overflow-y: auto;
+   /* overflow-y: auto; */
    overflow-x: hidden;
    width: 100vw;
    height: 100vh;
    height: -webkit-fill-available;
    margin: 0;
    font-family: 'Roboto';
-   background-color: var(--myYellow);
+   background-color: var(--myOrange);
 
    /* box-sizing: border-box; */
    /* border: brown 5px dashed; */
@@ -94,6 +95,9 @@ body {
    right: 0;
    bottom: 0;
    left: 0;
+   @media screen and (max-width: 600px) {
+      margin-top: 25px;
+   }
    /* border: 5px dashed green; */
 }
 
@@ -111,39 +115,20 @@ body {
    flex-direction: column;
    width: 100%;
    height: 97.5vh;
-   /* height: auto; */
-   /* border: 5px dashed red; */
    flex-grow: 10;
    overflow: auto;
    align-items: center;
    overflow-y: auto;
    overflow-x: hidden;
-
-   /* justify-content: space-between; */
-   /* background-image: url('./media/background5.png');
-   background-image: linear-gradient(
-         to left bottom,
-         var(--myYellow),
-         var(--myYellow)
-      ),
-      url('./media/background5.png');
-   background-size: auto;
-   background-position: center;
-   background-blend-mode: overlay;
-   /* background-color: var(--myBrown);
-   background-color: var(--myYellow); */
+   padding-left: 0.2rem;
+   padding-right: 0.2rem;
 }
 
 .computerFont {
    font-family: 'Orbitron', sans-serif;
 }
 .hero {
-   /* position: relative; */
-   /* height: 100vh; */
    width: 100%;
-   /* display: flex; */
-   /* align-items: center;
-   justify-content: center; */
    z-index: -1;
 }
 
@@ -169,7 +154,7 @@ body {
 h1 {
    background-color: var(--myOrange);
    width: 100vw;
-   padding: 10px 0 0px 0;
+   padding: 5px 0 0px 0;
    text-align: center;
    color: var(--myBrown);
    letter-spacing: 4px;
@@ -185,7 +170,7 @@ h1 {
    font-style: normal;
    @media (max-width: 600px) {
       font-size: 1.4rem;
-      padding: 0.1rem;
+      padding: 0rem;
       letter-spacing: 1px;
       line-height: normal;
    }
@@ -415,7 +400,7 @@ button:active {
    color: rgb(255, 92, 33);
    font-size: 0.9rem;
    font-family: 'Roboto';
-   font-weight: 200;
+   font-weight: 300;
 }
 
 .myOrange {
@@ -538,8 +523,29 @@ button:active {
 }
 
 .spelling-table-container {
-   padding-left: 2px;
-   padding-right: 2px;
+   padding-left: 1rem;
+   padding-right: 1rem;
+
+   @media (max-width: 480px) {
+      width: 100vw;
+      padding-left: 0.1rem;
+      padding-right: 0.1rem;
+   }
+
+   @media (min-width: 481px) and (max-width: 667px) {
+      width: calc(100vw - 1rem);
+   }
+   @media (min-width: 300px) and (max-width: 480px) {
+      width: calc(100vw - 0.5rem);
+   }
+
+   @media (min-width: 768px) {
+      width: 900px;
+   }
+
+   @media (min-width: 1024px) {
+      width: 1100px;
+   }
 }
 
 .pokemons2 {
@@ -551,7 +557,7 @@ button:active {
    animation-delay: 0s;
    animation-fill-mode: forwards;
    opacity: 0.6;
-   animation: myMove 1200ms;
+   animation: myMove 800ms;
 }
 
 @keyframes enter-shake-rotate {

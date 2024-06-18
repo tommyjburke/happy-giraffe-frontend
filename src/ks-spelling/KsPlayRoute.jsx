@@ -72,10 +72,11 @@ export default function KsPlayRoute() {
                   verdict: '',
                   showButton: true,
                   synonyms: apiResponse.synonyms,
+                  voiceUrl: apiResponse.audioLink,
                }
             })
          )
-         // console.log('new game objs', newGameWords)
+         console.log('new KS game objs', newGameWords)
          setGameWords(newGameWords)
       } catch (error) {
          console.error(

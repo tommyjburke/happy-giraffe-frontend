@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 
-// import { playHumanSpeech } from '../jsFunctions/humanSpeech.js'
+import { playHumanSpeech } from '../jsFunctions/humanSpeech.js'
 import { SoundOutlined } from '@ant-design/icons'
 import WordQuestion from './WordQuestion.jsx'
 import ScoreBoard from './ScoreBoard.jsx'
@@ -110,34 +110,42 @@ export default function PlaySpellingGame({
       synth.speak(utterThis)
    }
 
-   const playHumanSpeech = async (word) => {
-      const url = `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`
+   // const playHumanSpeech = async (word) => {
+   //    const url = `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`
+   //    humanMessage()
+
+   //    try {
+   //       const result = await fetch(url).then((res) =>
+   //          res.json()
+   //       )
+   //       const pronunciation =
+   //          result[0]?.phonetics[0]?.audio ||
+   //          result[0]?.phonetics[1]?.audio ||
+   //          result[0]?.phonetics[2]?.audio ||
+   //          result[0]?.phonetics[3]?.audio
+
+   //       if (pronunciation) {
+   //          const icon = '👩‍🦲'
+   //          const audio = new Audio(pronunciation)
+   //          // console.log('audio: ', audio)
+   //          audio.play()
+   //          return { hasHumanVoice: true, icon }
+   //       } else {
+   //          const icon = '❌'
+   //          return { hasHumanVoice: false, icon }
+   //       }
+   //    } catch (error) {
+   //       const icon = '❌'
+   //       return { hasHumanVoice: false, icon }
+   //    }
+   // }
+
+   const playAudioFile = (audioUrl) => {
+      // const fileLocation =
+      //    'https://api.dictionaryapi.dev/media/pronunciations/en/clear-us.mp3'
+      const audio = new Audio(audioUrl)
+      audio.play()
       humanMessage()
-
-      try {
-         const result = await fetch(url).then((res) =>
-            res.json()
-         )
-         const pronunciation =
-            result[0]?.phonetics[0]?.audio ||
-            result[0]?.phonetics[1]?.audio ||
-            result[0]?.phonetics[2]?.audio ||
-            result[0]?.phonetics[3]?.audio
-
-         if (pronunciation) {
-            const icon = '👩‍🦲'
-            const audio = new Audio(pronunciation)
-            // console.log('audio: ', audio)
-            audio.play()
-            return { hasHumanVoice: true, icon }
-         } else {
-            const icon = '❌'
-            return { hasHumanVoice: false, icon }
-         }
-      } catch (error) {
-         const icon = '❌'
-         return { hasHumanVoice: false, icon }
-      }
    }
 
    const resetRewards = () => {
@@ -280,11 +288,17 @@ export default function PlaySpellingGame({
    const renderGameData = () => {
       return (
          <div
-            className='newTableContainer hero'
-            style={{ marginTop: '10px' }}
+            className='newTableContainer'
+            style={{ marginTop: '10px', alignContent: 'center' }}
          >
             <div ref={topRef}></div>
-            <div className='spelling-table-container'>
+            <div
+               className='spelling-table-container'
+               style={{
+                  display: 'flex',
+                  justifyContent: 'center',
+               }}
+            >
                <table className='responsive-table'>
                   <thead>
                      <tr style={{}}>
@@ -439,6 +453,7 @@ export default function PlaySpellingGame({
                            activeQuestion={activeQuestion}
                            numQuestions={words.length}
                            words={words}
+                           playAudioFile={playAudioFile}
                         />
                      ))}
                   </tbody>
@@ -512,7 +527,7 @@ export default function PlaySpellingGame({
                top: '0px',
                width: '100%',
                // opacity: '0.9',
-               zIndex: 2000,
+               zIndex: 2,
                overflowY: 'visible',
                // padding: '0px 30px 0px 1px',
                // marginRight: '3px',

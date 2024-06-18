@@ -85,6 +85,10 @@ label {
 }
 
 fieldset {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
    border: 5px ridge var(--myBrown);
    padding: 1rem;
    margin: 0 0.4rem 0 0.4rem;

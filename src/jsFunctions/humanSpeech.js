@@ -10,7 +10,7 @@ export const verifyHumanSpeech = async (word) => {
          result[0]?.phonetics[2]?.audio ||
          result[0]?.phonetics[3]?.audio
 
-      // console.log('API (SPEECH) RETURNED: ', pronunciation)
+      console.log('API (SPEECH) RETURNED: ', pronunciation)
 
       // testAudioFile2(pronunciation)
 
@@ -39,7 +39,11 @@ export const verifyHumanSpeech = async (word) => {
          // const audio = new Audio(pronunciation)
          // console.log('audio: ', audio)
          // audio.play()
-         return { hasHumanVoice: true, synonyms: synonyms }
+         return {
+            audioLink: pronunciation,
+            hasHumanVoice: true,
+            synonyms: synonyms,
+         }
       } else {
          return { hasHumanVoice: false, synonyms }
       }
@@ -86,6 +90,33 @@ export const getHumanSpeech = async (word) => {
    }
 }
 
+// export const playHumanSpeech = async (word) => {
+//    const url = `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`
+
+//    try {
+//       const result = await fetch(url).then((res) => res.json())
+//       const pronunciation =
+//          result[0]?.phonetics[0]?.audio ||
+//          result[0]?.phonetics[1]?.audio ||
+//          result[0]?.phonetics[2]?.audio ||
+//          result[0]?.phonetics[3]?.audio
+
+//       if (pronunciation) {
+//          const icon = '👩‍🦲'
+//          const audio = new Audio(pronunciation)
+//          console.log('audio: ', audio)
+//          audio.play()
+//          return { hasHumanVoice: true, icon }
+//       } else {
+//          const icon = '❌'
+//          return { hasHumanVoice: false, icon }
+//       }
+//    } catch (error) {
+//       const icon = '❌'
+//       return { hasHumanVoice: false, icon }
+//    }
+// }
+
 export const playHumanSpeech = async (word) => {
    const url = `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`
 
@@ -98,89 +129,24 @@ export const playHumanSpeech = async (word) => {
          result[0]?.phonetics[3]?.audio
 
       if (pronunciation) {
-         const icon = '👩‍🦲'
-         const audio = new Audio(pronunciation)
-         console.log('audio: ', audio)
-         audio.play()
-         return { hasHumanVoice: true, icon }
-      } else {
-         const icon = '❌'
-         return { hasHumanVoice: false, icon }
+         const audioContext = new AudioContext()
+         const audioSource = await fetchAudioData(
+            pronunciation,
+            audioContext
+         )
+         audioSource.start()
       }
-   } catch (error) {
-      const icon = '❌'
-      return { hasHumanVoice: false, icon }
-   }
+   } catch (error) {}
 }
 
-// function testAudioFile(audioUrl) {
-//    // Fetch the audio file
-//    fetch(audioUrl)
-//       .then((response) => {
-//          // Check if the response is successful (status code 200)
-//          if (response.ok) {
-//             // Create a new Audio object
-//             const audio = new Audio(audioUrl)
-
-//             // Add an event listener to check when the audio is loaded
-//             audio.addEventListener('canplaythrough', () => {
-//                console.log('Audio file is playable.')
-//                // Here you can save the URL since the audio file is playable
-//             })
-
-//             // Add an event listener to handle loading errors
-//             audio.addEventListener('error', () => {
-//                console.error('Failed to load audio file.')
-//                // Handle the error accordingly (e.g., show an error message)
-//             })
-
-//             // Start loading the audio
-//             audio.load()
-//          } else {
-//             console.error(
-//                'Failed to fetch audio file. HTTP status:',
-//                response.status
-//             )
-//             // Handle the error accordingly (e.g., show an error message)
-//          }
-//       })
-//       .catch((error) => {
-//          console.error('Error fetching audio file:', error)
-//          // Handle the error accordingly (e.g., show an error message)
-//       })
-// }
-
-// async function testAudioFile2(audioUrl) {
-//    try {
-//       const corsProxyUrl = 'https://cors-anywhere.herokuapp.com/'
-//       const response = await fetch(corsProxyUrl + audioUrl)
-
-//       if (response.ok) {
-//          const audioBlob = await response.blob()
-//          const audioUrlObject = URL.createObjectURL(audioBlob)
-
-//          const audio = new Audio(audioUrlObject)
-
-//          audio.addEventListener('canplaythrough', () => {
-//             console.log('Audio file is playable.')
-//             // Here you can save the URL since the audio file is playable
-//          })
-
-//          audio.addEventListener('error', () => {
-//             console.error('Failed to load audio file.')
-//             // Handle the error accordingly (e.g., show an error message)
-//          })
-
-//          audio.load()
-//       } else {
-//          console.error(
-//             'Failed to fetch audio file. HTTP status:',
-//             response.status
-//          )
-//          // Handle the error accordingly (e.g., show an error message)
-//       }
-//    } catch (error) {
-//       console.error('Error fetching audio file:', error)
-//       // Handle the error accordingly (e.g., show an error message)
-//    }
-// }
+async function fetchAudioData(url, audioContext) {
+   const response = await fetch(url)
+   const arrayBuffer = await response.arrayBuffer()
+   const audioBuffer = await audioContext.decodeAudioData(
+      arrayBuffer
+   )
+   const audioSource = audioContext.createBufferSource()
+   audioSource.buffer = audioBuffer
+   audioSource.connect(audioContext.destination)
+   return audioSource
+}

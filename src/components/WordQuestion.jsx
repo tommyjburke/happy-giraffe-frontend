@@ -18,6 +18,7 @@ export default function WordQuestion(props) {
       activeQuestion,
       words,
       disableAllInputs,
+      playAudioFile,
       // handleKeyDown,
    } = props
 
@@ -92,9 +93,14 @@ export default function WordQuestion(props) {
                {wordObject.hasHumanVoice ? (
                   <span
                      className='largeIcon'
-                     onClick={() =>
-                        playHumanSpeech(wordObject.spelling)
-                     }
+                     onClick={() => {
+                        // playHumanSpeech(wordObject.spelling)
+                        playAudioFile(wordObject.voiceUrl)
+                        console.log(
+                           'wordObject.voiceUrl',
+                           wordObject.voiceUrl
+                        )
+                     }}
                   >
                      <Popover
                         content={'Listen to human prounciation'}
@@ -213,27 +219,30 @@ export default function WordQuestion(props) {
             </Popover>
          </td>
          <td className='g7'>
-            {wordObject.showButton && !disableAllInputs && (
-               <button
-                  className='goButton'
-                  onClick={() => checkGuess(index)}
-                  disabled={disableAllInputs}
-               >
-                  GO
-               </button>
-            )}
-            {wordObject.verdict && (
-               <span>{wordObject.verdict}</span>
-            )}
-            <br />
-            {wordObject.verdict === '❌' && (
-               <span className='correction'>
-                  {wordObject.spelling}
-               </span>
-            )}
-            {wordObject.verdict === '' && disableAllInputs && (
-               <p>🥵</p>
-            )}
+            <div>
+               {wordObject.showButton && !disableAllInputs && (
+                  <button
+                     className='goButton'
+                     onClick={() => checkGuess(index)}
+                     disabled={disableAllInputs}
+                  >
+                     GO
+                  </button>
+               )}
+               {wordObject.verdict && (
+                  <span>{wordObject.verdict}</span>
+               )}
+               <br />
+               {wordObject.verdict === '❌' && (
+                  <>
+                     <span className='correction'>
+                        {wordObject.spelling}
+                     </span>
+                  </>
+               )}
+               {wordObject.verdict === '' &&
+                  disableAllInputs && <p>🥵</p>}
+            </div>
          </td>
       </tr>
    )

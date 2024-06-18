@@ -78,24 +78,34 @@
    padding: 2rem;
    flex: 1 1 18%;
    margin-left: 0.4rem;
+   display: flex;
+   align-items: center;
 }
 
 .maths-b {
    flex: 1 1 18%;
+   display: flex;
+   align-items: center;
 }
 
 .maths-op {
    font-size: 1.5rem;
    flex: 1 1 16%;
+   display: flex;
+   align-items: center;
 }
 
 .maths-c {
    flex: 1 1 18%;
+   display: flex;
+   align-items: center;
 }
 
 .maths-equals {
    font-size: 1.5rem;
    flex: 1 1 12%;
+   display: flex;
+   align-items: center;
 }
 
 .mathsInput {
@@ -111,12 +121,16 @@
    font-weight: 600;
    text-align: center;
    border: 1px var(--myBrown) dotted;
+   display: flex;
+   align-items: center;
 }
 
 .mButton {
    text-align: right;
    align-content: center;
    flex: 1 1 14%;
+   display: flex;
+   align-items: center;
 }
 
 .mathsRow {
@@ -147,6 +161,8 @@
    .maths-index {
       font-size: 1.2rem;
       vertical-align: middle;
+      display: flex;
+      align-items: center;
    }
    .mathsInput {
       font-size: 2rem;
@@ -168,7 +184,7 @@
       font-size: 2rem;
    }
    .maths-op {
-      font-size: 1rem;
+      font-size: 1.4rem;
    }
    .maths-equals {
       font-size: 1rem;
@@ -196,6 +212,12 @@
    margin: 1px 5px;
    border-radius: 5px;
    padding: 0 5px;
+   font-size: 1rem;
+   @media screen and (max-width: 400px) {
+      font-size: 0.7rem;
+      padding: 0px 2px;
+      margin: 0px 1px;
+   }
 }
 
 .numQuestionsHeaderSpan {
@@ -204,6 +226,12 @@
    margin: 1px 5px;
    border-radius: 5px;
    padding: 0 5px;
+   font-size: 1rem;
+   @media screen and (max-width: 400px) {
+      font-size: 0.7rem;
+      padding: 0 2px;
+      margin: 0px 1px;
+   }
 }
 
 .mathsDetailsHeaderSpan {
@@ -212,6 +240,12 @@
    margin: 1px 5px;
    border-radius: 5px;
    padding: 0 5px;
+   font-size: 1rem;
+   @media screen and (max-width: 400px) {
+      font-size: 0.7rem;
+      padding: 0 2px;
+      margin: 0px 1px;
+   }
 }
 
 .descriptionHeaderSpan {
@@ -220,6 +254,12 @@
    margin: 1px 5px 2px 5px;
    border-radius: 5px;
    padding: 0 5px;
+   font-size: 1rem;
+   @media screen and (max-width: 400px) {
+      font-size: 0.7rem;
+      padding: 0 2px;
+      margin: 0px 1px;
+   }
 }
 
 .greenFont {

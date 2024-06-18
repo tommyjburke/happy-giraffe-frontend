@@ -15,6 +15,8 @@ import { CheckOutlined, CloseOutlined } from '@ant-design/icons'
 import useSound from 'use-sound'
 import switchSound from '../media/switch.mp3'
 import magicSound from '../media/magic.mp3'
+import blipOn from '../media/blipOn.mp3'
+import blipOff from '../media/blipOff.mp3'
 
 const replaceSymbols = (expression) => {
    const symbolMap = {
@@ -52,6 +54,9 @@ export default function MathsConsole() {
 
    const [playSwitch] = useSound(switchSound)
    const [playMagic] = useSound(magicSound)
+   const [playBlipOn] = useSound(blipOn)
+   const [playBlipOff] = useSound(blipOff)
+
    function handleAdditionSwitch(checked) {
       playSwitch()
       if (!checked) {
@@ -90,8 +95,10 @@ export default function MathsConsole() {
       const checked = e.target.checked
       if (!checked) {
          setHiddenBox(hiddenBox.filter((box) => box !== 'a'))
+         playBlipOff()
       } else if (checked) {
          setHiddenBox([...hiddenBox, 'a'])
+         playBlipOn()
       }
    }
    const opCheckbox = (e) => {
@@ -106,8 +113,10 @@ export default function MathsConsole() {
       const checked = e.target.checked
       if (!checked) {
          setHiddenBox(hiddenBox.filter((box) => box !== 'b'))
+         playBlipOff()
       } else if (checked) {
          setHiddenBox([...hiddenBox, 'b'])
+         playBlipOn()
       }
    }
 
@@ -115,8 +124,10 @@ export default function MathsConsole() {
       const checked = e.target.checked
       if (!checked) {
          setHiddenBox(hiddenBox.filter((box) => box !== 'c'))
+         playBlipOff()
       } else if (checked) {
          setHiddenBox([...hiddenBox, 'c'])
+         playBlipOn()
       }
    }
 
@@ -124,8 +135,10 @@ export default function MathsConsole() {
       const checked = e.target.checked
       if (!checked) {
          setHiddenBox(['c'])
+         playBlipOff()
       } else if (checked) {
          setHiddenBox(['a', 'b', 'c'])
+         playBlipOn()
       }
    }
 
@@ -190,31 +203,30 @@ export default function MathsConsole() {
          {/* <Spin spinning={isProcessing} size='large' fullscreen /> */}
          <div className='mainContainer hero'>
             <h1>Maths Console</h1>
+            <h4
+               className='africanFont'
+               style={{ color: 'green' }}
+            >
+               Create Maths Game
+            </h4>
 
             <div
                className='main5ContentContainer'
                style={{
                   flex: 1,
+                  display: 'flex',
+                  flexDirection: 'column',
                   justifyContent: 'center',
-                  padding: '0.3rem',
-                  // display: 'block',
-                  flexDirection: '',
-                  alignContent: '',
+                  padding: '0.1rem',
+                  alignItems: 'center',
+                  alignContent: 'center',
                   fontFamily: 'Permanent Marker',
                   fontSize: '1.0rem',
                   textAlign: 'center',
-                  // border: '5px pink dashed',
-                  // padding: '10px',
-
-                  verticalAlign: 'middle',
+                  width: '100%',
+                  maxWidth: '800px',
                }}
             >
-               <h4
-                  className='africanFont'
-                  style={{ color: 'green' }}
-               >
-                  Create Maths Game
-               </h4>
                <fieldset>
                   <legend> Maths Config </legend>
                   <div className='configBox'>
@@ -603,24 +615,32 @@ export default function MathsConsole() {
                         >
                            {aValues[0]} to {aValues[1]}
                         </span>
-                        <span
-                           style={{
-                              border: '1px solid green',
-                              borderRadius: '10px',
-                              padding: '1px 1px 1px 5px',
-                              marginRight: '2px',
-                              backgroundColor: 'var(--myWhite)',
-                           }}
-                        >
-                           {operators.map((op) => (
-                              <span
-                                 key={op}
-                                 style={{ color: 'blue' }}
-                              >
-                                 {replaceSymbols(op)}{' '}
-                              </span>
-                           ))}
-                        </span>{' '}
+                        {operators.length > 0 ? (
+                           <span
+                              style={{
+                                 border: '1px solid green',
+                                 borderRadius: '10px',
+                                 padding: '1px 1px 1px 5px',
+                                 marginRight: '2px',
+                                 backgroundColor:
+                                    'var(--myWhite)',
+                                 fontSize: '12px',
+                              }}
+                           >
+                              {operators.map((op) => (
+                                 <span
+                                    key={op}
+                                    style={{ color: 'blue' }}
+                                 >
+                                    {replaceSymbols(op)}{' '}
+                                 </span>
+                              ))}
+                           </span>
+                        ) : (
+                           <span style={{ fontSize: '12px' }}>
+                              ❓
+                           </span>
+                        )}{' '}
                         <span
                            style={{
                               color: 'green',

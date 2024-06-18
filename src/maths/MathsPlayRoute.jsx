@@ -310,40 +310,28 @@ export default function MathsPlayRoute() {
             }}
          >
             <div>
-               <h3>
-                  <>
-                     <span className='numQuestionsHeaderSpan'>
-                        {numQuestions}{' '}
-                        {numQuestions > 1
-                           ? 'Questions'
-                           : 'Question'}
-                     </span>
-                     <span
-                        style={{
-                           backgroundColor: 'var(--myWhite)',
-                           color: 'red',
-                           marginLeft: '10px',
-                           borderRadius: '5px',
-                           padding: ' 0 5px 0 5px',
-                        }}
-                     >
-                        {' '}
-                        Timer:{' '}
-                        {useTimer
-                           ? `${duration} seconds`
-                           : 'off'}
-                     </span>
-                  </>
-               </h3>
+               <div>
+                  <span className='numQuestionsHeaderSpan'>
+                     {numQuestions}{' '}
+                     {numQuestions > 1
+                        ? 'Questions'
+                        : 'Question'}
+                  </span>
+                  <span className='timerHeaderSpan'>
+                     {' '}
+                     Timer:{' '}
+                     {useTimer ? `${duration} seconds` : 'off'}
+                  </span>
+               </div>
             </div>
             <Space>
-               <p className='mathsDetailsHeaderSpan'>
+               <div className='mathsDetailsHeaderSpan'>
                   {aValues[0]} to {aValues[1]}{' '}
-                  <span style={{ fontSize: '0.9rem' }}>
+                  <span style={{ fontSize: '0.6rem' }}>
                      {operators.map((op) => replaceSymbols(op))}{' '}
-                  </span>
-                  {bValues[0]} to {bValues[1]}
-               </p>
+                  </span>{' '}
+                  {` ${bValues[0]}`} to {bValues[1]}
+               </div>
             </Space>
          </div>
          <div

@@ -42,7 +42,7 @@ export default function ScoreBoard({
                <div
                   style={{
                      paddingLeft: '5px',
-                     flex: '1 1 20%',
+                     flex: '1 1 21%',
                   }}
                >
                   {useTimer ? (
@@ -55,9 +55,13 @@ export default function ScoreBoard({
                   ) : (
                      <div
                         style={{
-                           textDecoration: 'double-line-through',
+                           textDecoration: 'line-through',
                            color: 'lightgray',
-                           opacity: '0.5',
+                           opacity: '0.3',
+                           border: '1px dashed lightgray',
+                           padding: '0.3rem 0.1rem',
+                           textAlign: 'center',
+                           borderRadius: '10px',
                         }}
                      >
                         Timer
@@ -67,7 +71,7 @@ export default function ScoreBoard({
                <div
                   style={{
                      padding: '0px',
-                     flex: '1 1 20%',
+                     flex: '1 1 19%',
                   }}
                >
                   <div

@@ -184,20 +184,26 @@ export default function Form({
 
          let synonyms
          let hasHumanVoice
+         let audioLink
 
          // console.log('i: ', i, 'word: ', spellingArray[i])
          if (count < 40) {
             const {
                hasHumanVoice: humanVoiceCheck,
                synonyms: synonymsCheck,
+               audioLink: voiceAudioCheck,
             } = await verifyHumanSpeech(spellingArray[i])
             hasHumanVoice = humanVoiceCheck
             synonyms = synonymsCheck
+            audioLink = voiceAudioCheck
          } else {
             hasHumanVoice = false
             synonyms = []
          }
 
+         console.log('hasHumanVoice: ', hasHumanVoice)
+         // console.log('synonyms: ', synonyms)
+         console.log('voiceUrl: ', audioLink)
          // const { hasHumanVoice, synonyms } =
          //    await verifyHumanSpeech(spellingArray[i])
 
@@ -210,15 +216,16 @@ export default function Form({
          const newWord = {
             synonyms,
             hasHumanVoice,
-            // icon,
+
             id: `${i}-${Date.now()}`,
             spelling: spellingArray[i],
             scrambled,
-            // quantity,
+
             usersGuess: '',
-            // packed: false,
+
             verdict: null,
             showButton: true,
+            audioLink: audioLink,
          }
          // console.log('newWord id: ', newWord.id)
 

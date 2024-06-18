@@ -5,7 +5,7 @@
    background-color: var(--myYellow);
    /* border: 5px dashed yellow; */
    min-height: 100%; /* This will make the container take up at least the full viewport height */
-   overflow-y: auto;
+   /* overflow-y: scroll !important; */
 }
 
 .flexVerticalContainer {
@@ -14,7 +14,7 @@
    align-items: center;
    flex: 1; /* This will make .flexVerticalContainer take up the remaining vertical space */
    justify-content: space-evenly; /* This will space the child elements evenly */
-   overflow-y: auto;
+   /* overflow-y: scroll !important; */
 }
 
 .welcomeParagraph {
@@ -25,7 +25,7 @@
    font-size: 1.4rem;
    font-weight: 800;
    width: 80%;
-   overflow-y: auto;
+   /* overflow-y: scroll; */
 
    @media screen and (max-width: 840px) {
    }
@@ -43,7 +43,7 @@
 }
 .welcomeTitle {
    letter-spacing: 0rem;
-   overflow-y: auto;
+   /* overflow-y: auto; */
    color: var(--myBrown);
    font-size: 1.6rem;
    padding-left: 10px;

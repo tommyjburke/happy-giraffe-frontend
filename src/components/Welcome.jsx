@@ -2,10 +2,20 @@ import './Welcome.css'
 import background5 from '../media/background5.png'
 import { Link } from 'react-router-dom'
 
+const playAudioFile = () => {
+   const fileLocation =
+      'https://api.dictionaryapi.dev/media/pronunciations/en/clear-us.mp3'
+   const audio = new Audio(fileLocation)
+   audio.play()
+}
+
 export default function Welcome() {
    return (
       <>
-         <div className='welcomeContainer'>
+         <div
+            className='mainContainer'
+            style={{ overflowY: 'scroll !important' }}
+         >
             <h1>HAPPY GIRAFFE</h1>
             <div style={{ textAlign: 'center' }}>
                <span className='welcomeTitle africanFont'>
@@ -72,6 +82,12 @@ export default function Welcome() {
                   <Link to='/maths'>
                      <button>Create Maths Game</button>
                   </Link>
+                  <br />
+                  <br />
+                  <br />
+                  <br />
+                  <br />
+                  <br />
                   <br />
                   <br />
                </div>

@@ -207,37 +207,17 @@
    font-size: 16px; */
 }
 
-/* .table-container {
-   text-align: center;
-} */
-
 .newTableContainer {
    display: flex;
    flex-direction: column;
    width: 1000px;
    align-items: center;
+   align-content: center;
+   justify-content: center;
 
-   @media (max-width: 1200px) {
-      width: 1000px;
-   }
-   @media (max-width: 1000px) {
-      width: 900px;
-   }
-   @media (max-width: 900px) {
-      width: 800px;
-   }
-   @media (max-width: 800px) {
-      width: 100%;
-   }
-   @media (max-width: 800px) {
-      width: 100%;
-   }
-   @media (max-width: 700px) {
-      width: 100%;
-   }
-   @media (max-width: 600px) {
-      width: 100%;
-   }
+   width: 100%;
+   max-width: 100%;
+   margin: 0 auto;
 }
 
 table {
@@ -377,16 +357,22 @@ th {
    flex-grow: 1;
 }
 
-.responsive-table {
-   opacity: 0.9;
-   z-index: 1;
-   display: flex;
-   flex-wrap: wrap;
-   /* justify-content: space-between; */
-   width: 100%;
-   /* margin-left: 2px;
-   margin-right: 2px;
-   margin-bottom: 2px; */
+@media (max-width: 768px) {
+   .responsive-table {
+      width: 700px;
+   }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+   .responsive-table {
+      width: 760px;
+   }
+}
+
+@media (min-width: 1025px) {
+   .responsive-table {
+      width: 900px;
+   }
 }
 
 .responsive-table thead {
@@ -613,6 +599,7 @@ th {
    justify-content: center;
 }
 .g6 {
+   font-size: 1.6rem;
    flex-basis: 8%;
    flex-shrink: 2;
    text-align: center;
@@ -620,6 +607,14 @@ th {
    align-items: center;
    justify-content: space-evenly;
    line-height: 1.6rem;
+   @media screen and (max-width: 600px) {
+      line-height: 1.1rem;
+      font-size: 1.2rem;
+   }
+   @media screen and (max-width: 400px) {
+      line-height: 0.9rem;
+      font-size: 0.9rem;
+   }
 }
 .g7 {
    flex-basis: 10%;
@@ -628,7 +623,7 @@ th {
    display: flex;
    align-items: center;
    justify-content: center;
-   padding-right: 60px;
+   padding-right: 1rem;
 }
 
 .letterCount {

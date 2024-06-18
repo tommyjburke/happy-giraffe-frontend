@@ -17,6 +17,7 @@ export default function DiyPlayRoute() {
    const useTimer = query.get('useTimer') === 'true'
    const duration = parseInt(query.get('duration'), 10)
    const wordObjects = JSON.parse(atob(encodedWordObjects))
+
    const buildGameWordObjects = async () => {
       console.log('BUILDING GAME OBJECTS COMMENCING...')
       setIsProcessing(true)
@@ -36,6 +37,7 @@ export default function DiyPlayRoute() {
                   verdict: '',
                   showButton: true,
                   synonyms: apiResponse.synonyms,
+                  voiceUrl: apiResponse.audioLink,
                }
             })
          )
