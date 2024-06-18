@@ -201,9 +201,6 @@ export default function Form({
             synonyms = []
          }
 
-         console.log('hasHumanVoice: ', hasHumanVoice)
-         // console.log('synonyms: ', synonyms)
-         console.log('voiceUrl: ', audioLink)
          // const { hasHumanVoice, synonyms } =
          //    await verifyHumanSpeech(spellingArray[i])
 

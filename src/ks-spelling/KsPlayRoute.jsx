@@ -76,7 +76,7 @@ export default function KsPlayRoute() {
                }
             })
          )
-         console.log('new KS game objs', newGameWords)
+         // console.log('new KS game objs', newGameWords)
          setGameWords(newGameWords)
       } catch (error) {
          console.error(

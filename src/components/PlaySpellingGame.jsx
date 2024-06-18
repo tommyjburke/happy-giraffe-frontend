@@ -107,38 +107,9 @@ export default function PlaySpellingGame({
       const synth = window.speechSynthesis
       const utterThis = new SpeechSynthesisUtterance(text)
       utterThis.rate = speechSpeed
+      // utterThis.pitch = 2.5
       synth.speak(utterThis)
    }
-
-   // const playHumanSpeech = async (word) => {
-   //    const url = `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`
-   //    humanMessage()
-
-   //    try {
-   //       const result = await fetch(url).then((res) =>
-   //          res.json()
-   //       )
-   //       const pronunciation =
-   //          result[0]?.phonetics[0]?.audio ||
-   //          result[0]?.phonetics[1]?.audio ||
-   //          result[0]?.phonetics[2]?.audio ||
-   //          result[0]?.phonetics[3]?.audio
-
-   //       if (pronunciation) {
-   //          const icon = '👩‍🦲'
-   //          const audio = new Audio(pronunciation)
-   //          // console.log('audio: ', audio)
-   //          audio.play()
-   //          return { hasHumanVoice: true, icon }
-   //       } else {
-   //          const icon = '❌'
-   //          return { hasHumanVoice: false, icon }
-   //       }
-   //    } catch (error) {
-   //       const icon = '❌'
-   //       return { hasHumanVoice: false, icon }
-   //    }
-   // }
 
    const playAudioFile = (audioUrl) => {
       // const fileLocation =
@@ -301,7 +272,12 @@ export default function PlaySpellingGame({
             >
                <table className='responsive-table'>
                   <thead>
-                     <tr style={{ borderRight: 'none' }}>
+                     <tr
+                        style={{
+                           borderRight: 'none',
+                           padding: '0',
+                        }}
+                     >
                         <th
                            style={{
                               textAlign: 'center',
@@ -332,7 +308,9 @@ export default function PlaySpellingGame({
                            }}
                         >
                            <span
-                              style={{ cursor: 'help' }}
+                              style={{
+                                 cursor: 'help',
+                              }}
                               onClick={() => {
                                  messageApi.info(
                                     <h3>

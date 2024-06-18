@@ -96,10 +96,6 @@ export default function WordQuestion(props) {
                      onClick={() => {
                         // playHumanSpeech(wordObject.spelling)
                         playAudioFile(wordObject.voiceUrl)
-                        console.log(
-                           'wordObject.voiceUrl',
-                           wordObject.voiceUrl
-                        )
                      }}
                   >
                      <Popover

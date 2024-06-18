@@ -1,6 +1,14 @@
 import './Welcome.css'
 import background5 from '../media/background5.png'
 import { Link } from 'react-router-dom'
+import React from 'react'
+import {
+   isMobile,
+   isTablet,
+   isBrowser,
+   isAndroid,
+   isIOS,
+} from 'react-device-detect'
 
 const playAudioFile = () => {
    const fileLocation =
@@ -84,6 +92,20 @@ export default function Welcome() {
                   </Link>
                   <br />
                   <br />
+                  <div style={{ textAlign: 'center' }}>
+                     <u>Detected:</u>
+                     <br />
+                     {isMobile && 'Mobile '}
+                     {isTablet && 'Tablet '}
+                     {isBrowser && 'Internet Browser '}
+                     {isAndroid && 'Android '}
+                     {isIOS && 'iOS '}
+                     device
+                     <p>
+                        {' '}
+                        This is optimised for desktop Chrome.
+                     </p>
+                  </div>
                   <br />
                   <br />
                   <br />

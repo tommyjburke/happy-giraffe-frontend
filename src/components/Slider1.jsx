@@ -16,11 +16,16 @@ export default function Slider1({ value, onChange }) {
             style={{
                alignSelf: 'self-start',
                padding: '0 0px 0 0px',
+               marginBottom: '0px',
             }}
          >
             <label>
                {' '}
-               <span style={{ margin: '0 5px' }}>🤖</span>{' '}
+               <span
+                  style={{ margin: '0 2px', fontSize: '2rem' }}
+               >
+                  🤖
+               </span>{' '}
             </label>
 
             <input

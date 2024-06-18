@@ -256,8 +256,6 @@ export default function MathsConsole() {
                         </Col>
                         <Col span={1}>
                            <InputNumber
-                              controlWidth='20'
-                              handleWidth={1}
                               readOnly={true}
                               min={1}
                               max={50}

@@ -19,7 +19,7 @@ export default function DiyPlayRoute() {
    const wordObjects = JSON.parse(atob(encodedWordObjects))
 
    const buildGameWordObjects = async () => {
-      console.log('BUILDING GAME OBJECTS COMMENCING...')
+      // console.log('BUILDING GAME OBJECTS COMMENCING...')
       setIsProcessing(true)
 
       try {
@@ -41,7 +41,7 @@ export default function DiyPlayRoute() {
                }
             })
          )
-         console.log('new game objs', newGameWords)
+         // console.log('new game objs', newGameWords)
          setGameWords(newGameWords)
       } catch (error) {
          console.error(
@@ -51,7 +51,7 @@ export default function DiyPlayRoute() {
       }
       setIsProcessing(false)
 
-      console.log('BUILDING GAME OBJECTS COMPLETE!')
+      // console.log('BUILDING GAME OBJECTS COMPLETE!')
    }
 
    useEffect(() => {

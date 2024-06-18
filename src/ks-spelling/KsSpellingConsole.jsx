@@ -93,8 +93,9 @@ export default function KsSpellingConsole({ children }) {
       const lessons = ksData2.year[selectedYear].lessons
       return (
          <div className='yearButtons buttonsContainer'>
-            {lessons.map((lesson) => (
+            {lessons.map((lesson, index) => (
                <Popover
+                  key={index}
                   content={`${lesson.name} : ${lesson.description} : ${lesson.wordArray.length} words`}
                   // title={lesson.name}
                   // style={{ fontFamily: 'Permanent Marker' }}

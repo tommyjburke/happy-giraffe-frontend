@@ -10,7 +10,7 @@ export const verifyHumanSpeech = async (word) => {
          result[0]?.phonetics[2]?.audio ||
          result[0]?.phonetics[3]?.audio
 
-      console.log('API (SPEECH) RETURNED: ', pronunciation)
+      // console.log('API (SPEECH) RETURNED: ', pronunciation)
 
       // testAudioFile2(pronunciation)
 
