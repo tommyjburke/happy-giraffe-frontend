@@ -7,7 +7,7 @@
    background-color: var(--myBrown);
    z-index: 10;
    @media screen and (max-width: 600px) {
-      height: 25px;
+      height: 25px !important;
    }
 }
 
@@ -24,15 +24,14 @@
    /* text-decoration: none; */
    text-align: center;
    background-color: var(--myBrown);
-
    max-width: 1000px;
    width: 100%;
    /* padding: 12px; */
    opacity: 0.9;
    height: 40px;
-   z-index: 2000;
+   z-index: 900;
    /* height: 3vh; */
-   @media screen and (max-width: 600px) {
+   @media (max-width: 600px) {
       height: 25px;
    }
 }
@@ -79,7 +78,6 @@
 }
 
 .activeLink {
-   font-size: 1.5rem;
    color: var(--myWhite);
    text-decoration: wavy underline var(--myWhite);
    line-height: 75%;
@@ -93,8 +91,9 @@
    animation: glowingGold 1s infinite;
    color: var(--myWhite);
    text-decoration: underline var(--myWhite) !important;
+   font-size: 1.5rem;
    @media (max-width: 620px) {
-      font-size: 0.9rem;
+      font-size: 0.9rem !important;
       animation: glowingGold 1s infinite;
    }
    animation: glowingGold 1s infinite;
