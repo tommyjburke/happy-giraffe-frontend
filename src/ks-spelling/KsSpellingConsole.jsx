@@ -90,7 +90,9 @@ export default function KsSpellingConsole({ children }) {
 
    const renderLessonButtons = () => {
       if (!selectedYear) return null
-      const lessons = ksData2.year[selectedYear].lessons
+      const lessons = ksData2.year[selectedYear].lessons.sort(
+         (a, b) => a.name.localeCompare(b.name)
+      )
       return (
          <div>
             <div
