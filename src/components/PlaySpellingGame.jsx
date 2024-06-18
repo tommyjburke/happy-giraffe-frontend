@@ -338,7 +338,7 @@ export default function PlaySpellingGame({
                                     <h3>
                                        Use keyboard keys to
                                        navigate up and down using
-                                       the up and down keys
+                                       the ⬇️⬆️ up and down keys
                                     </h3>
                                  )
                               }}

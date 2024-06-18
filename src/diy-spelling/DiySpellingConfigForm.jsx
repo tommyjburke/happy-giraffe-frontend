@@ -3,7 +3,14 @@ import { playHumanSpeech } from '../jsFunctions/humanSpeech.js'
 // import ProgressBar from '../components/ProgressBar.jsx'
 // import Rewards from '../components/Rewards.jsx'
 import Slider1 from '../components/Slider1.jsx'
-import { Popover, message, Popconfirm } from 'antd'
+import {
+   Popover,
+   message,
+   Popconfirm,
+   Space,
+   Row,
+   Col,
+} from 'antd'
 import { useNavigate } from 'react-router-dom'
 import DragDrop from './DragDrop.jsx'
 import TypewriterEffect from '../components/TypewriterEffect.jsx'
@@ -216,12 +223,44 @@ export default function DiySpellingConfigForm({
 
    return (
       <div
-         className='newTableContainer'
+         // className='newTableContainer'
          style={{ marginTop: '10px', overflowY: 'auto' }}
       >
          {contextHolder}
+
+         <div
+            className='right'
+            style={{ marginBottom: '-15px' }}
+         >
+            <label>Title:</label>
+            <input
+               style={{
+                  color: 'var(--myOrange)',
+                  width: '140px',
+                  fontSize: '1.2rem',
+                  // fontFamily: 'Permanent Marker',
+               }}
+               placeholder='optional title...'
+               // autoFocus
+               // width='1000px'
+               title='Your title'
+               // pattern='[a-zA-Z]*'
+               maxLength={20}
+               // className='centred'
+               type='text'
+               value={title}
+               onChange={(e) =>
+                  setTitle(
+                     e.target.value.replace(
+                        /[^a-zA-Z'0-9 ]/g,
+                        ''
+                     )
+                  )
+               }
+            />
+         </div>
          <table
-            className='tableTitleBar responsive-table'
+            className='responsive-table'
             style={{
                border: 'none',
                borderRadius: '50px',
@@ -428,7 +467,7 @@ export default function DiySpellingConfigForm({
                                        textAlign: 'right',
                                        border: 'dashed gray 1px',
                                        borderRadius: '3px',
-                                       padding: '0 2px 0 2px',
+                                       padding: '0 0px 0 1px',
                                        // letterSpacing: '6px',
                                     }}
                                  >
@@ -516,46 +555,56 @@ export default function DiySpellingConfigForm({
                   <th
                      style={{
                         textAlign: 'left',
-                        justifyContent: 'flexStart',
+
                         alignItems: 'left',
-                        flex: '1',
-                        flexGrow: '2',
-                        flexBasis: '50%',
-                        flexShrink: '1',
+                        flex: '2 1 50%',
                         border: 'none',
                         backgroundColor: 'transparent',
                         color: 'var(--myBrown)',
+                        display: 'flex',
+                        justifyContent: 'flex-start',
+                        // alignItems: 'center',
                      }}
                   >
-                     <div className='left'>
-                        Timer:{' '}
-                        <Switch
-                           checkedChildren='on'
-                           unCheckedChildren='off'
-                           size='large'
-                           onChange={(checked) => {
-                              playSwitch()
-                              setUseTimer(checked)
-                           }}
-                           // defaultChecked
-                        />
-                        <Slider
-                           disabled={!useTimer}
-                           step={30}
-                           min={30}
-                           max={600}
-                           onChange={setDuration}
-                           defaultValue={duration}
-                        />
-                     </div>
-                     {useTimer && (
+                     <div className=''>
                         <div
                            className='left'
-                           style={{ fontSize: '1.8rem' }}
+                           style={{
+                              paddingLeft: '10px',
+                              fontSize: '1rem',
+                           }}
                         >
-                           {convertSecondsToMinutes(duration)}
+                           <Space>
+                              Timer:{' '}
+                              <Switch
+                                 checkedChildren='on'
+                                 unCheckedChildren='off'
+                                 size='large'
+                                 onChange={(checked) => {
+                                    playSwitch()
+                                    setUseTimer(checked)
+                                 }}
+                                 // defaultChecked
+                              />{' '}
+                              <span>
+                                 {convertSecondsToMinutes(
+                                    duration
+                                 )}
+                              </span>
+                           </Space>
                         </div>
-                     )}
+                        <br />
+                        <div style={{ paddingLeft: '15px' }}>
+                           <Slider
+                              disabled={!useTimer}
+                              step={30}
+                              min={30}
+                              max={600}
+                              onChange={setDuration}
+                              defaultValue={duration}
+                           />
+                        </div>
+                     </div>
                   </th>
 
                   <th
@@ -570,34 +619,7 @@ export default function DiySpellingConfigForm({
                         border: 'none',
                         backgroundColor: 'transparent',
                      }}
-                  >
-                     <div className='right'>
-                        <label>Title:</label>
-                        <input
-                           style={{
-                              color: 'var(--myOrange)',
-                              // fontFamily: 'Permanent Marker',
-                           }}
-                           placeholder='optional title...'
-                           // autoFocus
-                           // width='1000px'
-                           title='Your title'
-                           // pattern='[a-zA-Z]*'
-                           maxLength={20}
-                           // className='centred'
-                           type='text'
-                           value={title}
-                           onChange={(e) =>
-                              setTitle(
-                                 e.target.value.replace(
-                                    /[^a-zA-Z' ]/g,
-                                    ''
-                                 )
-                              )
-                           }
-                        />
-                     </div>
-                  </th>
+                  ></th>
                   <th
                      style={{
                         // textAlign: 'right',
@@ -623,6 +645,7 @@ export default function DiySpellingConfigForm({
                </tr>
             </tbody>
          </table>
+
          <br />
 
          <br />

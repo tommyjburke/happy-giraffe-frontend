@@ -251,7 +251,7 @@ table {
 }
 
 .letterCount {
-   font-family: 'VT323';
+   /* font-size: '0.8rem'; */
 }
 
 .scrambledFont {
@@ -356,21 +356,16 @@ th {
    flex-grow: 1;
 }
 
-@media (max-width: 768px) {
-   .responsive-table {
-      width: 700px;
-   }
+.responsive-table {
+   width: 100%;
+   margin: 0 auto;
+   max-width: 100%;
+   min-width: 300px; /* Adjust as necessary */
 }
 
-@media (min-width: 769px) and (max-width: 1024px) {
+@media (min-width: 1280px) {
    .responsive-table {
-      width: 760px;
-   }
-}
-
-@media (min-width: 1025px) {
-   .responsive-table {
-      width: 900px;
+      max-width: 1200px;
    }
 }
 
@@ -418,6 +413,9 @@ th {
    @media (max-width: 768px) {
       flex-basis: 4%;
    }
+   @media screen and (max-width: 500px) {
+      font-size: 0.7rem;
+   }
 }
 .c2 {
    flex-basis: 12%;
@@ -429,6 +427,11 @@ th {
    vertical-align: middle;
    align-items: center;
    justify-content: center;
+   display: flex;
+   align-items: center;
+   @media screen and (max-width: 500px) {
+      font-size: 0.9rem;
+   }
 }
 .c3 {
    flex-basis: 6%;
@@ -439,6 +442,11 @@ th {
    padding: 0;
    border-left: dashed var(--myYellow);
    cursor: help;
+   display: flex;
+   align-items: center;
+   @media screen and (max-width: 500px) {
+      font-size: 0.9rem;
+   }
 }
 
 .c4 {
@@ -453,10 +461,11 @@ th {
    font-family: 'Schoolbell', cursive;
    font-weight: 400;
    font-style: normal;
-   @media (max-width: 768px) {
-      font-size: 1.2rem;
-      vertical-align: middle;
-      padding-top: 20px;
+   display: flex;
+   align-items: center;
+
+   @media screen and (max-width: 500px) {
+      font-size: 0.9rem;
    }
 }
 .c5 {
@@ -464,16 +473,35 @@ th {
    flex-shrink: 2;
    flex-grow: 1;
    text-align: center;
+   display: flex;
+   align-items: center;
+   @media screen and (max-width: 500px) {
+      font-size: 0.9rem;
+   }
 }
 .c6 {
+   font-family: 'VT323';
+   font-family: 'Space Mono';
+   font-size: 1rem;
+   color: var(--myYellow);
    flex-basis: 6%;
    flex-shrink: 2;
    text-align: center;
+   display: flex;
+   align-items: center;
+   @media screen and (max-width: 500px) {
+      font-size: 0.7rem;
+   }
 }
 .c7 {
    flex-basis: 8%;
    flex-shrink: 2;
    text-align: center;
+   display: flex;
+   align-items: center;
+   @media screen and (max-width: 500px) {
+      font-size: 0.9rem;
+   }
 }
 
 .g1 {
@@ -623,11 +651,6 @@ th {
    align-items: center;
    justify-content: center;
    padding-right: 1rem;
-}
-
-.letterCount {
-   font-family: 'Space Mono';
-   font-size: '0.8rem';
 }
 
 /* Responsive styles */
