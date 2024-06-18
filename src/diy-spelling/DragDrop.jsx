@@ -122,15 +122,18 @@ function DragDrop({
 
             let synonyms
             let hasHumanVoice
+            let audioLink
 
             // console.log('i: ', i, 'word: ', spellingArray[i])
             if (count < 40) {
                const {
                   hasHumanVoice: humanVoiceCheck,
                   synonyms: synonymsCheck,
+                  audioLink: voiceAudioCheck,
                } = await verifyHumanSpeech(spellingArray[i])
                hasHumanVoice = humanVoiceCheck
                synonyms = synonymsCheck
+               audioLink = voiceAudioCheck
             } else {
                hasHumanVoice = false
                synonyms = []
@@ -154,6 +157,7 @@ function DragDrop({
                // packed: false,
                verdict: null,
                showButton: true,
+               audioLink: audioLink,
             }
 
             // handleAddWord(newWord)

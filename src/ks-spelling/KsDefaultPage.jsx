@@ -18,17 +18,26 @@ const soundTestContent = (
    <div
       style={{
          width: '320px',
-         textAlign: 'center',
-         fontFamily: 'Indie Flower',
+         textAlign: 'left',
+         fontFamily: 'Roboto',
          fontSize: '1.0rem',
+         fontWeight: '600',
          color: 'red',
       }}
    >
-      Some sounds may not be heard if your device is set to mute.
+      Some sounds may not be heard if your device is set to{' '}
+      <b>
+         <u>mute</u>
+      </b>
+      .
       <br />
       It may be necessary to click this button before playing the
-      game. <b>Check</b> if the robot can be heard. Different
-      browsers may use different robot voices.
+      game. <b>Check</b> if the voice content can be heard.
+      <br />
+      <u>
+         <b>Note:</b>{' '}
+      </u>
+      Different browsers may use different robotic voices.
    </div>
 )
 

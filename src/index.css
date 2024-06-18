@@ -238,7 +238,7 @@ input {
    border-style: none;
    color: rgb(37, 185, 37);
    text-align: center;
-   animation: moveInLeft 600ms ease-out;
+   animation: moveInLeft 200ms ease-out;
    @media (max-width: 768px) {
       font-size: 1.4rem;
       /* height: 1.5rem; */

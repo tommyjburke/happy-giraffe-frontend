@@ -308,29 +308,6 @@ export default function Form({
       <div>
          {contextHolder}
 
-         {/* <div className='formBar'>
-            <FormContainer>
-               <InputButtonsRow>
-                  <Input
-                     type='text'
-                     placeholder='Enter something...'
-                  />
-                  <Button
-                     style={{
-                        backgroundColor: 'green',
-                        marginLeft: '-40',
-                     }}
-                  >
-                     +
-                  </Button>
-                  <Button>🎙️</Button>
-               </InputButtonsRow>
-               <Button>C</Button>
-               <Button>D</Button>
-            </FormContainer>
-         </div> */}
-         {/* {loading && <p>Loading...</p>}
-         {error && <p>{error}</p>} */}
          <div className='formBar'>
             <form
                className='form-container'
@@ -417,7 +394,7 @@ export default function Form({
                               // height: '2.4rem',
                               backgroundColor: 'lightgray',
                               color: 'black',
-                              border: 'dashed 2px darkgray',
+                              border: 'ridge 2px darkgray',
                               fontSize: '0.8rem',
                               marginLeft: '-20px',
                               animation: 'none',
@@ -429,45 +406,12 @@ export default function Form({
                      </DragDrop>
                   </div>
                </Popover>
-
-               {/* <button
-                     className='cancelBtn'
-                     style={{ backgroundColor: 'lightGray' }}
-                     onClick={() => setWords([])}
-                  >
-                     Clear All
-                  </button> */}
             </form>
-
-            {/* <button onClick={() => setIsProcessing(true)}>
-               START
-            </button>
-            <button onClick={() => setIsProcessing(false)}>
-               STOP
-            </button>
-            <button
-               onClick={() => console.log('WORDS: ', words)}
-            >
-               WORDS
-            </button>
-            <button
-               onClick={() => {
-                  duplicatesError()
-               }}
-            >
-               DUPLS
-            </button> */}
          </div>
          <div className='formBar'>
             {showWarning && <p className='warning'>{warning}</p>}
          </div>
-         {/* <div className='formBar'>
-            {transcript && (
-               <div className='transcriptBar'>
-                  <p>{transcript}</p>
-               </div>
-            )}
-         </div> */}
+
          <div className='formBar'>
             {spelling && (
                <div className='transcriptBar'>
@@ -483,11 +427,11 @@ const addWordsContent = (
    <div
       style={{
          color: 'var(--myBrown)',
-         fontFamily: 'Indie Flower',
+
          fontSize: '1.2rem',
       }}
    >
-      <h3>ADD WORD(S)</h3>
+      <h3>Add Word(s)</h3>
    </div>
 )
 
@@ -506,7 +450,7 @@ const dragDropContent = (
    <div
       style={{
          color: 'var(--myBrown',
-         fontFamily: 'Indie Flower',
+
          fontSize: '1.2rem',
       }}
    >
@@ -528,13 +472,12 @@ const voiceContent = (
    <div
       style={{
          color: 'var(--myBrown',
-         fontFamily: 'Indie Flower',
+
          fontSize: '1.2rem',
       }}
    >
       <h3>SPEAK TO ADD WORD(S)</h3>
       <p
-         className='gameFont'
          style={{
             color: 'red',
          }}
