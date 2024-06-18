@@ -47,7 +47,7 @@ export default function MathsConsole() {
    const [numQuestions, setNumQuestions] = useState(10)
    const [hiddenBox, setHiddenBox] = useState(['c'])
    const [operators, setOperators] = useState(['*'])
-   const [useTimer, setUseTimer] = useState(false)
+   const [useTimer, setUseTimer] = useState(true)
    const [duration, setDuration] = useState(60)
    const [useMinus, setUseMinus] = useState(false)
    const navigate = useNavigate()
@@ -278,6 +278,7 @@ export default function MathsConsole() {
                         checkedChildren='on'
                         unCheckedChildren='off'
                         onChange={handleTimerSwitch}
+                        defaultValue={useTimer}
                      />
                      {/* {useTimer ? 'Timer On' : 'Timer Off'} */}
 

@@ -38,7 +38,7 @@ export default function DiySpellingConfigForm({
    const navigate = useNavigate()
 
    // const [score, setScore] = useState(0)
-   const [useTimer, setUseTimer] = useState(false)
+   const [useTimer, setUseTimer] = useState(true)
    const [duration, setDuration] = useState(60)
    const [title, setTitle] = useState('my spelling game')
    // const [newUri, setNewUri] = useState('')
@@ -579,6 +579,7 @@ export default function DiySpellingConfigForm({
                               <Switch
                                  checkedChildren='on'
                                  unCheckedChildren='off'
+                                 defaultValue={useTimer}
                                  size='large'
                                  onChange={(checked) => {
                                     playSwitch()

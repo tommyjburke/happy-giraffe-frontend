@@ -36,7 +36,7 @@ export default function KsSpellingConfigForm({
       .toLocaleDateString('zh-UK')
       .toString()
 
-   const [useTimer, setUseTimer] = useState(false)
+   const [useTimer, setUseTimer] = useState(true)
    const [timerSeconds, setTimerSeconds] = useState(60)
    const [customTitle, setCustomTitle] = useState(
       `KS ${todaysDate}`
@@ -180,6 +180,7 @@ export default function KsSpellingConfigForm({
 
                <div className='configBox'>
                   <Switch
+                     defaultValue={useTimer}
                      checkedChildren='on'
                      unCheckedChildren='off'
                      onChange={handleTimerSwitch}

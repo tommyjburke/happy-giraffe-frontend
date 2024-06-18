@@ -301,7 +301,7 @@ export default function PlaySpellingGame({
             >
                <table className='responsive-table'>
                   <thead>
-                     <tr style={{}}>
+                     <tr style={{ borderRight: 'none' }}>
                         <th
                            style={{
                               textAlign: 'center',
@@ -354,6 +354,7 @@ export default function PlaySpellingGame({
                               backgroundColor: 'var(--myYellow)',
                               color: 'var(--myBrown)',
                               fontSize: '1.8rem',
+                              borderRight: 'none',
                            }}
                         >
                            {words.length <= 80 ? (

@@ -10,6 +10,15 @@ function CountdownTimer({ duration, onTimeUp }) {
    //    const [playDing] = useSound(ding)
    const [timeRemaining, setTimeRemaining] = useState(duration)
 
+   const sayTimeUp = () => {
+      const text = 'TIMES UP!'
+      const synth = window.speechSynthesis
+      const utterThis = new SpeechSynthesisUtterance(text)
+      utterThis.rate = 1.4
+      utterThis.pitch = 3.5
+      synth.speak(utterThis)
+   }
+
    // const tickRef = useRef(new Audio(tickSound))
    // const tick = tickRef.current
    // tick.volume = 0.1
@@ -24,6 +33,7 @@ function CountdownTimer({ duration, onTimeUp }) {
    useEffect(() => {
       let intervalId = null
       if (timeRemaining > 0) {
+         timeRemaining === 1 && sayTimeUp()
          playClick()
          intervalId = setInterval(() => {
             setTimeRemaining(
