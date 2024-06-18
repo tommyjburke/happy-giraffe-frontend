@@ -92,32 +92,47 @@ export default function KsSpellingConsole({ children }) {
       if (!selectedYear) return null
       const lessons = ksData2.year[selectedYear].lessons
       return (
-         <div className='yearButtons buttonsContainer'>
-            {lessons.map((lesson, index) => (
-               <Popover
-                  key={index}
-                  content={`${lesson.name} : ${lesson.description} : ${lesson.wordArray.length} words`}
-                  // title={lesson.name}
-                  // style={{ fontFamily: 'Roboto' }}
-               >
-                  <button
-                     className='menuButton'
-                     key={lesson.name}
-                     onClick={() => {
-                        setWordLengthConfirmed(false)
-                        handleLessonClick(lesson)
-                     }}
-                  >
-                     {lesson.name}
-                  </button>
-               </Popover>
-            ))}
-            <button
-               className='backButtonStyle'
-               onClick={handleGoBack}
+         <div>
+            <div
+               className='africanFont'
+               style={{
+                  textAlign: 'center',
+                  // fontFamily: 'Schoolbell',
+                  color: 'green',
+               }}
             >
-               🔙
-            </button>
+               <h3>
+                  <u>{selectedYear}</u>: Hover for more info
+               </h3>
+            </div>
+            <div className='yearButtons buttonsContainer'>
+               {lessons.map((lesson, index) => (
+                  <Popover
+                     key={index}
+                     content={`${lesson.name} : ${lesson.description} : ${lesson.wordArray.length} words`}
+                     // title={lesson.name}
+                     // style={{ fontFamily: 'Roboto' }}
+                  >
+                     <button
+                        className='menuButton'
+                        key={lesson.name}
+                        onClick={() => {
+                           setWordLengthConfirmed(false)
+                           handleLessonClick(lesson)
+                        }}
+                     >
+                        {lesson.name}
+                     </button>
+                  </Popover>
+               ))}
+               <button
+                  className='backButtonStyle'
+                  onClick={handleGoBack}
+               >
+                  🔙
+               </button>
+               <br />
+            </div>
          </div>
       )
    }

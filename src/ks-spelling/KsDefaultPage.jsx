@@ -87,7 +87,7 @@ export default function KsDefaultPage() {
             >
                <span style={{ fontSize: '4rem' }}>☝️</span>
                <TypewriterEffect
-                  text='Click a GREEN button to begin....'
+                  text='Click a GREEN button to begin.........'
                   myFontSize='1.1rem'
                   isLooping
                />
@@ -122,7 +122,7 @@ export default function KsDefaultPage() {
                      title='Sound Test. Checks if sounds are working'
                      style={{
                         backgroundColor: 'var(--myOrange)',
-                        padding: '',
+                        paddingBottom: '0px',
                         outline: '5px ridge var(--myWhite)',
                         marginBottom: '10px',
                         animation: 'moveInLeft 600ms ease-out',
