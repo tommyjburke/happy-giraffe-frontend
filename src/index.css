@@ -170,7 +170,7 @@ h1 {
    font-style: normal;
    @media (max-width: 600px) {
       font-size: 1.4rem;
-      padding: 0rem;
+      padding: 0.1rem;
       letter-spacing: 1px;
       line-height: normal;
    }

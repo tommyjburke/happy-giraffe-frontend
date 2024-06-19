@@ -117,7 +117,7 @@ export default function Welcome() {
                         primary-aged children.
                      </li>
                      <li>
-                        Effortlessly configure spelling and math
+                        Effortlessly configure spelling and maths
                         games for your children! Make learning
                         fun!
                      </li>
@@ -212,9 +212,37 @@ export default function Welcome() {
                      }}
                   >
                      {' '}
-                     <p> Optimised for Chrome desktop.</p>
-                     <u>Detected:</u> {getOS()} {getBrowser()}{' '}
-                     {getDevice()}
+                     <p style={{ color: 'var(--myBrown)' }}>
+                        {' '}
+                        <span style={{ color: 'green' }}>
+                           Optimised
+                        </span>
+                        <span style={{ color: 'red' }}>
+                           {' '}
+                           for{' '}
+                        </span>
+                        <span style={{ color: 'yellow' }}>
+                           Chrome
+                        </span>
+                        <span style={{ color: 'blue' }}>
+                           {' '}
+                           desktop.
+                        </span>
+                     </p>
+                     <u style={{ color: 'var(--myWhite)' }}>
+                        <span
+                           style={{
+                              textShadow: '0 0 1px brown',
+                           }}
+                        >
+                           Detected:
+                        </span>
+                     </u>{' '}
+                     <b style={{ color: 'var(--myBrown)' }}>
+                        {' '}
+                        {getOS()} {getBrowser()} {getDevice()}
+                     </b>
+                     <br />
                      {/* <br />
                         BROWSER
                         <br />
