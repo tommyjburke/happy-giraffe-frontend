@@ -310,6 +310,8 @@ export default function PlaySpellingGame({
                            <span
                               style={{
                                  cursor: 'help',
+                                 position: 'relative',
+                                 top: '0.3rem',
                               }}
                               onClick={() => {
                                  messageApi.info(

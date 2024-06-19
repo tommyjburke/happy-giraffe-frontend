@@ -184,6 +184,10 @@ export default function KsPresets() {
                      <>
                         Select Language:{' '}
                         <span
+                           style={{
+                              position: 'relative',
+                              top: '0.3rem',
+                           }}
                            className='largeIcon'
                            onClick={() =>
                               setSelectedLanguage('English')
@@ -192,6 +196,10 @@ export default function KsPresets() {
                            🇬🇧
                         </span>
                         <span
+                           style={{
+                              position: 'relative',
+                              top: '0.3rem',
+                           }}
                            className='largeIcon'
                            onClick={() => warning()}
                         >
@@ -223,6 +231,9 @@ export default function KsPresets() {
                      <span
                         style={{
                            fontSize: '1.3rem',
+                           position: 'relative',
+                           top: '0.3rem',
+                           marginLeft: '0.5rem',
 
                            // marginTop: '-3.3rem',
                         }}
