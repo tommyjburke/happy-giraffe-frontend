@@ -4,14 +4,15 @@ import { cleanWords } from '../jsFunctions/jsFunctions.js'
 import { useState, useEffect } from 'react'
 import PlaySpellingGame from '../components/PlaySpellingGame.jsx'
 import { verifyHumanSpeech } from '../jsFunctions/humanSpeech'
-import { Spin } from 'antd'
+import { Spin, Alert } from 'antd'
 import { useLocation } from 'react-router-dom'
 import { scrambleWord } from '../jsFunctions/jsFunctions'
 import { DeleteOutlined } from '@ant-design/icons'
 import TypewriterEffect from '../components/TypewriterEffect.jsx'
 import background5 from '../media/background5.png'
-import { Dropdown, Space, Select } from 'antd'
-import { set } from 'mongoose'
+import { Dropdown, Space, Select, message } from 'antd'
+import useSound from 'use-sound'
+import error from '../media/error.mp3'
 
 export default function KsPresets() {
    const [selectedYear, setSelectedYear] = useState('')
@@ -22,7 +23,11 @@ export default function KsPresets() {
    const [gameWords, setGameWords] = useState([])
    const [isProcessing, setIsProcessing] = useState(false)
    const [startStopWatch, setStartStopWatch] = useState(null)
+   const [selectedLanguage, setSelectedLanguage] = useState(null)
 
+   const [messageApi, contextHolder] = message.useMessage()
+
+   const [errorSound] = useSound(error)
    const newWords = () => {
       const tempYear = selectedYear
       setGameWords([])
@@ -84,6 +89,18 @@ export default function KsPresets() {
    //    console.log('select words clicked: ', randomWords)
    // }
 
+   const warning = () => {
+      errorSound()
+      messageApi.open({
+         type: 'error',
+         content: (
+            <h2>
+               INVALID LANGUAGE. PLEASE SELECT A VALID LANGUAGE
+            </h2>
+         ),
+      })
+   }
+
    useEffect(() => {
       if (selectedYear) {
          buildGameWordObjects()
@@ -141,6 +158,7 @@ export default function KsPresets() {
    return (
       <>
          <div className='mainContainer hero'>
+            {contextHolder}
             <Spin
                spinning={isProcessing}
                size='large'
@@ -173,23 +191,45 @@ export default function KsPresets() {
             >
                <div>30 Random Words: 10 Minutes</div>
                <div>
-                  {' '}
-                  Select Year:{' '}
-                  <Select
-                     placeholder={dropdownPlaceholder}
-                     onChange={selectYear}
-                     value={dropdownPlaceholder}
-                     // style={{ width: 120 }}
-                     // size='large'
+                  {!selectedLanguage && (
+                     <>
+                        Select Language:{' '}
+                        <span
+                           className='largeIcon'
+                           onClick={() =>
+                              setSelectedLanguage('English')
+                           }
+                        >
+                           🇬🇧
+                        </span>
+                        <span
+                           className='largeIcon'
+                           onClick={() => warning()}
+                        >
+                           🇺🇸
+                        </span>
+                     </>
+                  )}{' '}
+                  {selectedLanguage && (
+                     <>
+                        Select Year:{' '}
+                        <Select
+                           placeholder={dropdownPlaceholder}
+                           onChange={selectYear}
+                           value={dropdownPlaceholder}
+                           // style={{ width: 120 }}
+                           // size='large'
 
-                     className='africanFont'
-                     options={Object.keys(ksData2.year).map(
-                        (year) => ({
-                           value: year,
-                           label: year,
-                        })
-                     )}
-                  />{' '}
+                           className='africanFont'
+                           options={Object.keys(
+                              ksData2.year
+                           ).map((year) => ({
+                              value: year,
+                              label: year,
+                           }))}
+                        />
+                     </>
+                  )}
                   {selectedYear && (
                      <Space>
                         <span

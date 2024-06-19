@@ -198,7 +198,7 @@ export default function Welcome() {
                   <div>
                      <Link to='/ks-presets'>
                         <button>
-                           KeyStage Spelling Shortcuts
+                           KeyStage Spelling Presets
                         </button>
                      </Link>
                   </div>
