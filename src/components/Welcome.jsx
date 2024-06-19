@@ -213,6 +213,24 @@ export default function Welcome() {
                   ></div>
 
                   <h2>Times Table Presets:</h2>
+                  <div>
+                     {' '}
+                     <Select
+                        popupMatchSelectWidth={false}
+                        placeholder='Times Table Presets'
+                        width='100%'
+                        onChange={(value) =>
+                           (window.location.href = value)
+                        }
+                        options={timesTablePresets.TimesTables.map(
+                           (item) => ({
+                              value: item.url,
+                              label: item.title,
+                           })
+                        )}
+                     />
+                     <br />
+                  </div>
                   {/* <div>
                      <select
                         onChange={(e) =>
