@@ -213,7 +213,7 @@ export default function Welcome() {
                         textAlign: 'center',
                      }}
                   ></div>
-
+                  <br />
                   <h2>Times Table Presets:</h2>
                   <div>
                      {' '}
