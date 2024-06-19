@@ -391,6 +391,7 @@ export default function MathsConsole() {
                               style={{
                                  padding: '10px',
                                  margin: '10px',
+                                 fontSize: '1.2rem',
                               }}
                            >
                               <td
@@ -469,7 +470,7 @@ export default function MathsConsole() {
                         <div
                            className=''
                            style={{
-                              height: '120px',
+                              height: '180px',
                               width: '60px',
                            }}
                         >
@@ -581,7 +582,7 @@ export default function MathsConsole() {
                         </div>
                         <div
                            style={{
-                              height: '120px',
+                              height: '180px',
                               width: '60px',
                            }}
                         >

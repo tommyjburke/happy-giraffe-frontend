@@ -131,12 +131,14 @@ export default function App() {
                Slider: {
                   handleColor: 'var(--myOrange)',
                   dotActiveBorderColor: 'brown',
-                  handleActiveColor: 'brown',
+                  handleActiveColor: 'orange',
                   railBg: 'darkgray',
                   trackBg: 'var(--myBrown)',
                   trackHoverBg: 'brown',
-                  handleSize: 20,
-                  railSize: 6,
+                  handleSize: 24,
+                  railSize: 8,
+                  handleSizeHover: 28,
+                  handleColor: 'brown',
 
                   // handleStyle: {
                   //    color: 'brown',
