@@ -1,0 +1,67 @@
+{
+   "year": {
+      "Year 1 P2": {
+         "lessons": [
+            {
+               "name": "Year 1 (P2) words",
+               "description": "All words for Year 1 (P2)",
+               "wordArray": ["the", "that", "she", "have", "an"],
+
+               "href": "https://example.com/Y1P2/Basic"
+            },
+            {
+               "name": "Year 1 (P2) poo wee words",
+               "description": "Poo words",
+               "wordArray": ["poo", "wee", "bum", "arse", ""],
+
+               "href": "https://example.com/Y1P2/Basic"
+            }
+         ]
+      },
+      "Year 2 P3": {
+         "lessons": [
+            {
+               "name": "Year 2 (P3) words",
+               "description": "All words Year 2 (P3)",
+               "wordArray": [
+                  "water",
+                  "stopped",
+                  "park",
+                  "eyes",
+                  "grandad"
+               ],
+               "href": "https://example.com/Y2P3/Basic"
+            }
+         ]
+      },
+      "Year 3 P4": {
+         "lessons": [
+            {
+               "name": "Y3 'a'",
+               "description": "Phonemes for Year 3 (P4)",
+               "wordArray": ["cat", "plait", "most"],
+               "href": "https://example.com/Y3P4/Basic"
+            },
+            {
+               "name": "Y3 'air'",
+               "description": "ie sounds for Y3 (P4)",
+               "wordArray": ["fare", "prepare", "different"],
+               "href": "https://example.com/Y4P5/Digraphs"
+            },
+            {
+               "name": "Y3 'ay'",
+               "description": "ay sounds for Y3 (P4)",
+               "wordArray": [
+                  "ay",
+                  "always",
+                  "male",
+                  "reign",
+                  "unsafe",
+                  "not"
+               ],
+               "href": "https://example.com/Y3P4/LongVowels"
+            }
+         ]
+      }
+   }
+}

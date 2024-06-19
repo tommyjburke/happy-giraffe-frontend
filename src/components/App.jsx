@@ -15,6 +15,7 @@ import { CreateArray } from './CreateArray'
 import MathsConsole from '../maths/MathsConsole'
 import MathsPlayRoute from '../maths/MathsPlayRoute'
 import Welcome from './Welcome'
+import KsPresets from '../ks-spelling/KsPresets'
 
 const router = createBrowserRouter([
    {
@@ -70,6 +71,10 @@ const router = createBrowserRouter([
          {
             path: '/maths/:data',
             element: <MathsPlayRoute />,
+         },
+         {
+            path: 'ks-presets',
+            element: <KsPresets />,
          },
          {
             path: 'create-array',

@@ -29,6 +29,9 @@ export default function MathsPlayRoute() {
 
    const [playCorrectSound] = useSound(correctSound3)
    const [playWrongSound] = useSound(wrongSound)
+   const [startStopWatch, setStartStopWatch] = useState(
+      Date.now()
+   )
 
    const query = useQuery()
 
@@ -484,6 +487,7 @@ export default function MathsPlayRoute() {
                // words={words}
                // rewardsRef={rewardsRef}
                // resetRewards={resetRewards}
+               startStopWatch={startStopWatch}
                percentage={(correct / mathsObjects.length) * 100}
                numQuestions={mathsObjects.length}
                correct={correct}

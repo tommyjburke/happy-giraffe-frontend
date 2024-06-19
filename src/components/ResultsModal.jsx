@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { Space, Modal } from 'antd'
 import './ResultsModal.css'
@@ -20,7 +20,33 @@ export default function ResultsModal({
    setShowResultsModal,
    rebuildGame,
    numQuestions,
+   startStopWatch,
 }) {
+   const [endStopWatch, setEndStopWatch] = useState(Date.now())
+   // useEffect(() => {
+
+   //    setEndStopWatch(Date.now())
+   // })
+
+   console.log('startStopWatch: ', startStopWatch)
+   console.log('endStopWatch: ', endStopWatch)
+   console.log(
+      'endStopWatch - startStopWatch seconds: ',
+      (endStopWatch - startStopWatch) / 1000
+   )
+
+   const timeTaken = Math.round(
+      (endStopWatch - startStopWatch) / 1000
+   )
+
+   function caluclateTimeTaken(seconds) {
+      const minutes = Math.floor(seconds / 60)
+      const remainingSeconds = seconds % 60
+      return `${minutes}:${
+         remainingSeconds < 10 ? '0' : ''
+      }${remainingSeconds}`
+   }
+
    const giraffeImage = (percentage) => {
       if (percentage >= 85) {
          return <img src={giraffeA} height='40px' alt='A' />
@@ -156,6 +182,7 @@ export default function ResultsModal({
                      backgroundColor: 'var(--myOrange)',
                      width: '100%',
                      textAlign: 'center',
+                     // fontFamily: 'VT323',
                   }}
                >
                   <h3>
@@ -166,6 +193,25 @@ export default function ResultsModal({
                      {numQuestions - correct - incorrect}
                   </h3>
                </div>
+               {startStopWatch && (
+                  <div
+                     style={{
+                        backgroundColor: 'var(--myOrange)',
+                        width: '100%',
+                        textAlign: 'center',
+                        color: 'var(--myWhite)',
+                        fontFamily: 'VT323',
+                        fontSize: '1.4rem',
+                     }}
+                  >
+                     ⏱️{' '}
+                     {timeTaken < 60
+                        ? `Time Taken: ${timeTaken} seconds`
+                        : `Time Taken: ${Math.floor(
+                             timeTaken / 60
+                          )} min ${timeTaken % 60} sec`}
+                  </div>
+               )}
 
                <div
                   // className='resultsTableBackground'

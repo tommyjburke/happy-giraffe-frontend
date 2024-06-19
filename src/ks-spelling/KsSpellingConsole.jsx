@@ -31,17 +31,6 @@ export default function KsSpellingConsole({ children }) {
    const filteredWordsLengthRef = useRef(filteredWords.length)
 
    const [tempFilteredWords, setTempFilteredWords] = useState([])
-   // const [formData, setFormData] = useState({
-   //    lesson: '',
-   //    customTitle: '',
-   //    message: '',
-   //    previewWords: false,
-   //    usePreviewWordsTimer: false,
-   //    useGameTimer: false,
-   //    words: [],
-   //    minWordLength: 0,
-   //    maxWordLength: 12,
-   // })
 
    useEffect(() => {
       document.title = 'Happy Giraffe: KS Spelling 🦒'

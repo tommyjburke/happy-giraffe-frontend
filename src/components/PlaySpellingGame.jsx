@@ -39,7 +39,9 @@ export default function PlaySpellingGame({
    const [useTimerTemp, setUseTimerTemp] = useState(useTimer)
    const [questionsCompleted, setQuestionsCompleted] =
       useState(false)
-
+   const [startStopWatch, setStartStopWatch] = useState(
+      Date.now()
+   )
    // const [useTimer, setUseTimer] = useState(false)
    // const [duration, setDuration] = useState()
 
@@ -559,6 +561,7 @@ export default function PlaySpellingGame({
          </button> */}
          {showResultsModal && (
             <ResultsModal
+               startStopWatch={startStopWatch}
                words={words}
                rewardsRef={rewardsRef}
                resetRewards={resetRewards}
