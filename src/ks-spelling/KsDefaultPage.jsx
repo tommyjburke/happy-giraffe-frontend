@@ -184,7 +184,7 @@ export default function KsDefaultPage() {
                <img
                   src={background5}
                   alt='Happy Giraffe'
-                  width='60%'
+                  width='200px'
                />
             </div>
          </div>
