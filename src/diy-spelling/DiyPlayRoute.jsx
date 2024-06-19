@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom'
 import PlaySpellingGame from '../components/PlaySpellingGame'
 import { verifyHumanSpeech } from '../jsFunctions/humanSpeech'
 import { Spin } from 'antd'
+import { Helmet } from 'react-helmet-async'
 
 function useQuery() {
    return new URLSearchParams(useLocation().search)
@@ -60,6 +61,17 @@ export default function DiyPlayRoute() {
 
    return (
       <div className='mainContainer hero'>
+         <Helmet>
+            <title>
+               Happy Giraffe - {title} (Custom Spelling Game)
+            </title>
+            <meta
+               name='description'
+               // content='Happy Giraffe - Customised Spelling Game'
+               content={title}
+            />
+            {/* <link rel='canonical' href='/' /> */}
+         </Helmet>
          <Spin spinning={isProcessing} size='large' fullscreen />
          <h1>{title ? title : 'DIY Spelling Game'}</h1>
          <div

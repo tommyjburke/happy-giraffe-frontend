@@ -668,7 +668,7 @@ export default function MathsConsole() {
                         />
                      </div>
                   )}
-                  <div>
+                  <div style={{ float: 'right' }}>
                      <button
                         style={{ float: 'right' }}
                         onClick={() => {

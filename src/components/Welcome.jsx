@@ -20,6 +20,7 @@ import {
    isEdge,
    isBrave,
 } from 'react-device-detect'
+import { Helmet } from 'react-helmet-async'
 
 // const playAudioFile = () => {
 //    const fileLocation =
@@ -82,6 +83,16 @@ export default function Welcome() {
 
    return (
       <>
+         <Helmet>
+            <title>
+               Happy Giraffe - Maths, English, Rote-Learning
+            </title>
+            <meta
+               name='description'
+               content='Happy Giraffe Home Page: Interactive spelling and maths games. Rote learning made fun for kids.'
+            />
+            <link rel='canonical' href='/' />
+         </Helmet>
          <div
             className='mainContainer'
             // style={{ overflowY: 'scroll !important' }}
@@ -118,28 +129,8 @@ export default function Welcome() {
                      </li>
                      <li>
                         Effortlessly configure spelling and maths
-                        games for your children! Make learning
-                        fun!
+                        games for children. Make learning fun!
                      </li>
-
-                     <li>
-                        Edit and configure KeyStage templates to
-                        elevate spelling proficiency.
-                     </li>
-                     <li>
-                        Simplifies the preparation and
-                        customization of educational activities,
-                        eliminating the hassle of rote-learning
-                        tasks.
-                     </li>
-                     <li>
-                        Supports all learners, including children
-                        with ADHD, providing fun and interactive
-                        exercises that improve <u>focus</u> and
-                        make mastering basic academic skills more
-                        enjoyable.
-                     </li>
-
                      <li>
                         Use your <u>voice</u> or a{' '}
                         <i>
@@ -158,7 +149,27 @@ export default function Welcome() {
                         Share your custom-made games via QR code.
                      </li>
 
-                     <li>No logins, no cookies, no faff.</li>
+                     <li>
+                        Edit and configure KeyStage templates to
+                        elevate spelling proficiency.
+                     </li>
+                     <li>
+                        Simplify the preparation and
+                        customisation of educational activities.
+                        Efficiently create rote-learning
+                        exercises in minimal time.
+                     </li>
+                     <li>
+                        Supports all learners, including children
+                        with ADHD, providing fun and interactive
+                        exercises that improve <u>focus</u> and
+                        make mastering basic academic skills more
+                        enjoyable.
+                     </li>
+
+                     <li>
+                        No logins, no passwords, no cookies!
+                     </li>
                   </ul>
                </div>
 
@@ -251,11 +262,17 @@ export default function Welcome() {
                         OPERATING SYSTEM
                         <br /> */}
                   </div>
-                  <br />
+
                   <br />
                   <br />
                </div>
+
+               <br />
+               <div>🦒</div>
             </div>
+
+            <br />
+            <br />
          </div>
       </>
    )

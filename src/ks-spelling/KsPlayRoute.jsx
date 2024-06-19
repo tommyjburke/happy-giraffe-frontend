@@ -4,6 +4,7 @@ import PlaySpellingGame from '../components/PlaySpellingGame'
 import { useEffect, useState } from 'react'
 import { scrambleWord } from '../jsFunctions/jsFunctions'
 import { Spin } from 'antd'
+import { Helmet } from 'react-helmet-async'
 
 function shuffleArray(array) {
    for (let i = array.length - 1; i > 0; i--) {
@@ -95,6 +96,17 @@ export default function KsPlayRoute() {
 
    return (
       <div className='mainContainer hero'>
+         <Helmet>
+            <title>
+               Happy Giraffe - {customTitle}: {lessonName} -
+               KeyStage Spelling Game 🦒
+            </title>
+            <meta
+               name='description'
+               content='Happy Giraffe - KeyStage Spelling Game'
+            />
+            {/* <link rel='canonical' href='/' /> */}
+         </Helmet>
          <Spin spinning={isProcessing} size='large' fullscreen />
          <h1>
             <span className='greenFont'>{lessonName}</span>{' '}
