@@ -597,7 +597,7 @@ export default function MathsConsole() {
                               step={1}
                               min={1}
                               max={24}
-                              defaultValue={[1, 12]}
+                              defaultValue={[3, 8]}
                               onChange={(values) => {
                                  setBValues(values)
                                  // console.log(values)
