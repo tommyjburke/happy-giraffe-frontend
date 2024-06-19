@@ -234,7 +234,7 @@ export default function Welcome() {
                      </select>
                      <br /> */}
 
-                     {/* <Select
+                  {/* <Select
                         popupMatchSelectWidth={false}
                         placeholder='Times Table Presets'
                         width='100%'
@@ -248,7 +248,7 @@ export default function Welcome() {
                            })
                         )}
                      /> */}
-                     {/* <Select
+                  {/* <Select
                         placeholder={dropdownPlaceholder}
                         onChange={selectYear}
                         value={dropdownPlaceholder}
@@ -263,67 +263,63 @@ export default function Welcome() {
                            })
                         )}
                      />{' '} */}
-                  </div>
-                  <br />
-                  <div
-                     className='africanFont'
-                     style={{
-                        textAlign: 'center',
-                        color: 'green',
-                     }}
-                  >
+               </div>
+               <br />
+               <div
+                  className='africanFont'
+                  style={{
+                     textAlign: 'center',
+                     color: 'green',
+                  }}
+               >
+                  {' '}
+                  <p style={{ color: 'var(--myBrown)' }}>
                      {' '}
-                     <p style={{ color: 'var(--myBrown)' }}>
+                     <span style={{ color: 'green' }}>
+                        Optimised
+                     </span>
+                     <span style={{ color: 'red' }}> for </span>
+                     <span style={{ color: 'yellow' }}>
+                        Chrome
+                     </span>
+                     <span style={{ color: 'blue' }}>
                         {' '}
-                        <span style={{ color: 'green' }}>
-                           Optimised
-                        </span>
-                        <span style={{ color: 'red' }}>
-                           {' '}
-                           for{' '}
-                        </span>
-                        <span style={{ color: 'yellow' }}>
-                           Chrome
-                        </span>
-                        <span style={{ color: 'blue' }}>
-                           {' '}
-                           desktop.
-                        </span>
-                     </p>
-                     <u style={{ color: 'var(--myWhite)' }}>
-                        <span
-                           style={{
-                              textShadow: '0 0 1px brown',
-                           }}
-                        >
-                           Detected:
-                        </span>
-                     </u>{' '}
-                     <b style={{ color: 'var(--myBrown)' }}>
-                        {' '}
-                        {getOS()} {getBrowser()} {getDevice()}
-                     </b>
-                     <br />
-                     {/* <br />
+                        desktop.
+                     </span>
+                  </p>
+                  <u style={{ color: 'var(--myWhite)' }}>
+                     <span
+                        style={{
+                           textShadow: '0 0 1px brown',
+                        }}
+                     >
+                        Detected:
+                     </span>
+                  </u>{' '}
+                  <b style={{ color: 'var(--myBrown)' }}>
+                     {' '}
+                     {getOS()} {getBrowser()} {getDevice()}
+                  </b>
+                  <br />
+                  {/* <br />
                         BROWSER
                         <br />
                         {getBrowser()}
                         <br />
                         OPERATING SYSTEM
                         <br /> */}
-                  </div>
-
-                  <br />
-                  <br />
                </div>
 
                <br />
-               <div>🦒</div>
+               <br />
             </div>
 
             <br />
-            <br />
+            <div>🦒</div>
          </div>
+
+         <br />
+         <br />
       </>
    )
 }
