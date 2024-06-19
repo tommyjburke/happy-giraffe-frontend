@@ -21,6 +21,7 @@ import {
    isBrave,
 } from 'react-device-detect'
 import { Helmet } from 'react-helmet-async'
+import { Select } from 'antd'
 
 // const playAudioFile = () => {
 //    const fileLocation =
@@ -194,25 +195,74 @@ export default function Welcome() {
                   </Link>
                   <br />
                   <br />
+                  <div>
+                     <Link to='/ks-presets'>
+                        <button>
+                           KeyStage Spelling Shortcuts
+                        </button>
+                     </Link>
+                  </div>
 
                   <br />
+
+                  <div
+                     style={{
+                        display: 'block',
+                        textAlign: 'center',
+                     }}
+                  ></div>
+
                   <h2>Times Table Presets:</h2>
-                  <div>
-                     <div>
+                  {/* <div>
+                     <select
+                        onChange={(e) =>
+                           (window.location.href =
+                              e.target.value)
+                        }
+                     >
+                        <option value=''>Select a preset</option>
                         {timesTablePresets.TimesTables.map(
                            (button, index) => (
-                              <button
+                              <option
                                  key={index}
-                                 onClick={() =>
-                                    (window.location.href =
-                                       button.url)
-                                 }
+                                 value={button.url}
                               >
                                  {button.title}
-                              </button>
+                              </option>
                            )
                         )}
-                     </div>
+                     </select>
+                     <br /> */}
+
+                     {/* <Select
+                        popupMatchSelectWidth={false}
+                        placeholder='Times Table Presets'
+                        width='100%'
+                        onChange={(value) =>
+                           (window.location.href = value)
+                        }
+                        options={timesTablePresets.TimesTables.map(
+                           (item) => ({
+                              value: item.url,
+                              label: item.title,
+                           })
+                        )}
+                     /> */}
+                     {/* <Select
+                        placeholder={dropdownPlaceholder}
+                        onChange={selectYear}
+                        value={dropdownPlaceholder}
+                        // style={{ width: 120 }}
+                        // size='large'
+
+                        className='africanFont'
+                        options={Object.keys(ksData2.year).map(
+                           (year) => ({
+                              value: year,
+                              label: year,
+                           })
+                        )}
+                     />{' '} */}
                   </div>
                   <br />
                   <div

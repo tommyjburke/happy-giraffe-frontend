@@ -2,11 +2,37 @@ import { Helmet } from 'react-helmet-async'
 import ksData2 from '../data/ksData2.json'
 import { cleanWords } from '../jsFunctions/jsFunctions.js'
 import { useState, useEffect } from 'react'
+import PlaySpellingGame from '../components/PlaySpellingGame.jsx'
+import { verifyHumanSpeech } from '../jsFunctions/humanSpeech'
+import { Spin } from 'antd'
+import { useLocation } from 'react-router-dom'
+import { scrambleWord } from '../jsFunctions/jsFunctions'
+import { DeleteOutlined } from '@ant-design/icons'
+import TypewriterEffect from '../components/TypewriterEffect.jsx'
+import background5 from '../media/background5.png'
+import { Dropdown, Space, Select } from 'antd'
+import { set } from 'mongoose'
 
 export default function KsPresets() {
    const [selectedYear, setSelectedYear] = useState('')
    const [wordList, setWordList] = useState([])
-   const [selectedWords, setSelectedWords] = useState([])
+   const [wordArray, setWordArray] = useState([])
+   const [useTimer, setUseTimer] = useState(true)
+   const [duration, setDuration] = useState(6)
+   const [gameWords, setGameWords] = useState([])
+   const [isProcessing, setIsProcessing] = useState(false)
+   const [startStopWatch, setStartStopWatch] = useState(null)
+
+   const newWords = () => {
+      const tempYear = selectedYear
+      setGameWords([])
+      setDuration(600)
+      setUseTimer(false)
+      setSelectedYear('')
+      setTimeout(() => {
+         setSelectedYear(tempYear)
+      }, 200)
+   }
 
    useEffect(() => {
       if (selectedYear) {
@@ -24,48 +50,102 @@ export default function KsPresets() {
       }
    }, [selectedYear])
 
-   const handleYearChange = (e) => {
-      setSelectedYear(e.target.value)
-      setSelectedWords([]) // Clear selected words when changing the year
-   }
-
-   const selectWords = () => {
+   useEffect(() => {
       const shuffledWords = [...wordList].sort(
          () => 0.5 - Math.random()
       )
-      const wordsToDisplay = shuffledWords.slice(0, 30)
-      setSelectedWords(wordsToDisplay)
+      const randomWords = shuffledWords.slice(0, 30)
+      setWordArray(randomWords)
+   }, [wordList])
+
+   const handleYearChange = (e) => {
+      setSelectedYear(e.target.value)
+      setWordArray([]) // Clear selected words when changing the year
    }
 
-   const renderYearButtons = () => {
-      const years = Object.keys(ksData2.year)
+   const selectYear = (value) => {
+      setSelectedYear(value)
+   }
 
-      const selectWords = () => {
-         const shuffledWords = [...wordList].sort(
-            () => 0.5 - Math.random()
-         )
-         const wordsToDisplay = shuffledWords.slice(0, 30)
-         setSelectedWords(wordsToDisplay)
+   const clearWords = () => {
+      setWordArray([])
+      setSelectedYear('')
+   }
+
+   // const selectWords = () => {
+   //    const shuffledWords = [...wordList].sort(
+   //       () => 0.5 - Math.random()
+   //    )
+   //    const randomWords = shuffledWords.slice(0, 30)
+   //    setWordArray(randomWords)
+   //    // console.log('random words: ', randomWords)
+   //    // console.log('word array: ', wordArray)
+   //    // buildGameWordObjects()
+   //    console.log('select words clicked: ', randomWords)
+   // }
+
+   useEffect(() => {
+      if (selectedYear) {
+         buildGameWordObjects()
+      } else {
+         setGameWords([])
       }
+   }, [wordArray])
 
-      return (
-         <div className='yearButtons buttonsContainer'>
-            {years.map((year) => (
-               <button
-                  className='menuButton'
-                  key={year}
-                  onClick={() => handleYearClick(year)}
-               >
-                  {year}
-               </button>
-            ))}
-         </div>
-      )
+   useEffect(() => {
+      console.log('selectedYear: ', selectedYear)
+      console.log('dropdownPlaceholder: ', dropdownPlaceholder)
+   }, [selectedYear])
+
+   const buildGameWordObjects = async () => {
+      setUseTimer(false)
+      setIsProcessing(true)
+
+      try {
+         const newGameWords = await Promise.all(
+            wordArray.map(async (word, index) => {
+               const apiResponse = await verifyHumanSpeech(word)
+               return {
+                  spelling: word,
+                  scrambled: scrambleWord(word),
+                  index,
+                  userGuess: '',
+                  hasHumanVoice: apiResponse.hasHumanVoice,
+                  verdict: '',
+                  showButton: true,
+                  synonyms: apiResponse.synonyms,
+                  voiceUrl: apiResponse.audioLink,
+               }
+            })
+         )
+
+         setGameWords(newGameWords)
+      } catch (error) {
+         console.error(
+            'Error building game word objects:',
+            error
+         )
+      }
+      setIsProcessing(false)
+      setStartStopWatch(Date.now())
+      setUseTimer(true)
+      setDuration(600)
+
+      // console.log('BUILDING GAME OBJECTS COMPLETE!')
    }
+
+   const dropdownPlaceholder = selectedYear
+      ? selectedYear
+      : '--Select a Year--'
 
    return (
       <>
          <div className='mainContainer hero'>
+            <Spin
+               spinning={isProcessing}
+               size='large'
+               fullscreen
+            />
             <Helmet>
                <title>
                   Happy Giraffe - KeyStage Spelling Game Presets
@@ -78,52 +158,104 @@ export default function KsPresets() {
                {/* <link rel='canonical' href='/' /> */}
             </Helmet>
             {/* <Spin spinning={isProcessing} size='large' fullscreen /> */}
-            <h1>Random KeyStage Presets</h1>
-            <div>{renderYearButtons()}</div>
-            <div>{selectedYear}</div>
+            <h1> KeyStage Presets</h1>
+            {/* <div>{renderYearButtons()}</div>
+            <div>{selectedYear}</div> */}
 
-            <div style={{ textAlign: 'center' }}>
-               <h1>Unique Words from Selected Year</h1>
+            <div
+               className='africanFont'
+               style={{
+                  textAlign: 'center',
+                  backgroundColor: 'var(--myOrange)',
+                  width: '100%',
+                  paddingBottom: '0.3rem',
+               }}
+            >
+               <div>30 Random Words: 10 Minutes</div>
                <div>
-                  <label htmlFor='year-select'>
-                     Select Year:{' '}
-                  </label>
-                  <select
-                     id='year-select'
-                     onChange={handleYearChange}
-                     value={selectedYear}
-                  >
-                     <option value=''>--Select a year--</option>
-                     {Object.keys(ksData2.year).map((year) => (
-                        <option key={year} value={year}>
-                           {year}
-                        </option>
-                     ))}
-                  </select>
+                  {' '}
+                  Select Year:{' '}
+                  <Select
+                     placeholder={dropdownPlaceholder}
+                     onChange={selectYear}
+                     value={dropdownPlaceholder}
+                     // style={{ width: 120 }}
+                     // size='large'
+
+                     className='africanFont'
+                     options={Object.keys(ksData2.year).map(
+                        (year) => ({
+                           value: year,
+                           label: year,
+                        })
+                     )}
+                  />{' '}
+                  {selectedYear && (
+                     <Space>
+                        <span
+                           style={{
+                              fontSize: '1.3rem',
+
+                              // marginTop: '-3.3rem',
+                           }}
+                        >
+                           <DeleteOutlined
+                              onClick={clearWords}
+                           />{' '}
+                           <span
+                              style={{
+                                 marginLeft: '0.5rem',
+                                 cursor: 'pointer',
+                              }}
+                              // className='largeIcon'
+
+                              onClick={() => newWords()}
+                           >
+                              ♽
+                           </span>
+                        </span>
+                     </Space>
+                  )}
                </div>
-               {wordList.length > 0 && (
-                  <>
-                     <ul>
-                        {wordList.map((word, index) => (
-                           <li key={index}>{word}</li>
-                        ))}
-                     </ul>
-                     <button onClick={selectWords}>
-                        Select 30 Words
-                     </button>
-                  </>
-               )}
-               {selectedWords.length > 0 && (
-                  <div>
-                     <h2>Selected Words</h2>
-                     <div>
-                        {selectedWords.map((word, index) => (
-                           <p key={index}>{word}</p>
-                        ))}
-                     </div>
-                  </div>
-               )}
             </div>
+
+            {!selectedYear && (
+               <div
+                  className='africanFont'
+                  style={{
+                     alignContent: 'center',
+                     textAlign: 'center',
+
+                     // fontFamily: 'Indie Flower',
+                     fontWeight: '800',
+                     // fontSize: '2.8rem',
+                     flex: '1 1 0',
+                     color: 'green',
+                  }}
+               >
+                  <TypewriterEffect
+                     text='Select Year.........'
+                     myFontSize='1.1rem'
+                     isLooping
+                  />
+                  <span style={{ fontSize: '4rem' }}>☝️</span>
+                  <br />
+                  <div className='flexVerticalContainer'>
+                     <h2>KEYSTAGE SPELLING PRESETS</h2>
+                  </div>
+               </div>
+            )}
+
+            {gameWords.length > 0 && (
+               <PlaySpellingGame
+                  words={gameWords}
+                  setWords={setGameWords}
+                  buildGameWordObjects={buildGameWordObjects}
+                  duration={duration}
+                  useTimer={useTimer}
+               />
+            )}
+
             <br />
             <br />
             <br />

@@ -2,6 +2,7 @@
    display: flex;
    flex-direction: column;
    width: 100%;
+   justify-content: center;
    /* background-color: var(--myBrown);
    color: var(--myYellow); */
    /* border: 5px dashed yellow; */

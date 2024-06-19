@@ -584,6 +584,7 @@ th {
    flex-shrink: 2;
    flex-grow: 1;
    text-align: center;
+   flex-wrap: wrap; /* Ensure contents use flex wrap */
 
    letter-spacing: 2px;
 

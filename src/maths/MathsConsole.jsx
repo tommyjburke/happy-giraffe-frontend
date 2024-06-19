@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import timesTablePresets from '../data/timesTablesPresets.json'
 import './MathsStyles.css'
 import { useNavigate } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
@@ -10,6 +11,7 @@ import {
    InputNumber,
    Row,
    Checkbox,
+   Select,
 } from 'antd'
 import { CheckOutlined, CloseOutlined } from '@ant-design/icons'
 import useSound from 'use-sound'
@@ -203,12 +205,31 @@ export default function MathsConsole() {
          {/* <Spin spinning={isProcessing} size='large' fullscreen /> */}
          <div className='mainContainer hero'>
             <h1>Maths Console</h1>
+
             <h4
                className='africanFont'
                style={{ color: 'green' }}
             >
                Create Maths Game
             </h4>
+            <div>
+               {' '}
+               <Select
+                  popupMatchSelectWidth={false}
+                  placeholder='Times Table Presets'
+                  width='100%'
+                  onChange={(value) =>
+                     (window.location.href = value)
+                  }
+                  options={timesTablePresets.TimesTables.map(
+                     (item) => ({
+                        value: item.url,
+                        label: item.title,
+                     })
+                  )}
+               />
+               <br />
+            </div>
 
             <div
                className='main5ContentContainer'
@@ -680,6 +701,7 @@ export default function MathsConsole() {
                      </button>
                   </div>
                </fieldset>
+               <br />
 
                <br />
                <br />

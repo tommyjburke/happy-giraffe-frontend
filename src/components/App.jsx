@@ -100,6 +100,15 @@ export default function App() {
                fontFamily: 'Roboto',
             },
             components: {
+               Select: {
+                  fontFamily: 'Schoolbell',
+                  // colorTextDescription: 'var(--myBrown)',
+                  // colorTextPlaceholder: 'var(--myBrown)',
+                  // colorBgContainer: 'var(--myBrown)',
+                  // colorBgElevated: 'var(--myBrown)',
+                  // colorPrimary: 'var(--myBrown)',
+                  // colorText: 'var(--myOrange)',
+               },
                Switch: {
                   colorPrimary: 'green',
                   colorPrimaryBorder: 'var(--myOrange)',

@@ -344,16 +344,17 @@ export default function MathsPlayRoute() {
                alignItems: 'center',
                width: '100%',
                maxWidth: '800px',
+               position: 'sticky',
+               top: '0',
+               zIndex: 2,
             }}
          >
             <div
                style={{
-                  position: 'sticky',
-                  top: '0px',
                   width: '100%',
                   // opacity: '0.9',
-                  // marginTop: '-15px',
-                  zIndex: '1000',
+
+                  overflowY: 'visible',
                }}
             >
                {/* <Rewards ref={rewardsRef} /> */}

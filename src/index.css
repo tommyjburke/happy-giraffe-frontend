@@ -44,7 +44,7 @@ html {
    overflow-x: hidden;
    /* overscroll-behavior: none; */
    /* overflow-y: hidden; */
-   /* box-sizing: border-box; */
+   box-sizing: border-box;
 }
 
 body {
@@ -68,37 +68,20 @@ body {
 }
 
 .allContainer {
-   /* height: 100px; */
-   /* background-color: blueviolet;
-   width: 100%;
-   width: 100vw; */
-   /* flex-shrink: 0;
-   flex-grow: 2;
-   width: 100%; */
-   /* display: flex; */
-   /* justify-content: center; */
-   /* padding-bottom: 30px; */
-   /* margin-bottom: 300px; */
-   /* position: fixed; */
-   /* top: 0; */
-   height: -webkit-fill-available;
-   box-sizing: border-box;
+   /* height: -webkit-fill-available; */
+   /* box-sizing: border-box; */
    margin: 0;
-   margin-top: 38px;
-   margin-bottom: 20px;
-
+   /* margin-top: 40px;
+   margin-bottom: 20px; */
    width: 100%;
-   /* height: 100%; */
-   /* border: 5px dashed green; */
    position: absolute;
    top: 0;
    right: 0;
    bottom: 0;
    left: 0;
    @media screen and (max-width: 600px) {
-      margin-top: 25px !important;
+      margin-top: 30px !important;
    }
-   /* border: 5px dashed green; */
 }
 
 .chineseFont {
@@ -108,8 +91,8 @@ body {
 }
 
 .mainContainer {
-   /* margin-top: 40px; 
-   margin-bottom: 30px;  */
+   margin-top: 40px;
+   margin-bottom: 20px;
    background-color: var(--myYellow);
    display: flex;
    flex-direction: column;
@@ -122,6 +105,9 @@ body {
    overflow-x: hidden;
    padding-left: 0.2rem;
    padding-right: 0.2rem;
+   @media screen and (max-width: 600px) {
+      margin-top: 30px !important;
+   }
 }
 
 .computerFont {
@@ -158,21 +144,15 @@ h1 {
    text-align: center;
    color: var(--myBrown);
    letter-spacing: 4px;
+   padding-top: 0.4rem;
 
-   /* font-family: 'Agbalumo', system-ui; */
-   /* font-family: 'Judson', serif; */
-   /* font-family: 'Ojuju', sans-serif;
-   font-optical-sizing: auto;
-   font-weight: 600;
-   font-style: normal; */
    font-family: 'Madimi One', sans-serif;
    font-weight: 400;
    font-style: normal;
    @media (max-width: 600px) {
       font-size: 1.4rem;
-      padding: 0.1rem;
+      padding-top: 0.2rem;
       letter-spacing: 1px;
-      line-height: normal;
    }
 }
 

@@ -114,7 +114,10 @@ export default function WordQuestion(props) {
             title='SYNONYMS:'
             content={wordObject.synonyms}
          >
-            <td className='g4'>
+            <td
+               className='g4'
+               style={{ display: 'flex', flexWrap: 'wrap' }}
+            >
                {wordObject.scrambled
                   .split('')
                   .map((letter, i) => (
@@ -124,7 +127,8 @@ export default function WordQuestion(props) {
                         style={{
                            paddingLeft: '0px',
                            border: 'dashed gray 1px',
-                           borderRadius: '2px',
+                           borderRadius: '5px',
+                           flexBasis: '30px', // give each span a minimum width
                         }}
                      >
                         {letter}

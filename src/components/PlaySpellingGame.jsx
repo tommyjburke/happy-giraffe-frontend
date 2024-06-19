@@ -39,9 +39,7 @@ export default function PlaySpellingGame({
    const [useTimerTemp, setUseTimerTemp] = useState(useTimer)
    const [questionsCompleted, setQuestionsCompleted] =
       useState(false)
-   const [startStopWatch, setStartStopWatch] = useState(
-      Date.now()
-   )
+
    // const [useTimer, setUseTimer] = useState(false)
    // const [duration, setDuration] = useState()
 
@@ -503,10 +501,11 @@ export default function PlaySpellingGame({
          {contextHolder}
 
          <div
+            className='responsive-table'
             style={{
                position: 'sticky',
                top: '0px',
-               width: '100%',
+               // width: '100%',
                // opacity: '0.9',
                zIndex: 2,
                overflowY: 'visible',

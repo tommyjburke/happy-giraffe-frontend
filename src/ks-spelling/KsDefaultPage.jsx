@@ -5,6 +5,7 @@ import useSound from 'use-sound'
 import soundTestGirl from '../media/happyGiraffeSoundTest.mp3'
 import { LoadingOutlined } from '@ant-design/icons'
 import { useState, useCallback } from 'react'
+import { Link } from 'react-router-dom'
 
 const readWord = (text) => {
    // robotMessage()
@@ -169,6 +170,11 @@ export default function KsDefaultPage() {
                </Popover>
             </div>
             <br />
+            <div>
+               <Link to='/ks-presets'>
+                  <button>KS Presets</button>
+               </Link>
+            </div>
             <div
                style={{
                   margin: '15px',

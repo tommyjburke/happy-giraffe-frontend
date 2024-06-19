@@ -32,7 +32,7 @@
    z-index: 900;
    /* height: 3vh; */
    @media (max-width: 600px) {
-      height: 25px;
+      height: 30px;
    }
 }
 
@@ -92,7 +92,7 @@
    color: var(--myWhite);
    text-decoration: underline var(--myWhite) !important;
    font-size: 1.5rem;
-   @media (max-width: 620px) {
+   @media (max-width: 600px) {
       font-size: 0.9rem !important;
       animation: glowingGold 1s infinite;
    }
@@ -112,7 +112,7 @@
    margin-left: 0.5rem;
    margin-right: 0.5rem;
    color: var(--myYellow);
-   @media (max-width: 620px) {
+   @media (max-width: 600px) {
       font-size: 0.9rem;
    }
 }
