@@ -19,6 +19,7 @@ import switchSound from '../media/switch.mp3'
 import magicSound from '../media/magic.mp3'
 import blipOn from '../media/blipOn.mp3'
 import blipOff from '../media/blipOff.mp3'
+import Giraffe from '../components/Giraffe'
 
 const replaceSymbols = (expression) => {
    const symbolMap = {
@@ -702,9 +703,8 @@ export default function MathsConsole() {
                   </div>
                </fieldset>
                <br />
-
                <br />
-               <br />
+               <Giraffe />
                <br />
                <br />
                <br />

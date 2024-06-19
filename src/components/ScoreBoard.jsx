@@ -42,6 +42,7 @@ export default function ScoreBoard({
                <div
                   style={{
                      paddingLeft: '5px',
+                     marginRight: '0.6rem',
                      flex: '1 1 21%',
                   }}
                >

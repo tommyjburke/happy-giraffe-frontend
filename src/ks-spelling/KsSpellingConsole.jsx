@@ -178,13 +178,10 @@ export default function KsSpellingConsole({ children }) {
             >
                {renderYearButtons()}
             </div>
-
             <div className='buttonsContainer'>
                {selectedYear && renderLessonButtons()}
             </div>
-
             {wordArray < 1 && <KsDefaultPage />}
-
             <div
                className='doubleContainer'
                // style={{ border: '2px dotted pink' }}
@@ -353,8 +350,8 @@ export default function KsSpellingConsole({ children }) {
             </div>
             <br />
             <br />
-
             <br />
+            🦒
          </div>
       </>
    )

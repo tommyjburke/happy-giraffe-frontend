@@ -77,26 +77,15 @@ export default function KsPresets() {
       setSelectedYear('')
    }
 
-   // const selectWords = () => {
-   //    const shuffledWords = [...wordList].sort(
-   //       () => 0.5 - Math.random()
-   //    )
-   //    const randomWords = shuffledWords.slice(0, 30)
-   //    setWordArray(randomWords)
-   //    // console.log('random words: ', randomWords)
-   //    // console.log('word array: ', wordArray)
-   //    // buildGameWordObjects()
-   //    console.log('select words clicked: ', randomWords)
-   // }
-
    const warning = () => {
       errorSound()
       messageApi.open({
          type: 'error',
+         duration: 2,
          content: (
-            <h2>
+            <h4 className='africanFont'>
                INVALID LANGUAGE. PLEASE SELECT A VALID LANGUAGE
-            </h2>
+            </h4>
          ),
       })
    }
@@ -109,10 +98,10 @@ export default function KsPresets() {
       }
    }, [wordArray])
 
-   useEffect(() => {
-      console.log('selectedYear: ', selectedYear)
-      console.log('dropdownPlaceholder: ', dropdownPlaceholder)
-   }, [selectedYear])
+   // useEffect(() => {
+   //    console.log('selectedYear: ', selectedYear)
+   //    console.log('dropdownPlaceholder: ', dropdownPlaceholder)
+   // }, [selectedYear])
 
    const buildGameWordObjects = async () => {
       setUseTimer(false)
@@ -231,30 +220,26 @@ export default function KsPresets() {
                      </>
                   )}
                   {selectedYear && (
-                     <Space>
+                     <span
+                        style={{
+                           fontSize: '1.3rem',
+
+                           // marginTop: '-3.3rem',
+                        }}
+                     >
+                        <DeleteOutlined onClick={clearWords} />{' '}
                         <span
                            style={{
-                              fontSize: '1.3rem',
-
-                              // marginTop: '-3.3rem',
+                              marginLeft: '0.5rem',
+                              cursor: 'pointer',
                            }}
-                        >
-                           <DeleteOutlined
-                              onClick={clearWords}
-                           />{' '}
-                           <span
-                              style={{
-                                 marginLeft: '0.5rem',
-                                 cursor: 'pointer',
-                              }}
-                              // className='largeIcon'
+                           // className='largeIcon'
 
-                              onClick={() => newWords()}
-                           >
-                              ♽
-                           </span>
+                           onClick={() => newWords()}
+                        >
+                           ♽
                         </span>
-                     </Space>
+                     </span>
                   )}
                </div>
             </div>

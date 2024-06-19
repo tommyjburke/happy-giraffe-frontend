@@ -79,8 +79,9 @@ body {
    right: 0;
    bottom: 0;
    left: 0;
+   /* z-index: 0; */
    @media screen and (max-width: 600px) {
-      margin-top: 30px !important;
+      /* margin-top: 30px !important; */
    }
 }
 
@@ -598,5 +599,36 @@ button:active {
    100% {
       top: 0px;
       transform: scale(1);
+   }
+}
+
+.giraffe {
+   animation: rotateGiraffe 1s linear infinite;
+   display: inline-block;
+}
+
+@keyframes rotateGiraffe {
+   from {
+      transform: rotate(0deg);
+   }
+   to {
+      transform: rotate(180deg);
+   }
+}
+
+.jumpingGiraffe {
+   animation: jumpGiraffe 1s ease-in-out infinite;
+   display: inline-block;
+}
+
+@keyframes jumpGiraffe {
+   0% {
+      transform: translateY(0);
+   }
+   50% {
+      transform: translateY(-10px);
+   }
+   100% {
+      transform: translateY(0);
    }
 }

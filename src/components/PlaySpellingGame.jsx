@@ -499,7 +499,6 @@ export default function PlaySpellingGame({
    return (
       <div>
          {contextHolder}
-
          <div
             className='responsive-table'
             style={{
@@ -526,7 +525,6 @@ export default function PlaySpellingGame({
                incorrect={incorrect}
             />
          </div>
-
          <div
             style={{ padding: '0px 3px 0px 3px', zIndex: '-1' }}
          >
@@ -585,7 +583,11 @@ export default function PlaySpellingGame({
                // style={{ border: 'var(--myBrown) 20px solid' }}
             />
          )}
-
+         <br />
+         <br />
+         <br />
+         🦒
+         <br />
          <br />
       </div>
    )

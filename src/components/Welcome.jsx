@@ -1,4 +1,5 @@
 import './Welcome.css'
+import Giraffe from './Giraffe'
 import timesTablePresets from '../data/timesTablesPresets.json'
 import background5 from '../media/background5.png'
 import { Link } from 'react-router-dom'
@@ -22,13 +23,6 @@ import {
 } from 'react-device-detect'
 import { Helmet } from 'react-helmet-async'
 import { Select } from 'antd'
-
-// const playAudioFile = () => {
-//    const fileLocation =
-//       'https://api.dictionaryapi.dev/media/pronunciations/en/clear-us.mp3'
-//    const audio = new Audio(fileLocation)
-//    audio.play()
-// }
 
 export default function Welcome() {
    const getBrowser = () => {
@@ -79,6 +73,19 @@ export default function Welcome() {
          //    return 'Linux'
          default:
             return 'Unknown'
+      }
+   }
+
+   const verdict = () => {
+      const device = getDevice()
+      const browser = getBrowser()
+      if (
+         (device === 'Browser' || device === 'Desktop') &&
+         browser === 'Chrome'
+      ) {
+         return `✅`
+      } else {
+         return `🤨`
       }
    }
 
@@ -193,15 +200,10 @@ export default function Welcome() {
                   <Link to='/maths'>
                      <button>Create Maths Game</button>
                   </Link>
-                  <br />
-                  <br />
-                  <div>
-                     <Link to='/ks-presets'>
-                        <button>
-                           KeyStage Spelling Presets
-                        </button>
-                     </Link>
-                  </div>
+
+                  <Link to='/ks-presets'>
+                     <button>KeyStage Spelling Presets</button>
+                  </Link>
 
                   <br />
 
@@ -316,7 +318,8 @@ export default function Welcome() {
                   </u>{' '}
                   <b style={{ color: 'var(--myBrown)' }}>
                      {' '}
-                     {getOS()} {getBrowser()} {getDevice()}
+                     {getOS()} {getBrowser()} {getDevice()}{' '}
+                     {verdict()}
                   </b>
                   <br />
                   {/* <br />
@@ -333,7 +336,13 @@ export default function Welcome() {
             </div>
 
             <br />
-            <div>🦒</div>
+            <div>
+               <Giraffe />
+               <br />
+               <br />
+            </div>
+            <br />
+            <br />
          </div>
 
          <br />
