@@ -358,7 +358,7 @@ th {
 
 .responsive-table {
    width: 96%;
-   margin: 0 auto;
+   margin: 0;
    /* max-width: 100%; */
    min-width: 300px; /* Adjust as necessary */
    max-width: 1000px; /* Adjust as necessary */

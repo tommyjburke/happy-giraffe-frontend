@@ -45,6 +45,9 @@ export default function PlaySpellingGame({
 
    const [disableAllInputs, setDisableAllInputs] =
       useState(false)
+   const [startStopWatch, setStartStopWatch] = useState(
+      Date.now()
+   )
 
    const [playCorrectSound] = useSound(correctSound3)
    const [playWrongSound] = useSound(wrongSound)
@@ -499,19 +502,35 @@ export default function PlaySpellingGame({
    }
 
    return (
-      <div>
+      <div
+         className=' spelling-table-container'
+         style={{
+            alignContent: 'center',
+            alignItems: 'center',
+            textAlign: 'center',
+            justifyContent: 'center',
+         }}
+      >
          {contextHolder}
          <div
-            className='responsive-table'
+            // className='responsive-table'
             style={{
                position: 'sticky',
                top: '0px',
-               // width: '100%',
+               width: '100%',
                // opacity: '0.9',
-               zIndex: 2,
-               overflowY: 'visible',
+               zIndex: 1,
+               // overflowY: 'visible',
                // padding: '0px 30px 0px 1px',
                // marginRight: '3px',
+               display: 'flex',
+               justifyContent: 'center',
+               alignItems: 'center',
+               width: '100%',
+               // maxWidth: '800px',
+               position: 'sticky',
+               top: '0',
+               zIndex: 2,
             }}
          >
             {/* <Rewards ref={rewardsRef} /> */}
@@ -533,7 +552,7 @@ export default function PlaySpellingGame({
             {' '}
             {renderGameData()}
          </div>
-         <div className='center'>
+         <div>
             {!useTimerTemp && (
                <button
                   style={{

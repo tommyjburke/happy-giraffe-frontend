@@ -108,10 +108,17 @@ export default function KsDefaultPage() {
                   <h3>Create a K.S. Spelling Quiz</h3>
                </div>
             </div>
-            <h2>Play Now:</h2>
+            <h2>Quick Play:</h2>
             <div>
                <Link to='/ks-presets'>
-                  <button>KeyStage Spelling Shuffle</button>
+                  <button
+                     style={{
+                        padding: '0rem 0.5rem 0rem 0.5rem',
+                     }}
+                     className='flashingText africanFont'
+                  >
+                     KeyStage Spelling Shuffle
+                  </button>
                </Link>
             </div>
 

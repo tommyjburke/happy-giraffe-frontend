@@ -14,6 +14,8 @@ import { Dropdown, Space, Select, message } from 'antd'
 import useSound from 'use-sound'
 import error from '../media/error.mp3'
 
+const thisDuration = 600
+
 export default function KsPresets() {
    const [selectedYear, setSelectedYear] = useState('')
    const [wordList, setWordList] = useState([])
@@ -41,6 +43,7 @@ export default function KsPresets() {
 
    useEffect(() => {
       if (selectedYear) {
+         setGameWords([])
          const wordsSet = new Set()
          const lessons = ksData2.year[selectedYear].lessons
 
@@ -135,7 +138,7 @@ export default function KsPresets() {
       setIsProcessing(false)
       setStartStopWatch(Date.now())
       setUseTimer(true)
-      setDuration(600)
+      setDuration(thisDuration)
 
       // console.log('BUILDING GAME OBJECTS COMPLETE!')
    }
@@ -270,12 +273,13 @@ export default function KsPresets() {
                      color: 'green',
                   }}
                >
+                  <span style={{ fontSize: '2.5rem' }}>☝️</span>
                   <TypewriterEffect
                      text='Select Language & Year.........'
                      myFontSize='1.1rem'
                      isLooping
                   />
-                  <span style={{ fontSize: '4rem' }}>☝️</span>
+
                   <br />
                   <div className='flexVerticalContainer'></div>
                </div>

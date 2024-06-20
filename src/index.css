@@ -70,7 +70,7 @@ body {
 .allContainer {
    /* height: -webkit-fill-available; */
    /* box-sizing: border-box; */
-   margin: 0;
+   margin: 0 auto;
    /* margin-top: 40px;
    margin-bottom: 20px; */
    width: 100%;
@@ -92,20 +92,20 @@ body {
 }
 
 .mainContainer {
-   margin-top: 40px;
-   margin-bottom: 20px;
    background-color: var(--myYellow);
    display: flex;
    flex-direction: column;
    width: 100%;
-   height: 97.5vh;
+   height: 96%;
    flex-grow: 10;
    overflow: auto;
    align-items: center;
    overflow-y: auto;
    overflow-x: hidden;
-   padding-left: 0.2rem;
-   padding-right: 0.2rem;
+   padding-left: 0rem;
+   padding-right: 0rem;
+   margin-top: 40px;
+   margin-bottom: 20px;
    @media screen and (max-width: 600px) {
       margin-top: 30px !important;
    }
@@ -120,7 +120,7 @@ body {
 }
 
 .mainContainer::before {
-   content: '';
+   /* content: '';
    background-image: url('./media/background5.png');
    background-size: auto;
    background-position-x: center;
@@ -134,25 +134,24 @@ body {
    bottom: 0px;
    left: 0px;
    opacity: 0.08;
-   z-index: -1;
-   /* margin-bottom: 30px; */
+   z-index: -1; */
 }
 
 h1 {
    background-color: var(--myOrange);
    width: 100vw;
-   padding: 5px 0 0px 0;
+   /* padding: 5px 0 0px 0; */
    text-align: center;
    color: var(--myBrown);
    letter-spacing: 4px;
-   padding-top: 0.5rem;
+   padding-top: 0.2rem;
 
    font-family: 'Madimi One', sans-serif;
    font-weight: 400;
    font-style: normal;
    @media (max-width: 600px) {
       font-size: 1.4rem;
-      padding-top: 0.5rem;
+      padding-top: 0.1rem;
       letter-spacing: 1px;
    }
 }
@@ -522,11 +521,14 @@ button:active {
    }
 
    @media (min-width: 768px) {
-      width: 900px;
+      width: 700px;
+   }
+   @media (min-width: 968px) {
+      width: 800px;
    }
 
    @media (min-width: 1024px) {
-      width: 1100px;
+      width: 1000px;
    }
 }
 
