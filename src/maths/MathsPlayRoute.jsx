@@ -514,7 +514,6 @@ export default function MathsPlayRoute() {
          <br />
          <br />
          <br />
-         🦒
       </div>
    )
 }

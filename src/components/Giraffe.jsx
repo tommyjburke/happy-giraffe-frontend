@@ -1,5 +1,7 @@
 import React from 'react'
 import { useEffect, useState } from 'react'
+import giraffeSound from '../media/giraffe.mp3'
+import useSound from 'use-sound'
 
 const styles = {
    '@keyframes rotate': {
@@ -17,22 +19,30 @@ const styles = {
 }
 export default function Giraffe() {
    const [giraffeX, setGiraffeX] = useState(0)
+   const [playGiraffeSound] = useSound(giraffeSound, {
+      volume: 0.5,
+   })
 
    useEffect(() => {
       const interval = setInterval(() => {
          setGiraffeX((prevX) => (prevX - 5) % 100)
-      }, 500)
+      }, 200)
       return () => clearInterval(interval)
    }, [])
 
    return (
-      <div style={{ marginLeft: '50px' }}>
+      <div
+         className='unselectable'
+         style={{ marginLeft: '50px' }}
+      >
          <div
+            onClick={() => playGiraffeSound()}
             className='largeIcon jumpingGiraffe'
             style={{
                display: 'inline-block',
                whiteSpace: 'nowrap',
                marginLeft: `${giraffeX}px`,
+               cursor: 'grabbing',
             }}
          >
             🦒

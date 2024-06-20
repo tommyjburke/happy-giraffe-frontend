@@ -4,6 +4,7 @@ import './SpellingDIY.css'
 import DiySpellingConfigForm from './DiySpellingConfigForm'
 import { Spin, message } from 'antd'
 import { Helmet } from 'react-helmet-async'
+import Giraffe from '../components/Giraffe'
 
 export default function DiySpellingConsole() {
    const [words, setWords] = useState([])
@@ -184,6 +185,7 @@ export default function DiySpellingConsole() {
             <br />
 
             <br />
+            <Giraffe />
 
             <br />
          </div>

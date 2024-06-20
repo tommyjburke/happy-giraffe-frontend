@@ -607,7 +607,7 @@ export default function PlaySpellingGame({
          <br />
          <br />
          <br />
-         🦒
+
          <br />
          <br />
       </div>
