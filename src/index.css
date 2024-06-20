@@ -60,8 +60,9 @@ body {
    height: 100vh;
    height: -webkit-fill-available;
    margin: 0;
-   font-family: 'Roboto';
+
    background-color: var(--myOrange);
+   font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
 
    /* box-sizing: border-box; */
    /* border: brown 5px dashed; */
