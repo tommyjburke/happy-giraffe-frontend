@@ -1,10 +1,10 @@
 import React from 'react'
 
 const activeRowStyle = {
-   border: '2px ridge lime',
-   outline: '3px ridge lime',
+   border: '0px ridge lime',
+   outline: '5px groove lime',
    borderRadius: '15px',
-   zIndex: 1000,
+   zIndex: 10,
 }
 
 export default function MathsQuestion({

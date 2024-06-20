@@ -25,9 +25,11 @@ export default function WordQuestion(props) {
    const [playZeroSound] = useSound(zeroSound)
 
    const activeRowStyle = {
-      border: '2px ridge lime',
-      outline: '3px ridge lime',
-      borderRadius: '8px',
+      // border: '2px ridge lime',
+      border: '0px ridge lime',
+      outline: '5px groove lime',
+      borderRadius: '15px',
+      zIndex: 10,
    }
 
    const handleKeyDown = (event) => {
