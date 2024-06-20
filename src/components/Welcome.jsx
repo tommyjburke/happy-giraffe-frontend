@@ -132,8 +132,11 @@ export default function Welcome() {
                   <ul style={{ paddingLeft: '2rem' }}>
                      <li>
                         A tool for teachers and parents to easily
-                        create engaging exercises for
-                        primary-aged children.
+                        create engaging exercises for{' '}
+                        <u>
+                           <i>primary-aged</i>
+                        </u>{' '}
+                        children.
                      </li>
                      <li>
                         Effortlessly configure spelling and maths
@@ -186,9 +189,12 @@ export default function Welcome() {
                   style={{ textAlign: 'center' }}
                >
                   <h2>What would you like to do?</h2>
+                  <Link to='/ks-presets'>
+                     <button>KeyStage Spelling PlayNow</button>
+                  </Link>
                   <Link to='/ks'>
                      <button>
-                        Start/Edit KeyStage Spelling Game
+                        Configure KeyStage Spelling Game
                      </button>
                   </Link>
                   <Link to='/spelling-diy'>
@@ -201,10 +207,6 @@ export default function Welcome() {
                      <button>Create Maths Game</button>
                   </Link>
 
-                  <Link to='/ks-presets'>
-                     <button>KeyStage Spelling Presets</button>
-                  </Link>
-
                   <br />
 
                   <div
@@ -214,7 +216,7 @@ export default function Welcome() {
                      }}
                   ></div>
                   <br />
-                  <h2>Times Table Presets:</h2>
+                  <h2>Times Tables QuickStart:</h2>
                   <div>
                      {' '}
                      <Select

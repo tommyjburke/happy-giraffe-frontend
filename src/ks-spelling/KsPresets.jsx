@@ -165,10 +165,9 @@ export default function KsPresets() {
                {/* <link rel='canonical' href='/' /> */}
             </Helmet>
             {/* <Spin spinning={isProcessing} size='large' fullscreen /> */}
-            <h1> KeyStage Presets</h1>
+            <h1> KeyStage Play Now</h1>
             {/* <div>{renderYearButtons()}</div>
             <div>{selectedYear}</div> */}
-
             <div
                className='africanFont'
                style={{
@@ -178,8 +177,10 @@ export default function KsPresets() {
                   paddingBottom: '0.3rem',
                }}
             >
-               <div>30 Random Words: 10 Minutes</div>
-               <div>
+               30 Random Words: 10 Minutes
+            </div>
+            <div>
+               <div className='africanFont'>
                   {!selectedLanguage && (
                      <>
                         Select Language:{' '}
@@ -270,15 +271,13 @@ export default function KsPresets() {
                   }}
                >
                   <TypewriterEffect
-                     text='Select Year.........'
+                     text='Select Language & Year.........'
                      myFontSize='1.1rem'
                      isLooping
                   />
                   <span style={{ fontSize: '4rem' }}>☝️</span>
                   <br />
-                  <div className='flexVerticalContainer'>
-                     <h2>KEYSTAGE SPELLING PRESETS</h2>
-                  </div>
+                  <div className='flexVerticalContainer'></div>
                </div>
             )}
 

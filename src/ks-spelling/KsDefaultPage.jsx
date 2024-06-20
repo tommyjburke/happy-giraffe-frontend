@@ -88,7 +88,7 @@ export default function KsDefaultPage() {
             >
                <span style={{ fontSize: '4rem' }}>☝️</span>
                <TypewriterEffect
-                  text='Click a GREEN button to begin.........'
+                  text='Configure and play..............'
                   myFontSize='1.1rem'
                   isLooping
                />
@@ -107,6 +107,12 @@ export default function KsDefaultPage() {
                   <h3>KeyStage Primary</h3>
                   <h3>Create a K.S. Spelling Quiz</h3>
                </div>
+            </div>
+            <h2>Play Now:</h2>
+            <div>
+               <Link to='/ks-presets'>
+                  <button>KeyStage Spelling Shuffle</button>
+               </Link>
             </div>
 
             <br />
@@ -170,11 +176,7 @@ export default function KsDefaultPage() {
                </Popover>
             </div>
             <br />
-            <div>
-               <Link to='/ks-presets'>
-                  <button>KS Presets</button>
-               </Link>
-            </div>
+
             <div
                style={{
                   margin: '15px',
