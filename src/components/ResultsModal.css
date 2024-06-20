@@ -402,7 +402,7 @@
 .flashingText {
    animation: flash-text 1s infinite;
    padding: 1px;
-   font-family: 'Schoolbell';
+   font-family: 'Schoolbell', 'Helvetica Neue', Arial, sans-serif;
    font-size: 1.5rem;
    padding: 2px;
 }

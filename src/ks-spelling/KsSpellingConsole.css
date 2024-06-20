@@ -1,6 +1,7 @@
 label {
    margin: 0.5rem;
-   font-family: var(--africanFont);
+   font-family: var(--africanFont), 'Helvetica Neue', Arial,
+      sans-serif;
    font-size: 1.1rem;
 }
 
@@ -110,7 +111,7 @@ fieldset {
    opacity: 0.9;
    border-radius: 1rem;
    /* font-size: 1.3rem; */
-   font-family: 'VT323';
+   font-family: 'VT323', 'Helvetica Neue', Arial, sans-serif;
    border: 2px solid orange;
    animation: flashBorder 0.5s infinite;
 }
@@ -128,7 +129,7 @@ fieldset {
    opacity: 0.9;
    border-radius: 1rem;
    /* font-size: 1.3rem; */
-   font-family: 'VT323';
+   font-family: 'VT323', 'Helvetica Neue', Arial, sans-serif;
    border: 2px solid orange;
    /* animation: flashBorder 0.5s infinite; */
 }

@@ -24,7 +24,7 @@
    background-color: var(--myYellow);
    color: var(--myBrown);
    padding: 10px;
-   font-family: 'Roboto';
+   font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
    font-size: 1.2rem;
    font-weight: 600;
    width: 80%;
