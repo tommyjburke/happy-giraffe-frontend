@@ -244,6 +244,7 @@
 }
 
 .bronze-background {
+   color: white;
    background-image: linear-gradient(
       to right,
       #3b2c25 0,
@@ -261,17 +262,12 @@
    text-align: center;
 }
 
-.rainbow-background {
+.poo-background {
+   color: white;
    background-image: linear-gradient(
       to right,
-      #ff0000 0%,
-      #ff8000 14.28%,
-      #ffff00 28.57%,
-      #80ff00 42.86%,
-      #00ff80 57.14%,
-      #00ffff 71.43%,
-      #0080ff 85.71%,
-      #8000ff 100%
+      #aa3333 0%,
+      #aa3333 100%
    );
 
    /* display: flex; */
@@ -280,7 +276,7 @@
    text-align: center;
 }
 
-.poo-background {
+.rainbow-background {
    background-image: linear-gradient(
       to right,
       #451a18 0%,

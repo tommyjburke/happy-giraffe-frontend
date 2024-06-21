@@ -287,7 +287,10 @@ export default function ResultsModal({
                                  percentage < 50 &&
                                  you}
                            </td>
-                           <td className=' r1b rainbow-background '>
+                           <td
+                              style={{ color: 'white' }}
+                              className=' r1b rainbow-background '
+                           >
                               D: 20-50{' '}
                               <span className='resultsIcon result-d'>
                                  🤡
