@@ -28,13 +28,6 @@ export default function ResultsModal({
    //    setEndStopWatch(Date.now())
    // })
 
-   console.log('startStopWatch: ', startStopWatch)
-   console.log('endStopWatch: ', endStopWatch)
-   console.log(
-      'endStopWatch - startStopWatch seconds: ',
-      (endStopWatch - startStopWatch) / 1000
-   )
-
    const timeTaken = Math.round(
       (endStopWatch - startStopWatch) / 1000
    )

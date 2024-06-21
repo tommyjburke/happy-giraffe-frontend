@@ -98,7 +98,6 @@ export default function MathsQuestion({
                               e.key === 'NumpadEnter'
                            ) {
                               checkGuess(rowIndex)
-                              console.log(mathsObject)
                            }
                         }}
                      />
