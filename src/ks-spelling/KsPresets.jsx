@@ -184,53 +184,51 @@ export default function KsPresets() {
             </div>
             <div>
                <div className='africanFont'>
-                  {!selectedLanguage && (
-                     <>
-                        Select Language:{' '}
-                        <span
-                           style={{
-                              position: 'relative',
-                              top: '0.3rem',
-                           }}
-                           className='largeIcon'
-                           onClick={() =>
-                              setSelectedLanguage('English')
-                           }
-                        >
-                           🇬🇧
-                        </span>
-                        <span
-                           style={{
-                              position: 'relative',
-                              top: '0.3rem',
-                           }}
-                           className='largeIcon'
-                           onClick={() => warning()}
-                        >
-                           🇺🇸
-                        </span>
-                     </>
-                  )}{' '}
-                  {selectedLanguage && (
-                     <>
-                        Select Year:{' '}
-                        <Select
-                           placeholder={dropdownPlaceholder}
-                           onChange={selectYear}
-                           value={dropdownPlaceholder}
-                           // style={{ width: 120 }}
-                           // size='large'
+                  {/* <>
+                     Select Language:{' '}
+                     <span
+                        style={{
+                           position: 'relative',
+                           top: '0.3rem',
+                        }}
+                        className='largeIcon'
+                        onClick={() =>
+                           setSelectedLanguage('English')
+                        }
+                     >
+                        🇬🇧
+                     </span>
+                     <span
+                        style={{
+                           position: 'relative',
+                           top: '0.3rem',
+                        }}
+                        className='largeIcon'
+                        onClick={() => warning()}
+                     >
+                        🇺🇸
+                     </span>
+                  </> */}
 
-                           className='africanFont'
-                           options={Object.keys(
-                              ksData2.year
-                           ).map((year) => ({
+                  <>
+                     Select Year:{' '}
+                     <Select
+                        placeholder={dropdownPlaceholder}
+                        onChange={selectYear}
+                        value={dropdownPlaceholder}
+                        // style={{ width: 120 }}
+                        // size='large'
+
+                        className='africanFont'
+                        options={Object.keys(ksData2.year).map(
+                           (year) => ({
                               value: year,
                               label: year,
-                           }))}
-                        />
-                     </>
-                  )}
+                           })
+                        )}
+                     />
+                  </>
+
                   {selectedYear && (
                      <span
                         style={{
@@ -275,7 +273,7 @@ export default function KsPresets() {
                >
                   <span style={{ fontSize: '2.5rem' }}>☝️</span>
                   <TypewriterEffect
-                     text='Select Language & Year.........'
+                     text='Select a Year.........'
                      myFontSize='1.1rem'
                      isLooping
                   />
