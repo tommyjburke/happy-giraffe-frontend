@@ -169,7 +169,7 @@ export default function ResultsModal({
                      <span style={{ color: 'green' }}>
                         RIGHT {correct}{' '}
                      </span>
-                     |{' '}
+                     :{' '}
                      <span style={{ color: 'darkred' }}>
                         {incorrect} WRONG{' '}
                      </span>
@@ -186,8 +186,13 @@ export default function ResultsModal({
                   }}
                >
                   <h3>
-                     Questions: {numQuestions} |{' '}
-                     <span style={{ color: 'var(--myWhite)' }}>
+                     Questions: {numQuestions}{' '}
+                     <span
+                        style={{
+                           color: 'darkred',
+                           marginLeft: '5px',
+                        }}
+                     >
                         Unanswered:{' '}
                      </span>
                      {numQuestions - correct - incorrect}
@@ -195,13 +200,14 @@ export default function ResultsModal({
                </div>
                {startStopWatch && (
                   <div
+                     className='africanFont'
                      style={{
                         backgroundColor: 'var(--myOrange)',
                         width: '100%',
                         textAlign: 'center',
                         color: 'var(--myWhite)',
-                        fontFamily: 'VT323',
-                        fontSize: '1.4rem',
+                        // fontFamily: 'VT323',
+                        fontSize: '1.0rem',
                      }}
                   >
                      ⏱️{' '}

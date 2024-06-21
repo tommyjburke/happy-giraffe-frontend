@@ -74,6 +74,12 @@ export default function MathsQuestion({
                {typeof key === 'string' ? (
                   mathsObject.hiddenBox === key ? (
                      <input
+                        style={{
+                           color:
+                              mathsObject.verdict === '❌'
+                                 ? 'red'
+                                 : 'green',
+                        }}
                         ref={(ref) =>
                            (inputRefs.current[rowIndex] = ref)
                         }
@@ -92,6 +98,7 @@ export default function MathsQuestion({
                               e.key === 'NumpadEnter'
                            ) {
                               checkGuess(rowIndex)
+                              console.log(mathsObject)
                            }
                         }}
                      />
@@ -127,7 +134,9 @@ export default function MathsQuestion({
 
             {(mathsObject.isDisabled || disableAllInputs) && (
                <>
-                  <span>{mathsObject.verdict}</span>{' '}
+                  <span style={{ fontSize: '1.3rem' }}>
+                     {mathsObject.verdict}
+                  </span>{' '}
                   <span
                      style={{
                         color: 'red',
@@ -135,9 +144,19 @@ export default function MathsQuestion({
                      }}
                   >
                      {mathsObject.verdict === '' ||
-                     mathsObject.verdict === '❌'
-                        ? mathsObject.correctAnswer
-                        : ''}
+                     mathsObject.verdict === '❌' ? (
+                        <span
+                           style={{
+                              fontFamily: 'Schoolbell',
+                              marginLeft: '2px',
+                           }}
+                        >
+                           {' '}
+                           {mathsObject.correctAnswer}
+                        </span>
+                     ) : (
+                        ''
+                     )}
                   </span>
                </>
             )}
