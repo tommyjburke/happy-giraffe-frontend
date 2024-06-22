@@ -163,7 +163,7 @@ export default function KsSpellingConfigForm({
 
                <div className='configBox'>
                   <label>
-                     Custom Title:{' '}
+                     Your Title:{' '}
                      <input
                         type='text'
                         name='customTitle'
@@ -274,7 +274,7 @@ export default function KsSpellingConfigForm({
                                     backgroundColor: 'green',
                                  }}
                               >
-                                 Save{' '}
+                                 Build Game{' '}
                                  <span style={{ color: 'red' }}>
                                     <WarningOutlined />
                                  </span>
@@ -292,7 +292,7 @@ export default function KsSpellingConfigForm({
                               backgroundColor: 'green',
                            }}
                         >
-                           Save{' '}
+                           Build Game{' '}
                            <span style={{ color: 'red' }}></span>
                         </button>
                      )}

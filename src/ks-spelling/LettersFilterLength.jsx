@@ -82,7 +82,7 @@ export default function LettersFilterLength({
    return (
       <div className='configBox'>
          <label>
-            Filter length of word: <br />({lowerValue} to{' '}
+            Limit word length: <br />({lowerValue} to{' '}
             {upperValue}) letters
          </label>
 

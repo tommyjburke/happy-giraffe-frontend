@@ -87,7 +87,7 @@ const RandomWordSelector = ({
 
    return (
       <div className='configBox'>
-         <label>Select Random Words:</label>
+         <label>Limit number of words (shuffle):</label>
          {/* <input
             type='number'
             value={userNumber}
@@ -123,7 +123,7 @@ const RandomWordSelector = ({
                   handleNumberChange(value)
                }}
             />
-            {randomWordsMax || userNumber}
+            <>{randomWordsMax || userNumber}</>
          </div>
          <div style={{ textAlign: 'right' }}>
             {wordLengthConfirmed && (
@@ -133,7 +133,7 @@ const RandomWordSelector = ({
                      setFilteredWords(tempFilteredWords)
                   }
                >
-                  Confirm {userNumber} Random Words
+                  Confirm: {userNumber} Words
                </button>
             )}
          </div>

@@ -553,6 +553,9 @@ export default function PlaySpellingGame({
             {renderGameData()}
          </div>
          <div>
+            <u>Note</u>: not all words have human recordings.
+         </div>
+         <div>
             {!useTimerTemp && (
                <button
                   style={{
@@ -565,7 +568,7 @@ export default function PlaySpellingGame({
                      rebuildGame()
                   }}
                >
-                  🥵 START AGAIN 😫
+                  🥵 Start Again 😫
                </button>
             )}
          </div>

@@ -182,6 +182,13 @@ export default function KsSpellingConsole({ children }) {
                {selectedYear && renderLessonButtons()}
             </div>
             {wordArray < 1 && <KsDefaultPage />}
+            <h3>
+               Set config (KS Console), remove unwanted words
+               (config or 🔫), then click{' '}
+               <i>
+                  <u>Build Game</u>
+               </i>
+            </h3>
             <div
                className='doubleContainer'
                // style={{ border: '2px dotted pink' }}
