@@ -228,37 +228,6 @@ export default function DiySpellingConfigForm({
       >
          {contextHolder}
 
-         <div
-            className='right'
-            style={{ marginBottom: '-15px' }}
-         >
-            <label>Title:</label>
-            <input
-               style={{
-                  color: 'var(--myOrange)',
-                  width: '140px',
-                  fontSize: '1.2rem',
-                  // fontFamily: 'Roboto',
-               }}
-               placeholder='optional title...'
-               // autoFocus
-               // width='1000px'
-               title='Your title'
-               // pattern='[a-zA-Z]*'
-               maxLength={20}
-               // className='centred'
-               type='text'
-               value={title}
-               onChange={(e) =>
-                  setTitle(
-                     e.target.value.replace(
-                        /[^a-zA-Z'0-9 ]/g,
-                        ''
-                     )
-                  )
-               }
-            />
-         </div>
          <table
             className='responsive-table'
             style={{
@@ -281,13 +250,18 @@ export default function DiySpellingConfigForm({
                      colSpan='4'
                      style={{
                         flex: '1',
-                        flexGrow: '2',
-                        flexBasis: '33%',
-                        flexShrink: '0',
-                        justifyContent: 'center',
+                        flexGrow: '1',
+                        flexShrink: '3',
+                        flexBasis: '50%',
+                        display: 'flex',
+                        justifyContent: 'flex-start',
+                        alignItems: 'flex-end',
                         border: 'none',
+                        alignSelf: 'flex-start',
                         backgroundColor: 'transparent',
                         color: 'var(--myBrown)',
+                        position: 'relative',
+                        top: '10px',
                      }}
                   >
                      <Slider1
@@ -295,50 +269,22 @@ export default function DiySpellingConfigForm({
                         onChange={setSpeechSpeed}
                      />
                   </th>
-                  <th
-                     colSpan='2'
-                     style={{
-                        flex: '1',
-                        flexGrow: '2',
-                        flexBasis: '33%',
-                        flexShrink: '1',
-                        border: 'none',
-                        backgroundColor: 'transparent',
-                     }}
-                  >
-                     {/* <input
-                        placeholder='your title...'
-                        // autoFocus
 
-                        title='Your title'
-                        // pattern='[a-zA-Z]*'
-                        maxLength={20}
-                        // className='centred'
-                        type='text'
-                        value={title}
-                        onChange={(e) =>
-                           setTitle(
-                              e.target.value.replace(
-                                 /[^a-zA-Z' ]/g,
-                                 ''
-                              )
-                           )
-                        }
-                     /> */}
-                  </th>
                   <th
                      style={{
                         flex: '1',
                         flexGrow: '1',
                         flexShrink: '3',
-                        flexBasis: '33%',
+                        flexBasis: '50%',
+                        display: 'flex',
+                        justifyContent: 'flex-end',
                         textAlign: 'right',
                         border: 'none',
-                        alignSelf: 'flexEnd',
+                        alignSelf: 'flex-end',
                         backgroundColor: 'transparent',
                      }}
                   >
-                     <div className='right'>
+                     {/* <div className='right'>
                         <Popconfirm
                            title='Delete all words?'
                            // description='Delete all words?'
@@ -349,7 +295,7 @@ export default function DiySpellingConfigForm({
                         >
                            <button
                               className='cancelBtn'
-                              onClick={() => handleClearList()}
+                              // onClick={() => handleClearList()}
                               style={{
                                  padding: '0 10px 0 10px',
                                  border: 'red solid 1px',
@@ -359,6 +305,34 @@ export default function DiySpellingConfigForm({
                               Clear All
                            </button>
                         </Popconfirm>
+                     </div> */}
+                     <div>
+                        <label>Title:</label>
+                        <input
+                           style={{
+                              color: 'var(--myOrange)',
+                              width: '140px',
+                              fontSize: '1.2rem',
+                              // fontFamily: 'Roboto',
+                           }}
+                           placeholder='optional title...'
+                           // autoFocus
+                           // width='1000px'
+                           title='Your title'
+                           // pattern='[a-zA-Z]*'
+                           maxLength={20}
+                           // className='centred'
+                           type='text'
+                           value={title}
+                           onChange={(e) =>
+                              setTitle(
+                                 e.target.value.replace(
+                                    /[^a-zA-Z'0-9 ]/g,
+                                    ''
+                                 )
+                              )
+                           }
+                        />
                      </div>
                   </th>
                </tr>
@@ -371,28 +345,50 @@ export default function DiySpellingConfigForm({
                   <th title='question number' className='c1'>
                      *
                   </th>
-                  <th
-                     className='c2'
-                     title='robot voice'
-                     colSpan='2'
-                     style={{ flexBasis: '12%' }}
-                  >
-                     <SoundOutlined />
-                  </th>
+                  <Popover content={'listen to word'}>
+                     <th
+                        className='c2'
+                        title='robot voice'
+                        colSpan='2'
+                        style={{ flexBasis: '12%' }}
+                     >
+                        <SoundOutlined />
+                     </th>
+                  </Popover>
 
                   <th className='c5' title='Scrambled version'>
                      Scrambled
                   </th>
                   <th className='c4'>Word</th>
                   {/* <th>Your Guess</th> */}
-                  <th
-                     className='c6'
-                     title='Number of letters in each word'
-                  >
-                     #
-                  </th>
+                  <Popover content='Number of letters in each word'>
+                     <th
+                        className='c6'
+                        title='Number of letters in each word'
+                     >
+                        #
+                     </th>
+                  </Popover>
                   {/* <th></th> */}
-                  <th className='c7'>❌</th>
+                  <th className='c7'>
+                     <Popover content='Clear all words'>
+                        <Popconfirm
+                           title='Delete all words?'
+                           // description='Delete all words?'
+                           onConfirm={() => setWords([])}
+                           // onCancel={cancel}
+                           okText='Yes'
+                           cancelText='No'
+                        >
+                           <span
+                              style={{ cursor: 'pointer' }}
+                              onClick={() => handleClearList()}
+                           >
+                              ❌
+                           </span>
+                        </Popconfirm>
+                     </Popover>
+                  </th>
                </tr>
             </thead>
             <tbody>
@@ -405,8 +401,8 @@ export default function DiySpellingConfigForm({
                      }}
                   >
                      <td className='c1'>
-                        <span className='gameFont'>
-                           {index + 1}
+                        <span className=''>
+                           {index < 10 ? `0${index + 1}` : index}
                         </span>{' '}
                      </td>
                      <td className='c2'>
@@ -513,14 +509,12 @@ export default function DiySpellingConfigForm({
                      <td className='c7'>
                         <Popover content={`Delete this word?`}>
                            <span
-                              className='largeIcon'
+                              className='mediumIcon'
                               onClick={() =>
                                  onDeleteWord(word.id)
                               }
                            >
-                              <span className='mediumIcon'>
-                                 ❌
-                              </span>
+                              ❌
                            </span>
                         </Popover>
                      </td>
@@ -572,6 +566,8 @@ export default function DiySpellingConfigForm({
                            style={{
                               paddingLeft: '10px',
                               fontSize: '1rem',
+                              fontFamily: 'Roboto',
+                              color: 'green',
                            }}
                         >
                            <Space>
@@ -637,9 +633,10 @@ export default function DiySpellingConfigForm({
                   >
                      <div className='right'>
                         <button
+                           style={{ width: '120px' }}
                            onClick={() => compileData(words)}
                         >
-                           Save
+                           Build Game
                         </button>
                      </div>
                   </th>
