@@ -74,6 +74,31 @@ export default function PlaySpellingGame({
       })
    }
 
+   const notesMessage = () => {
+      messageApi.open({
+         type: 'info',
+         content: (
+            <div>
+               <p>
+                  <u>Notes</u>: Not all words have human voice
+                  recordings.
+               </p>
+               <p>
+                  Hover over "<u>scrambled</u>" for other
+                  meanings.
+               </p>
+               <p>Use letter count on the right to help.</p>
+            </div>
+         ),
+         style: { fontSize: '0.9rem', opacity: '0.9' },
+         duration: '5.0',
+      })
+   }
+
+   useEffect(() => {
+      notesMessage()
+   }, [])
+
    const randomHumanIcon = () => {
       let personArray = [
          '👩‍🦲',
@@ -553,7 +578,14 @@ export default function PlaySpellingGame({
             {renderGameData()}
          </div>
          <div>
-            <u>Note</u>: not all words have human recordings.
+            <p>
+               <u>Notes</u>: Not all words have human voice
+               recordings.
+            </p>
+            <p>
+               Hover over "<u>scrambled</u>" for other meanings.
+            </p>
+            <p>Use letter count on the right to help.</p>
          </div>
          <div>
             {!useTimerTemp && (

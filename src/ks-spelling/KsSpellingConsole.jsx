@@ -181,14 +181,23 @@ export default function KsSpellingConsole({ children }) {
             <div className='buttonsContainer'>
                {selectedYear && renderLessonButtons()}
             </div>
-            {wordArray < 1 && <KsDefaultPage />}
-            <h3>
-               Set config (KS Console), remove unwanted words
-               (config or 🔫), then click{' '}
-               <i>
-                  <u>Build Game</u>
-               </i>
-            </h3>
+            {wordArray?.length < 1 && <KsDefaultPage />}
+            {wordArray?.length > 0 && (
+               <h3
+                  className='africanFont'
+                  style={{
+                     padding: '0.2rem 0.8rem 0.2rem 0.8rem',
+                     color: 'var(--myBrown)',
+                     textAlign: 'center',
+                  }}
+               >
+                  Set config (using KS Console), remove any
+                  unwanted words, then click{' '}
+                  <i>
+                     <u>Build Game</u>
+                  </i>
+               </h3>
+            )}
             <div
                className='doubleContainer'
                // style={{ border: '2px dotted pink' }}
@@ -272,16 +281,16 @@ export default function KsSpellingConsole({ children }) {
                            {selectedLesson.name} WORDS:{' '}
                            <span
                               style={{
-                                 backgroundColor:
-                                    'var(--myOrange)',
-                                 color: 'brown',
+                                 backgroundColor: 'yellow',
+                                 color: 'red',
                                  float: 'right',
                                  padding: '2px 5px',
                                  borderRadius: '10px',
                                  fontSize: '0.8rem',
+                                 outline: '3px ridge red',
                               }}
                            >
-                              🔫 TO DELETE
+                              🔫 TO DELETE WORD
                            </span>
                         </h4>{' '}
                         {filteredWords === tempFilteredWords && (

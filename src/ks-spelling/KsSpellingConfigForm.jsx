@@ -111,7 +111,7 @@ export default function KsSpellingConfigForm({
          }}
       >
          Too many words (over 40) may provide unreliable
-         retrieval of (human) voice samples
+         retrieval of (human) voice recordings
       </span>
    )
 
@@ -219,15 +219,18 @@ export default function KsSpellingConfigForm({
                <div>{children}</div>
                <div style={{ marginBottom: '1rem' }}>
                   <span
-                     style={{
-                        backgroundColor: 'yellow',
-                        padding: '0 1rem 0 1rem',
-                        border: 'orange 1px',
-                        borderRadius: '1rem',
-                        color: 'red',
-                        float: 'right',
-                        fontSize: '1rem',
-                     }}
+                     className='wordCountOrig'
+                     style={
+                        {
+                           // backgroundColor: 'yellow',
+                           // padding: '0 1rem 0 1rem',
+                           // border: 'orange 1px',
+                           // borderRadius: '1rem',
+                           // color: 'red',
+                           // float: 'right',
+                           // fontSize: '1rem',
+                        }
+                     }
                   >
                      {filteredWords.length} words
                   </span>

@@ -136,9 +136,9 @@ export default function KsDefaultPage() {
                      title='Sound Test. Checks if sounds are working'
                      style={{
                         backgroundColor: 'var(--myOrange)',
-                        paddingBottom: '0px',
+                        paddingBottom: '35px',
                         outline: '5px ridge var(--myWhite)',
-                        marginBottom: '10px',
+                        marginBottom: '16px',
                         animation: 'moveInLeft 600ms ease-out',
                         // borderRadius: '20px',
                      }}
@@ -158,7 +158,7 @@ export default function KsDefaultPage() {
                      title='Sound Test. Checks if sounds are working'
                      style={{
                         backgroundColor: 'var(--myOrange)',
-                        padding: '',
+                        paddingBottom: '35px',
                         outline: '5px ridge var(--myWhite)',
                         animation: 'moveInLeft 600ms ease-out',
                         // borderRadius: '20px',

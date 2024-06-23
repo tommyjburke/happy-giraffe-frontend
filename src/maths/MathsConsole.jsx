@@ -263,7 +263,7 @@ export default function MathsConsole() {
                      />
                   </div>
                   <div className='configBox'>
-                     <label> No. of questions:</label>
+                     <label> Number of questions:</label>
                      <Row>
                         <Col span={18}>
                            <Slider
@@ -698,7 +698,7 @@ export default function MathsConsole() {
                            compileMathsParams()
                         }}
                      >
-                        Save
+                        Build Game
                      </button>
                   </div>
                </fieldset>
