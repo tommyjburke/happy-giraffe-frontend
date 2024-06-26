@@ -185,7 +185,7 @@ export default function DiySpellingConsole() {
             <br />
 
             <br />
-            <Giraffe />
+            {/* <Giraffe /> */}
 
             <br />
          </div>

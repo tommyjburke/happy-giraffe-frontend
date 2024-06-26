@@ -704,7 +704,7 @@ export default function MathsConsole() {
                </fieldset>
                <br />
                <br />
-               <Giraffe />
+               {/* <Giraffe /> */}
                <br />
                <br />
                <br />

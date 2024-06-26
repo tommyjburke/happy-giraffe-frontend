@@ -16,6 +16,8 @@ import MathsConsole from '../maths/MathsConsole'
 import MathsPlayRoute from '../maths/MathsPlayRoute'
 import Welcome from './Welcome'
 import KsPresets from '../ks-spelling/KsPresets'
+import GrammarConsole from '../grammar/GrammarConsole'
+import GrammarPlayRoute from '../grammar/GrammarPlayRoute'
 
 const router = createBrowserRouter([
    {
@@ -79,6 +81,14 @@ const router = createBrowserRouter([
          {
             path: 'create-array',
             element: <CreateArray />,
+         },
+         {
+            path: '/grammar',
+            element: <GrammarConsole />,
+         },
+         {
+            path: '/grammar/:data',
+            element: <GrammarPlayRoute />,
          },
       ],
    },
