@@ -29,6 +29,14 @@ export default function GrammarConsole() {
    }
 
    const compileQuestion = () => {
+      if (
+         tempQuestion.length === 0 ||
+         tempOptions[0].length === 0 ||
+         tempOptions[1].length === 0
+      ) {
+         alert('Please fill out all fields')
+         return
+      }
       let newQuestion = tempQuestion
       let firstUnderscoreIndex = newQuestion.indexOf('_')
       if (firstUnderscoreIndex !== -1) {
@@ -203,7 +211,7 @@ export default function GrammarConsole() {
                      </div>
                   ))}
                </div>
-
+               <br />
                <div style={{ textAlign: 'right' }}>
                   <button onClick={compileQuestion}>
                      + question
@@ -277,8 +285,10 @@ export default function GrammarConsole() {
                   <button onClick={() => compileGrammarParams()}>
                      BUILD GAME
                   </button>
+                  <br />
                </div>
             </div>
+            <br />
          </div>
       </>
    )
