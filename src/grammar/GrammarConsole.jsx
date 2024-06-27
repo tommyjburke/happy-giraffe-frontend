@@ -26,6 +26,7 @@ import {
    RightCircleOutlined,
    DeleteOutlined,
 } from '@ant-design/icons'
+import { set } from 'mongoose'
 
 export default function GrammarConsole() {
    const navigate = useNavigate()
@@ -152,12 +153,21 @@ export default function GrammarConsole() {
    }
 
    const removeOption = () => {
+      console.log('arrayLength: ', tempOptions.length)
+      console.log('tempCorrectAnswer: ', tempCorrectAnswer)
+      const arrayLength = tempOptions.length
+
       if (tempOptions.length === 2) {
          optionsMessage()
          return
       }
       playBlipOff()
       setTempOptions((prev) => prev.slice(0, -1))
+
+      if (tempCorrectAnswer > tempOptions.length - 2) {
+         console.log('less than')
+         setTempCorrectAnswer(tempCorrectAnswer - 1)
+      }
    }
 
    const addOption = () => {
@@ -293,6 +303,7 @@ export default function GrammarConsole() {
             </div>
             <div>
                <input
+                  placeholder='Question'
                   value={tempQuestion}
                   maxLength={200}
                   onChange={(e) =>
@@ -345,6 +356,7 @@ export default function GrammarConsole() {
                         index={i}
                      >
                         <input
+                           placeholder={`Option ${i + 1}`}
                            value={tempOptions[i]}
                            key={i}
                            onChange={(e) => {
