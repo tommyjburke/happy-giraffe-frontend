@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import './GrammarConsole.css'
-import { Spin, message } from 'antd'
+import { Spin, message, Popover } from 'antd'
 import { Helmet } from 'react-helmet-async'
 import {
    MinusCircleOutlined,
@@ -12,7 +12,6 @@ export default function GrammarConsole() {
    const navigate = useNavigate()
    const [words, setWords] = useState([])
    const [speechSpeed, setSpeechSpeed] = useState(0.7)
-   const [messageApi, contextHolder] = message.useMessage()
    const [isProcessing, setIsProcessing] = useState(false)
    const [showForm, setShowForm] = useState(false)
    const [questionObjects, setQuestionObjects] = useState([])
@@ -20,6 +19,39 @@ export default function GrammarConsole() {
    const [tempOptions, setTempOptions] = useState(['', ''])
    const [tempQuestion, setTempQuestion] = useState('')
    const [tempCorrectAnswer, setTempCorrectAnswer] = useState(0)
+
+   const [messageApi, contextHolder] = message.useMessage()
+
+   const optionsMessage = () => {
+      messageApi.open({
+         type: 'error',
+         content: (
+            <div>
+               <p>2 options minimum</p>
+               <p>4 options maximum</p>
+            </div>
+         ),
+         style: {
+            fontSize: '0.9rem',
+            fontWeight: '600',
+            opacity: '0.9',
+         },
+         duration: '2.0',
+      })
+   }
+
+   const invalidDataMessage = () => {
+      messageApi.open({
+         type: 'error',
+         content: 'Please fill out all fields',
+         style: {
+            fontSize: '0.9rem',
+            fontWeight: '600',
+            opacity: '0.9',
+         },
+         duration: '2.0',
+      })
+   }
 
    const handleTempOptions = (e, index) => {
       const newTempOptions = [...tempOptions]
@@ -31,12 +63,16 @@ export default function GrammarConsole() {
    const compileQuestion = () => {
       if (
          tempQuestion.length === 0 ||
-         tempOptions[0].length === 0 ||
-         tempOptions[1].length === 0
+         tempOptions.some((option) => option === '')
       ) {
-         alert('Please fill out all fields')
+         invalidDataMessage()
          return
       }
+      const filteredTempOptions = tempOptions.filter(
+         (option) => option !== ''
+      )
+      setTempOptions(filteredTempOptions)
+
       let newQuestion = tempQuestion
       let firstUnderscoreIndex = newQuestion.indexOf('_')
       if (firstUnderscoreIndex !== -1) {
@@ -76,15 +112,28 @@ export default function GrammarConsole() {
    }
 
    const removeOption = () => {
+      if (tempOptions.length === 2) {
+         optionsMessage()
+         return
+      }
       setTempOptions((prev) => prev.slice(0, -1))
    }
 
    const addOption = () => {
+      if (tempOptions.length === 4) {
+         optionsMessage()
+         return
+      }
       setTempOptions([...tempOptions, ''])
+   }
+
+   const removeQuestion = () => {
+      setQuestionObjects((prev) => prev.slice(0, -1))
    }
 
    return (
       <>
+         {contextHolder}
          <div className='mainContainer '>
             <h1>
                DIY Grammar Console{' '}
@@ -101,7 +150,9 @@ export default function GrammarConsole() {
                </b>
             </div>
             <br />
-            <div>Add Question:</div>
+            <div>
+               <label>Add Question:</label>
+            </div>
             <div>
                <input
                   value={tempQuestion}
@@ -127,7 +178,7 @@ export default function GrammarConsole() {
                }}
             >
                <div style={{ textAlign: 'center' }}>
-                  Options:{' '}
+                  <label>Options: </label>
                   <button
                      //  onClick={() => setNumInputs(numInputs - 1)}
                      onClick={() => removeOption()}
@@ -171,7 +222,8 @@ export default function GrammarConsole() {
                            }}
                         />
                         <input
-                           value={tempCorrectAnswer}
+                           checked={i === tempCorrectAnswer}
+                           value={i}
                            onChange={() => {
                               setTempCorrectAnswer(i)
                               console.log('radio:', i)
@@ -203,7 +255,7 @@ export default function GrammarConsole() {
                               }}
                            >
                               <span style={{ margin: '0 auto' }}>
-                                 ❌
+                                 ❓
                               </span>
                            </div>
                         )}
@@ -213,9 +265,15 @@ export default function GrammarConsole() {
                </div>
                <br />
                <div style={{ textAlign: 'right' }}>
-                  <button onClick={compileQuestion}>
-                     + question
-                  </button>
+                  <Popover
+                     content={
+                        'Do not forget to choose the correct answer'
+                     }
+                  >
+                     <button onClick={compileQuestion}>
+                        + question
+                     </button>
+                  </Popover>
                </div>
 
                <br />
@@ -259,6 +317,18 @@ export default function GrammarConsole() {
                                           )}
                                        </div>
                                     ))}
+                                 <span
+                                    onClick={() =>
+                                       removeQuestion(i)
+                                    }
+                                    style={{
+                                       color: 'red',
+                                       cursor: 'pointer',
+                                       marginLeft: '10px',
+                                    }}
+                                 >
+                                    ❌
+                                 </span>
                               </div>
                               <div
                                  style={{ textAlign: 'right' }}
@@ -281,12 +351,16 @@ export default function GrammarConsole() {
                   <div></div>
                </div>
                <br />
-               <div style={{ textAlign: 'right' }}>
-                  <button onClick={() => compileGrammarParams()}>
-                     BUILD GAME
-                  </button>
-                  <br />
-               </div>
+               {questionObjects.length > 0 && (
+                  <div style={{ textAlign: 'right' }}>
+                     <button
+                        onClick={() => compileGrammarParams()}
+                     >
+                        BUILD GAME
+                     </button>
+                     <br />
+                  </div>
+               )}
             </div>
             <br />
          </div>
