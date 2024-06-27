@@ -23,6 +23,8 @@ select {
    text-align: center;
    margin-left: 0.1rem;
    margin-right: 0.3rem;
+   font-family: 'Schoolbell', 'Helvetica Neue', Arial, sans-serif;
+   color: green;
 }
 
 /* Basic styling for the options */
@@ -39,13 +41,14 @@ input[type='radio'] {
 .multiQuestionDiv {
    margin: 10px;
    padding: 10px;
-   border: 1px dashed gray;
-   border-radius: 10px;
+   border: 8px groove var(--myBrown);
+   border-radius: 20px;
    text-align: center;
    display: flex;
    flex-direction: row;
    background-color: var(--myWhite);
    align-items: center;
+   font-family: 'Lato', 'Helvetica Neue', Arial, sans-serif;
 }
 
 .correctOption {

@@ -1,11 +1,30 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import './GrammarConsole.css'
-import { Spin, message, Popover } from 'antd'
-import { Helmet } from 'react-helmet-async'
 import {
-   MinusCircleOutlined,
-   PlusOutlined,
+   Spin,
+   message,
+   Popover,
+   Switch,
+   Slider,
+   Collapse,
+} from 'antd'
+import { Helmet } from 'react-helmet-async'
+// import {
+//    MinusCircleOutlined,
+//    PlusOutlined,
+// } from '@ant-design/icons'
+import switchSound from '../media/switch.mp3'
+import blipOn from '../media/blipOn.mp3'
+import blipOff from '../media/blipOff.mp3'
+import magicSound from '../media/magic.mp3'
+import ding from '../media/ding1.mp3'
+import useSound from 'use-sound'
+
+import {
+   DownCircleOutlined,
+   RightCircleOutlined,
+   DeleteOutlined,
 } from '@ant-design/icons'
 
 export default function GrammarConsole() {
@@ -19,8 +38,24 @@ export default function GrammarConsole() {
    const [tempOptions, setTempOptions] = useState(['', ''])
    const [tempQuestion, setTempQuestion] = useState('')
    const [tempCorrectAnswer, setTempCorrectAnswer] = useState(0)
+   const [customTitle, setCustomTitle] = useState(
+      'My Custom Title'
+   )
+   const [useTimer, setUseTimer] = useState(false)
+   const [duration, setDuration] = useState(120)
+   const [showEditTitle, setShowEditTitle] = useState(false)
 
    const [messageApi, contextHolder] = message.useMessage()
+
+   const [playSwitch] = useSound(switchSound)
+   const [playMagic] = useSound(magicSound)
+   const [playBlipOn] = useSound(blipOn)
+   const [playBlipOff] = useSound(blipOff)
+   const [playDing] = useSound(ding)
+   const handleTimerSwitch = (checked) => {
+      playSwitch()
+      setUseTimer(checked)
+   }
 
    const optionsMessage = () => {
       messageApi.open({
@@ -93,6 +128,7 @@ export default function GrammarConsole() {
          options: tempOptions,
          correctAnswer: tempCorrectAnswer,
       })
+      playDing()
       setQuestionObjects(newQuestionObjects)
       setTempOptions(['', ''])
       setTempQuestion('')
@@ -105,9 +141,13 @@ export default function GrammarConsole() {
    const compileGrammarParams = () => {
       console.log('questionObjects: ', questionObjects)
       const queryParams = new URLSearchParams({
+         useTimer: useTimer,
+         duration: duration,
+         title: customTitle,
          grammarObjects: JSON.stringify(questionObjects),
       })
       console.log('query params: ', queryParams.toString())
+      playMagic()
       navigate(`./data?${queryParams.toString()}`)
    }
 
@@ -116,6 +156,7 @@ export default function GrammarConsole() {
          optionsMessage()
          return
       }
+      playBlipOff()
       setTempOptions((prev) => prev.slice(0, -1))
    }
 
@@ -124,6 +165,7 @@ export default function GrammarConsole() {
          optionsMessage()
          return
       }
+      playBlipOn()
       setTempOptions([...tempOptions, ''])
    }
 
@@ -135,27 +177,124 @@ export default function GrammarConsole() {
       <>
          {contextHolder}
          <div className='mainContainer '>
+            <Helmet>
+               <title>
+                  Happy Giraffe Grammar - Build Your Own Multiple
+                  Choice Game
+               </title>
+               <meta
+                  name='description'
+                  // content='Happy Giraffe - Customised Spelling Game'
+                  content='Happy Giraffe Grammar - Build Your Own Multiple Choice Game'
+               />
+               {/* <link rel='canonical' href='/' /> */}
+            </Helmet>
             <h1>
                DIY Grammar Console{' '}
                <span style={{ color: 'red' }}>BETA</span>
             </h1>
             <h2> Build a Multiple Choice Quiz</h2>
+            <div className='configBox'>
+               <span
+                  onClick={() =>
+                     setShowEditTitle(!showEditTitle)
+                  }
+                  style={{ cursor: 'pointer' }}
+               >
+                  {showEditTitle ? (
+                     <DownCircleOutlined />
+                  ) : (
+                     <RightCircleOutlined />
+                  )}
+
+                  {/*
+                   */}
+               </span>
+
+               {showEditTitle ? (
+                  <input
+                     maxLength={36}
+                     value={customTitle}
+                     onChange={(e) =>
+                        setCustomTitle(
+                           e.target.value.replace(
+                              /[^a-zA-Z'0-9 ]/g,
+                              ''
+                           )
+                        )
+                     }
+                  />
+               ) : (
+                  <span
+                     style={{
+                        fontSize: '1.2rem',
+                        fontFamily: 'Schoolbell',
+                        color: 'green',
+                     }}
+                  >
+                     {' '}
+                     {customTitle}
+                  </span>
+               )}
+            </div>
+
+            <div className='configBox'>
+               <label>Timer: </label>
+               <Switch
+                  defaultValue={useTimer}
+                  checkedChildren='on'
+                  unCheckedChildren='off'
+                  onChange={handleTimerSwitch}
+               />
+               {/* {useTimer ? 'Timer On' : 'Timer Off'} */}
+
+               <div
+                  style={{
+                     display: 'flex',
+                     // justifyContent: 'center',
+                     width: '100%',
+                  }}
+               >
+                  <Slider
+                     // disabled={!useTimer}
+                     style={{
+                        width: '200px',
+                        margin: '10px 1.2rem 10px 1.2rem',
+                     }}
+                     step={30}
+                     min={30}
+                     max={600}
+                     // value={[lowerValue, upperValue]}
+                     trackStyle={{
+                        backgroundColor: 'lightgreen',
+                     }}
+                     defaultValue={duration}
+                     // railStyle={{ backgroundColor: 'grey' }}
+                     onChange={(value) => {
+                        setDuration(value)
+                     }}
+                  />
+                  {convertSecondsToMinutes(duration)}
+               </div>
+            </div>
             {/* <div>
                <button>Add Question</button>
             </div> */}
-            <div>
-               <b>
-                  Use a single underscore to position the answer
-                  box. E.g. A triangle has _ sides.
-               </b>
-            </div>
+
             <br />
             <div>
                <label>Add Question:</label>
             </div>
             <div>
+               <p>
+                  Use a single underscore to position the answer
+                  box. E.g. A triangle has _ sides.
+               </p>
+            </div>
+            <div>
                <input
                   value={tempQuestion}
+                  maxLength={200}
                   onChange={(e) =>
                      setTempQuestion(e.target.value)
                   }
@@ -208,9 +347,10 @@ export default function GrammarConsole() {
                         <input
                            value={tempOptions[i]}
                            key={i}
-                           onChange={(e) =>
+                           onChange={(e) => {
                               handleTempOptions(e, i)
-                           }
+                           }}
+                           maxLength={24}
                            type='text'
                            className='question !important'
                            style={{
@@ -226,6 +366,7 @@ export default function GrammarConsole() {
                            value={i}
                            onChange={() => {
                               setTempCorrectAnswer(i)
+                              playBlipOn()
                               console.log('radio:', i)
                            }}
                            type='radio'
@@ -267,7 +408,7 @@ export default function GrammarConsole() {
                <div style={{ textAlign: 'right' }}>
                   <Popover
                      content={
-                        'Do not forget to choose the correct answer'
+                        'Do not forget to choose the correct answer ✅'
                      }
                   >
                      <button onClick={compileQuestion}>
@@ -278,7 +419,14 @@ export default function GrammarConsole() {
 
                <br />
 
-               <div style={{ border: '1px dotted black' }}>
+               <div
+                  style={{
+                     border: '10px ridge var(--myOrange)',
+                     padding: '10px',
+                     borderRadius: '25px',
+                     backgroundColor: 'var(--myWhite)',
+                  }}
+               >
                   <div>
                      {questionObjects.map(
                         (questionObject, i) => (
@@ -317,7 +465,7 @@ export default function GrammarConsole() {
                                           )}
                                        </div>
                                     ))}
-                                 <span
+                                 <div
                                     onClick={() =>
                                        removeQuestion(i)
                                     }
@@ -325,10 +473,11 @@ export default function GrammarConsole() {
                                        color: 'red',
                                        cursor: 'pointer',
                                        marginLeft: '10px',
+                                       float: 'right',
                                     }}
                                  >
-                                    ❌
-                                 </span>
+                                    <DeleteOutlined />
+                                 </div>
                               </div>
                               <div
                                  style={{ textAlign: 'right' }}
@@ -366,4 +515,12 @@ export default function GrammarConsole() {
          </div>
       </>
    )
+}
+
+function convertSecondsToMinutes(seconds) {
+   const minutes = Math.floor(seconds / 60)
+   const remainingSeconds = seconds % 60
+   return `${minutes}:${
+      remainingSeconds < 10 ? '0' : ''
+   }${remainingSeconds}`
 }
