@@ -92,7 +92,7 @@ export default function GrammarConsole() {
    const handleTempOptions = (e, index) => {
       const newTempOptions = [...tempOptions]
       newTempOptions[index] = e.target.value
-      console.log('newTempOptions: ', newTempOptions)
+
       setTempOptions(newTempOptions)
    }
 
@@ -135,26 +135,26 @@ export default function GrammarConsole() {
       setTempQuestion('')
       setTempCorrectAnswer(0)
       setShowForm(false)
-      setNumInputs(2)
-      console.log('newQuestionObjects: ', newQuestionObjects)
+      // setNumInputs(2)
+      // console.log('newQuestionObjects: ', newQuestionObjects)
    }
 
    const compileGrammarParams = () => {
-      console.log('questionObjects: ', questionObjects)
+      // console.log('questionObjects: ', questionObjects)
       const queryParams = new URLSearchParams({
          useTimer: useTimer,
          duration: duration,
          title: customTitle,
          grammarObjects: JSON.stringify(questionObjects),
       })
-      console.log('query params: ', queryParams.toString())
+      // console.log('query params: ', queryParams.toString())
       playMagic()
       navigate(`./data?${queryParams.toString()}`)
    }
 
    const removeOption = () => {
-      console.log('arrayLength: ', tempOptions.length)
-      console.log('tempCorrectAnswer: ', tempCorrectAnswer)
+      // console.log('arrayLength: ', tempOptions.length)
+      // console.log('tempCorrectAnswer: ', tempCorrectAnswer)
       const arrayLength = tempOptions.length
 
       if (tempOptions.length === 2) {
@@ -165,7 +165,6 @@ export default function GrammarConsole() {
       setTempOptions((prev) => prev.slice(0, -1))
 
       if (tempCorrectAnswer > tempOptions.length - 2) {
-         console.log('less than')
          setTempCorrectAnswer(tempCorrectAnswer - 1)
       }
    }
@@ -266,7 +265,7 @@ export default function GrammarConsole() {
                   }}
                >
                   <Slider
-                     // disabled={!useTimer}
+                     disabled={!useTimer}
                      style={{
                         width: '200px',
                         margin: '10px 1.2rem 10px 1.2rem',
@@ -303,7 +302,7 @@ export default function GrammarConsole() {
             </div>
             <div>
                <input
-                  placeholder='Question'
+                  placeholder='Question:: use _ to position answer box'
                   value={tempQuestion}
                   maxLength={200}
                   onChange={(e) =>
@@ -315,6 +314,7 @@ export default function GrammarConsole() {
                      width: '90vw',
                      padding: '10px 0px 10px 0px',
                      textAlign: 'center',
+                     border: '2px solid lime',
                   }}
                ></input>
             </div>
@@ -379,7 +379,6 @@ export default function GrammarConsole() {
                            onChange={() => {
                               setTempCorrectAnswer(i)
                               playBlipOn()
-                              console.log('radio:', i)
                            }}
                            type='radio'
                            //    key={i}
@@ -431,86 +430,89 @@ export default function GrammarConsole() {
 
                <br />
 
-               <div
-                  style={{
-                     border: '10px ridge var(--myOrange)',
-                     padding: '10px',
-                     borderRadius: '25px',
-                     backgroundColor: 'var(--myWhite)',
-                  }}
-               >
-                  <div>
-                     {questionObjects.map(
-                        (questionObject, i) => (
-                           <div key={i}>
-                              <div className='multiQuestionDiv'>
-                                 {questionObject.question
-                                    .split('_')
-                                    .map((word, index) => (
-                                       <div key={index}>
-                                          {word}
-                                          {index <
-                                             questionObject.question.split(
-                                                '_'
-                                             ).length -
-                                                1 && (
-                                             <>
-                                                {' '}
-                                                <select>
-                                                   {questionObject.options.map(
-                                                      (
-                                                         option
-                                                      ) => (
-                                                         <option
-                                                            key={
-                                                               option
-                                                            }
-                                                         >
-                                                            {
-                                                               option
-                                                            }
-                                                         </option>
-                                                      )
-                                                   )}
-                                                </select>{' '}
-                                             </>
-                                          )}
-                                       </div>
-                                    ))}
+               {questionObjects.length > 0 && (
+                  <div
+                     style={{
+                        border: ' 0px ridge var(--myOrange)',
+                        padding: '10px',
+                        borderRadius: '25px',
+                        backgroundColor: 'var(--myWhite)',
+                     }}
+                  >
+                     <div>
+                        {questionObjects.map(
+                           (questionObject, i) => (
+                              <div key={i}>
+                                 <div className='multiQuestionDiv'>
+                                    {questionObject.question
+                                       .split('_')
+                                       .map((word, index) => (
+                                          <div key={index}>
+                                             {word}
+                                             {index <
+                                                questionObject.question.split(
+                                                   '_'
+                                                ).length -
+                                                   1 && (
+                                                <>
+                                                   {' '}
+                                                   <select>
+                                                      {questionObject.options.map(
+                                                         (
+                                                            option
+                                                         ) => (
+                                                            <option
+                                                               key={
+                                                                  option
+                                                               }
+                                                            >
+                                                               {
+                                                                  option
+                                                               }
+                                                            </option>
+                                                         )
+                                                      )}
+                                                   </select>{' '}
+                                                </>
+                                             )}
+                                          </div>
+                                       ))}
+                                    <div
+                                       onClick={() =>
+                                          removeQuestion(i)
+                                       }
+                                       style={{
+                                          color: 'red',
+                                          cursor: 'pointer',
+                                          marginLeft: '10px',
+                                          float: 'right',
+                                       }}
+                                    >
+                                       <DeleteOutlined />
+                                    </div>
+                                 </div>
                                  <div
-                                    onClick={() =>
-                                       removeQuestion(i)
-                                    }
                                     style={{
-                                       color: 'red',
-                                       cursor: 'pointer',
-                                       marginLeft: '10px',
-                                       float: 'right',
+                                       textAlign: 'right',
                                     }}
                                  >
-                                    <DeleteOutlined />
+                                    {' '}
+                                    <span className='correctOption'>
+                                       Correct:{' '}
+                                       {
+                                          questionObject.options[
+                                             questionObject
+                                                .correctAnswer
+                                          ]
+                                       }
+                                    </span>
                                  </div>
                               </div>
-                              <div
-                                 style={{ textAlign: 'right' }}
-                              >
-                                 {' '}
-                                 <span className='correctOption'>
-                                    Correct:{' '}
-                                    {
-                                       questionObject.options[
-                                          questionObject
-                                             .correctAnswer
-                                       ]
-                                    }
-                                 </span>
-                              </div>
-                           </div>
-                        )
-                     )}
+                           )
+                        )}
+                     </div>
                   </div>
-                  <div></div>
-               </div>
+               )}
                <br />
                {questionObjects.length > 0 && (
                   <div style={{ textAlign: 'right' }}>
