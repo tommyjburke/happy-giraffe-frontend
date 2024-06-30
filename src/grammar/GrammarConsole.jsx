@@ -26,7 +26,6 @@ import {
    RightCircleOutlined,
    DeleteOutlined,
 } from '@ant-design/icons'
-import { set } from 'mongoose'
 
 export default function GrammarConsole() {
    const navigate = useNavigate()
@@ -203,229 +202,238 @@ export default function GrammarConsole() {
                <span style={{ color: 'red' }}>BETA</span>
             </h1>
             <h2> Build a Multiple Choice Quiz</h2>
-            <div className='configBox'>
-               <span
-                  onClick={() =>
-                     setShowEditTitle(!showEditTitle)
-                  }
-                  style={{ cursor: 'pointer' }}
-               >
-                  {showEditTitle ? (
-                     <DownCircleOutlined />
-                  ) : (
-                     <RightCircleOutlined />
-                  )}
-
-                  {/*
-                   */}
-               </span>
-
-               {showEditTitle ? (
-                  <input
-                     maxLength={36}
-                     value={customTitle}
-                     onChange={(e) =>
-                        setCustomTitle(
-                           e.target.value.replace(
-                              /[^a-zA-Z'0-9 ]/g,
-                              ''
-                           )
-                        )
-                     }
-                  />
-               ) : (
+            <fieldset>
+               <legend style={{ textAlign: 'center' }}>
+                  Create Question
+               </legend>
+               <div className='configBox'>
                   <span
+                     onClick={() =>
+                        setShowEditTitle(!showEditTitle)
+                     }
+                     style={{ cursor: 'pointer' }}
+                  >
+                     {showEditTitle ? (
+                        <DownCircleOutlined />
+                     ) : (
+                        <RightCircleOutlined />
+                     )}
+
+                     {/*
+                      */}
+                  </span>
+
+                  {showEditTitle ? (
+                     <input
+                        maxLength={36}
+                        value={customTitle}
+                        onChange={(e) =>
+                           setCustomTitle(
+                              e.target.value.replace(
+                                 /[^a-zA-Z'0-9 ]/g,
+                                 ''
+                              )
+                           )
+                        }
+                     />
+                  ) : (
+                     <span
+                        style={{
+                           fontSize: '1.2rem',
+                           fontFamily: 'Schoolbell',
+                           color: 'green',
+                        }}
+                     >
+                        {' '}
+                        {customTitle}
+                     </span>
+                  )}
+               </div>
+
+               <div className='configBox'>
+                  <label>Timer: </label>
+                  <Switch
+                     defaultValue={useTimer}
+                     checkedChildren='on'
+                     unCheckedChildren='off'
+                     onChange={handleTimerSwitch}
+                  />
+                  {/* {useTimer ? 'Timer On' : 'Timer Off'} */}
+
+                  <div
                      style={{
-                        fontSize: '1.2rem',
-                        fontFamily: 'Schoolbell',
-                        color: 'green',
+                        display: 'flex',
+                        // justifyContent: 'center',
+                        width: '100%',
                      }}
                   >
-                     {' '}
-                     {customTitle}
-                  </span>
-               )}
-            </div>
+                     <Slider
+                        disabled={!useTimer}
+                        style={{
+                           width: '200px',
+                           margin: '10px 1.2rem 10px 1.2rem',
+                        }}
+                        step={30}
+                        min={30}
+                        max={600}
+                        // value={[lowerValue, upperValue]}
+                        trackStyle={{
+                           backgroundColor: 'lightgreen',
+                        }}
+                        defaultValue={duration}
+                        // railStyle={{ backgroundColor: 'grey' }}
+                        onChange={(value) => {
+                           setDuration(value)
+                        }}
+                     />
+                     {convertSecondsToMinutes(duration)}
+                  </div>
+               </div>
+               {/* <div>
+                        <button>Add Question</button>
+                     </div> */}
 
-            <div className='configBox'>
-               <label>Timer: </label>
-               <Switch
-                  defaultValue={useTimer}
-                  checkedChildren='on'
-                  unCheckedChildren='off'
-                  onChange={handleTimerSwitch}
-               />
-               {/* {useTimer ? 'Timer On' : 'Timer Off'} */}
-
+               <br />
+               <div>
+                  <label>Add Question:</label>
+               </div>
+               <div>
+                  <p>
+                     Use a single underscore to position the
+                     answer box. E.g. A triangle has _ sides.
+                  </p>
+               </div>
+               <div>
+                  <input
+                     placeholder='Question:: use _ to position answer box'
+                     value={tempQuestion}
+                     maxLength={200}
+                     onChange={(e) =>
+                        setTempQuestion(e.target.value)
+                     }
+                     type='text'
+                     className='question !important'
+                     style={{
+                        width: '90vw',
+                        padding: '10px 0px 10px 0px',
+                        textAlign: 'center',
+                        border: '2px solid lime',
+                     }}
+                  ></input>
+               </div>
+               {/* <div>Options:</div> */}
                <div
                   style={{
-                     display: 'flex',
-                     // justifyContent: 'center',
-                     width: '100%',
+                     textAlign: '',
+                     //   display: 'flex',
+                     //   flex: 'row',
+                     justifyContent: 'center',
                   }}
                >
-                  <Slider
-                     disabled={!useTimer}
-                     style={{
-                        width: '200px',
-                        margin: '10px 1.2rem 10px 1.2rem',
-                     }}
-                     step={30}
-                     min={30}
-                     max={600}
-                     // value={[lowerValue, upperValue]}
-                     trackStyle={{
-                        backgroundColor: 'lightgreen',
-                     }}
-                     defaultValue={duration}
-                     // railStyle={{ backgroundColor: 'grey' }}
-                     onChange={(value) => {
-                        setDuration(value)
-                     }}
-                  />
-                  {convertSecondsToMinutes(duration)}
-               </div>
-            </div>
-            {/* <div>
-               <button>Add Question</button>
-            </div> */}
-
-            <br />
-            <div>
-               <label>Add Question:</label>
-            </div>
-            <div>
-               <p>
-                  Use a single underscore to position the answer
-                  box. E.g. A triangle has _ sides.
-               </p>
-            </div>
-            <div>
-               <input
-                  placeholder='Question:: use _ to position answer box'
-                  value={tempQuestion}
-                  maxLength={200}
-                  onChange={(e) =>
-                     setTempQuestion(e.target.value)
-                  }
-                  type='text'
-                  className='question !important'
-                  style={{
-                     width: '90vw',
-                     padding: '10px 0px 10px 0px',
-                     textAlign: 'center',
-                     border: '2px solid lime',
-                  }}
-               ></input>
-            </div>
-            {/* <div>Options:</div> */}
-            <div
-               style={{
-                  textAlign: '',
-                  //   display: 'flex',
-                  //   flex: 'row',
-                  justifyContent: 'center',
-               }}
-            >
-               <div style={{ textAlign: 'center' }}>
-                  <label>Options: </label>
-                  <button
-                     //  onClick={() => setNumInputs(numInputs - 1)}
-                     onClick={() => removeOption()}
-                  >
-                     ➖
-                  </button>
-                  <button
-                     //  onClick={() => setNumInputs(numInputs + 1)}
-                     onClick={() => addOption()}
-                  >
-                     ➕
-                  </button>
-               </div>
-
-               <div>
-                  {tempOptions.map((option, i) => (
-                     <div
-                        key={i}
-                        style={{
-                           textAlign: '',
-                           display: 'flex',
-                           flex: 'row',
-                           justifyContent: 'center',
-                        }}
-                        index={i}
+                  <div style={{ textAlign: 'center' }}>
+                     <label>Options: </label>
+                     <button
+                        //  onClick={() => setNumInputs(numInputs - 1)}
+                        onClick={() => removeOption()}
                      >
-                        <input
-                           placeholder={`Option ${i + 1}`}
-                           value={tempOptions[i]}
-                           key={i}
-                           onChange={(e) => {
-                              handleTempOptions(e, i)
-                           }}
-                           maxLength={24}
-                           type='text'
-                           className='question !important'
-                           style={{
-                              // width: '90vw',
-                              padding: '10px 0px 10px 0px',
-                              textAlign: 'center',
-                              border: '1px dotted black',
-                              //    width: '200px',
-                           }}
-                        />
-                        <input
-                           checked={i === tempCorrectAnswer}
-                           value={i}
-                           onChange={() => {
-                              setTempCorrectAnswer(i)
-                              playBlipOn()
-                           }}
-                           type='radio'
-                           //    key={i}
-                           id={i}
-                           // id='css'
-                           name='correctAnswer'
-                           // value='CSS'
-                        />
-                        {tempCorrectAnswer === i && (
-                           <div
-                              style={{
-                                 display: 'flex',
-                                 alignItems: 'center',
-                              }}
-                           >
-                              <span style={{ margin: '0 auto' }}>
-                                 ✅
-                              </span>
-                           </div>
-                        )}
-                        {tempCorrectAnswer != i && (
-                           <div
-                              style={{
-                                 display: 'flex',
-                                 alignItems: 'center',
-                              }}
-                           >
-                              <span style={{ margin: '0 auto' }}>
-                                 ❓
-                              </span>
-                           </div>
-                        )}
-                        <br />
-                     </div>
-                  ))}
-               </div>
-               <br />
-               <div style={{ textAlign: 'right' }}>
-                  <Popover
-                     content={
-                        'Do not forget to choose the correct answer ✅'
-                     }
-                  >
-                     <button onClick={compileQuestion}>
-                        + question
+                        ➖
                      </button>
-                  </Popover>
+                     <button
+                        //  onClick={() => setNumInputs(numInputs + 1)}
+                        onClick={() => addOption()}
+                     >
+                        ➕
+                     </button>
+                  </div>
+
+                  <div>
+                     {tempOptions.map((option, i) => (
+                        <div
+                           key={i}
+                           style={{
+                              textAlign: '',
+                              display: 'flex',
+                              flex: 'row',
+                              justifyContent: 'center',
+                           }}
+                           index={i}
+                        >
+                           <input
+                              placeholder={`Option ${i + 1}`}
+                              value={tempOptions[i]}
+                              key={i}
+                              onChange={(e) => {
+                                 handleTempOptions(e, i)
+                              }}
+                              maxLength={24}
+                              type='text'
+                              className='question !important'
+                              style={{
+                                 // width: '90vw',
+                                 padding: '10px 0px 10px 0px',
+                                 textAlign: 'center',
+                                 border: '1px dotted black',
+                                 //    width: '200px',
+                              }}
+                           />
+                           <input
+                              checked={i === tempCorrectAnswer}
+                              value={i}
+                              onChange={() => {
+                                 setTempCorrectAnswer(i)
+                                 playBlipOn()
+                              }}
+                              type='radio'
+                              //    key={i}
+                              id={i}
+                              // id='css'
+                              name='correctAnswer'
+                              // value='CSS'
+                           />
+                           {tempCorrectAnswer === i && (
+                              <div
+                                 style={{
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                 }}
+                              >
+                                 <span
+                                    style={{ margin: '0 auto' }}
+                                 >
+                                    ✅
+                                 </span>
+                              </div>
+                           )}
+                           {tempCorrectAnswer != i && (
+                              <div
+                                 style={{
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                 }}
+                              >
+                                 <span
+                                    style={{ margin: '0 auto' }}
+                                 >
+                                    ❓
+                                 </span>
+                              </div>
+                           )}
+                           <br />
+                        </div>
+                     ))}
+                  </div>
+                  <br />
+                  <div style={{ textAlign: 'right' }}>
+                     <Popover
+                        content={
+                           'Do not forget to choose the correct answer ✅'
+                        }
+                     >
+                        <button onClick={compileQuestion}>
+                           + question
+                        </button>
+                     </Popover>
+                  </div>
                </div>
 
                <br />
@@ -524,9 +532,9 @@ export default function GrammarConsole() {
                      <br />
                   </div>
                )}
-            </div>
-            <br />
+            </fieldset>
          </div>
+         <br />
       </>
    )
 }
