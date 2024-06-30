@@ -179,6 +179,7 @@ export default function GrammarConsole() {
 
    const removeQuestion = () => {
       setQuestionObjects((prev) => prev.slice(0, -1))
+      playBlipOff()
    }
 
    return (
@@ -305,14 +306,14 @@ export default function GrammarConsole() {
                </div>
                <div>
                   <input
-                     placeholder='Question:: use _ to position answer box'
+                     placeholder='Question: use _ to position answer box'
                      value={tempQuestion}
                      maxLength={200}
                      onChange={(e) =>
                         setTempQuestion(e.target.value)
                      }
                      type='text'
-                     className='question !important'
+                     className='multiQuestion !important'
                      style={{
                         width: '90vw',
                         padding: '10px 0px 10px 0px',
@@ -435,104 +436,102 @@ export default function GrammarConsole() {
                      </Popover>
                   </div>
                </div>
+            </fieldset>
 
-               <br />
+            <br />
 
-               {questionObjects.length > 0 && (
-                  <div
-                     style={{
-                        border: ' 0px ridge var(--myOrange)',
-                        padding: '10px',
-                        borderRadius: '25px',
-                        backgroundColor: 'var(--myWhite)',
-                     }}
-                  >
-                     <div>
-                        {questionObjects.map(
-                           (questionObject, i) => (
-                              <div key={i}>
-                                 <div className='multiQuestionDiv'>
-                                    {questionObject.question
-                                       .split('_')
-                                       .map((word, index) => (
-                                          <div key={index}>
-                                             {word}
-                                             {index <
-                                                questionObject.question.split(
-                                                   '_'
-                                                ).length -
-                                                   1 && (
-                                                <>
-                                                   {' '}
-                                                   <select>
-                                                      {questionObject.options.map(
-                                                         (
-                                                            option
-                                                         ) => (
-                                                            <option
-                                                               key={
-                                                                  option
-                                                               }
-                                                            >
-                                                               {
-                                                                  option
-                                                               }
-                                                            </option>
-                                                         )
-                                                      )}
-                                                   </select>{' '}
-                                                </>
-                                             )}
-                                          </div>
-                                       ))}
-                                    <div
-                                       onClick={() =>
-                                          removeQuestion(i)
-                                       }
-                                       style={{
-                                          color: 'red',
-                                          cursor: 'pointer',
-                                          marginLeft: '10px',
-                                          float: 'right',
-                                       }}
-                                    >
-                                       <DeleteOutlined />
-                                    </div>
-                                 </div>
+            {questionObjects.length > 0 && (
+               <div
+                  style={{
+                     border: ' 0px ridge var(--myOrange)',
+                     padding: '10px',
+                     borderRadius: '25px',
+                     backgroundColor: 'var(--myWhite)',
+                  }}
+               >
+                  <div>
+                     {questionObjects.map(
+                        (questionObject, i) => (
+                           <div key={i}>
+                              <div className='multiQuestionDiv'>
+                                 {questionObject.question
+                                    .split('_')
+                                    .map((word, index) => (
+                                       <div key={index}>
+                                          {word}
+                                          {index <
+                                             questionObject.question.split(
+                                                '_'
+                                             ).length -
+                                                1 && (
+                                             <>
+                                                {' '}
+                                                <select>
+                                                   {questionObject.options.map(
+                                                      (
+                                                         option
+                                                      ) => (
+                                                         <option
+                                                            key={
+                                                               option
+                                                            }
+                                                         >
+                                                            {
+                                                               option
+                                                            }
+                                                         </option>
+                                                      )
+                                                   )}
+                                                </select>{' '}
+                                             </>
+                                          )}
+                                       </div>
+                                    ))}
                                  <div
+                                    onClick={() =>
+                                       removeQuestion(i)
+                                    }
                                     style={{
-                                       textAlign: 'right',
+                                       color: 'red',
+                                       cursor: 'pointer',
+                                       marginLeft: '10px',
+                                       float: 'right',
                                     }}
                                  >
-                                    {' '}
-                                    <span className='correctOption'>
-                                       Correct:{' '}
-                                       {
-                                          questionObject.options[
-                                             questionObject
-                                                .correctAnswer
-                                          ]
-                                       }
-                                    </span>
+                                    <DeleteOutlined />
                                  </div>
                               </div>
-                           )
-                        )}
-                     </div>
+                              <div
+                                 style={{
+                                    textAlign: 'right',
+                                 }}
+                              >
+                                 {' '}
+                                 <span className='correctOption'>
+                                    Correct:{' '}
+                                    {
+                                       questionObject.options[
+                                          questionObject
+                                             .correctAnswer
+                                       ]
+                                    }
+                                 </span>
+                              </div>
+                           </div>
+                        )
+                     )}
                   </div>
-               )}
-               <br />
-               {questionObjects.length > 0 && (
-                  <div style={{ textAlign: 'right' }}>
-                     <button
-                        onClick={() => compileGrammarParams()}
-                     >
-                        BUILD GAME
-                     </button>
-                     <br />
-                  </div>
-               )}
-            </fieldset>
+               </div>
+            )}
+            <br />
+            {questionObjects.length > 0 && (
+               <div style={{ textAlign: 'right' }}>
+                  <button onClick={() => compileGrammarParams()}>
+                     BUILD GAME
+                  </button>
+                  <br />
+               </div>
+            )}
          </div>
          <br />
       </>

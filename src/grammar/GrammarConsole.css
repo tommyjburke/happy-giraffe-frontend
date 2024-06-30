@@ -1,6 +1,7 @@
-.question {
+.multiQuestion {
    width: 100%;
    box-sizing: border-box;
+   height: 3rem;
 }
 
 /* Basic styling for the select element */
@@ -49,6 +50,7 @@ input[type='radio'] {
    background-color: var(--myWhite);
    align-items: center;
    font-family: 'Lato', 'Helvetica Neue', Arial, sans-serif;
+   font-weight: 600;
 }
 
 .correctOption {
