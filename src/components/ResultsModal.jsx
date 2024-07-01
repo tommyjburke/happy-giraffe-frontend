@@ -333,7 +333,7 @@ export default function ResultsModal({
                <button
                   onClick={() => setShowResultsModal(false)}
                >
-                  VIEW ANSWERS
+                  VIEW GAME BOARD
                </button>
                <button onClick={() => rebuildGame()}>
                   TRY AGAIN

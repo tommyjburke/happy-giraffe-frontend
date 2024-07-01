@@ -2,25 +2,29 @@ import { useEffect, useState, useRef } from 'react'
 import { useLocation } from 'react-router-dom'
 import PlaySpellingGame from '../components/PlaySpellingGame'
 import { verifyHumanSpeech } from '../jsFunctions/humanSpeech'
-import { Spin } from 'antd'
+import { Spin, QRCode, Popover } from 'antd'
 import { Helmet } from 'react-helmet-async'
 
 import useSound from 'use-sound'
 import correctSound3 from '../media/correct3.mp3'
 import wrongSound from '../media/wrong.mp3'
+
 import ResultsModal from '../components/ResultsModal.jsx'
 import ScoreBoard from '../components/ScoreBoard.jsx'
+import background5 from '../media/background5.png'
 
 function useQuery() {
    return new URLSearchParams(useLocation().search)
 }
 
 export default function GrammarPlayRoute() {
-   //    const [gameWords, setGameWords] = useState([])
    //    const [isProcessing, setIsProcessing] = useState(false)
    const query = useQuery()
    let queryQuestionObjects = query.get('grammarObjects')
    const tempQuestionObjects = JSON.parse(queryQuestionObjects)
+   tempQuestionObjects.forEach((obj) => {
+      obj.userAnswer = 0
+   })
    const rewardsRef = useRef(null)
    const inputRefs = useRef([])
    //    console.log('grammarObjects', grammarObjects)
@@ -39,6 +43,9 @@ export default function GrammarPlayRoute() {
    const [correct, setCorrect] = useState(0)
    const [incorrect, setIncorrect] = useState(0)
 
+   const [playCorrectSound] = useSound(correctSound3)
+   const [playWrongSound] = useSound(wrongSound)
+
    const customTitle = query.get('title')
    //    const encodedWordObjects = query.get('wordObjects')
    const useTimerTemp = query.get('useTimer') === 'true'
@@ -47,10 +54,10 @@ export default function GrammarPlayRoute() {
    //    console.log('wordObjects', wordObjects)
    const [useTimer, setUseTimer] = useState(useTimerTemp)
 
-   const buildGameWordObjects = async () => {
-      // console.log('BUILDING GAME OBJECTS COMMENCING...')
-      setIsProcessing(true)
-   }
+   // const buildGameWordObjects = async () => {
+   //    // console.log('BUILDING GAME OBJECTS COMMENCING...')
+   //    setIsProcessing(true)
+   // }
 
    const handleTimeUp = () => {
       setUseTimer(false)
@@ -62,12 +69,13 @@ export default function GrammarPlayRoute() {
       // setDisableInputs(true)
    }
 
-   const handleUserAnswer = (e, index) => {
+   const handleUserAnswer = (e, answerIndex, divIndex) => {
       console.log('value: ', parseInt(e.target.value))
-      console.log('index: ', index)
+      console.log('answerIndex: ', answerIndex)
+      console.log('divIndex: ', divIndex)
       const newGrammarObjects = [...grammarObjects]
 
-      newGrammarObjects[index].userAnswer = parseInt(
+      newGrammarObjects[divIndex].userAnswer = parseInt(
          e.target.value
       )
       setGrammarObjects(newGrammarObjects)
@@ -77,20 +85,31 @@ export default function GrammarPlayRoute() {
    const checkAnswer = (index) => {
       const newGrammarObjects = [...grammarObjects]
 
-      newGrammarObjects[index].isDisabled = true
-      setGrammarObjects(newGrammarObjects)
       console.log('grammarObjects: ', grammarObjects)
       const correctAnswer = parseInt(
          grammarObjects[index].correctAnswer
       )
+      console.log('correctAnswer: ', correctAnswer)
       const userAnswer = grammarObjects[index].userAnswer
+      console.log('userAnswer: ', userAnswer)
+      let verdict
 
       if (correctAnswer === userAnswer) {
+         verdict = '✅'
          setCorrect(correct + 1)
          handleGenerateReward()
+         playCorrectSound()
+
+         console.log()
       } else {
+         verdict = '❌'
          setIncorrect(incorrect + 1)
+         playWrongSound()
       }
+      console.log('verdict: ', verdict)
+      newGrammarObjects[index].verdict = verdict
+      newGrammarObjects[index].isDisabled = true
+      setGrammarObjects(newGrammarObjects)
    }
 
    useEffect(() => {
@@ -207,84 +226,146 @@ export default function GrammarPlayRoute() {
             />
          </div>
 
+         <Popover
+            overlayInnerStyle={{
+               padding: 0,
+            }}
+            content={
+               <QRCode
+                  errorLevel='M'
+                  value={window.location.href}
+                  bordered={false}
+                  icon={background5}
+                  size={280}
+               />
+               // </div>
+            }
+         >
+            <button
+               style={{
+                  float: 'right',
+                  backgroundColor: 'var(--myOrange)',
+                  outline: '1px solid lime',
+                  // marginRight: '-0.2rem',
+               }}
+            >
+               Share QR Code
+            </button>
+         </Popover>
+
          <div style={{}}>
             <div>
-               {grammarObjects.map((questionObject, index) => (
-                  <div key={index}>
-                     <div className='multiQuestionDiv'>
-                        <span
-                           style={{
-                              marginRight: '5px',
-                              color: 'var(--myOrange)',
-                           }}
-                        >
-                           {index < 9 ? '0' : ''}
-                           {index + 1}.
-                        </span>
-                        {questionObject.question
-                           .split('_')
-                           .map((word, index) => (
-                              <div key={index}>
-                                 {word}
-                                 {index <
-                                    questionObject.question.split(
-                                       '_'
-                                    ).length -
-                                       1 && (
-                                    <>
-                                       {' '}
-                                       <select
-                                          disabled={
-                                             questionObject.isDisabled
-                                          }
-                                          onChange={(e) => {
-                                             handleUserAnswer(
-                                                e,
-                                                index
-                                             )
-                                             console.log(
-                                                e.target.value
-                                             )
-                                          }}
-                                       >
-                                          {questionObject.options.map(
-                                             (
-                                                answer,
-                                                optionIndex
-                                             ) => (
-                                                <option
-                                                   value={
-                                                      optionIndex
-                                                   }
-                                                   key={
-                                                      optionIndex
-                                                   }
-                                                >
-                                                   {answer}
-                                                </option>
-                                             )
-                                          )}
-                                       </select>{' '}
-                                    </>
-                                 )}
-                              </div>
-                           ))}
-                        {!questionObject.isDisabled &&
-                           !disableAllInputs && (
-                              <button
-                                 disabled={
-                                    questionObject.isDisabled
-                                 }
-                                 onClick={() =>
-                                    checkAnswer(index)
-                                 }
+               {grammarObjects.map(
+                  (questionObject, divIndex) => (
+                     <div
+                        key={divIndex}
+                        onClick={() =>
+                           console.log(
+                              questionObject,
+                              'divIndex: ',
+                              divIndex
+                           )
+                        }
+                     >
+                        <div className='multiQuestionDiv'>
+                           <span
+                              style={{
+                                 marginRight: '5px',
+                                 color: 'var(--myOrange)',
+                              }}
+                           >
+                              {divIndex < 9 ? '0' : ''}
+                              {divIndex + 1}.
+                           </span>
+                           {questionObject.question
+                              .split('_')
+                              .map((word, answerIndex) => (
+                                 <div key={answerIndex}>
+                                    {word}
+                                    {answerIndex <
+                                       questionObject.question.split(
+                                          '_'
+                                       ).length -
+                                          1 && (
+                                       <>
+                                          {' '}
+                                          <select
+                                             onClick={(e) => {
+                                                console.log(
+                                                   'Select divIndex: ',
+                                                   divIndex
+                                                )
+                                                e.stopPropagation()
+                                             }}
+                                             disabled={
+                                                questionObject.isDisabled
+                                             }
+                                             // value={
+                                             //    questionObject.userAnswer
+                                             // }
+                                             onChange={(e) => {
+                                                handleUserAnswer(
+                                                   e,
+                                                   answerIndex,
+                                                   divIndex
+                                                )
+                                                // console.log(
+                                                //    e.target.value
+                                                // )
+                                             }}
+                                          >
+                                             {questionObject.options.map(
+                                                (
+                                                   answer,
+                                                   optionIndex
+                                                ) => (
+                                                   <option
+                                                      value={
+                                                         optionIndex
+                                                      }
+                                                      key={
+                                                         optionIndex
+                                                      }
+                                                   >
+                                                      {answer}
+                                                   </option>
+                                                )
+                                             )}
+                                          </select>{' '}
+                                       </>
+                                    )}
+                                 </div>
+                              ))}
+                           {!questionObject.isDisabled &&
+                              !disableAllInputs && (
+                                 <button
+                                    style={{
+                                       marginLeft: 'auto',
+                                       float: 'right',
+                                    }}
+                                    disabled={
+                                       questionObject.isDisabled
+                                    }
+                                    onClick={() =>
+                                       checkAnswer(divIndex)
+                                    }
+                                 >
+                                    Go
+                                 </button>
+                              )}
+                           {questionObject.isDisabled && (
+                              <span
+                                 style={{
+                                    marginLeft: 'auto',
+                                    float: 'right',
+                                 }}
                               >
-                                 Go
-                              </button>
+                                 {questionObject.verdict}
+                              </span>
                            )}
-                     </div>
+                        </div>
 
-                     {/* <p>
+                        {/* <p>
                         Correct answer:{' '}
                         {
                            questionObject.options[
@@ -292,11 +373,16 @@ export default function GrammarPlayRoute() {
                            ]
                         }
                      </p> */}
-                  </div>
-               ))}
+                     </div>
+                  )
+               )}
             </div>
             <div style={{ textAlign: 'center' }}>
-               {!useTimer && <button>Restart</button>}
+               {!useTimer && (
+                  <button onClick={() => rebuildGame()}>
+                     Restart
+                  </button>
+               )}
             </div>
          </div>
          {showResultsModal && (

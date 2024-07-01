@@ -530,9 +530,15 @@ export default function GrammarConsole() {
                      BUILD GAME
                   </button>
                   <br />
+                  <br />
+                  <br />
+                  <br />
                </div>
             )}
          </div>
+         <br />
+         <br />
+         <br />
          <br />
       </>
    )
