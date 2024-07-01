@@ -361,6 +361,13 @@ export default function GrammarPlayRoute() {
                                  }}
                               >
                                  {questionObject.verdict}
+                                 <br />
+                                 {
+                                    questionObject.options[
+                                       questionObject
+                                          .correctAnswer
+                                    ]
+                                 }
                               </span>
                            )}
                         </div>
