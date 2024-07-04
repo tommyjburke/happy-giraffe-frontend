@@ -83,11 +83,11 @@ const router = createBrowserRouter([
             element: <CreateArray />,
          },
          {
-            path: '/grammar',
+            path: '/multi-choice',
             element: <GrammarConsole />,
          },
          {
-            path: '/grammar/:data',
+            path: '/multi-choice/:data',
             element: <GrammarPlayRoute />,
          },
       ],

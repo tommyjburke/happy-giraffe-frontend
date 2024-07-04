@@ -21,7 +21,12 @@ export default function GrammarPlayRoute() {
    //    const [isProcessing, setIsProcessing] = useState(false)
    const query = useQuery()
    let queryQuestionObjects = query.get('grammarObjects')
-   const tempQuestionObjects = JSON.parse(queryQuestionObjects)
+
+   // const wordObjects = JSON.parse(atob(encodedWordObjects))
+
+   const tempQuestionObjects = JSON.parse(
+      atob(queryQuestionObjects)
+   )
    tempQuestionObjects.forEach((obj) => {
       obj.userAnswer = 0
    })
@@ -157,7 +162,7 @@ export default function GrammarPlayRoute() {
          </Helmet>
 
          <h1>
-            GRAMMAR PLAY ROUTE{' '}
+            MULTIPLE CHOICE{' '}
             <span style={{ color: 'red' }}>BETA</span>
          </h1>
          <h2

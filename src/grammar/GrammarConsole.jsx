@@ -139,12 +139,16 @@ export default function GrammarConsole() {
    }
 
    const compileGrammarParams = () => {
-      // console.log('questionObjects: ', questionObjects)
+      // const stringedObjects = JSON.stringify(questionObjects)
+
+      const encodedQuestionObjects = btoa(
+         JSON.stringify(questionObjects)
+      )
       const queryParams = new URLSearchParams({
          useTimer: useTimer,
          duration: duration,
          title: customTitle,
-         grammarObjects: JSON.stringify(questionObjects),
+         grammarObjects: encodedQuestionObjects,
       })
       // console.log('query params: ', queryParams.toString())
       playMagic()
@@ -196,10 +200,10 @@ export default function GrammarConsole() {
                   // content='Happy Giraffe - Customised Spelling Game'
                   content='Happy Giraffe Grammar - Build Your Own Multiple Choice Game'
                />
-               {/* <link rel='canonical' href='/' /> */}
+               <link rel='canonical' href='/multi-choice' />
             </Helmet>
             <h1>
-               DIY Grammar Console{' '}
+               Multiple Choice Console{' '}
                <span style={{ color: 'red' }}>BETA</span>
             </h1>
             <h2> Build a Multiple Choice Quiz</h2>
