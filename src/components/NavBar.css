@@ -7,7 +7,7 @@
    background-color: var(--myBrown);
    z-index: 10;
    @media screen and (max-width: 600px) {
-      height: 25px !important;
+      height: 35px !important;
    }
 }
 
@@ -20,19 +20,21 @@
    flex-direction: row;
    justify-content: space-between;
    align-items: center;
+   text-align: center;
    color: var(--myYellow);
    /* text-decoration: none; */
-   text-align: center;
+
    background-color: var(--myBrown);
    max-width: 1000px;
    width: 100%;
    /* padding: 12px; */
    opacity: 0.9;
    height: 40px;
-   z-index: 900;
+   z-index: 100;
+   line-height: 80% !important;
    /* height: 3vh; */
    @media (max-width: 600px) {
-      height: 30px;
+      height: 35px;
    }
 }
 
@@ -80,17 +82,18 @@
 .activeLink {
    color: var(--myWhite);
    text-decoration: wavy underline var(--myWhite);
-   line-height: 75%;
 
    font-family: 'Madimi One', 'Helvetica Neue', Arial, sans-serif;
    font-weight: 400;
    font-style: normal;
-   margin-left: 0.5rem;
-   margin-right: 0.5rem;
+   margin-left: 0.3rem;
+   margin-right: 0.3rem;
    animation: glowingGold 1s infinite;
    color: var(--myWhite);
    text-decoration: underline var(--myWhite) !important;
    font-size: 1.5rem;
+   text-align: center;
+   line-height: 75%;
    @media (max-width: 600px) {
       font-size: 0.9rem !important;
       animation: glowingGold 1s infinite;
@@ -100,16 +103,17 @@
 
 .inactiveLink {
    font-size: 1.5rem;
+   text-align: center;
 
    text-decoration: none;
-   line-height: 75%;
 
    font-family: 'Madimi One', 'Helvetica Neue', Arial, sans-serif;
    font-weight: 400;
    font-style: normal;
-   margin-left: 0.5rem;
-   margin-right: 0.5rem;
+   margin-left: 0.3rem;
+   margin-right: 0.3rem;
    color: var(--myYellow);
+   line-height: 80% !important;
    @media (max-width: 600px) {
       font-size: 0.9rem;
    }

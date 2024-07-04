@@ -24,7 +24,7 @@ const navigation = [
 
    { name: 'DIY Spelling', href: '/spelling-diy' },
    { name: 'Maths', href: '/maths' },
-   { name: 'MultiChoice', href: '/multi-choice' },
+   { name: 'Multiple Choice', href: '/multi-choice' },
 
    // { name: 'Maths', href: '/spelling-list' },
 ]
