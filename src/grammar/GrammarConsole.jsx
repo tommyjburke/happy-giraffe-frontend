@@ -70,7 +70,7 @@ export default function GrammarConsole() {
          content: (
             <div>
                <p>2 options minimum</p>
-               <p>4 options maximum</p>
+               <p>6 options maximum</p>
             </div>
          ),
          style: {
@@ -220,7 +220,7 @@ export default function GrammarConsole() {
    }
 
    const addOption = () => {
-      if (tempOptions.length === 4) {
+      if (tempOptions.length === 6) {
          optionsMessage()
          playError()
          return

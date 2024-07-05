@@ -1,6 +1,7 @@
 import './Welcome.css'
 import Giraffe from './Giraffe'
 import timesTablePresets from '../data/timesTablesPresets.json'
+import multipleChoicePresets from '../data/multipleChoicePresets.json'
 import background5 from '../media/background5.png'
 import { Link } from 'react-router-dom'
 import React from 'react'
@@ -235,56 +236,26 @@ export default function Welcome() {
                      />
                      <br />
                   </div>
-                  {/* <div>
-                     <select
-                        onChange={(e) =>
-                           (window.location.href =
-                              e.target.value)
-                        }
-                     >
-                        <option value=''>Select a preset</option>
-                        {timesTablePresets.TimesTables.map(
-                           (button, index) => (
-                              <option
-                                 key={index}
-                                 value={button.url}
-                              >
-                                 {button.title}
-                              </option>
-                           )
-                        )}
-                     </select>
-                     <br /> */}
-
-                  {/* <Select
+                  <br />
+                  <h2>Multiple Choice QuickStart:</h2>
+                  <div>
+                     {' '}
+                     <Select
                         popupMatchSelectWidth={false}
-                        placeholder='Times Table Presets'
+                        placeholder='Multiple Choice Presets'
                         width='100%'
                         onChange={(value) =>
                            (window.location.href = value)
                         }
-                        options={timesTablePresets.TimesTables.map(
+                        options={multipleChoicePresets.MultipleChoice.map(
                            (item) => ({
                               value: item.url,
                               label: item.title,
                            })
                         )}
-                     /> */}
-                  {/* <Select
-                        placeholder={dropdownPlaceholder}
-                        onChange={selectYear}
-                        value={dropdownPlaceholder}
-                        // style={{ width: 120 }}
-                        // size='large'
-
-                        className='africanFont'
-                        options={Object.keys(ksData2.year).map(
-                           (year) => ({
-                              value: year,
-                              label: year,
-                           })
-                        )}
-                     />{' '} */}
+                     />
+                     <br />
+                  </div>
                </div>
                <br />
                <div
