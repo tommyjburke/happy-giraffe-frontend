@@ -640,6 +640,16 @@ export default function GrammarConsole() {
                         (questionObject, i) => (
                            <div key={i}>
                               <div className='multiQuestionDiv'>
+                                 <span
+                                    style={{
+                                       marginRight: '5px',
+                                       color: 'var(--myOrange)',
+                                       // fontSize: '1.0rem',
+                                    }}
+                                 >
+                                    {i < 9 ? '0' : ''}
+                                    {i + 1}.
+                                 </span>
                                  {questionObject.question
                                     .split('_')
                                     .map((word, index) => (

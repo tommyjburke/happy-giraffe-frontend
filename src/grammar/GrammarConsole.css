@@ -26,6 +26,11 @@ select {
    margin-right: 0.3rem;
    font-family: 'Schoolbell', 'Helvetica Neue', Arial, sans-serif;
    color: green;
+   @media (max-width: 500px) {
+      width: 80px;
+      height: 2.5rem;
+      font-size: 0.9rem;
+   }
 }
 
 /* Basic styling for the options */
@@ -52,6 +57,10 @@ input[type='radio'] {
    align-items: center;
    font-family: 'Lato', 'Helvetica Neue', Arial, sans-serif;
    font-weight: 600;
+   @media (max-width: 500px) {
+      font-weight: 400;
+      font-size: 0.9rem;
+   }
 }
 
 .correctOption {

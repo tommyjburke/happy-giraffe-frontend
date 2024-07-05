@@ -286,6 +286,7 @@ export default function GrammarPlayRoute() {
                               style={{
                                  marginRight: '5px',
                                  color: 'var(--myOrange)',
+                                 // fontSize: '1.0rem',
                               }}
                            >
                               {divIndex < 9 ? '0' : ''}
