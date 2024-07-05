@@ -168,10 +168,19 @@ export default function GrammarPlayRoute() {
          <h2
             style={{
                backgroundColor: 'var(--myOrange)',
+               color: 'green',
                width: '100%',
             }}
          >
-            {customTitle}
+            <span
+               style={{
+                  backgroundColor: 'var(--myWhite)',
+                  padding: '1px 5px 1px 5px',
+                  borderRadius: '5px',
+               }}
+            >
+               {customTitle}
+            </span>
          </h2>
          <div
             className='africanFont'
@@ -303,7 +312,8 @@ export default function GrammarPlayRoute() {
                                                 e.stopPropagation()
                                              }}
                                              disabled={
-                                                questionObject.isDisabled
+                                                questionObject.isDisabled ||
+                                                disableAllInputs
                                              }
                                              // value={
                                              //    questionObject.userAnswer
@@ -343,26 +353,35 @@ export default function GrammarPlayRoute() {
                               ))}
                            {!questionObject.isDisabled &&
                               !disableAllInputs && (
-                                 <button
+                                 <span
                                     style={{
                                        marginLeft: 'auto',
                                        float: 'right',
                                     }}
-                                    disabled={
-                                       questionObject.isDisabled
-                                    }
-                                    onClick={() =>
-                                       checkAnswer(divIndex)
-                                    }
                                  >
-                                    Go
-                                 </button>
+                                    <button
+                                       style={{
+                                          marginLeft: '5px',
+                                       }}
+                                       disabled={
+                                          questionObject.isDisabled
+                                       }
+                                       onClick={() =>
+                                          checkAnswer(divIndex)
+                                       }
+                                    >
+                                       Go
+                                    </button>
+                                 </span>
                               )}
-                           {questionObject.isDisabled && (
+                           {(questionObject.isDisabled ||
+                              disableAllInputs) && (
                               <span
                                  style={{
                                     marginLeft: 'auto',
                                     float: 'right',
+                                    fontFamily: 'Schoolbell',
+                                    color: 'green',
                                  }}
                               >
                                  {questionObject.verdict}
@@ -396,6 +415,9 @@ export default function GrammarPlayRoute() {
                   </button>
                )}
             </div>
+            <br />
+            <br />
+            <br />
          </div>
          {showResultsModal && (
             <ResultsModal

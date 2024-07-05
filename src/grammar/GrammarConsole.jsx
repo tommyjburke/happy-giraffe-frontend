@@ -8,6 +8,7 @@ import {
    Switch,
    Slider,
    Collapse,
+   Checkbox,
 } from 'antd'
 import { Helmet } from 'react-helmet-async'
 // import {
@@ -19,6 +20,7 @@ import blipOn from '../media/blipOn.mp3'
 import blipOff from '../media/blipOff.mp3'
 import magicSound from '../media/magic.mp3'
 import ding from '../media/ding1.mp3'
+import errorSound from '../media/error.mp3'
 import useSound from 'use-sound'
 
 import {
@@ -45,6 +47,10 @@ export default function GrammarConsole() {
    const [duration, setDuration] = useState(120)
    const [showEditTitle, setShowEditTitle] = useState(false)
 
+   const [sameOptionsAllQuestions, setSameOptionsAllQuestions] =
+      useState(false)
+   const [sameOptions, setSameOptions] = useState([])
+
    const [messageApi, contextHolder] = message.useMessage()
 
    const [playSwitch] = useSound(switchSound)
@@ -52,6 +58,7 @@ export default function GrammarConsole() {
    const [playBlipOn] = useSound(blipOn)
    const [playBlipOff] = useSound(blipOff)
    const [playDing] = useSound(ding)
+   const [playError] = useSound(errorSound)
    const handleTimerSwitch = (checked) => {
       playSwitch()
       setUseTimer(checked)
@@ -97,16 +104,51 @@ export default function GrammarConsole() {
 
    const compileQuestion = () => {
       if (
-         tempQuestion.length === 0 ||
-         tempOptions.some((option) => option === '')
+         sameOptionsAllQuestions &&
+         questionObjects.length > 0
       ) {
-         invalidDataMessage()
-         return
+         console.log(
+            'sameOptionsAllQuestions executing: ',
+            sameOptionsAllQuestions
+         )
+         setTempOptions(sameOptions)
+         console.log(
+            'setting tempOptions as sameOptions: ',
+            tempOptions
+         )
       }
-      const filteredTempOptions = tempOptions.filter(
-         (option) => option !== ''
-      )
-      setTempOptions(filteredTempOptions)
+      if (
+         !sameOptionsAllQuestions ||
+         (sameOptionsAllQuestions &&
+            questionObjects.length === 0)
+      ) {
+         if (
+            tempQuestion.length === 0 ||
+            tempOptions.some((option) => option === '')
+         ) {
+            invalidDataMessage()
+            playError()
+            return
+         }
+         const filteredTempOptions = tempOptions.filter(
+            (option) => option !== ''
+         )
+         setTempOptions(filteredTempOptions)
+         setSameOptions(filteredTempOptions)
+      }
+
+      // if (
+      //    sameOptionsAllQuestions &&
+      //    questionObjects.length === 0
+      // ) {
+      //    setSameOptions(filteredTempOptions)
+      // }
+      // console.log(
+      //    'sameOptionsAllQuestions: ',
+      //    sameOptionsAllQuestions
+      // )
+
+      // console.log('sameOptions: ', sameOptions)
 
       let newQuestion = tempQuestion
       let firstUnderscoreIndex = newQuestion.indexOf('_')
@@ -124,8 +166,12 @@ export default function GrammarConsole() {
 
       const newQuestionObjects = [...questionObjects]
       newQuestionObjects.push({
+         key: new Date().getTime(),
          question: newQuestion,
-         options: tempOptions,
+         options:
+            sameOptionsAllQuestions && questionObjects.length > 0
+               ? sameOptions
+               : tempOptions,
          correctAnswer: tempCorrectAnswer,
       })
       playDing()
@@ -162,6 +208,7 @@ export default function GrammarConsole() {
 
       if (tempOptions.length === 2) {
          optionsMessage()
+         playError()
          return
       }
       playBlipOff()
@@ -175,6 +222,7 @@ export default function GrammarConsole() {
    const addOption = () => {
       if (tempOptions.length === 4) {
          optionsMessage()
+         playError()
          return
       }
       playBlipOn()
@@ -184,6 +232,16 @@ export default function GrammarConsole() {
    const removeQuestion = () => {
       setQuestionObjects((prev) => prev.slice(0, -1))
       playBlipOff()
+   }
+
+   const optionsSame = (e) => {
+      // console.log(`checked = ${e.target.checked}`)
+      setSameOptionsAllQuestions(e.target.checked)
+      if (e.target.checked) {
+         playBlipOn()
+      } else {
+         playBlipOff()
+      }
    }
 
    return (
@@ -335,98 +393,222 @@ export default function GrammarConsole() {
                      justifyContent: 'center',
                   }}
                >
+                  {questionObjects.length < 1 && (
+                     <div
+                        style={{
+                           border: '1px dotted black',
+                           padding: '4px',
+                           borderRadius: '10px',
+                           margin: '5px',
+                        }}
+                     >
+                        Use same options for all questions?{' '}
+                        <Checkbox onChange={optionsSame} />
+                     </div>
+                  )}
                   <div style={{ textAlign: 'center' }}>
                      <label>Options: </label>
-                     <button
-                        //  onClick={() => setNumInputs(numInputs - 1)}
-                        onClick={() => removeOption()}
-                     >
-                        ➖
-                     </button>
-                     <button
-                        //  onClick={() => setNumInputs(numInputs + 1)}
-                        onClick={() => addOption()}
-                     >
-                        ➕
-                     </button>
-                  </div>
 
-                  <div>
-                     {tempOptions.map((option, i) => (
-                        <div
-                           key={i}
-                           style={{
-                              textAlign: '',
-                              display: 'flex',
-                              flex: 'row',
-                              justifyContent: 'center',
-                           }}
-                           index={i}
-                        >
-                           <input
-                              placeholder={`Option ${i + 1}`}
-                              value={tempOptions[i]}
-                              key={i}
-                              onChange={(e) => {
-                                 handleTempOptions(e, i)
-                              }}
-                              maxLength={24}
-                              type='text'
-                              className='question !important'
-                              style={{
-                                 // width: '90vw',
-                                 padding: '10px 0px 10px 0px',
-                                 textAlign: 'center',
-                                 border: '1px dotted black',
-                                 //    width: '200px',
-                              }}
-                           />
-                           <input
-                              checked={i === tempCorrectAnswer}
-                              value={i}
-                              onChange={() => {
-                                 setTempCorrectAnswer(i)
-                                 playBlipOn()
-                              }}
-                              type='radio'
-                              //    key={i}
-                              id={i}
-                              // id='css'
-                              name='correctAnswer'
-                              // value='CSS'
-                           />
-                           {tempCorrectAnswer === i && (
-                              <div
-                                 style={{
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                 }}
-                              >
-                                 <span
-                                    style={{ margin: '0 auto' }}
-                                 >
-                                    ✅
-                                 </span>
-                              </div>
-                           )}
-                           {tempCorrectAnswer != i && (
-                              <div
-                                 style={{
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                 }}
-                              >
-                                 <span
-                                    style={{ margin: '0 auto' }}
-                                 >
-                                    ❓
-                                 </span>
-                              </div>
-                           )}
-                           <br />
-                        </div>
-                     ))}
+                     {(!sameOptionsAllQuestions ||
+                        questionObjects.length < 1) && (
+                        <>
+                           <button
+                              //  onClick={() => setNumInputs(numInputs - 1)}
+                              onClick={() => removeOption()}
+                           >
+                              ➖
+                           </button>
+                           <button
+                              //  onClick={() => setNumInputs(numInputs + 1)}
+                              onClick={() => addOption()}
+                           >
+                              ➕
+                           </button>
+                        </>
+                     )}
                   </div>
+                  {(!sameOptionsAllQuestions ||
+                     questionObjects.length < 1) && (
+                     <div>
+                        {tempOptions.map((option, i) => (
+                           <div
+                              key={i}
+                              style={{
+                                 textAlign: '',
+                                 display: 'flex',
+                                 flex: 'row',
+                                 justifyContent: 'center',
+                              }}
+                              index={i}
+                           >
+                              <input
+                                 placeholder={`Option ${i + 1}`}
+                                 value={tempOptions[i]}
+                                 key={i}
+                                 onChange={(e) => {
+                                    handleTempOptions(e, i)
+                                 }}
+                                 maxLength={24}
+                                 type='text'
+                                 className='question !important'
+                                 style={{
+                                    marginRight: '3px',
+                                    // width: '90vw',
+                                    padding: '10px 0px 10px 0px',
+                                    textAlign: 'center',
+                                    border: '1px dotted black',
+                                    //    width: '200px',
+                                 }}
+                              />
+                              <input
+                                 checked={
+                                    i === tempCorrectAnswer
+                                 }
+                                 value={i}
+                                 onChange={() => {
+                                    setTempCorrectAnswer(i)
+                                    playBlipOn()
+                                 }}
+                                 type='radio'
+                                 //    key={i}
+                                 id={i}
+                                 // id='css'
+                                 name='correctAnswer'
+                                 // value='CSS'
+                              />
+                              {tempCorrectAnswer === i && (
+                                 <div
+                                    style={{
+                                       display: 'flex',
+                                       alignItems: 'center',
+                                    }}
+                                 >
+                                    <span
+                                       style={{
+                                          margin: '0 auto',
+                                       }}
+                                    >
+                                       ✅
+                                    </span>
+                                 </div>
+                              )}
+                              {tempCorrectAnswer != i && (
+                                 <div
+                                    style={{
+                                       display: 'flex',
+                                       alignItems: 'center',
+                                    }}
+                                 >
+                                    <span
+                                       style={{
+                                          margin: '0 auto',
+                                       }}
+                                    >
+                                       ❓
+                                    </span>
+                                 </div>
+                              )}
+                              <br />
+                           </div>
+                        ))}
+                     </div>
+                  )}
+
+                  {sameOptionsAllQuestions && (
+                     <>
+                        {' '}
+                        {/* <div>Same options for all questions</div> */}
+                        <div>
+                           {' '}
+                           {sameOptions.map((option, i) => (
+                              <div
+                                 key={i}
+                                 style={{
+                                    textAlign: '',
+                                    display: 'flex',
+                                    flex: 'row',
+                                    justifyContent: 'center',
+                                 }}
+                                 index={i}
+                              >
+                                 <input
+                                    // placeholder={`Option ${
+                                    //    i + 1
+                                    // }`}
+                                    value={sameOptions[i]}
+                                    disabled={true}
+                                    key={i}
+                                    onChange={(e) => {
+                                       handleTempOptions(e, i)
+                                    }}
+                                    maxLength={24}
+                                    type='text'
+                                    className='question !important'
+                                    style={{
+                                       marginRight: '3px',
+                                       // width: '90vw',
+                                       padding:
+                                          '10px 0px 10px 0px',
+                                       textAlign: 'center',
+                                       border:
+                                          '1px dotted black',
+                                       //    width: '200px',
+                                    }}
+                                 />
+                                 <input
+                                    checked={
+                                       i === tempCorrectAnswer
+                                    }
+                                    value={i}
+                                    onChange={() => {
+                                       setTempCorrectAnswer(i)
+                                       playBlipOn()
+                                    }}
+                                    type='radio'
+                                    //    key={i}
+                                    id={i}
+                                    // id='css'
+                                    name='correctAnswer'
+                                    // value='CSS'
+                                 />
+                                 {tempCorrectAnswer === i && (
+                                    <div
+                                       style={{
+                                          display: 'flex',
+                                          alignItems: 'center',
+                                       }}
+                                    >
+                                       <span
+                                          style={{
+                                             margin: '0 auto',
+                                          }}
+                                       >
+                                          ✅
+                                       </span>
+                                    </div>
+                                 )}
+                                 {tempCorrectAnswer != i && (
+                                    <div
+                                       style={{
+                                          display: 'flex',
+                                          alignItems: 'center',
+                                       }}
+                                    >
+                                       <span
+                                          style={{
+                                             margin: '0 auto',
+                                          }}
+                                       >
+                                          ❓
+                                       </span>
+                                    </div>
+                                 )}
+                                 <br />
+                              </div>
+                           ))}
+                        </div>
+                     </>
+                  )}
                   <br />
                   <div style={{ textAlign: 'right' }}>
                      <Popover
@@ -491,19 +673,19 @@ export default function GrammarConsole() {
                                           )}
                                        </div>
                                     ))}
-                                 <div
+                                 <span
                                     onClick={() =>
                                        removeQuestion(i)
                                     }
                                     style={{
                                        color: 'red',
                                        cursor: 'pointer',
-                                       marginLeft: '10px',
+                                       marginLeft: 'auto',
                                        float: 'right',
                                     }}
                                  >
                                     <DeleteOutlined />
-                                 </div>
+                                 </span>
                               </div>
                               <div
                                  style={{
@@ -554,4 +736,8 @@ function convertSecondsToMinutes(seconds) {
    return `${minutes}:${
       remainingSeconds < 10 ? '0' : ''
    }${remainingSeconds}`
+}
+
+function OptionsComponent(options) {
+   return <>ABCD OPTIONS COMPONENT</>
 }
