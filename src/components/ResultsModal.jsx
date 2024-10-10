@@ -261,7 +261,7 @@ export default function ResultsModal({
                                  you}
                            </td>
                            <td className=' r1b silver-background'>
-                              B: 70-85{' '}
+                              B: 70-84{' '}
                               <span className='resultsIcon result-b'>
                                  😇
                               </span>
@@ -274,7 +274,7 @@ export default function ResultsModal({
                                  you}
                            </td>
                            <td className=' r1b bronze-background '>
-                              C: 50-70{' '}
+                              C: 50-69{' '}
                               <span className='resultsIcon result-c'>
                                  🧐
                               </span>
@@ -290,7 +290,7 @@ export default function ResultsModal({
                               style={{ color: 'white' }}
                               className=' r1b rainbow-background '
                            >
-                              D: 20-50{' '}
+                              D: 20-49{' '}
                               <span className='resultsIcon result-d'>
                                  🤡
                               </span>
@@ -313,7 +313,7 @@ export default function ResultsModal({
                                     '0px 0px 20px 0px',
                               }}
                            >
-                              E: 0-20{' '}
+                              E: 0-19{' '}
                               <span className='resultsIcon result-e'>
                                  😩
                               </span>
