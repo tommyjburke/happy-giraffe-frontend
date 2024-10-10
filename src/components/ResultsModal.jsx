@@ -245,7 +245,7 @@ export default function ResultsModal({
                                  border: 'none',
                               }}
                            >
-                              {percentage > 85 && you}
+                              {percentage >= 85 && you}
                            </td>
                            <td className=' r1b gold-background'>
                               A: 85-100{' '}
