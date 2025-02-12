@@ -160,7 +160,7 @@ export default function Form({
       for (let i = 0; i < spellingArray.length; i++) {
          // console.log('now processing:', spellingArray[i])
 
-         if (spellingArray[i].length > 12) {
+         if (spellingArray[i].length > 20) {
             // console.log('TOO LONG: ', spellingArray[i])
             longWordsError()
             continue

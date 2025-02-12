@@ -107,7 +107,7 @@ export default function DiySpellingConsole() {
       messageApi.open({
          type: 'warning',
          content:
-            'Excessively long words (>12) have been discarded. This is for kids!',
+            'Excessively long words (>20 characters) have been discarded. This is for kids!',
          duration: 4,
          style: {
             color: 'red',

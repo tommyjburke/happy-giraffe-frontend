@@ -146,7 +146,7 @@ export default function MathsQuestion({
                      mathsObject.verdict === '❌' ? (
                         <span
                            style={{
-                              fontFamily: 'Schoolbell',
+                              fontFamily: 'Roboto',
                               marginLeft: '2px',
                            }}
                         >
